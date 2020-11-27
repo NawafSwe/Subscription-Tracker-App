@@ -11,6 +11,7 @@ struct SubscriptionListView: View {
     let subscriptionsList = MockData.subscriptionSampleList
     @State var selectedSubscription:Subscription? = nil
     @State var showSubscriptionDetail = false
+    @State var showSubscriptionForm = false
     
     var body: some View {
         NavigationView {
@@ -27,6 +28,10 @@ struct SubscriptionListView: View {
                         .blur(radius: showSubscriptionDetail ? 10 :  0)
                         .shadow(radius: showSubscriptionDetail ? 10 : 0)
                 }
+                /// sheet for displaying the form
+                .sheet(isPresented: $showSubscriptionForm){
+                    SubscriptionFormView()
+                }
                 .listStyle(PlainListStyle())
                 
                 /// disabling the navigation if user shows sub details
@@ -41,7 +46,7 @@ struct SubscriptionListView: View {
             }
             
            
-            .navigationBarItems(leading: Button(action: {}, label: {
+            .navigationBarItems(leading: Button(action: {self.showSubscriptionForm.toggle()}, label: {
                                                     AddSubscriptionButtonView() } ))
             .navigationTitle("Subscriptions 💳")
             
