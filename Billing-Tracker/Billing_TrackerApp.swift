@@ -11,7 +11,7 @@ import SwiftUI
 struct Billing_TrackerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeTabView()
         }
     }
 }
