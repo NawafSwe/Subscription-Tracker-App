@@ -12,9 +12,14 @@ struct SubscriptionFormView: View {
     @State var selectedProvider = 0
     @State var subDescription = ""
     @State var subPrice:String = ""
+    @State var date = Date()
+    @State var selectedCycle = 0
+    @State var cycleTypes = ["weekly","monthly","yearly"]
     var calculatePrice:Double { Double(subPrice) ?? 0.0 }
+    @State var remindUser = false
     var body: some View {
-        NavigationView {
+        
+        ZStack {
             Form{
                 Section(header: Text("Subscription Details")){
                     
@@ -33,20 +38,35 @@ struct SubscriptionFormView: View {
                         .keyboardType(.decimalPad)
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
+                }
+                
+                Section(header:(Text("Timings"))){
+                    Picker("Cycle", selection: $selectedCycle){
+                        List(0..<cycleTypes.count){cycle in
+                            Text(cycleTypes[cycle])
+                        }
+                    }
                     
-                        
+                    DatePicker("Due Date", selection: $date, displayedComponents: .date)
+                    
                     
                 }
+                .accentColor(.black)
+                
+                Section(header:Text("Reminders")){
+                    Toggle("Remind Me Before Expire", isOn: $remindUser)
+                }
+                
                 
             }
             
-            .navigationTitle("New Subscription 💳")
+            Text("When Enabling This Option You Will Receive a Notification Before Your Subscription Expired.")
+                .foregroundColor(.secondary)
+                .offset(y:60)
         }
-        
-        
     }
+    
 }
-
 struct SubscriptionFormView_Previews: PreviewProvider {
     static var previews: some View {
         SubscriptionFormView()
@@ -66,3 +86,6 @@ struct ProvidersSelectionView:View{
         }
     }
 }
+
+
+

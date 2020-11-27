@@ -24,13 +24,13 @@ struct SubscriptionListView: View {
                             self.showSubscriptionDetail = true
                             self.selectedSubscription = sub
                         }
-                       
+                        
                         .blur(radius: showSubscriptionDetail ? 10 :  0)
                         .shadow(radius: showSubscriptionDetail ? 10 : 0)
                 }
                 /// sheet for displaying the form
                 .sheet(isPresented: $showSubscriptionForm){
-                    SubscriptionFormView()
+                    AddNewSubscriptionView()
                 }
                 .listStyle(PlainListStyle())
                 
@@ -45,7 +45,7 @@ struct SubscriptionListView: View {
                 }
             }
             
-           
+            
             .navigationBarItems(leading: Button(action: {self.showSubscriptionForm.toggle()}, label: {
                                                     AddSubscriptionButtonView() } ))
             .navigationTitle("Subscriptions 💳")
