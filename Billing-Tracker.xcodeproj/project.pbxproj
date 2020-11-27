@@ -17,6 +17,8 @@
 		399AD2EA25706F9400AFA10A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 399AD2E925706F9400AFA10A /* Assets.xcassets */; };
 		399AD2ED25706F9400AFA10A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 399AD2EC25706F9400AFA10A /* Preview Assets.xcassets */; };
 		399AD2F62570724B00AFA10A /* SubscriptionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399AD2F52570724B00AFA10A /* SubscriptionCellView.swift */; };
+		39D9132E25711B9800D9BDFE /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D9132D25711B9800D9BDFE /* Icons.swift */; };
+		39D9133225711C4300D9BDFE /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D9133125711C4300D9BDFE /* Color+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		399AD2EC25706F9400AFA10A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		399AD2EE25706F9400AFA10A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		399AD2F52570724B00AFA10A /* SubscriptionCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionCellView.swift; sourceTree = "<group>"; };
+		39D9132D25711B9800D9BDFE /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
+		39D9133125711C4300D9BDFE /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 		39611751257116A800919EF3 /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
+				39D9133025711C2F00D9BDFE /* Extensions */,
 				39611752257116BD00919EF3 /* Static */,
 			);
 			path = Utilites;
@@ -116,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				39611753257116EA00919EF3 /* Images.swift */,
+				39D9132D25711B9800D9BDFE /* Icons.swift */,
 			);
 			path = Static;
 			sourceTree = "<group>";
@@ -157,6 +163,14 @@
 				399AD2EC25706F9400AFA10A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		39D9133025711C2F00D9BDFE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				39D9133125711C4300D9BDFE /* Color+Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,9 +247,11 @@
 				399AD2F62570724B00AFA10A /* SubscriptionCellView.swift in Sources */,
 				396117422571110600919EF3 /* SettingView.swift in Sources */,
 				3961174E2571165900919EF3 /* Subscription.swift in Sources */,
+				39D9132E25711B9800D9BDFE /* Icons.swift in Sources */,
 				39611754257116EA00919EF3 /* Images.swift in Sources */,
 				3935584D2570792800974ECD /* SubscriptionDetailView.swift in Sources */,
 				399AD2E625706F9300AFA10A /* Billing_TrackerApp.swift in Sources */,
+				39D9133225711C4300D9BDFE /* Color+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

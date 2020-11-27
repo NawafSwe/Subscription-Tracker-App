@@ -9,6 +9,9 @@ import SwiftUI
 
 struct SubscriptionListView: View {
     let subscriptionsList = MockData.subscriptionSampleList
+    @State var selectedSubscription:Subscription? = nil
+    @State var showSubscriptionDetail = false
+    
     var body: some View {
         NavigationView {
             ZStack{
@@ -16,17 +19,36 @@ struct SubscriptionListView: View {
                     
                     SubscriptionCellView(image:sub.image, name:sub.name, price: sub.price, dueDate: sub.dueDate)
                         .padding(.horizontal,-20)
+                        .onTapGesture {
+                            self.showSubscriptionDetail = true
+                            self.selectedSubscription = sub
+                        }
+                       
+                        .blur(radius: showSubscriptionDetail ? 10 :  0)
+                        .shadow(radius: showSubscriptionDetail ? 10 : 0)
                 }
                 .listStyle(PlainListStyle())
+                
+                /// disabling the navigation if user shows sub details
+                .disabled(showSubscriptionDetail)
+                
+                /// if the user tapped on the sub show its detail
+                if(showSubscriptionDetail){
+                    SubscriptionDetailView(subscription: selectedSubscription!,
+                                           dismissView: $showSubscriptionDetail)
+                    
+                }
             }
             
+           
             .navigationBarItems(leading: Button(action: {}, label: {
-                AddSubscriptionButtonView()
-            }))
+                                                    AddSubscriptionButtonView() } ))
             .navigationTitle("Subscriptions 💳")
+            
         }
     }
 }
+
 
 struct SubscriptionListView_Previews: PreviewProvider {
     static var previews: some View {
@@ -36,7 +58,7 @@ struct SubscriptionListView_Previews: PreviewProvider {
 
 struct AddSubscriptionButtonView:View{
     var body: some View{
-        Image(systemName: "bag.badge.plus")
+        Image(systemName: Icons.SFbag)
             .resizable()
             .scaledToFit()
             .frame(width: 32, height: 32)

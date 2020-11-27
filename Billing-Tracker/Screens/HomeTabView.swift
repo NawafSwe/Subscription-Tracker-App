@@ -11,7 +11,7 @@ struct HomeTabView: View {
     var body: some View {
         TabView{
             SubscriptionListView().tabItem {
-                Image(systemName: "creditcard")
+                Image(systemName: Icons.SFCreditcard)
                     .resizable()
                     .frame(width:20, height: 20)
                     .scaledToFit()
@@ -21,7 +21,7 @@ struct HomeTabView: View {
             
             
             SettingView().tabItem {
-                Image(systemName: "gearshape")
+                Image(systemName: Icons.SFgearshape)
                     .resizable()
                     .frame(width:20, height: 20)
                     .scaledToFit()
