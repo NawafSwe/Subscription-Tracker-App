@@ -19,6 +19,7 @@
 		399AD2F62570724B00AFA10A /* SubscriptionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399AD2F52570724B00AFA10A /* SubscriptionCellView.swift */; };
 		39D9132E25711B9800D9BDFE /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D9132D25711B9800D9BDFE /* Icons.swift */; };
 		39D9133225711C4300D9BDFE /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D9133125711C4300D9BDFE /* Color+Ext.swift */; };
+		39D913372571351100D9BDFE /* SubscriptionFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D913362571351100D9BDFE /* SubscriptionFormView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		399AD2F52570724B00AFA10A /* SubscriptionCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionCellView.swift; sourceTree = "<group>"; };
 		39D9132D25711B9800D9BDFE /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		39D9133125711C4300D9BDFE /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
+		39D913362571351100D9BDFE /* SubscriptionFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionFormView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				399AD2E725706F9300AFA10A /* HomeTabView.swift */,
+				39D91335257134F200D9BDFE /* SubscriptionFormView */,
 				396117482571155900919EF3 /* SubscriptionDetailView */,
 				396117472571154700919EF3 /* SettingView */,
 				396117462571150100919EF3 /* SubscriptionListView */,
@@ -173,6 +176,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		39D91335257134F200D9BDFE /* SubscriptionFormView */ = {
+			isa = PBXGroup;
+			children = (
+				39D913362571351100D9BDFE /* SubscriptionFormView.swift */,
+			);
+			path = SubscriptionFormView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -244,6 +255,7 @@
 			files = (
 				3961173E25710A8900919EF3 /* SubscriptionListView.swift in Sources */,
 				399AD2E825706F9300AFA10A /* HomeTabView.swift in Sources */,
+				39D913372571351100D9BDFE /* SubscriptionFormView.swift in Sources */,
 				399AD2F62570724B00AFA10A /* SubscriptionCellView.swift in Sources */,
 				396117422571110600919EF3 /* SettingView.swift in Sources */,
 				3961174E2571165900919EF3 /* Subscription.swift in Sources */,

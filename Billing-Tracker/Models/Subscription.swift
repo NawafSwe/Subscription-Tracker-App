@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Subscription:Identifiable{
+struct Subscription:Identifiable , Hashable{
     var id = UUID()
     let name:String
     let image:String
