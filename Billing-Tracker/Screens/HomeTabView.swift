@@ -16,6 +16,7 @@ struct HomeTabView: View {
                     .frame(width:20, height: 20)
                     .scaledToFit()
                 Text("Subscriptions")
+                   
                 
             }
             
@@ -35,7 +36,7 @@ struct HomeTabView: View {
             }
         }
         .tabViewStyle(DefaultTabViewStyle())
-        .accentColor(Color(#colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)))
+        .accentColor(.tabItem)
         
         
     }
@@ -46,5 +47,3 @@ struct HomeTabView_Previews: PreviewProvider {
         HomeTabView()
     }
 }
-
-//gearshape

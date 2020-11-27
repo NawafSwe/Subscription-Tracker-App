@@ -14,6 +14,7 @@ struct Subscription:Identifiable , Hashable{
     let description:String
     let dueDate:String
     let price:Double
+  
     
 }
 

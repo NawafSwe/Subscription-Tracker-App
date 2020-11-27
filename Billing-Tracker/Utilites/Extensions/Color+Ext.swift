@@ -9,4 +9,5 @@ import Foundation
 import SwiftUI
 extension Color{
     static let backgroundCell = Color("sub_cell_background")
+    static let tabItem = Color("tabItem")
 }

@@ -8,10 +8,25 @@
 import SwiftUI
 
 struct SubscriptionTimingsView: View {
+    //creating lazy grid , flexible telling him fill the size of the screen as much as you can
+    //each gridItem inside the grid item array represents number of columns
+    let columns : [GridItem] = [ GridItem(.flexible()) ,GridItem(.flexible())]
+    
     var body: some View {
         NavigationView {
-            Text("Hello, World!")
-                .navigationTitle("Subscriptions Timings ⌚️")
+            ScrollView {
+                LazyVGrid(columns:self.columns){
+                    ForEach(MockData.subscriptionSampleList){sub in
+                        SubscriptionBoxView()
+                        
+                    }
+                }
+                .padding(.top)
+                
+                .navigationTitle("Subscriptions Timings⌚️")
+                .navigationBarTitleDisplayMode(.inline)
+            }
+            
         }
     }
 }

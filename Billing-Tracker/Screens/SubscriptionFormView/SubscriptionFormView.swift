@@ -10,9 +10,7 @@ import SwiftUI
 /// and recalculate the next bill date  + from the due date
 
 struct SubscriptionFormView: View {
-    
-    
-    @State var subscriptionList = MockData.subscriptionSampleList
+    @State var providersList = Providers.providersList
     @State var selectedProvider = 0
     @State var subDescription = ""
     @State var subPrice:String = ""
@@ -23,15 +21,15 @@ struct SubscriptionFormView: View {
         Double(subPrice) ?? 0.0
     }
     @State var remindUser = false
-    var body: some View {
+    var body: some View{
         NavigationView {
             ZStack {
                 Form{
                     Section(header: Text("Subscription Details")){
                         
                         Picker(selection: $selectedProvider, label: Text("Provider") , content:{
-                            List(0..<subscriptionList.count){index in
-                                ProvidersSelectionView(image: subscriptionList[index].image, name: subscriptionList[index].name).tag(index)
+                            List(0..<providersList.count){index in
+                                ProvidersSelectionView(image: providersList[index].image, name: providersList[index].name).tag(index)
                             }
                         })
                         
@@ -57,12 +55,12 @@ struct SubscriptionFormView: View {
                         
                         
                     }
-                    .accentColor(.black)
+                    .accentColor(.primary)
                     
-                    Section(header:Text("Remind")){
-                        Toggle("Me Before one day Expire", isOn: $remindUser)
+                    Section(header:Text("Reminder")){
+                        Toggle("Notify Me One Day Before", isOn: $remindUser)
                     }
-                
+                    
                 }
             }
             .navigationTitle("New Subscription 💳")

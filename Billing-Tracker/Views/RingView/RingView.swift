@@ -13,12 +13,15 @@ struct RingView: View {
     var color2 = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
     var width : CGFloat
     var height : CGFloat
-    var percent : CGFloat
+    /// for days calculation
+    var reminderDays: CGFloat
+    var totalDays:  CGFloat
     
     var body: some View {
         //MARK:- global variables
         let multiplier = width / 44
-        let progress  = 1 - (percent / 100.0)
+        /// calculating progress
+        let progress  = 1 - (reminderDays / totalDays)
         
         //we have to use return the Zstack if we will declare a variables inside the body
         return ZStack {
@@ -39,7 +42,7 @@ struct RingView: View {
                 .frame(width : width , height: height)
                 .shadow(color: Color(color1).opacity(0.1), radius: 3 * multiplier , x: 0, y: 3 * multiplier)
             
-            Text("\( Int(percent) )% ")
+            Text("\( Int(reminderDays) )")
                 .font(.system(size: 14 * multiplier ))
                 .font(.headline)
                 .fontWeight(.bold)
@@ -53,6 +56,7 @@ struct RingView: View {
 
 struct RingView_Previews: PreviewProvider {
     static var previews: some View {
-        RingView(width: 100, height: 100, percent: 32)
+        RingView(width: 100, height: 100, reminderDays: 40, totalDays:50  )
+
     }
 }
