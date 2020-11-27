@@ -11,7 +11,7 @@ struct SubscriptionTimingsView: View {
     var body: some View {
         NavigationView {
             Text("Hello, World!")
-                .navigationTitle("Subscriptions Days Left ⌚️")
+                .navigationTitle("Subscriptions Timings ⌚️")
         }
     }
 }
