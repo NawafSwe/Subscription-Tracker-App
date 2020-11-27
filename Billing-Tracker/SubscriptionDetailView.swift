@@ -10,48 +10,30 @@ import SwiftUI
 struct SubscriptionDetailView: View {
     var body: some View {
         VStack{
-            /// card header
-            HStack{
-                Image("Netflix")
-                    .resizable()
-                    .frame(width: 32, height: 32)
-                    .scaledToFit()
-                
-                Text("Netflix")
-                    .font(.title)
-                
-                Spacer()
-                VStack{
-                    Text("SR43")
-                        .font(.title2)
-                        .font(.system(size: 16, weight: .medium))
-                    Text("1 month")
-                        .font(.system(size: 16, weight: .thin, design: .default))
-                    
-                    
-                }
-            }
-            .padding()
+            BrandView(image:"Netflix",name:"Netflix",price: 43, dueDate: "2 weeks")
+                .padding()
+            
             Divider()
                 .frame(height: 2)
                 .background(Color("DividerColor"))
                 .shadow(radius: 30)
             
-            InfoRow(name:"Name" , info: "Netflix")
-            InfoRow(name:"Description" , info: "Netflix subscription")
-            InfoRow(name: "Bill Date", info: "April 2 20202")
+            SubscriptionRowInfoView(name:"Name" , info: "Netflix")
+            SubscriptionRowInfoView(name:"Description" , info: "Netflix subscription")
+            SubscriptionRowInfoView(name: "Bill Date", info: "April 2 20202")
             
-            InfoRow(name: "Cycle", info: "Every Month")
+            SubscriptionRowInfoView(name: "Cycle", info: "Every Month")
             
-            InfoRow(name: "Reminder", info: "Never")
+            SubscriptionRowInfoView(name: "Reminder", info: "Never")
             
             
         }
-        
+        .frame(width: 330,height: 390)
         .background(Color("sub_cell_background"))
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         .shadow(radius: 10)
         .padding()
+        
         
         
     }
@@ -63,7 +45,7 @@ struct SubscriptionDetailView_Previews: PreviewProvider {
     }
 }
 
-struct InfoRow:View{
+struct SubscriptionRowInfoView:View{
     let name: String
     let info :String
     var body: some View{
@@ -80,4 +62,3 @@ struct InfoRow:View{
         }
     }
 }
-

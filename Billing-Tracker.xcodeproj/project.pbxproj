@@ -8,22 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		3935584D2570792800974ECD /* SubscriptionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3935584C2570792800974ECD /* SubscriptionDetailView.swift */; };
+		3961173E25710A8900919EF3 /* SubscriptionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961173D25710A8900919EF3 /* SubscriptionListView.swift */; };
+		396117422571110600919EF3 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396117412571110600919EF3 /* SettingView.swift */; };
 		399AD2E625706F9300AFA10A /* Billing_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399AD2E525706F9300AFA10A /* Billing_TrackerApp.swift */; };
 		399AD2E825706F9300AFA10A /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399AD2E725706F9300AFA10A /* HomeTabView.swift */; };
 		399AD2EA25706F9400AFA10A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 399AD2E925706F9400AFA10A /* Assets.xcassets */; };
 		399AD2ED25706F9400AFA10A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 399AD2EC25706F9400AFA10A /* Preview Assets.xcassets */; };
-		399AD2F62570724B00AFA10A /* SubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399AD2F52570724B00AFA10A /* SubscriptionView.swift */; };
+		399AD2F62570724B00AFA10A /* SubscriptionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399AD2F52570724B00AFA10A /* SubscriptionCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3935584C2570792800974ECD /* SubscriptionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionDetailView.swift; sourceTree = "<group>"; };
+		3961173D25710A8900919EF3 /* SubscriptionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionListView.swift; sourceTree = "<group>"; };
+		396117412571110600919EF3 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		399AD2E225706F9300AFA10A /* Billing-Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Billing-Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		399AD2E525706F9300AFA10A /* Billing_TrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Billing_TrackerApp.swift; sourceTree = "<group>"; };
 		399AD2E725706F9300AFA10A /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
 		399AD2E925706F9400AFA10A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		399AD2EC25706F9400AFA10A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		399AD2EE25706F9400AFA10A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		399AD2F52570724B00AFA10A /* SubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionView.swift; sourceTree = "<group>"; };
+		399AD2F52570724B00AFA10A /* SubscriptionCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +41,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39611745257114F700919EF3 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				396117462571150100919EF3 /* SubscriptionListView */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		396117462571150100919EF3 /* SubscriptionListView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SubscriptionListView;
+			sourceTree = "<group>";
+		};
 		399AD2D925706F9300AFA10A = {
 			isa = PBXGroup;
 			children = (
@@ -56,7 +75,10 @@
 		399AD2E425706F9300AFA10A /* Billing-Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				399AD2F52570724B00AFA10A /* SubscriptionView.swift */,
+				39611745257114F700919EF3 /* Screens */,
+				396117412571110600919EF3 /* SettingView.swift */,
+				3961173D25710A8900919EF3 /* SubscriptionListView.swift */,
+				399AD2F52570724B00AFA10A /* SubscriptionCellView.swift */,
 				3935584C2570792800974ECD /* SubscriptionDetailView.swift */,
 				399AD2E725706F9300AFA10A /* HomeTabView.swift */,
 				399AD2E925706F9400AFA10A /* Assets.xcassets */,
@@ -144,8 +166,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3961173E25710A8900919EF3 /* SubscriptionListView.swift in Sources */,
 				399AD2E825706F9300AFA10A /* HomeTabView.swift in Sources */,
-				399AD2F62570724B00AFA10A /* SubscriptionView.swift in Sources */,
+				399AD2F62570724B00AFA10A /* SubscriptionCellView.swift in Sources */,
+				396117422571110600919EF3 /* SettingView.swift in Sources */,
 				3935584D2570792800974ECD /* SubscriptionDetailView.swift in Sources */,
 				399AD2E625706F9300AFA10A /* Billing_TrackerApp.swift in Sources */,
 			);
