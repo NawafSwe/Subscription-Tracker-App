@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct SubscriptionListView: View {
+    let subscriptionsList = MockData.subscriptionSampleList
     var body: some View {
         NavigationView {
             ZStack{
-                List(0..<5){ sub in
+                List(subscriptionsList){ sub in
                     
-                    SubscriptionCellView(image:"Netflix",name:"Netflix",price: 43, dueDate: "2 weeks")
+                    SubscriptionCellView(image:sub.image, name:sub.name, price: sub.price, dueDate: sub.dueDate)
                         .padding(.horizontal,-20)
                 }
                 .listStyle(PlainListStyle())
             }
-
+            
             .navigationBarItems(leading: Button(action: {}, label: {
                 AddSubscriptionButtonView()
             }))
