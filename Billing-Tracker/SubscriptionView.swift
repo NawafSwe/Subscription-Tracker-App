@@ -47,7 +47,7 @@ struct BrandView:View{
             
             VStack {
                 Text(name)
-                    .font(.title2)
+                    .font(.title)
             }
         }
         
@@ -61,7 +61,9 @@ struct SubscriptionInfo:View{
     var body: some View{
         VStack{
             Text("SR \(String(format: "%.2f", price) )")
+                .font(.system(size: 16, weight: .medium))
             Text(dueDate)
+                .font(.system(size: 16, weight: .thin, design: .default))
         }
         .font(.body)
     }

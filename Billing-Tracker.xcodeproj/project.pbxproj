@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3935584D2570792800974ECD /* SubscriptionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3935584C2570792800974ECD /* SubscriptionDetailView.swift */; };
 		399AD2E625706F9300AFA10A /* Billing_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399AD2E525706F9300AFA10A /* Billing_TrackerApp.swift */; };
 		399AD2E825706F9300AFA10A /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399AD2E725706F9300AFA10A /* HomeTabView.swift */; };
 		399AD2EA25706F9400AFA10A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 399AD2E925706F9400AFA10A /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3935584C2570792800974ECD /* SubscriptionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionDetailView.swift; sourceTree = "<group>"; };
 		399AD2E225706F9300AFA10A /* Billing-Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Billing-Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		399AD2E525706F9300AFA10A /* Billing_TrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Billing_TrackerApp.swift; sourceTree = "<group>"; };
 		399AD2E725706F9300AFA10A /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				399AD2F52570724B00AFA10A /* SubscriptionView.swift */,
+				3935584C2570792800974ECD /* SubscriptionDetailView.swift */,
 				399AD2E725706F9300AFA10A /* HomeTabView.swift */,
 				399AD2E925706F9400AFA10A /* Assets.xcassets */,
 				399AD2EE25706F9400AFA10A /* Info.plist */,
@@ -143,6 +146,7 @@
 			files = (
 				399AD2E825706F9300AFA10A /* HomeTabView.swift in Sources */,
 				399AD2F62570724B00AFA10A /* SubscriptionView.swift in Sources */,
+				3935584D2570792800974ECD /* SubscriptionDetailView.swift in Sources */,
 				399AD2E625706F9300AFA10A /* Billing_TrackerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
