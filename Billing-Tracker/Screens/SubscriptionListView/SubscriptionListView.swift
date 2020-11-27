@@ -18,9 +18,9 @@ struct SubscriptionListView: View {
         NavigationView {
             ZStack{
                 List(subscriptionsList){ sub in
-                    
                     SubscriptionCellView(image:sub.image, name:sub.name, price: sub.price, dueDate: sub.dueDate)
-                        .padding(.horizontal,-20)
+                        .padding(.vertical,4)
+                        
                         .onTapGesture {
                             self.showSubscriptionDetail = true
                             self.selectedSubscription = sub
@@ -29,6 +29,7 @@ struct SubscriptionListView: View {
                         .blur(radius: showSubscriptionDetail ? 10 :  0)
                         .shadow(radius: showSubscriptionDetail ? 10 : 0)
                 }
+                
                 /// sheet for displaying the form
                 .sheet(isPresented: $showSubscriptionForm){
                     SubscriptionFormView()

@@ -14,18 +14,14 @@ struct SubscriptionCellView: View {
     let dueDate:String
     
     var body: some View {
-        HStack{
+        HStack(alignment: .center){
             BrandView(image:image, name:name, price: price, dueDate: dueDate)
-                .padding()
-            
-            
+                
         }
-        .frame(width: 360, height: 70)
+        .frame(width: 360, height: 60)
         .background(Color("sub_cell_background"))
         .cornerRadius(10)
         .shadow(radius: 3)
-        .padding()
-        
         
         
     }
@@ -48,12 +44,8 @@ struct BrandView:View{
                 .resizable()
                 .frame(width: 32 , height: 32)
                 .scaledToFit()
-            
-            
-            VStack {
-                Text(name)
-                    .font(.title)
-            }
+            Text(name)
+                .font(.title)
             
             Spacer()
             
@@ -63,11 +55,7 @@ struct BrandView:View{
                 Text(dueDate)
                     .font(.system(size: 16, weight: .thin, design: .default))
             }
-            .font(.body)
-            
         }
-        
+        .padding()
     }
 }
-
-

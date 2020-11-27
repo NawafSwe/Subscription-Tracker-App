@@ -19,7 +19,13 @@ struct HomeTabView: View {
                 
             }
             
-            
+            SubscriptionTimingsView().tabItem {
+                Image(systemName: Icons.SFTimelapse)
+                    .resizable()
+                    .frame(width:20, height: 20)
+                    .scaledToFit()
+                Text("Subscription Timings")
+            }
             SettingView().tabItem {
                 Image(systemName: Icons.SFgearshape)
                     .resizable()

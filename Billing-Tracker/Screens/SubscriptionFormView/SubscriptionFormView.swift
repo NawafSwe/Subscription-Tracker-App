@@ -10,6 +10,8 @@ import SwiftUI
 /// and recalculate the next bill date  + from the due date
 
 struct SubscriptionFormView: View {
+    
+    
     @State var subscriptionList = MockData.subscriptionSampleList
     @State var selectedProvider = 0
     @State var subDescription = ""
@@ -19,7 +21,7 @@ struct SubscriptionFormView: View {
     @State var cycleTypes = ["weekly","monthly","yearly"]
     var calculatePrice:Double {
         Double(subPrice) ?? 0.0
-        }
+    }
     @State var remindUser = false
     var body: some View {
         NavigationView {
@@ -57,16 +59,11 @@ struct SubscriptionFormView: View {
                     }
                     .accentColor(.black)
                     
-                    Section(header:Text("Reminders")){
-                        Toggle("Remind Me Before Expire", isOn: $remindUser)
+                    Section(header:Text("Remind")){
+                        Toggle("Me Before one day Expire", isOn: $remindUser)
                     }
-                    
-                    
-                }
                 
-                Text("When Enabling This Option You Will Receive a Notification Before Your Subscription Expired.")
-                    .foregroundColor(.secondary)
-                    .offset(y:120)
+                }
             }
             .navigationTitle("New Subscription 💳")
         }
