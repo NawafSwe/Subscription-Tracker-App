@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-struct AddNewSubscriptionView:View{
+struct UpdateSubscriptionView:View{
     var body: some View{
         NavigationView {
-            SubscriptionFormView()
-                .navigationTitle("New Subscription 💳")
+          Text("Update")
+                .navigationTitle("Edit Subscription 💳")
         }
     }
 }
-struct AddNewSubscriptionView_Previews: PreviewProvider {
+struct UpdateSubscriptionView_Previews: PreviewProvider {
     static var previews: some View {
-        AddNewSubscriptionView()
+        UpdateSubscriptionView()
     }
 }

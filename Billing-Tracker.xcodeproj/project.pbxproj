@@ -20,7 +20,8 @@
 		39D9132E25711B9800D9BDFE /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D9132D25711B9800D9BDFE /* Icons.swift */; };
 		39D9133225711C4300D9BDFE /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D9133125711C4300D9BDFE /* Color+Ext.swift */; };
 		39D913372571351100D9BDFE /* SubscriptionFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D913362571351100D9BDFE /* SubscriptionFormView.swift */; };
-		39D9134125716E5F00D9BDFE /* AddNewSubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D9134025716E5F00D9BDFE /* AddNewSubscriptionView.swift */; };
+		39D9134125716E5F00D9BDFE /* UpdateSubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D9134025716E5F00D9BDFE /* UpdateSubscriptionView.swift */; };
+		39D9134B257181AC00D9BDFE /* RingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D9134A257181AC00D9BDFE /* RingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +40,8 @@
 		39D9132D25711B9800D9BDFE /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		39D9133125711C4300D9BDFE /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		39D913362571351100D9BDFE /* SubscriptionFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionFormView.swift; sourceTree = "<group>"; };
-		39D9134025716E5F00D9BDFE /* AddNewSubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewSubscriptionView.swift; sourceTree = "<group>"; };
+		39D9134025716E5F00D9BDFE /* UpdateSubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSubscriptionView.swift; sourceTree = "<group>"; };
+		39D9134A257181AC00D9BDFE /* RingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +58,8 @@
 		39611745257114F700919EF3 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				39D9133F25716E4F00D9BDFE /* AddNewSubscriptionView */,
 				399AD2E725706F9300AFA10A /* HomeTabView.swift */,
+				39D9133F25716E4F00D9BDFE /* UpdateSubscriptionView */,
 				39D91335257134F200D9BDFE /* SubscriptionFormView */,
 				396117482571155900919EF3 /* SubscriptionDetailView */,
 				396117472571154700919EF3 /* SettingView */,
@@ -93,6 +95,8 @@
 		396117492571157800919EF3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				39D913492571819F00D9BDFE /* RingView */,
+				39D91344257176DF00D9BDFE /* Buttons */,
 				3961174A2571158000919EF3 /* Cells */,
 			);
 			path = Views;
@@ -195,12 +199,27 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		39D9133F25716E4F00D9BDFE /* AddNewSubscriptionView */ = {
+		39D9133F25716E4F00D9BDFE /* UpdateSubscriptionView */ = {
 			isa = PBXGroup;
 			children = (
-				39D9134025716E5F00D9BDFE /* AddNewSubscriptionView.swift */,
+				39D9134025716E5F00D9BDFE /* UpdateSubscriptionView.swift */,
 			);
-			path = AddNewSubscriptionView;
+			path = UpdateSubscriptionView;
+			sourceTree = "<group>";
+		};
+		39D91344257176DF00D9BDFE /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		39D913492571819F00D9BDFE /* RingView */ = {
+			isa = PBXGroup;
+			children = (
+				39D9134A257181AC00D9BDFE /* RingView.swift */,
+			);
+			path = RingView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,7 +297,8 @@
 				399AD2F62570724B00AFA10A /* SubscriptionCellView.swift in Sources */,
 				396117422571110600919EF3 /* SettingView.swift in Sources */,
 				3961174E2571165900919EF3 /* Subscription.swift in Sources */,
-				39D9134125716E5F00D9BDFE /* AddNewSubscriptionView.swift in Sources */,
+				39D9134B257181AC00D9BDFE /* RingView.swift in Sources */,
+				39D9134125716E5F00D9BDFE /* UpdateSubscriptionView.swift in Sources */,
 				39D9132E25711B9800D9BDFE /* Icons.swift in Sources */,
 				39611754257116EA00919EF3 /* Images.swift in Sources */,
 				3935584D2570792800974ECD /* SubscriptionDetailView.swift in Sources */,

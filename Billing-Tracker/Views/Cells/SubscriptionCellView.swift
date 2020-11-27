@@ -23,7 +23,7 @@ struct SubscriptionCellView: View {
         .frame(width: 360, height: 70)
         .background(Color("sub_cell_background"))
         .cornerRadius(10)
-        .shadow(radius: 10)
+        .shadow(radius: 3)
         .padding()
         
         

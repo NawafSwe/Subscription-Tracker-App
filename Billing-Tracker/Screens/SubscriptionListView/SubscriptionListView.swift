@@ -12,6 +12,7 @@ struct SubscriptionListView: View {
     @State var selectedSubscription:Subscription? = nil
     @State var showSubscriptionDetail = false
     @State var showSubscriptionForm = false
+    @State var viewState : CGSize = .zero
     
     var body: some View {
         NavigationView {
@@ -30,7 +31,7 @@ struct SubscriptionListView: View {
                 }
                 /// sheet for displaying the form
                 .sheet(isPresented: $showSubscriptionForm){
-                    AddNewSubscriptionView()
+                    SubscriptionFormView()
                 }
                 .listStyle(PlainListStyle())
                 
@@ -44,8 +45,6 @@ struct SubscriptionListView: View {
                     
                 }
             }
-            
-            
             .navigationBarItems(leading: Button(action: {self.showSubscriptionForm.toggle()}, label: {
                                                     AddSubscriptionButtonView() } ))
             .navigationTitle("Subscriptions 💳")

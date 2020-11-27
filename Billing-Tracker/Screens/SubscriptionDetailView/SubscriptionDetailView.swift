@@ -10,9 +10,9 @@ import SwiftUI
 struct SubscriptionDetailView: View {
     let subscription:Subscription
     @Binding var dismissView:Bool
-    @State var viewState : CGSize = .zero
+    @State var viewState:CGSize = .zero
+    
     var body: some View {
-        
         ZStack {
             VStack{
                 BrandView(image:subscription.image ,name: subscription.name, price: subscription.price, dueDate: subscription.dueDate)
@@ -25,22 +25,21 @@ struct SubscriptionDetailView: View {
                 
                 SubscriptionRowInfoView(name:"Name" , info: subscription.name)
                 SubscriptionRowInfoView(name:"Description" , info: subscription.description)
-                SubscriptionRowInfoView(name: "Bill Date", info: "April 2 20202")
+                SubscriptionRowInfoView(name: "Bill Date", info: "April 2 2202")
                 SubscriptionRowInfoView(name: "Cycle", info: "Every Month")
                 SubscriptionRowInfoView(name: "Reminder", info: "Never")
                 
                 
             }
-            
+            .frame(width: 340,height: 400)
+            .background(Color.backgroundCell)
+            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+            .shadow(radius: 4)
+            .padding()
             .overlay(
                 Text( "\(self.viewState.height)")
                 
                 , alignment: .top)
-            .frame(width: 340,height: 400)
-            .background(Color.backgroundCell)
-            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-            .shadow(radius: 10)
-            .padding()
             .animation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 0))
             .gesture(
                 DragGesture().onChanged{ value in
@@ -48,8 +47,9 @@ struct SubscriptionDetailView: View {
                     self.viewState = value.translation
                     
                     /// if the user dragged it till 260 or more dismiss it
-                    if(self.viewState.height >= 266){
+                    if(self.viewState.height >= 255){
                         self.dismissView.toggle()
+                        self.viewState = .zero
                     }
                     
                 }
@@ -60,7 +60,7 @@ struct SubscriptionDetailView: View {
                 })
             )
             /// by dragging moving card
-            .offset(y:self.viewState.height >= 20 ? self.viewState.height : 0)
+            .offset(y:self.viewState.height >= 40 ? self.viewState.height : 0)
             // prevent animation from propagation
             .animation(nil)
         }
