@@ -10,6 +10,7 @@ import SwiftUI
 /// and recalculate the next bill date  + from the due date
 
 struct SubscriptionFormView: View {
+    @Environment (\.presentationMode) var presentationMode
     @State var providersList = Providers.providersList
     @State var selectedProvider = 0
     @State var subDescription = ""
@@ -74,6 +75,11 @@ struct SubscriptionFormView: View {
                     
                 }
             }
+            .navigationBarItems(leading: Button(action:{self.presentationMode.wrappedValue.dismiss()}){
+                DismissButtonView()
+                
+            }
+            )
             .navigationTitle("New Subscription 💳")
         }
     }

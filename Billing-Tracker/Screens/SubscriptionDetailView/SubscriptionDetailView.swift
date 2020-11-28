@@ -64,11 +64,5 @@ struct SubscriptionRowInfoView:View{
     }
 }
 
-struct DismissButtonView:View{
-    var body: some View{
-        Image(systemName: Icons.SFXmark)
-            .resizable()
-            .frame(width:20 , height: 20)
-            .accentColor(.black)
-    }
-}
+
+ 

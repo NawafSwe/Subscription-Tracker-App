@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,12 @@
 		3929C7CC2571D4240012DD51 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7CB2571D4240012DD51 /* Constants.swift */; };
 		3929C7D52571D75B0012DD51 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7D42571D75B0012DD51 /* DataStore.swift */; };
 		3929C7DA2571D79D0012DD51 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7D82571D79D0012DD51 /* CoreDataModel.xcdatamodeld */; };
+		3929C7DD2571D8160012DD51 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7DC2571D8160012DD51 /* User.swift */; };
+		3929C7E22571DBB10012DD51 /* DismissButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7E12571DBB10012DD51 /* DismissButtonView.swift */; };
+		3929C7E62571DC4D0012DD51 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7E52571DC4D0012DD51 /* BlurView.swift */; };
+		3929C7EA2571DC720012DD51 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7E92571DC720012DD51 /* LottieView.swift */; };
+		3929C7EE2571DCCB0012DD51 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 3929C7ED2571DCCB0012DD51 /* Lottie */; };
+		3929C7F12571DCDF0012DD51 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7F02571DCDF0012DD51 /* SafariView.swift */; };
 		3935584D2570792800974ECD /* SubscriptionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3935584C2570792800974ECD /* SubscriptionDetailView.swift */; };
 		394780C92571856A00C97EAA /* SubscriptionTimings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394780C82571856A00C97EAA /* SubscriptionTimings.swift */; };
 		3961173E25710A8900919EF3 /* SubscriptionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961173D25710A8900919EF3 /* SubscriptionListView.swift */; };
@@ -40,6 +46,11 @@
 		3929C7CB2571D4240012DD51 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3929C7D42571D75B0012DD51 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		3929C7D92571D79D0012DD51 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		3929C7DC2571D8160012DD51 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3929C7E12571DBB10012DD51 /* DismissButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButtonView.swift; sourceTree = "<group>"; };
+		3929C7E52571DC4D0012DD51 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		3929C7E92571DC720012DD51 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		3929C7F02571DCDF0012DD51 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		3935584C2570792800974ECD /* SubscriptionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionDetailView.swift; sourceTree = "<group>"; };
 		394780C82571856A00C97EAA /* SubscriptionTimings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTimings.swift; sourceTree = "<group>"; };
 		3961173D25710A8900919EF3 /* SubscriptionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionListView.swift; sourceTree = "<group>"; };
@@ -65,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3929C7EE2571DCCB0012DD51 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +106,23 @@
 				3929C7D82571D79D0012DD51 /* CoreDataModel.xcdatamodeld */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		3929C7DF2571DA5A0012DD51 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Alerts;
+			sourceTree = "<group>";
+		};
+		3929C7E42571DC350012DD51 /* UIkitViews */ = {
+			isa = PBXGroup;
+			children = (
+				3929C7E52571DC4D0012DD51 /* BlurView.swift */,
+				3929C7E92571DC720012DD51 /* LottieView.swift */,
+				3929C7F02571DCDF0012DD51 /* SafariView.swift */,
+			);
+			path = UIkitViews;
 			sourceTree = "<group>";
 		};
 		394780C72571854500C97EAA /* SubscriptionTimingsView */ = {
@@ -167,6 +196,7 @@
 			children = (
 				3961174D2571165900919EF3 /* Subscription.swift */,
 				3929C7B92571BD0C0012DD51 /* Provider.swift */,
+				3929C7DC2571D8160012DD51 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -174,8 +204,10 @@
 		39611751257116A800919EF3 /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
+				3929C7E42571DC350012DD51 /* UIkitViews */,
 				3929C7CB2571D4240012DD51 /* Constants.swift */,
 				39D91339257142E700D9BDFE /* Protocols */,
+				3929C7DF2571DA5A0012DD51 /* Alerts */,
 				39D9133025711C2F00D9BDFE /* Extensions */,
 				39611752257116BD00919EF3 /* Static */,
 			);
@@ -265,6 +297,7 @@
 		39D91344257176DF00D9BDFE /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				3929C7E12571DBB10012DD51 /* DismissButtonView.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -294,6 +327,9 @@
 			dependencies = (
 			);
 			name = "Billing-Tracker";
+			packageProductDependencies = (
+				3929C7ED2571DCCB0012DD51 /* Lottie */,
+			);
 			productName = "Billing-Tracker";
 			productReference = 399AD2E225706F9300AFA10A /* Billing-Tracker.app */;
 			productType = "com.apple.product-type.application";
@@ -321,6 +357,9 @@
 				Base,
 			);
 			mainGroup = 399AD2D925706F9300AFA10A;
+			packageReferences = (
+				3929C7EC2571DCCB0012DD51 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = 399AD2E325706F9300AFA10A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -349,6 +388,8 @@
 			files = (
 				3961173E25710A8900919EF3 /* SubscriptionListView.swift in Sources */,
 				3929C7CC2571D4240012DD51 /* Constants.swift in Sources */,
+				3929C7F12571DCDF0012DD51 /* SafariView.swift in Sources */,
+				3929C7EA2571DC720012DD51 /* LottieView.swift in Sources */,
 				399AD2E825706F9300AFA10A /* HomeTabView.swift in Sources */,
 				39D913372571351100D9BDFE /* SubscriptionFormView.swift in Sources */,
 				399AD2F62570724B00AFA10A /* SubscriptionCellView.swift in Sources */,
@@ -357,11 +398,14 @@
 				3961174E2571165900919EF3 /* Subscription.swift in Sources */,
 				39D9134B257181AC00D9BDFE /* DaysRingView.swift in Sources */,
 				39D9134125716E5F00D9BDFE /* UpdateSubscriptionView.swift in Sources */,
+				3929C7DD2571D8160012DD51 /* User.swift in Sources */,
 				39D9132E25711B9800D9BDFE /* Icons.swift in Sources */,
+				3929C7E22571DBB10012DD51 /* DismissButtonView.swift in Sources */,
 				39611754257116EA00919EF3 /* Images.swift in Sources */,
 				3935584D2570792800974ECD /* SubscriptionDetailView.swift in Sources */,
 				3929C7C82571D0E00012DD51 /* ExpenseView.swift in Sources */,
 				3929C7D52571D75B0012DD51 /* DataStore.swift in Sources */,
+				3929C7E62571DC4D0012DD51 /* BlurView.swift in Sources */,
 				394780C92571856A00C97EAA /* SubscriptionTimings.swift in Sources */,
 				399AD2E625706F9300AFA10A /* Billing_TrackerApp.swift in Sources */,
 				3929C7BE2571C3460012DD51 /* SubscriptionBoxView.swift in Sources */,
@@ -556,6 +600,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3929C7EC2571DCCB0012DD51 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3929C7ED2571DCCB0012DD51 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3929C7EC2571DCCB0012DD51 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		3929C7D82571D79D0012DD51 /* CoreDataModel.xcdatamodeld */ = {
