@@ -7,6 +7,6 @@
 
 import Foundation
  //MARK:- K struct holds constants values used across the app
-struct K{
+struct K {
     static let devAccount = URL(string:"https://twitter.com/Nawaf_B_910")!
 }

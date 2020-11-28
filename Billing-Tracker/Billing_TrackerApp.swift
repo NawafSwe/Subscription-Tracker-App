@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct Billing_TrackerApp: App {
+    /// using the core data across all the application
+    let context = DataStore.shared.context
     var body: some Scene {
         WindowGroup {
-            HomeTabView()
+            HomeTabView().environment(\.managedObjectContext, context)
         }
     }
 }
