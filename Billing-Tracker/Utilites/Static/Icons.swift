@@ -12,4 +12,5 @@ enum Icons{
     static let SFbag = "bag.badge.plus"
     static let SFXmark = "xmark.circle"
     static let SFTimelapse = "timelapse"
+    
 }

@@ -11,6 +11,7 @@
 		3929C7BE2571C3460012DD51 /* SubscriptionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7BD2571C3460012DD51 /* SubscriptionBoxView.swift */; };
 		3929C7C42571CDAA0012DD51 /* CharsLimitRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7C32571CDAA0012DD51 /* CharsLimitRingView.swift */; };
 		3929C7C82571D0E00012DD51 /* ExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7C72571D0E00012DD51 /* ExpenseView.swift */; };
+		3929C7CC2571D4240012DD51 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7CB2571D4240012DD51 /* Constants.swift */; };
 		3935584D2570792800974ECD /* SubscriptionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3935584C2570792800974ECD /* SubscriptionDetailView.swift */; };
 		394780C92571856A00C97EAA /* SubscriptionTimings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394780C82571856A00C97EAA /* SubscriptionTimings.swift */; };
 		3961173E25710A8900919EF3 /* SubscriptionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961173D25710A8900919EF3 /* SubscriptionListView.swift */; };
@@ -34,6 +35,7 @@
 		3929C7BD2571C3460012DD51 /* SubscriptionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionBoxView.swift; sourceTree = "<group>"; };
 		3929C7C32571CDAA0012DD51 /* CharsLimitRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharsLimitRingView.swift; sourceTree = "<group>"; };
 		3929C7C72571D0E00012DD51 /* ExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseView.swift; sourceTree = "<group>"; };
+		3929C7CB2571D4240012DD51 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3935584C2570792800974ECD /* SubscriptionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionDetailView.swift; sourceTree = "<group>"; };
 		394780C82571856A00C97EAA /* SubscriptionTimings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTimings.swift; sourceTree = "<group>"; };
 		3961173D25710A8900919EF3 /* SubscriptionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionListView.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 		39611751257116A800919EF3 /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
+				3929C7CB2571D4240012DD51 /* Constants.swift */,
 				39D91339257142E700D9BDFE /* Protocols */,
 				39D9133025711C2F00D9BDFE /* Extensions */,
 				39611752257116BD00919EF3 /* Static */,
@@ -331,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3961173E25710A8900919EF3 /* SubscriptionListView.swift in Sources */,
+				3929C7CC2571D4240012DD51 /* Constants.swift in Sources */,
 				399AD2E825706F9300AFA10A /* HomeTabView.swift in Sources */,
 				39D913372571351100D9BDFE /* SubscriptionFormView.swift in Sources */,
 				399AD2F62570724B00AFA10A /* SubscriptionCellView.swift in Sources */,
