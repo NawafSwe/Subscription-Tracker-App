@@ -10,7 +10,7 @@ enum Icons{
     static let SFCreditcard = "creditcard"
     static let SFgearshape = "gearshape"
     static let SFbag = "bag.badge.plus"
-    static let SFXmark = "xmark.circle"
+    static let SFXmark = "xmark"
     static let SFTimelapse = "timelapse"
     
 }

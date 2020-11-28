@@ -77,8 +77,10 @@ struct SubscriptionFormView: View {
             }
             .navigationBarItems(leading: Button(action:{self.presentationMode.wrappedValue.dismiss()}){
                 DismissButtonView()
+                    
                 
             }
+            
             )
             .navigationTitle("New Subscription 💳")
         }
@@ -89,6 +91,7 @@ struct SubscriptionFormView: View {
 struct SubscriptionFormView_Previews: PreviewProvider {
     static var previews: some View {
         SubscriptionFormView()
+            .colorScheme(.dark)
     }
 }
 

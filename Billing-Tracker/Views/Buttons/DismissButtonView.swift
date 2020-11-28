@@ -10,10 +10,16 @@ import SwiftUI
 struct DismissButtonView: View {
     var body: some View{
         Image(systemName: Icons.SFXmark)
-            .resizable()
-            .frame(width:30 , height: 30)
+            .foregroundColor(.standardText)
+            .imageScale(.small)
             .scaledToFit()
-            .accentColor(.black)
+            .frame(width: 20, height: 20)
+            .background(
+                Circle()
+                    .frame(width: 30, height: 30, alignment: .center)
+                    .accentColor(Color.xmark)
+            )
+            .background(BlurView(style: .systemMaterial))
     }
 }
 
@@ -21,5 +27,6 @@ struct DismissButtonView: View {
 struct DismissButtonView_Previews: PreviewProvider {
     static var previews: some View {
         DismissButtonView()
+            .colorScheme(.light)
     }
 }
