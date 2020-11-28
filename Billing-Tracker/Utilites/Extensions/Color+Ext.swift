@@ -10,4 +10,8 @@ import SwiftUI
 extension Color{
     static let backgroundCell = Color("sub_cell_background")
     static let tabItem = Color("tabItem")
+    static let daysRingColor1 = Color("")
+    static let daysRingColor2 = Color("")
+    static let charsLimitColor1 = Color("")
+    static let charsLimitColor2 = Color("")
 }

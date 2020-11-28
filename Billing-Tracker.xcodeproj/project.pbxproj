@@ -10,6 +10,7 @@
 		3929C7BA2571BD0C0012DD51 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7B92571BD0C0012DD51 /* Provider.swift */; };
 		3929C7BE2571C3460012DD51 /* SubscriptionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7BD2571C3460012DD51 /* SubscriptionBoxView.swift */; };
 		3929C7C42571CDAA0012DD51 /* CharsLimitRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7C32571CDAA0012DD51 /* CharsLimitRingView.swift */; };
+		3929C7C82571D0E00012DD51 /* ExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7C72571D0E00012DD51 /* ExpenseView.swift */; };
 		3935584D2570792800974ECD /* SubscriptionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3935584C2570792800974ECD /* SubscriptionDetailView.swift */; };
 		394780C92571856A00C97EAA /* SubscriptionTimings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394780C82571856A00C97EAA /* SubscriptionTimings.swift */; };
 		3961173E25710A8900919EF3 /* SubscriptionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961173D25710A8900919EF3 /* SubscriptionListView.swift */; };
@@ -32,6 +33,7 @@
 		3929C7B92571BD0C0012DD51 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		3929C7BD2571C3460012DD51 /* SubscriptionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionBoxView.swift; sourceTree = "<group>"; };
 		3929C7C32571CDAA0012DD51 /* CharsLimitRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharsLimitRingView.swift; sourceTree = "<group>"; };
+		3929C7C72571D0E00012DD51 /* ExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseView.swift; sourceTree = "<group>"; };
 		3935584C2570792800974ECD /* SubscriptionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionDetailView.swift; sourceTree = "<group>"; };
 		394780C82571856A00C97EAA /* SubscriptionTimings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTimings.swift; sourceTree = "<group>"; };
 		3961173D25710A8900919EF3 /* SubscriptionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionListView.swift; sourceTree = "<group>"; };
@@ -71,6 +73,14 @@
 			path = SubscriptionBoxView;
 			sourceTree = "<group>";
 		};
+		3929C7C62571D0CE0012DD51 /* ExpenseView */ = {
+			isa = PBXGroup;
+			children = (
+				3929C7C72571D0E00012DD51 /* ExpenseView.swift */,
+			);
+			path = ExpenseView;
+			sourceTree = "<group>";
+		};
 		394780C72571854500C97EAA /* SubscriptionTimingsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				399AD2E725706F9300AFA10A /* HomeTabView.swift */,
+				3929C7C62571D0CE0012DD51 /* ExpenseView */,
 				394780C72571854500C97EAA /* SubscriptionTimingsView */,
 				39D9133F25716E4F00D9BDFE /* UpdateSubscriptionView */,
 				396117462571150100919EF3 /* SubscriptionListView */,
@@ -330,6 +341,7 @@
 				39D9132E25711B9800D9BDFE /* Icons.swift in Sources */,
 				39611754257116EA00919EF3 /* Images.swift in Sources */,
 				3935584D2570792800974ECD /* SubscriptionDetailView.swift in Sources */,
+				3929C7C82571D0E00012DD51 /* ExpenseView.swift in Sources */,
 				394780C92571856A00C97EAA /* SubscriptionTimings.swift in Sources */,
 				399AD2E625706F9300AFA10A /* Billing_TrackerApp.swift in Sources */,
 				3929C7BE2571C3460012DD51 /* SubscriptionBoxView.swift in Sources */,

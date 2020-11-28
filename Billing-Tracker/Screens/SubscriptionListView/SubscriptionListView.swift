@@ -15,6 +15,7 @@ struct SubscriptionListView: View {
     @State var viewState : CGSize = .zero
     var body: some View {
         ZStack {
+            VStack{
             NavigationView {
                 
                 List(subscriptionsList){ sub in
@@ -42,6 +43,10 @@ struct SubscriptionListView: View {
                     SubscriptionFormView()
                 }
                 
+                
+            }
+            ExpenseView()
+                .padding()
                 
             }
             
