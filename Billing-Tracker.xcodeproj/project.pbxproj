@@ -18,7 +18,7 @@
 		3929C7E22571DBB10012DD51 /* DismissButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7E12571DBB10012DD51 /* DismissButtonView.swift */; };
 		3929C7E62571DC4D0012DD51 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7E52571DC4D0012DD51 /* BlurView.swift */; };
 		3929C7EA2571DC720012DD51 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7E92571DC720012DD51 /* LottieView.swift */; };
-		3929C7EE2571DCCB0012DD51 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 3929C7ED2571DCCB0012DD51 /* Lottie */; };
+		3929C7EE2571DCCB0012DD51 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 3929C7ED2571DCCB0012DD51 /* SwiftPackageProductDependency */; };
 		3929C7F12571DCDF0012DD51 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7F02571DCDF0012DD51 /* SafariView.swift */; };
 		3929C7F52571E2370012DD51 /* SubscriptionFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7F42571E2370012DD51 /* SubscriptionFormViewModel.swift */; };
 		3935584D2570792800974ECD /* SubscriptionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3935584C2570792800974ECD /* SubscriptionDetailView.swift */; };
@@ -27,6 +27,7 @@
 		396117422571110600919EF3 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396117412571110600919EF3 /* SettingView.swift */; };
 		3961174E2571165900919EF3 /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961174D2571165900919EF3 /* Subscription.swift */; };
 		39611754257116EA00919EF3 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39611753257116EA00919EF3 /* Images.swift */; };
+		398603A22572FD3800554B34 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 398603A12572FD3800554B34 /* GoogleService-Info.plist */; };
 		399AD2E625706F9300AFA10A /* Billing_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399AD2E525706F9300AFA10A /* Billing_TrackerApp.swift */; };
 		399AD2E825706F9300AFA10A /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399AD2E725706F9300AFA10A /* HomeTabView.swift */; };
 		399AD2EA25706F9400AFA10A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 399AD2E925706F9400AFA10A /* Assets.xcassets */; };
@@ -37,9 +38,12 @@
 		39D913372571351100D9BDFE /* SubscriptionFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D913362571351100D9BDFE /* SubscriptionFormView.swift */; };
 		39D9134125716E5F00D9BDFE /* UpdateSubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D9134025716E5F00D9BDFE /* UpdateSubscriptionView.swift */; };
 		39D9134B257181AC00D9BDFE /* DaysRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D9134A257181AC00D9BDFE /* DaysRingView.swift */; };
+		578104D2A7BA07861E627019 /* Pods_Billing_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0182523B208BB0C7B15E780C /* Pods_Billing_Tracker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0182523B208BB0C7B15E780C /* Pods_Billing_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Billing_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AA5059635B7D25102354860 /* Pods-Billing-Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Billing-Tracker.release.xcconfig"; path = "Target Support Files/Pods-Billing-Tracker/Pods-Billing-Tracker.release.xcconfig"; sourceTree = "<group>"; };
 		3929C7B92571BD0C0012DD51 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		3929C7BD2571C3460012DD51 /* SubscriptionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionBoxView.swift; sourceTree = "<group>"; };
 		3929C7C32571CDAA0012DD51 /* CharsLimitRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharsLimitRingView.swift; sourceTree = "<group>"; };
@@ -59,6 +63,7 @@
 		396117412571110600919EF3 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		3961174D2571165900919EF3 /* Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		39611753257116EA00919EF3 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		398603A12572FD3800554B34 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		399AD2E225706F9300AFA10A /* Billing-Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Billing-Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		399AD2E525706F9300AFA10A /* Billing_TrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Billing_TrackerApp.swift; sourceTree = "<group>"; };
 		399AD2E725706F9300AFA10A /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
@@ -71,6 +76,7 @@
 		39D913362571351100D9BDFE /* SubscriptionFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionFormView.swift; sourceTree = "<group>"; };
 		39D9134025716E5F00D9BDFE /* UpdateSubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSubscriptionView.swift; sourceTree = "<group>"; };
 		39D9134A257181AC00D9BDFE /* DaysRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysRingView.swift; sourceTree = "<group>"; };
+		C61F344A6D63B2ECFF8F6779 /* Pods-Billing-Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Billing-Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Billing-Tracker/Pods-Billing-Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,13 +84,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3929C7EE2571DCCB0012DD51 /* Lottie in Frameworks */,
+				3929C7EE2571DCCB0012DD51 /* BuildFile in Frameworks */,
+				578104D2A7BA07861E627019 /* Pods_Billing_Tracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		193564323AA8C8C546873A2C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0182523B208BB0C7B15E780C /* Pods_Billing_Tracker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2B78B856A2E2FCD2B3B6B356 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C61F344A6D63B2ECFF8F6779 /* Pods-Billing-Tracker.debug.xcconfig */,
+				1AA5059635B7D25102354860 /* Pods-Billing-Tracker.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		3929C7BC2571C3260012DD51 /* SubscriptionBoxView */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +255,8 @@
 			children = (
 				399AD2E425706F9300AFA10A /* Billing-Tracker */,
 				399AD2E325706F9300AFA10A /* Products */,
+				2B78B856A2E2FCD2B3B6B356 /* Pods */,
+				193564323AA8C8C546873A2C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -251,6 +278,7 @@
 				39611745257114F700919EF3 /* Screens */,
 				399AD2E925706F9400AFA10A /* Assets.xcassets */,
 				399AD2EE25706F9400AFA10A /* Info.plist */,
+				398603A12572FD3800554B34 /* GoogleService-Info.plist */,
 				399AD2E525706F9300AFA10A /* Billing_TrackerApp.swift */,
 				399AD2EB25706F9400AFA10A /* Preview Content */,
 			);
@@ -321,9 +349,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 399AD2F125706F9400AFA10A /* Build configuration list for PBXNativeTarget "Billing-Tracker" */;
 			buildPhases = (
+				9CAEFDD29CE5FC4779CB49AD /* [CP] Check Pods Manifest.lock */,
 				399AD2DE25706F9300AFA10A /* Sources */,
 				399AD2DF25706F9300AFA10A /* Frameworks */,
 				399AD2E025706F9300AFA10A /* Resources */,
+				831468D7621F6CAC4507A14E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -331,7 +361,7 @@
 			);
 			name = "Billing-Tracker";
 			packageProductDependencies = (
-				3929C7ED2571DCCB0012DD51 /* Lottie */,
+				3929C7ED2571DCCB0012DD51 /* SwiftPackageProductDependency */,
 			);
 			productName = "Billing-Tracker";
 			productReference = 399AD2E225706F9300AFA10A /* Billing-Tracker.app */;
@@ -361,7 +391,7 @@
 			);
 			mainGroup = 399AD2D925706F9300AFA10A;
 			packageReferences = (
-				3929C7EC2571DCCB0012DD51 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				3929C7EC2571DCCB0012DD51 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 399AD2E325706F9300AFA10A /* Products */;
 			projectDirPath = "";
@@ -379,10 +409,53 @@
 			files = (
 				399AD2ED25706F9400AFA10A /* Preview Assets.xcassets in Resources */,
 				399AD2EA25706F9400AFA10A /* Assets.xcassets in Resources */,
+				398603A22572FD3800554B34 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		831468D7621F6CAC4507A14E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Billing-Tracker/Pods-Billing-Tracker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Billing-Tracker/Pods-Billing-Tracker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Billing-Tracker/Pods-Billing-Tracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9CAEFDD29CE5FC4779CB49AD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Billing-Tracker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		399AD2DE25706F9300AFA10A /* Sources */ = {
@@ -540,6 +613,7 @@
 		};
 		399AD2F225706F9400AFA10A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C61F344A6D63B2ECFF8F6779 /* Pods-Billing-Tracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -562,6 +636,7 @@
 		};
 		399AD2F325706F9400AFA10A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1AA5059635B7D25102354860 /* Pods-Billing-Tracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -606,7 +681,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3929C7EC2571DCCB0012DD51 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+		3929C7EC2571DCCB0012DD51 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
 			requirement = {
@@ -617,9 +692,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3929C7ED2571DCCB0012DD51 /* Lottie */ = {
+		3929C7ED2571DCCB0012DD51 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3929C7EC2571DCCB0012DD51 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			package = 3929C7EC2571DCCB0012DD51 /* RemoteSwiftPackageReference */;
 			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
