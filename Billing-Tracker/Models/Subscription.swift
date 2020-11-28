@@ -25,6 +25,18 @@ struct MockData {
         Subscription(name: "Spotify", image: Images.Spotify, description: "Music", dueDate: "1 month", price: 100),
         Subscription(name: "Netflix", image: Images.Netflix, description: "Films", dueDate: "1 month", price: 44),
         Subscription(name: "Youtube", image: Images.Youtube, description: "Premium", dueDate: "1 month", price: 10.99),
+        Subscription(name: "iCloud", image: Images.iCloud, description: "Cloud Service", dueDate: "1 month", price: 10.99),
+        Subscription(name: "Spotify", image: Images.Spotify, description: "Music", dueDate: "1 month", price: 100),
+        Subscription(name: "Netflix", image: Images.Netflix, description: "Films", dueDate: "1 month", price: 44),
+        Subscription(name: "Youtube", image: Images.Youtube, description: "Premium", dueDate: "1 month", price: 10.99),
+        Subscription(name: "iCloud", image: Images.iCloud, description: "Cloud Service", dueDate: "1 month", price: 10.99),
+        Subscription(name: "Spotify", image: Images.Spotify, description: "Music", dueDate: "1 month", price: 100),
+        Subscription(name: "Netflix", image: Images.Netflix, description: "Films", dueDate: "1 month", price: 44),
+        Subscription(name: "Youtube", image: Images.Youtube, description: "Premium", dueDate: "1 month", price: 10.99),
+        Subscription(name: "iCloud", image: Images.iCloud, description: "Cloud Service", dueDate: "1 month", price: 10.99),
+        Subscription(name: "Spotify", image: Images.Spotify, description: "Music", dueDate: "1 month", price: 100),
+        Subscription(name: "Netflix", image: Images.Netflix, description: "Films", dueDate: "1 month", price: 44),
+        Subscription(name: "Youtube", image: Images.Youtube, description: "Premium", dueDate: "1 month", price: 10.99),
         Subscription(name: "iCloud", image: Images.iCloud, description: "Cloud Service", dueDate: "1 month", price: 10.99)
     ]
 }

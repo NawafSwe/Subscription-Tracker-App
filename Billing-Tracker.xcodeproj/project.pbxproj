@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3929C7BA2571BD0C0012DD51 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7B92571BD0C0012DD51 /* Provider.swift */; };
 		3929C7BE2571C3460012DD51 /* SubscriptionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7BD2571C3460012DD51 /* SubscriptionBoxView.swift */; };
+		3929C7C42571CDAA0012DD51 /* CharsLimitRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7C32571CDAA0012DD51 /* CharsLimitRingView.swift */; };
 		3935584D2570792800974ECD /* SubscriptionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3935584C2570792800974ECD /* SubscriptionDetailView.swift */; };
 		394780C92571856A00C97EAA /* SubscriptionTimings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394780C82571856A00C97EAA /* SubscriptionTimings.swift */; };
 		3961173E25710A8900919EF3 /* SubscriptionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961173D25710A8900919EF3 /* SubscriptionListView.swift */; };
@@ -24,12 +25,13 @@
 		39D9133225711C4300D9BDFE /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D9133125711C4300D9BDFE /* Color+Ext.swift */; };
 		39D913372571351100D9BDFE /* SubscriptionFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D913362571351100D9BDFE /* SubscriptionFormView.swift */; };
 		39D9134125716E5F00D9BDFE /* UpdateSubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D9134025716E5F00D9BDFE /* UpdateSubscriptionView.swift */; };
-		39D9134B257181AC00D9BDFE /* RingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D9134A257181AC00D9BDFE /* RingView.swift */; };
+		39D9134B257181AC00D9BDFE /* DaysRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D9134A257181AC00D9BDFE /* DaysRingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3929C7B92571BD0C0012DD51 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		3929C7BD2571C3460012DD51 /* SubscriptionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionBoxView.swift; sourceTree = "<group>"; };
+		3929C7C32571CDAA0012DD51 /* CharsLimitRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharsLimitRingView.swift; sourceTree = "<group>"; };
 		3935584C2570792800974ECD /* SubscriptionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionDetailView.swift; sourceTree = "<group>"; };
 		394780C82571856A00C97EAA /* SubscriptionTimings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTimings.swift; sourceTree = "<group>"; };
 		3961173D25710A8900919EF3 /* SubscriptionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionListView.swift; sourceTree = "<group>"; };
@@ -47,7 +49,7 @@
 		39D9133125711C4300D9BDFE /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		39D913362571351100D9BDFE /* SubscriptionFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionFormView.swift; sourceTree = "<group>"; };
 		39D9134025716E5F00D9BDFE /* UpdateSubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSubscriptionView.swift; sourceTree = "<group>"; };
-		39D9134A257181AC00D9BDFE /* RingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingView.swift; sourceTree = "<group>"; };
+		39D9134A257181AC00D9BDFE /* DaysRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysRingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,7 +244,8 @@
 		39D913492571819F00D9BDFE /* RingView */ = {
 			isa = PBXGroup;
 			children = (
-				39D9134A257181AC00D9BDFE /* RingView.swift */,
+				39D9134A257181AC00D9BDFE /* DaysRingView.swift */,
+				3929C7C32571CDAA0012DD51 /* CharsLimitRingView.swift */,
 			);
 			path = RingView;
 			sourceTree = "<group>";
@@ -322,7 +325,7 @@
 				399AD2F62570724B00AFA10A /* SubscriptionCellView.swift in Sources */,
 				396117422571110600919EF3 /* SettingView.swift in Sources */,
 				3961174E2571165900919EF3 /* Subscription.swift in Sources */,
-				39D9134B257181AC00D9BDFE /* RingView.swift in Sources */,
+				39D9134B257181AC00D9BDFE /* DaysRingView.swift in Sources */,
 				39D9134125716E5F00D9BDFE /* UpdateSubscriptionView.swift in Sources */,
 				39D9132E25711B9800D9BDFE /* Icons.swift in Sources */,
 				39611754257116EA00919EF3 /* Images.swift in Sources */,
@@ -330,6 +333,7 @@
 				394780C92571856A00C97EAA /* SubscriptionTimings.swift in Sources */,
 				399AD2E625706F9300AFA10A /* Billing_TrackerApp.swift in Sources */,
 				3929C7BE2571C3460012DD51 /* SubscriptionBoxView.swift in Sources */,
+				3929C7C42571CDAA0012DD51 /* CharsLimitRingView.swift in Sources */,
 				3929C7BA2571BD0C0012DD51 /* Provider.swift in Sources */,
 				39D9133225711C4300D9BDFE /* Color+Ext.swift in Sources */,
 			);

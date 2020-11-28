@@ -23,7 +23,7 @@ struct SubscriptionDetailView: View {
                     .shadow(radius: 30)
                 
                 SubscriptionRowInfoView(name:"Name" , info: subscription.name)
-                SubscriptionRowInfoView(name:"Description" , info: subscription.description)
+                SubscriptionRowInfoView(name:"Description" , info: "Some info about me and so ")
                 SubscriptionRowInfoView(name: "Bill Date", info: "April 2 2202")
                 SubscriptionRowInfoView(name: "Cycle", info: "Every Month")
                 SubscriptionRowInfoView(name: "Reminder", info: "Never")

@@ -34,6 +34,16 @@ struct SubscriptionFormView: View {
                         })
                         
                         TextField("Description", text: $subDescription)
+                            /// setting limit for user because we do not want him to miss with the UI
+                            .onChange(of: self.subDescription, perform: { value in
+                                        if value.count > 26 {
+                                            self.subDescription = String(value.prefix(26))
+                                            /// put alert to user about the reason.
+                                        }})
+                            .overlay(
+                                DaysRingView(width: 33, height: 33, reminderDays: 10, totalDays: 10), alignment: .trailing
+                                     
+                            )
                             .keyboardType(.default)
                             .autocapitalization(.none)
                             .disableAutocorrection(true)

@@ -1,5 +1,5 @@
 //
-//  RingView.swift
+//  DaysRingView.swift
 //  Billing-Tracker
 //
 //  Created by Nawaf B Al sharqi on 27/11/2020.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RingView: View {
+struct DaysRingView: View {
     //to make them customizable
     var color1 = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
     var color2 = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
@@ -54,9 +54,9 @@ struct RingView: View {
     }
 }
 
-struct RingView_Previews: PreviewProvider {
+struct DaysRingView_Previews: PreviewProvider {
     static var previews: some View {
-        RingView(width: 100, height: 100, reminderDays: 40, totalDays:50  )
+        DaysRingView(width: 100, height: 100, reminderDays: 40, totalDays:50  )
 
     }
 }

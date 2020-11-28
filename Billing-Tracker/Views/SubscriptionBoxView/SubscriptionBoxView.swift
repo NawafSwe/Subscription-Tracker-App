@@ -21,7 +21,7 @@ struct SubscriptionBoxView: View {
                     .bold()
             }
             HStack(spacing: 10 ){
-                RingView(color1: #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1), color2: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), width: 33, height: 33, reminderDays: 50, totalDays:100 )
+                DaysRingView(color1: #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1), color2: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), width: 33, height: 33, reminderDays: 50, totalDays:100 )
                 
                 Text("Days left")
                     .font(.headline)
