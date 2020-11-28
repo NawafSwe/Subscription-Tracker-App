@@ -20,6 +20,7 @@ struct SubscriptionFormView: View {
     var calculatePrice:Double {
         Double(subPrice) ?? 0.0
     }
+    
     @State var remindUser = false
     var body: some View{
         NavigationView {
@@ -41,8 +42,8 @@ struct SubscriptionFormView: View {
                                             /// put alert to user about the reason.
                                         }})
                             .overlay(
-                                DaysRingView(width: 33, height: 33, reminderDays: 10, totalDays: 10), alignment: .trailing
-                                     
+                                CharsLimitRingView(width: 33, height: 33, remindChars: .constant(CGFloat(subDescription.count))), alignment: .trailing
+                                
                             )
                             .keyboardType(.default)
                             .autocapitalization(.none)
@@ -78,11 +79,13 @@ struct SubscriptionFormView: View {
     }
     
 }
+
 struct SubscriptionFormView_Previews: PreviewProvider {
     static var previews: some View {
         SubscriptionFormView()
     }
 }
+
 struct ProvidersSelectionView:View{
     let image:String
     let name:String

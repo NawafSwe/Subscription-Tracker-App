@@ -21,7 +21,7 @@ struct CharsLimitRingView: View {
         //MARK:- global variables
         let multiplier = width / 44
         /// calculating progress
-        let progress  = 1 - (remindChars / totalChars)
+        let progress  =  (totalChars / remindChars) - 1
         
         //we have to use return the Zstack if we will declare a variables inside the body
         return ZStack {
@@ -42,7 +42,7 @@ struct CharsLimitRingView: View {
                 .frame(width : width , height: height)
                 .shadow(color: Color(color1).opacity(0.1), radius: 3 * multiplier , x: 0, y: 3 * multiplier)
             
-            Text("\( Int(remindChars) )")
+            Text("\( Int(totalChars -  remindChars) )")
                 .font(.system(size: 14 * multiplier ))
                 .font(.headline)
                 .fontWeight(.bold)
@@ -57,4 +57,6 @@ struct CharsLimitRingView_Previews: PreviewProvider {
     static var previews: some View {
         CharsLimitRingView(width: 33, height: 33, remindChars: .constant(23))
     }
+}
+    
 }
