@@ -25,7 +25,9 @@ struct RegisterView: View {
             
             
             
-            Button(action:{}){
+            Button(action:{
+                UserAuthenticationManager.shared.register(email: email, password: password)
+            }){
                 Text("Register")
             }
             

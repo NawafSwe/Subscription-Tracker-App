@@ -6,4 +6,7 @@
 //
 
 import Foundation
-final class user: ObservableObject{ }
+struct User {
+    let email:String
+    let password:String
+}
