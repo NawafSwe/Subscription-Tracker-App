@@ -10,7 +10,7 @@ import Firebase
 import CodableFirebase
 /// singleton class
 final class FireStoreService{
-    let shared = FireStoreService()
+    static let shared = FireStoreService()
     let fireStore = Firestore.firestore()
     private init (){}
     

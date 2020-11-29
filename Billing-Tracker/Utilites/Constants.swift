@@ -18,4 +18,9 @@ struct FireStoreKeys{
         case providers = "providers"
         case subscriptions = "subscriptions"
     }
+    
+    enum userFileds:String {
+        case providers = "providers"
+        case subscriptions = "subscriptions"
+    }
 }

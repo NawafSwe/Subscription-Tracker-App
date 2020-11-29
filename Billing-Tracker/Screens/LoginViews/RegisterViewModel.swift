@@ -20,15 +20,13 @@ final class  RegisterViewModel:ObservableObject{
         }
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
             self.isLoading = false
-            self.shared.register(email: email, password: password) { (authResult, error) in
-                if let err = error{
-                    self.alertItem = AlertItem(title: Text("Authentication Error"), message: Text(err.localizedDescription), dismissButton: .default(Text("OK")))
-                }
-                if let user = authResult?.user{
-                    DispatchQueue.main.async {
+            self.shared.register(email: email, password: password) { result in
+                switch result{
+                    case .failure(let err):
+                        self.alertItem = AlertItem(title: Text("Authentication Error"), message: Text(err.localizedDescription), dismissButton: .default(Text("OK")))
+                    case .success(_):
                         self.shared.authState = .signIn
-                        self.shared.user = User(uid: user.uid, displayName: user.displayName, email: user.email)
-                    }
+                        
                 }
             }
         }

@@ -14,7 +14,7 @@ final class UserAuthenticationManager : ObservableObject{
     var handle: AuthStateDidChangeListenerHandle?
     @Published var user = User(uid: "", displayName: "nwawaf", email: "")
     @Published var authState:AuthenticationState = .null
-    
+
     static let shared = UserAuthenticationManager()
     private init () {}
     
@@ -26,6 +26,7 @@ final class UserAuthenticationManager : ObservableObject{
                 // if we have a user, create a new user model
                 print("oh there is a user")
                 self.session = User(uid: user.uid, displayName: user.displayName, email: user.email)
+                self.user = User(uid: user.uid, displayName: user.displayName, email: user.email)
                 DispatchQueue.main.async {
                     self.authState = .signIn
                 }
@@ -43,9 +44,43 @@ final class UserAuthenticationManager : ObservableObject{
     
     // additional methods (sign up, sign in) will go here
     
-    func register(email:String , password:String , completion: @escaping AuthDataResultCallback ){
+    func register(email:String , password:String , completion: @escaping (Result<Void,Error>)-> () ){
         
-        Auth.auth().createUser(withEmail: email, password: password, completion: completion)
+        Auth.auth().createUser(withEmail: email, password: password){  (authResult, error ) in
+            if let err = error {
+                completion(.failure(err))
+                return
+            }
+            guard let _ = authResult?.user , let result = authResult  else{
+                completion(.failure(error!))
+                return
+            }
+            /// initing new user object from the authentication response if there is no error
+            let user = User(uid: result.user.uid, displayName: result.user.displayName, email: result.user.email)
+            DispatchQueue.main.async { self.user = user }
+            FireStoreService.shared.saveDocument(collection: FireStoreKeys.collections.users, docId: user.uid, model: user,completion: {$0})
+            
+            /// initing providers data
+            let providers:[Provider] = [
+                .init(userId: user.uid, name: "Spotify", image: Images.Spotify),
+                .init(userId: user.uid, name: "Netflix", image: Images.Netflix),
+                .init(userId: user.uid, name: "Youtube", image: Images.Youtube),
+                .init(userId: user.uid, name: "iCloud", image: Images.iCloud)
+            ]
+            /// initing provider
+            for provider in providers{
+                let uiImage = UIImage(named: provider.image)
+                ProvidersService.shared.saveProvider(provider: provider) {_ in }
+                ProvidersService.shared.uploadImage(image: uiImage!){_ in}
+            }
+            
+            //            /// initing user with empty subscriptions
+            //            let subscriptions : [Subscription] = []
+            //
+            //            FireStoreService.shared.updateData(collection: FireStoreKeys.collections.users, docId: user.uid , filed: FireStoreKeys.userFileds.subscriptions.rawValue, newData: subscriptions){$0}
+            
+            
+        }
     }
     
     
