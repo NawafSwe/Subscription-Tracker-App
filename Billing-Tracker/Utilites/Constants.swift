@@ -11,7 +11,7 @@ struct K {
     static let devAccount = URL(string:"https://twitter.com/Nawaf_B_910")!
 }
 
-/// firebase keys 
+/// firebase keys
 struct FireStoreKeys{
     enum collections:String {
         case users = "users"
