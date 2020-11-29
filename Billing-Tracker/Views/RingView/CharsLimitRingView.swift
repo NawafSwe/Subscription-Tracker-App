@@ -15,11 +15,12 @@ struct CharsLimitRingView: View {
     var height : CGFloat
     /// for days calculation
     @Binding var remindChars : CGFloat
-    var totalChars:  CGFloat = 26
+    var totalChars:  CGFloat  = 26
     
     var body: some View {
         //MARK:- global variables
         let multiplier = width / 44
+        
         /// calculating progress
         let progress  =  (totalChars / remindChars) - 1
         
@@ -46,17 +47,13 @@ struct CharsLimitRingView: View {
                 .font(.system(size: 14 * multiplier ))
                 .font(.headline)
                 .fontWeight(.bold)
-            
-            
-            
-            
         }
-}
-
-struct CharsLimitRingView_Previews: PreviewProvider {
-    static var previews: some View {
-        CharsLimitRingView(width: 33, height: 33, remindChars: .constant(23))
     }
-}
+    
+    struct CharsLimitRingView_Previews: PreviewProvider {
+        static var previews: some View {
+            CharsLimitRingView(width: 33, height: 33, remindChars: .constant(26))
+        }
+    }
     
 }
