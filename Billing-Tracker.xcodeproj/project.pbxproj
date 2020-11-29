@@ -265,8 +265,8 @@
 		39611751257116A800919EF3 /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
-				397EAB102573E8B600E1F7C3 /* LottiesFiles */,
 				3929C7CB2571D4240012DD51 /* Constants.swift */,
+				397EAB102573E8B600E1F7C3 /* LottiesFiles */,
 				39D3B7B325731F25005881A4 /* Managers */,
 				39D91339257142E700D9BDFE /* Protocols */,
 				3929C7E42571DC350012DD51 /* UIkitViews */,
@@ -301,6 +301,13 @@
 				397EAB112573E8C100E1F7C3 /* loading.json */,
 			);
 			path = LottiesFiles;
+			sourceTree = "<group>";
+		};
+		397EAB192573F8C900E1F7C3 /* FireStoreServices */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FireStoreServices;
 			sourceTree = "<group>";
 		};
 		399AD2D925706F9300AFA10A = {
@@ -365,6 +372,7 @@
 		39D3B7B325731F25005881A4 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				397EAB192573F8C900E1F7C3 /* FireStoreServices */,
 				39BEE92E2573657400218130 /* UserAuth */,
 			);
 			path = Managers;

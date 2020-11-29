@@ -12,9 +12,8 @@ struct LoadingView: View {
     var body: some View{
         ZStack{
             if isLoading{
-                
                 LottieView(fileName: LottieFiles.loading)
-                    .frame(width: 300, height: 300, alignment: .center)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                     .background(BlurView(style: .systemMaterial))
                     .cornerRadius(25)
                     .shadow(radius: 5)

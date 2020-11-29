@@ -7,9 +7,7 @@
 
 import Foundation
 import Firebase
-enum AuthenticationState {
-    case signIn , signOut , null
-}
+enum AuthenticationState { case signIn , signOut , null }
 //MARK:- UserAuthenticationManager class for using firebase authentication services
 final class UserAuthenticationManager : ObservableObject{
     @Published var session: User?
@@ -66,6 +64,7 @@ final class UserAuthenticationManager : ObservableObject{
     }
     
     
+    
     /// stop listing
     func unbind () {
         if let handle = handle {
@@ -73,7 +72,7 @@ final class UserAuthenticationManager : ObservableObject{
         }
     }
     
-    
     /// retrieving user info
     func retriveUser(uid:String , completion: @escaping (Result<User,Error>)->() ){ }
 }
+

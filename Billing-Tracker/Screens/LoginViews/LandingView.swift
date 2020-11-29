@@ -16,7 +16,7 @@ struct LandingView: View {
     var body: some View {
         ZStack {
             Group{
-                if session.authState == .null || session.authState == .signOut {
+                if  session.authState == .signOut {
                     RegisterView()
                 }else{
                     HomeTabView()
@@ -31,15 +31,10 @@ struct LandingView: View {
                 self.isLoading = false
                 session.listen()
                 
-                
             }
-            
         }
-        
-        
     }
 }
-
 struct LandingView_Previews: PreviewProvider {
     static var previews: some View {
         LandingView()
