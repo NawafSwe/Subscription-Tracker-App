@@ -18,7 +18,7 @@
 		3929C7E22571DBB10012DD51 /* DismissButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7E12571DBB10012DD51 /* DismissButtonView.swift */; };
 		3929C7E62571DC4D0012DD51 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7E52571DC4D0012DD51 /* BlurView.swift */; };
 		3929C7EA2571DC720012DD51 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7E92571DC720012DD51 /* LottieView.swift */; };
-		3929C7EE2571DCCB0012DD51 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 3929C7ED2571DCCB0012DD51 /* SwiftPackageProductDependency */; };
+		3929C7EE2571DCCB0012DD51 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 3929C7ED2571DCCB0012DD51 /* Lottie */; };
 		3929C7F12571DCDF0012DD51 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7F02571DCDF0012DD51 /* SafariView.swift */; };
 		3929C7F52571E2370012DD51 /* SubscriptionFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7F42571E2370012DD51 /* SubscriptionFormViewModel.swift */; };
 		3935584D2570792800974ECD /* SubscriptionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3935584C2570792800974ECD /* SubscriptionDetailView.swift */; };
@@ -33,6 +33,10 @@
 		399AD2EA25706F9400AFA10A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 399AD2E925706F9400AFA10A /* Assets.xcassets */; };
 		399AD2ED25706F9400AFA10A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 399AD2EC25706F9400AFA10A /* Preview Assets.xcassets */; };
 		399AD2F62570724B00AFA10A /* SubscriptionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399AD2F52570724B00AFA10A /* SubscriptionCellView.swift */; };
+		39D3B7AB25731903005881A4 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3B7AA25731903005881A4 /* RegisterView.swift */; };
+		39D3B7AE25731E65005881A4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3B7AD25731E65005881A4 /* LoginView.swift */; };
+		39D3B7B125731EBD005881A4 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3B7B025731EBD005881A4 /* LandingView.swift */; };
+		39D3B7B525731F40005881A4 /* UserAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3B7B425731F40005881A4 /* UserAuthenticationManager.swift */; };
 		39D9132E25711B9800D9BDFE /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D9132D25711B9800D9BDFE /* Icons.swift */; };
 		39D9133225711C4300D9BDFE /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D9133125711C4300D9BDFE /* Color+Ext.swift */; };
 		39D913372571351100D9BDFE /* SubscriptionFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D913362571351100D9BDFE /* SubscriptionFormView.swift */; };
@@ -71,6 +75,10 @@
 		399AD2EC25706F9400AFA10A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		399AD2EE25706F9400AFA10A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		399AD2F52570724B00AFA10A /* SubscriptionCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionCellView.swift; sourceTree = "<group>"; };
+		39D3B7AA25731903005881A4 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		39D3B7AD25731E65005881A4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		39D3B7B025731EBD005881A4 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
+		39D3B7B425731F40005881A4 /* UserAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthenticationManager.swift; sourceTree = "<group>"; };
 		39D9132D25711B9800D9BDFE /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		39D9133125711C4300D9BDFE /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		39D913362571351100D9BDFE /* SubscriptionFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionFormView.swift; sourceTree = "<group>"; };
@@ -84,7 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3929C7EE2571DCCB0012DD51 /* BuildFile in Frameworks */,
+				3929C7EE2571DCCB0012DD51 /* Lottie in Frameworks */,
 				578104D2A7BA07861E627019 /* Pods_Billing_Tracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,7 +114,6 @@
 				C61F344A6D63B2ECFF8F6779 /* Pods-Billing-Tracker.debug.xcconfig */,
 				1AA5059635B7D25102354860 /* Pods-Billing-Tracker.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -160,10 +167,28 @@
 			path = SubscriptionTimingsView;
 			sourceTree = "<group>";
 		};
+		395907AC257305B80016B59F /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				39D3B7AD25731E65005881A4 /* LoginView.swift */,
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
+		395907AD257305D40016B59F /* RegisterView */ = {
+			isa = PBXGroup;
+			children = (
+				39D3B7AA25731903005881A4 /* RegisterView.swift */,
+			);
+			path = RegisterView;
+			sourceTree = "<group>";
+		};
 		39611745257114F700919EF3 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
 				399AD2E725706F9300AFA10A /* HomeTabView.swift */,
+				395907AD257305D40016B59F /* RegisterView */,
+				395907AC257305B80016B59F /* LoginView */,
 				3929C7C62571D0CE0012DD51 /* ExpenseView */,
 				394780C72571854500C97EAA /* SubscriptionTimingsView */,
 				39D9133F25716E4F00D9BDFE /* UpdateSubscriptionView */,
@@ -171,6 +196,7 @@
 				39D91335257134F200D9BDFE /* SubscriptionFormView */,
 				396117482571155900919EF3 /* SubscriptionDetailView */,
 				396117472571154700919EF3 /* SettingView */,
+				39D3B7B025731EBD005881A4 /* LandingView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -232,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				3929C7CB2571D4240012DD51 /* Constants.swift */,
+				39D3B7B325731F25005881A4 /* Managers */,
 				39D91339257142E700D9BDFE /* Protocols */,
 				3929C7E42571DC350012DD51 /* UIkitViews */,
 				3929C7DF2571DA5A0012DD51 /* Alerts */,
@@ -291,6 +318,14 @@
 				399AD2EC25706F9400AFA10A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		39D3B7B325731F25005881A4 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				39D3B7B425731F40005881A4 /* UserAuthenticationManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		39D9133025711C2F00D9BDFE /* Extensions */ = {
@@ -361,7 +396,7 @@
 			);
 			name = "Billing-Tracker";
 			packageProductDependencies = (
-				3929C7ED2571DCCB0012DD51 /* SwiftPackageProductDependency */,
+				3929C7ED2571DCCB0012DD51 /* Lottie */,
 			);
 			productName = "Billing-Tracker";
 			productReference = 399AD2E225706F9300AFA10A /* Billing-Tracker.app */;
@@ -391,7 +426,7 @@
 			);
 			mainGroup = 399AD2D925706F9300AFA10A;
 			packageReferences = (
-				3929C7EC2571DCCB0012DD51 /* RemoteSwiftPackageReference */,
+				3929C7EC2571DCCB0012DD51 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 399AD2E325706F9300AFA10A /* Products */;
 			projectDirPath = "";
@@ -463,10 +498,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3961173E25710A8900919EF3 /* SubscriptionListView.swift in Sources */,
+				39D3B7AE25731E65005881A4 /* LoginView.swift in Sources */,
 				3929C7CC2571D4240012DD51 /* Constants.swift in Sources */,
 				3929C7F12571DCDF0012DD51 /* SafariView.swift in Sources */,
 				3929C7EA2571DC720012DD51 /* LottieView.swift in Sources */,
 				399AD2E825706F9300AFA10A /* HomeTabView.swift in Sources */,
+				39D3B7B125731EBD005881A4 /* LandingView.swift in Sources */,
 				39D913372571351100D9BDFE /* SubscriptionFormView.swift in Sources */,
 				3929C7F52571E2370012DD51 /* SubscriptionFormViewModel.swift in Sources */,
 				399AD2F62570724B00AFA10A /* SubscriptionCellView.swift in Sources */,
@@ -479,9 +516,11 @@
 				39D9132E25711B9800D9BDFE /* Icons.swift in Sources */,
 				3929C7E22571DBB10012DD51 /* DismissButtonView.swift in Sources */,
 				39611754257116EA00919EF3 /* Images.swift in Sources */,
+				39D3B7AB25731903005881A4 /* RegisterView.swift in Sources */,
 				3935584D2570792800974ECD /* SubscriptionDetailView.swift in Sources */,
 				3929C7C82571D0E00012DD51 /* ExpenseView.swift in Sources */,
 				3929C7D52571D75B0012DD51 /* DataStore.swift in Sources */,
+				39D3B7B525731F40005881A4 /* UserAuthenticationManager.swift in Sources */,
 				3929C7E62571DC4D0012DD51 /* BlurView.swift in Sources */,
 				394780C92571856A00C97EAA /* SubscriptionTimings.swift in Sources */,
 				399AD2E625706F9300AFA10A /* Billing_TrackerApp.swift in Sources */,
@@ -681,7 +720,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3929C7EC2571DCCB0012DD51 /* RemoteSwiftPackageReference */ = {
+		3929C7EC2571DCCB0012DD51 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
 			requirement = {
@@ -692,9 +731,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3929C7ED2571DCCB0012DD51 /* SwiftPackageProductDependency */ = {
+		3929C7ED2571DCCB0012DD51 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3929C7EC2571DCCB0012DD51 /* RemoteSwiftPackageReference */;
+			package = 3929C7EC2571DCCB0012DD51 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
