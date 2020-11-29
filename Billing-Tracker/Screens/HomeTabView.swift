@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeTabView: View {
+   
     var body: some View {
         TabView{
             SubscriptionListView().tabItem {
@@ -16,7 +17,7 @@ struct HomeTabView: View {
                     .frame(width:20, height: 20)
                     .scaledToFit()
                 Text("Subscriptions")
-                   
+                
                 
             }
             

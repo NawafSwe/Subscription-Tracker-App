@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SettingView: View {
+  @StateObject var viewModel = SettingViewModel()
     var body: some View {
         NavigationView {
             Form{
@@ -36,6 +37,14 @@ struct SettingView: View {
                             Text("Contact Developer")
                                 .foregroundColor(.primary)
                         }
+                    }
+                    
+                    Button(action:{
+                        viewModel.logout()
+                    }){
+                        Text("Logout")
+                    }.alert(item: $viewModel.alertItem){alert in
+                        Alert(title:alert.title , message: alert.message, dismissButton: alert.dismissButton)
                     }
                 }
             }
