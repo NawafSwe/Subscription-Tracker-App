@@ -26,12 +26,11 @@ struct LandingView: View {
             LoadingView(isLoading:$isLoading)
         }
         .onAppear{
+            session.listen()
             self.isLoading = true
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2){
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
                 self.isLoading = false
-                session.listen()
-                
-            }
+                }
         }
     }
 }

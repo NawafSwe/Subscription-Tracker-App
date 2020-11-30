@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 final class SubscriptionListViewModel : ObservableObject{
-    @Published var subscriptions : [Subscription] = SubscriptionsService.shared.subscriptions
+    @Published var subscriptions : [Subscription] = []
     @Published var alertItem : AlertItem? = nil
     @Published var showSubscriptionDetail = false
     @Published var selectedSubscription:Subscription? {didSet {self.showSubscriptionDetail = true } }
@@ -16,20 +16,24 @@ final class SubscriptionListViewModel : ObservableObject{
     @Published var viewState : CGSize = .zero
     @Published var callingTimes = 0
     let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
-    var totalPrice : Double {
-        subscriptions.reduce(0){$0 + $1.price}
-    }
-    
+    var totalPrice : Double { subscriptions.reduce(0){$0 + $1.price} }
     func getSubscriptions(){
-        DispatchQueue.main.async {
-            SubscriptionsService.shared.getSubscriptionsFromDB(){ result in
-                switch result {
-                    case .success(_):
-                        self.subscriptions =  SubscriptionsService.shared.subscriptions
-                    case .failure(let err):
+        
+        SubscriptionsService.shared.getSubscriptionsFromDB(){result in
+            print(self.subscriptions)
+            switch result {
+                case .success(let subscriptions):
+                    DispatchQueue.main.async {
+                        self.subscriptions = subscriptions
+                       
+                        }
+                    return
+                case .failure(let err):
+                    DispatchQueue.main.async {
                         self.alertItem = AlertItem(title: Text("NetworkError"), message: Text("\(err.localizedDescription)"), dismissButton: .default(Text("OK")))
-                }
-                
+                        
+                    }
+                    return
             }
         }
     }

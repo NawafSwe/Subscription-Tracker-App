@@ -19,17 +19,19 @@ final class SubscriptionsService : ObservableObject{
     func getSubscriptionsFromDB(completion: @escaping(Result<[Subscription],Error>) ->Void){
         
         FireStoreService.shared.getDocuments(collection: FireStoreKeys.collections.subscriptions, docId: UserAuthenticationManager.shared.user.uid){(result: Result<[Subscription], Error>) in
-            DispatchQueue.main.async {
                 switch result{
                     case .success(let subscriptions ):
-                        self.subscriptions = subscriptions
+                        DispatchQueue.main.async {
+                            self.subscriptions = subscriptions
+                        }
                         completion(.success(subscriptions))
+                       return
                     case .failure(let error):
                         completion(.failure(error))
                         return
                         
                 }
-            }
+            
         }
     }
     

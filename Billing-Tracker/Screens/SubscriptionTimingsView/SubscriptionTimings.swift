@@ -26,7 +26,7 @@ struct SubscriptionTimingsView: View {
             }
             
         }
-        .onAppear(perform:viewModel.getSubscriptions)
+          .onAppear(perform:viewModel.getSubscriptions)
         
         .alert(item: $viewModel.alertItem){alert in
             Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)

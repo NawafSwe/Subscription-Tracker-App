@@ -18,20 +18,25 @@ final class SubscriptionTimingsViewModel: ObservableObject {
     
     
     func getSubscriptions(){
-        DispatchQueue.main.async {
-            SubscriptionsService.shared.getSubscriptionsFromDB(){ result in
-                switch result {
-                    case .success(_):
+        
+        SubscriptionsService.shared.getSubscriptionsFromDB(){ result in
+            switch result {
+                case .success(_):
+                    DispatchQueue.main.async {
                         self.subscriptions =  SubscriptionsService.shared.subscriptions
-                    case .failure(let err):
+                        
+                    }
+                case .failure(let err):
+                    DispatchQueue.main.async {
                         self.alertItem = AlertItem(title: Text("NetworkError"), message: Text("\(err.localizedDescription)"), dismissButton: .default(Text("OK")))
                         
-                }
-                
+                    }
+                    
             }
+            
         }
-        
     }
+    
     func daysBetween(start: Date, end: Date) -> Int {
         Calendar.current.dateComponents([.day], from: start, to: end).day!
     }
@@ -40,12 +45,12 @@ final class SubscriptionTimingsViewModel: ObservableObject {
     func doStopCalling(){
         if self.callingTimes > 1 || !subscriptions.isEmpty {
             self.timer.upstream.connect().cancel()
-          //  print("stoping at \(callingTimes)")
+            //  print("stoping at \(callingTimes)")
             
         }else{
             self.getSubscriptions()
             callingTimes += 1
-          //  print("counting now is \(callingTimes)")
+            //  print("counting now is \(callingTimes)")
         }
         
     }

@@ -25,7 +25,10 @@ struct SubscriptionListView: View {
                             .shadow(radius: viewModel.showSubscriptionDetail ? 10 : 0)
                         
                     }
-                    
+                    /// getting sub every second
+                    .onReceive(viewModel.timer){ _ in
+                        viewModel.doStopCalling()
+                    }
                     
                     
                     /// disabling the navigation if user shows sub details
@@ -35,15 +38,19 @@ struct SubscriptionListView: View {
                                                             AddSubscriptionButtonView() } ))
                     .navigationTitle("Subscriptions 💳")
                     
-                    /// sheet for displaying the form
-                    .sheet(isPresented: $viewModel.showSubscriptionForm){
-                        SubscriptionFormView()
-                    }
                 }
+                
+                
                 ExpenseView(price: viewModel.totalPrice)
                     .padding()
-                
             }
+            
+            
+            /// sheet for displaying the form
+            .sheet(isPresented: $viewModel.showSubscriptionForm){
+                SubscriptionFormView()
+            }
+            
             /// if the user tapped on the sub show its detail
             if(viewModel.showSubscriptionDetail){
                 SubscriptionDetailView(subscription: viewModel.selectedSubscription!)
@@ -76,24 +83,20 @@ struct SubscriptionListView: View {
                     .animation(nil)
             }
         }
-        //        .onAppear(perform: viewModel.getSubscriptions)
-        /// getting sub every second
-        .onReceive(viewModel.timer){ _ in
-            viewModel.doStopCalling()
-        }
+        
         .alert(item: $viewModel.alertItem){alert in
             Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
         }
-        
     }
-    
-    
-    
-    struct SubscriptionListView_Previews: PreviewProvider {
-        static var previews: some View {
-            SubscriptionListView()
-        }
-    }
-    
-    
 }
+
+
+
+struct SubscriptionListView_Previews: PreviewProvider {
+    static var previews: some View {
+        SubscriptionListView()
+    }
+}
+
+
+
