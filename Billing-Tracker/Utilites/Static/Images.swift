@@ -12,6 +12,8 @@ enum Images{
     static let Youtube = "Youtube"
     static let iCloud = "iCloud"
     static let twitter = "twitter"
-    
+    static let amazon = "Amazon"
+    static let appleTv = "apple-tv"
+    static let appleMusic = "Apple-music"
 }
 

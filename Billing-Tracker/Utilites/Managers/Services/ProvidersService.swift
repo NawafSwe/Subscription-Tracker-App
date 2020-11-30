@@ -24,6 +24,7 @@ final class ProvidersService : ObservableObject{
     @Published var providers:[Provider] = []
     let fireStore = Firestore.firestore()
     let fireStorage = Storage.storage()
+    
     init(){}
     
     func getProvidersFromDB(completion: @escaping(Result<[Provider],Error>) ->Void){
@@ -43,9 +44,24 @@ final class ProvidersService : ObservableObject{
         
     }
     
-    func saveProvider(provider:Provider , completion:@escaping (Result<Void,Error>)->()){
+    func addProvider(provider:Provider , completion:@escaping (Result<Void,Error>)->()){
         DispatchQueue.main.async {
-            FireStoreService.shared.saveDocument(collection: FireStoreKeys.collections.providers, docId: UserAuthenticationManager.shared.user.uid, model: provider) { (result: Result<Void, Error>) in
+            FireStoreService.shared.addDocument(collection: FireStoreKeys.collections.providers, model: provider) { result in
+                switch result{
+                    case .failure(let err):
+                        completion(.failure(err))
+                        return
+                    case .success(_):
+                        completion(.success(()))
+                        return
+                }
+            }
+        }
+    }
+    
+    func saveProviderWithId(provider:Provider , completion:@escaping (Result<Void,Error>)->()){
+        DispatchQueue.main.async {
+            FireStoreService.shared.saveDocumentWithId(collection: FireStoreKeys.collections.providers, docId: UserAuthenticationManager.shared.user.uid, model: provider) { (result: Result<Void, Error>) in
                 switch result{
                     case .success():
                         completion(.success(()))
@@ -60,19 +76,18 @@ final class ProvidersService : ObservableObject{
     }
     
     
-    func deleteProvider(){
-        
-    }
+    func deleteProvider(){ }
     
-    func uploadImage(image:UIImage , completion: @escaping (Result<URL,Error>)->Void){
+    func uploadImage(image:UIImage, providerName: String , completion: @escaping (Result<URL,Error>)->Void){
         
         guard let imageData = image.jpegData(compressionQuality: 0.5) else {
             completion(.failure(FireStorageErr.cannotUploadImage))
             return
         }
         
-        let ref = self.fireStorage.reference(withPath: "providers")
-        ref.putData(imageData, metadata: nil) { (meta, err) in
+        let ref = self.fireStorage.reference()
+        let child  = ref.child("/providers/\(providerName)")
+        child.putData(imageData, metadata: nil) { (meta, err) in
             if let err = err {
                 completion(.failure(err))
                 return

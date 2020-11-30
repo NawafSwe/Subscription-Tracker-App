@@ -12,7 +12,30 @@ import CodableFirebase
 final class FireStoreService{
     static let shared = FireStoreService()
     let fireStore = Firestore.firestore()
+    
     private init (){}
+    
+    
+    func addDocument<T:Codable>(collection : FireStoreKeys.collections, model:T , completion: @escaping (Result<Void , Error>)->() ){
+        do{
+            var doc : [String:Any] = try FirebaseEncoder().encode(model) as! [String:Any]
+            /// making user who created his doc data
+            doc["uid"] = UserAuthenticationManager.shared.user.uid
+            fireStore.collection(collection.rawValue).addDocument(data: doc) { error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                completion(.success(()))
+                
+            }
+        }catch let error {
+            completion(.failure(error))
+            return
+        }
+        
+        
+    }
     
     /// getDocumentOnce getting the document data once with no live update
     /// - Parameters:
@@ -188,7 +211,30 @@ final class FireStoreService{
         }
     }
     
-    func saveDocument<T:Codable>(collection: FireStoreKeys.collections , docId:String , model : T  , completion: @escaping (Result<Void , Error> ) -> () ){
+    func saveDocument<T:Codable>(collection:FireStoreKeys.collections , model: T,  completion: @escaping (Result<Void , Error>)->() ){
+        var doc : [String:Any]  = [:]
+        do{
+            doc = try FirebaseEncoder().encode(model) as! [String:Any]
+            self.fireStore.document(collection.rawValue).setData(doc, merge: true){ err in
+                DispatchQueue.main.async {
+                    if let err = err {
+                        completion(.failure(err))
+                        return
+                    }
+                    completion(.success(()))
+                    return
+                }
+                
+                
+            }
+            
+        }catch let error {
+            completion(.failure(error))
+            
+        }
+    }
+    
+    func saveDocumentWithId<T:Codable>(collection: FireStoreKeys.collections , docId:String , model : T  , completion: @escaping (Result<Void , Error> ) -> () ){
         let reference = fireStore.collection(collection.rawValue).document(docId)
         var doc :[String:Any] = [:]
         let encoder = FirebaseEncoder()
@@ -253,6 +299,7 @@ final class FireStoreService{
                 /// deleting doc
                 reference.updateData([filed:doc]){error in
                     if let error = error {
+                        
                         completion(.failure(error))
                         return
                     }
@@ -266,4 +313,5 @@ final class FireStoreService{
             
         }
     }
+    
 }
