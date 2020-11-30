@@ -14,7 +14,7 @@ struct SubscriptionDetailView: View {
     var body: some View {
         ZStack {
             VStack{
-                BrandView(image:subscription.image ,name: subscription.name, price: subscription.price, dueDate: subscription.dueDate)
+                BrandView(image:subscription.image ,name: subscription.name, price: subscription.price, dueDate: subscription.dueDateString)
                     .padding()
                 
                 Divider()

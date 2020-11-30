@@ -24,15 +24,28 @@ final class UserAuthenticationManager : ObservableObject{
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
                 // if we have a user, create a new user model
-                print("oh there is a user")
+                
                 self.session = User(uid: user.uid, displayName: user.displayName, email: user.email)
+                self.user = User(uid: user.uid, displayName: user.displayName, email: user.email)
                 DispatchQueue.main.async {
                     self.authState = .signIn
+                    
+                }
+                /// start retrieving user data
+                DispatchQueue.main.async {
+                    self.retrieveUser(uid: self.user.uid) { result in
+                        switch result{
+                            case .failure(_):
+                                return
+                            case .success(_):
+                                return
+                        }
+                    }
                 }
                 
             } else {
                 // if we don't have a user, set our session to nil
-                print("oh there are no user")
+                
                 self.session = nil
                 DispatchQueue.main.async {
                     self.authState = .signOut
@@ -43,11 +56,25 @@ final class UserAuthenticationManager : ObservableObject{
     
     // additional methods (sign up, sign in) will go here
     
-    func register(email:String , password:String , completion: @escaping AuthDataResultCallback ){
+    func register(email:String , password:String , completion: @escaping (Result<Void,Error>)-> () ){
         
-        Auth.auth().createUser(withEmail: email, password: password, completion: completion)
+        Auth.auth().createUser(withEmail: email, password: password){  (authResult, error ) in
+            if let err = error {
+                completion(.failure(err))
+                return
+            }
+            guard let _ = authResult?.user , let result = authResult  else{
+                completion(.failure(error!))
+                return
+            }
+            /// initing new user object from the authentication response if there is no error
+            let user = User(uid: result.user.uid, displayName: result.user.displayName, email: result.user.email)
+            DispatchQueue.main.async { self.user = user }
+            FireStoreService.shared.saveDocumentWithId(collection: FireStoreKeys.collections.users, docId: user.uid, model: user,completion: {$0})
+            
+            
+        }
     }
-    
     
     func login(email:String , password:String , completion: @escaping AuthDataResultCallback){
         Auth.auth().signIn(withEmail: email, password: password,completion: completion)
@@ -71,8 +98,26 @@ final class UserAuthenticationManager : ObservableObject{
             Auth.auth().removeStateDidChangeListener(handle)
         }
     }
-    
     /// retrieving user info
-    func retriveUser(uid:String , completion: @escaping (Result<User,Error>)->() ){ }
+    private func retrieveUser(uid: String, completion: @escaping (Result<Void, Error>) -> ()){
+        FireStoreService.shared.getDocument(collection: FireStoreKeys.collections.users, docId: uid) { (result: Result<User, Error>) in
+            switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .success(let user):
+                    DispatchQueue.main.async {
+                        self.user = user
+                        SubscriptionsService.shared.getSubscriptionsFromDB{ (result) in
+                            switch result {
+                                case .failure(let error):
+                                    completion(.failure(error))
+                                case .success(let subscriptions):
+                                    print(subscriptions)
+                                    completion(.success(()))
+                            }
+                        }
+                    }
+            }
+        }
+    }
 }
-

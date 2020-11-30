@@ -11,17 +11,7 @@ import SwiftUI
 
 struct SubscriptionFormView: View {
     @Environment (\.presentationMode) var presentationMode
-    @State var providersList = Providers.providersList
-    @State var selectedProvider = 0
-    @State var subDescription = ""
-    @State var subPrice:String = ""
-    @State var date = Date()
-    @State var selectedCycle = 0
-    @State var cycleTypes = ["weekly","monthly","yearly"]
-    var calculatePrice:Double {
-        Double(subPrice) ?? 0.0
-    }
-    
+    @StateObject var viewModel = SubscriptionFormViewModel()
     @State var remindUser = false
     var body: some View{
         NavigationView {
@@ -29,60 +19,61 @@ struct SubscriptionFormView: View {
                 Form{
                     Section(header: Text("Subscription Details")){
                         
-                        Picker(selection: $selectedProvider, label: Text("Provider") , content:{
-                            List(0..<providersList.count){index in
-                                ProvidersSelectionView(image: providersList[index].image, name: providersList[index].name).tag(index)
+                        Picker(selection: $viewModel.selectedProvider, label: Text("Provider") , content:{
+                            List(0..<viewModel.providersList.count){index in
+                                ProvidersSelectionView(image: viewModel.providersList[index].image, name: viewModel.providersList[index].name).tag(index)
                             }
                         })
                         
-                        TextField("Description", text: $subDescription)
+                        TextField("Description", text: $viewModel.subDescription)
                             /// setting limit for user because we do not want him to miss with the UI
-                            .onChange(of: self.subDescription, perform: { value in
+                            .onChange(of: self.viewModel.subDescription, perform: { value in
                                         if value.count > 26 {
-                                            self.subDescription = String(value.prefix(26))
+                                            self.viewModel.subDescription = String(value.prefix(26))
                                             /// put alert to user about the reason.
                                         }})
                             .overlay(
-                                CharsLimitRingView(width: 33, height: 33, remindChars: .constant(CGFloat(subDescription.count))), alignment: .trailing
+                                CharsLimitRingView(width: 33, height: 33, remindChars: .constant(CGFloat(viewModel.subDescription.count))), alignment: .trailing
                                 
                             )
                             .keyboardType(.default)
                             .autocapitalization(.none)
                             .disableAutocorrection(true)
                         
-                        TextField("Price", text: $subPrice)
+                        TextField("Price", text: $viewModel.subPrice)
                             .keyboardType(.decimalPad)
                             .autocapitalization(.none)
                             .disableAutocorrection(true)
                     }
                     
                     Section(header:(Text("Timings"))){
-                        Picker("Cycle", selection: $selectedCycle){
-                            List(0..<cycleTypes.count){cycle in
-                                Text(cycleTypes[cycle])
+                        Picker("Cycle", selection: $viewModel.selectedCycle){
+                            List(0..<viewModel.cycleTypes.count){cycle in
+                                Text(viewModel.cycleTypes[cycle])
                             }
                         }
                         
-                        DatePicker("Due Date", selection: $date, displayedComponents: .date)
+                        DatePicker("Due Date", selection: $viewModel.date, displayedComponents: .date)
                         
                         
                     }
                     .accentColor(.primary)
                     
                     Section(header:Text("Reminder")){
-                        Toggle("Notify Me One Day Before", isOn: $remindUser)
+                        Toggle("Notify Me One Day Before", isOn: $viewModel.remindUser)
                     }
                     
                 }
             }
             .navigationBarItems(leading: Button(action:{self.presentationMode.wrappedValue.dismiss()}){
-                DismissButtonView()
-                    
-                
-            }
-            
+                DismissButtonView().padding()
+               
+            },trailing:
+                Button(action:{viewModel.addSubscription()}){ saveButtonView() }
             )
             .navigationTitle("New Subscription 💳")
+        }.alert(item: $viewModel.alertItem){alert in
+            Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
         }
     }
     
@@ -108,4 +99,13 @@ struct ProvidersSelectionView:View{
                 .font(.subheadline)
         }
     }
+}
+
+struct saveButtonView:View{
+    var body: some View{
+        Text("Save")
+            .fontWeight(.semibold)
+            .padding(.horizontal)
+    }
+    
 }
