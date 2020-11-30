@@ -18,7 +18,7 @@ final class  RegisterViewModel:ObservableObject{
         DispatchQueue.main.async {
             self.isLoading = true
         }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
             self.isLoading = false
             self.shared.register(email: email, password: password) { result in
                 switch result{

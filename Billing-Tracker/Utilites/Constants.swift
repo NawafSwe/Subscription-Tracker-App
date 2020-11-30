@@ -8,15 +8,15 @@
 import Foundation
 //MARK:- K struct holds constants values used across the app
 struct K {
+    /// developer account
     static let devAccount = URL(string:"https://twitter.com/Nawaf_B_910")!
 }
 
-/// firebase keys
+/// firebase keys collections
 struct FireStoreKeys{
     enum collections:String {
         case users = "users"
         case providers = "providers"
         case subscriptions = "subscriptions"
     }
-    
 }

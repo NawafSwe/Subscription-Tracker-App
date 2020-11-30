@@ -27,7 +27,7 @@ struct LandingView: View {
         }
         .onAppear{
             self.isLoading = true
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5){
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2){
                 self.isLoading = false
                 session.listen()
                 

@@ -10,6 +10,7 @@ import SwiftUI
 import FirebaseStorage
 import Firebase
 import UIKit
+
 enum ProvidersErr: String , Error {
     case noName = "Provider must have name"
     case noImage = "provider must have an image"
@@ -19,6 +20,7 @@ enum ProvidersErr: String , Error {
 enum FireStorageErr:String,Error {
     case cannotUploadImage = "Cannot Upload Image"
 }
+//MARK:- ProvidersService singleton class
 final class ProvidersService : ObservableObject{
     static let shared = ProvidersService()
     @Published var providers:[Provider] = []
@@ -27,6 +29,9 @@ final class ProvidersService : ObservableObject{
     
     init(){}
     
+    
+    /// getProvidersFromDB get all providers from db life data
+    /// - Parameter completion: completion handler
     func getProvidersFromDB(completion: @escaping(Result<[Provider],Error>) ->Void){
         DispatchQueue.main.async {
             FireStoreService.shared.getDocuments(collection: FireStoreKeys.collections.providers, docId: UserAuthenticationManager.shared.user.uid){(result: Result<[Provider], Error>) in
@@ -44,6 +49,12 @@ final class ProvidersService : ObservableObject{
         
     }
     
+    
+    /// addProvider adding provider to db
+    /// - Parameters:
+    ///   - provider: provider data
+    ///   - completion: completion handler
+    /// - Returns: @escaping function
     func addProvider(provider:Provider , completion:@escaping (Result<Void,Error>)->()){
         DispatchQueue.main.async {
             FireStoreService.shared.addDocument(collection: FireStoreKeys.collections.providers, model: provider) { result in
@@ -59,6 +70,12 @@ final class ProvidersService : ObservableObject{
         }
     }
     
+    
+    /// saveProviderWithId save provider with id
+    /// - Parameters:
+    ///   - provider: provider data
+    ///   - completion: completion handler
+    /// - Returns: @escaping function
     func saveProviderWithId(provider:Provider , completion:@escaping (Result<Void,Error>)->()){
         DispatchQueue.main.async {
             FireStoreService.shared.saveDocumentWithId(collection: FireStoreKeys.collections.providers, docId: UserAuthenticationManager.shared.user.uid, model: provider) { (result: Result<Void, Error>) in
@@ -76,15 +93,27 @@ final class ProvidersService : ObservableObject{
     }
     
     
-    func deleteProvider(){ }
     
-    func uploadImage(image:UIImage, providerName: String , completion: @escaping (Result<URL,Error>)->Void){
+    /// deleteProvider deleting provider by id
+    /// - Parameter docId: document id
+    func deleteProvider(docId: String){
         
+    }
+    
+    
+    /// uploadImage
+    /// - Parameters:
+    ///   - image: image of the provider
+    ///   - providerName: provider name
+    ///   - completion: completion handler
+    func uploadImage(image:UIImage, providerName: String , completion: @escaping (Result<URL,Error>)->Void){
+        /// converting image
         guard let imageData = image.jpegData(compressionQuality: 0.5) else {
             completion(.failure(FireStorageErr.cannotUploadImage))
             return
         }
         
+        /// creating reference
         let ref = self.fireStorage.reference()
         let child  = ref.child("/providers/\(providerName)")
         child.putData(imageData, metadata: nil) { (meta, err) in
@@ -92,6 +121,7 @@ final class ProvidersService : ObservableObject{
                 completion(.failure(err))
                 return
             }
+            /// downloading the url image if was success
             ref.downloadURL { (url, err) in
                 if let err = err{
                     completion(.failure(err))
@@ -103,14 +133,13 @@ final class ProvidersService : ObservableObject{
                     return
                     
                 }
+                /// sending url back
                 completion(.success(safeUrl))
                 
             }
             
         }
-        
     }
-    
 }
 
 
