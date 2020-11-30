@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct SubscriptionBoxView: View {
-    let subscription  = MockData.subscriptionSample
+    let subscription : Subscription
+    let totalDays : Int
+    let remindDays :Int
     var body: some View {
         VStack(alignment: .center,spacing: 30){
             HStack (spacing:10){
@@ -41,6 +43,6 @@ struct SubscriptionBoxView: View {
 
 struct SubscriptionBoxView_Previews: PreviewProvider {
     static var previews: some View {
-        SubscriptionBoxView()
+        SubscriptionBoxView(subscription: MockData.subscriptionSample, totalDays: 10, remindDays: 200)
     }
 }

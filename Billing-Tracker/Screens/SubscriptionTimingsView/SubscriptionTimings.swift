@@ -8,16 +8,13 @@
 import SwiftUI
 
 struct SubscriptionTimingsView: View {
-    //creating lazy grid , flexible telling him fill the size of the screen as much as you can
-    //each gridItem inside the grid item array represents number of columns
-    let columns : [GridItem] = [ GridItem(.flexible()) ,GridItem(.flexible())]
-    
+    @StateObject var viewModel = SubscriptionTimingsViewModel()
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVGrid(columns:self.columns){
-                    ForEach(MockData.subscriptionSampleList){sub in
-                        SubscriptionBoxView()
+                LazyVGrid(columns: self.viewModel.columns){
+                    ForEach(viewModel.subscriptions){sub in
+                        SubscriptionBoxView(subscription: sub, totalDays: 365, remindDays: 30)
                         
                     }
                 }
@@ -27,6 +24,10 @@ struct SubscriptionTimingsView: View {
                 .navigationBarTitleDisplayMode(.inline)
             }
             
+        }
+        .onAppear(perform: viewModel.getSubscriptions)
+        .alert(item: $viewModel.alertItem){alert in
+            Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
         }
     }
 }

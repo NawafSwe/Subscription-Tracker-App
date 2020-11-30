@@ -10,6 +10,7 @@
 		390E966F25742D65004B17DA /* SubscriptionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E966E25742D65004B17DA /* SubscriptionsService.swift */; };
 		390E967225742D8B004B17DA /* ProvidersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E967125742D8B004B17DA /* ProvidersService.swift */; };
 		390E9675257460A6004B17DA /* SubscriptionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E9674257460A6004B17DA /* SubscriptionListViewModel.swift */; };
+		390E967925747198004B17DA /* SubscriptionTimingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E967825747198004B17DA /* SubscriptionTimingsViewModel.swift */; };
 		3929C7BA2571BD0C0012DD51 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7B92571BD0C0012DD51 /* Provider.swift */; };
 		3929C7BE2571C3460012DD51 /* SubscriptionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7BD2571C3460012DD51 /* SubscriptionBoxView.swift */; };
 		3929C7C42571CDAA0012DD51 /* CharsLimitRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7C32571CDAA0012DD51 /* CharsLimitRingView.swift */; };
@@ -62,6 +63,7 @@
 		390E966E25742D65004B17DA /* SubscriptionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsService.swift; sourceTree = "<group>"; };
 		390E967125742D8B004B17DA /* ProvidersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidersService.swift; sourceTree = "<group>"; };
 		390E9674257460A6004B17DA /* SubscriptionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionListViewModel.swift; sourceTree = "<group>"; };
+		390E967825747198004B17DA /* SubscriptionTimingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTimingsViewModel.swift; sourceTree = "<group>"; };
 		3929C7B92571BD0C0012DD51 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		3929C7BD2571C3460012DD51 /* SubscriptionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionBoxView.swift; sourceTree = "<group>"; };
 		3929C7C32571CDAA0012DD51 /* CharsLimitRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharsLimitRingView.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 		394780C72571854500C97EAA /* SubscriptionTimingsView */ = {
 			isa = PBXGroup;
 			children = (
+				390E967825747198004B17DA /* SubscriptionTimingsViewModel.swift */,
 				394780C82571856A00C97EAA /* SubscriptionTimings.swift */,
 			);
 			path = SubscriptionTimingsView;
@@ -582,6 +585,7 @@
 				398A475625736FDD00C4212B /* SettingViewModel.swift in Sources */,
 				39D913372571351100D9BDFE /* SubscriptionFormView.swift in Sources */,
 				3929C7F52571E2370012DD51 /* SubscriptionFormViewModel.swift in Sources */,
+				390E967925747198004B17DA /* SubscriptionTimingsViewModel.swift in Sources */,
 				398A474D257367D700C4212B /* RegisterViewModel.swift in Sources */,
 				399AD2F62570724B00AFA10A /* SubscriptionCellView.swift in Sources */,
 				390E966F25742D65004B17DA /* SubscriptionsService.swift in Sources */,

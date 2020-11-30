@@ -26,7 +26,7 @@ final class SubscriptionFormViewModel: ObservableObject {
     
     
     func addSubscription(){
-        let sub = Subscription(id: UUID(), userId: UserAuthenticationManager.shared.user.uid, name: providersList[selectedProvider].name, image: providersList[selectedProvider].image, description: subDescription, dueDate: date.description(with: .current), price: calculatePrice)
+        let sub = Subscription(id: UUID(), userId: UserAuthenticationManager.shared.user.uid, name: providersList[selectedProvider].name, image: providersList[selectedProvider].image, description: subDescription,dueDateString: date.description(with: .current), price: calculatePrice, dueDateInDate: date)
         SubscriptionsService.shared.addSubscription(subscription: sub) { (result) in
             switch result{
                 case .success(_):

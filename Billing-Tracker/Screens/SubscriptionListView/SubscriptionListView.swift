@@ -16,7 +16,7 @@ struct SubscriptionListView: View {
                 NavigationView {
                     
                     List(viewModel.subscriptions){ sub in
-                        SubscriptionCellView(image:sub.image, name:sub.name, price: sub.price, dueDate: sub.dueDate)
+                        SubscriptionCellView(image:sub.image, name:sub.name, price: sub.price, dueDate: sub.dueDateString)
                             .padding(.vertical,4)
                             
                             .onTapGesture { viewModel.selectedSubscription = sub
