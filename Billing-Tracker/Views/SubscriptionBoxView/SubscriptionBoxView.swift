@@ -10,7 +10,6 @@ import SwiftUI
 struct SubscriptionBoxView: View {
     let subscription : Subscription
     let remindDays :Int
-    let totalDays: Int
     var body: some View {
         VStack(alignment: .center,spacing: 30){
             HStack (spacing:10){
@@ -23,7 +22,7 @@ struct SubscriptionBoxView: View {
                     .bold()
             }
             HStack(spacing: 10 ){
-                DaysRingView(color1: #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1), color2: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), width: 33, height: 33, reminderDays: CGFloat(remindDays), totalDays: CGFloat(totalDays) )
+                DaysRingView(color1: #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1), color2: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), width: 33, height: 33, reminderDays: CGFloat(remindDays))
                 
                 Text("Days left")
                     .font(.headline)
@@ -43,6 +42,6 @@ struct SubscriptionBoxView: View {
 
 struct SubscriptionBoxView_Previews: PreviewProvider {
     static var previews: some View {
-        SubscriptionBoxView(subscription: MockData.subscriptionSample , remindDays: 200,totalDays: 39)
+        SubscriptionBoxView(subscription: MockData.subscriptionSample , remindDays: 200)
     }
 }

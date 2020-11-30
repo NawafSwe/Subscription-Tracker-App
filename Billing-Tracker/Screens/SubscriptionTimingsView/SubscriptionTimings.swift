@@ -15,7 +15,7 @@ struct SubscriptionTimingsView: View {
             ScrollView {
                 LazyVGrid(columns: self.viewModel.columns){
                     ForEach(viewModel.subscriptions){sub in
-                        SubscriptionBoxView(subscription: sub , remindDays: Date.daysDiffrent(start: Date(), end: sub.dueDateInDate),totalDays: sub.cycleDaysNumber )
+                        SubscriptionBoxView(subscription: sub , remindDays: Date.daysDiffrent(start: Date(), end: sub.dueDateInDate) )
                     }
                 }
                 

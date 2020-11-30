@@ -22,21 +22,12 @@ final class SubscriptionFormViewModel: ObservableObject {
     var calculatePrice:Double {
         Double(subPrice) ?? 0.0
     }
-    var calculatedCycle :Int {
-        switch self.cycleTypes[selectedCycle]{
-            case "weekly" : return 7
-            case "monthly" : return 30
-            case "yearly": return 366
-                
-            default : return  0
-        }
-    }
     @Published var remindUser = false
     
     
     func addSubscription(){
         
-        let sub = Subscription(id: UUID(), userId: UserAuthenticationManager.shared.user.uid, name: providersList[selectedProvider].name, image: providersList[selectedProvider].image, description: subDescription,dueDateString: date.description(with: .current), price: calculatePrice, dueDateInDate: date , cycleDaysNumber: calculatedCycle , notifyMe: remindUser)
+        let sub = Subscription(id: UUID(), userId: UserAuthenticationManager.shared.user.uid, name: providersList[selectedProvider].name, image: providersList[selectedProvider].image, description: subDescription,dueDateString: date.description(with: .current), price: calculatePrice, dueDateInDate: date , cycleDays: cycleTypes[selectedCycle] , notifyMe: remindUser)
         SubscriptionsService.shared.saveSubscriptionWithCustomId(subscription: sub) { (result) in
             switch result{
                 case .success(_):

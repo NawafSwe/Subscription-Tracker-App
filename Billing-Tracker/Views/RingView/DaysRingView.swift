@@ -15,13 +15,13 @@ struct DaysRingView: View {
     var height : CGFloat
     /// for days calculation
     var reminderDays: CGFloat
-    var totalDays:  CGFloat
+    
     
     var body: some View {
         //MARK:- global variables
         let multiplier = width / 44
         /// calculating progress
-        let progress  = 1 - (  (reminderDays / totalDays)  )
+        let progress  = 1 - (  (reminderDays / 100)  )
         
         //we have to use return the Zstack if we will declare a variables inside the body
         return ZStack {
@@ -56,7 +56,7 @@ struct DaysRingView: View {
 
 struct DaysRingView_Previews: PreviewProvider {
     static var previews: some View {
-        DaysRingView(width: 100, height: 100, reminderDays: 40, totalDays:50  )
+        DaysRingView(width: 100, height: 100, reminderDays: 40)
 
     }
 }

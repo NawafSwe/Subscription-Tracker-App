@@ -25,10 +25,8 @@ struct SubscriptionDetailView: View {
                 SubscriptionRowInfoView(name:"Name" , info: subscription.name)
                 SubscriptionRowInfoView(name:"Description" , info: subscription.description)
                 SubscriptionRowInfoView(name: "Bill Date", info: subscription.dueDateString)
-                SubscriptionRowInfoView(name: "Cycle", info: subscription.cycleDaysNumber == 7 ? "Week" : "Do it" )
+                SubscriptionRowInfoView(name: "Cycle", info: subscription.cycleDays)
                 SubscriptionRowInfoView(name: "Reminder", info: subscription.notifyMe ? "Yes" : "Never")
-                    
-                
                 
             }
             .frame(width: 340,height: 420)
@@ -65,4 +63,4 @@ struct SubscriptionRowInfoView:View{
 }
 
 
- 
+
