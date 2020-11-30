@@ -8,24 +8,22 @@
 import Foundation
 import Firebase
 enum AuthenticationState { case signIn , signOut , null }
+enum userHolder  { static let dummyUser = User(uid: "" , displayName: "test" , email : "") }
+
 //MARK:- UserAuthenticationManager class for using firebase authentication services
 final class UserAuthenticationManager : ObservableObject{
-    @Published var session: User?
     var handle: AuthStateDidChangeListenerHandle?
-    @Published var user = User(uid: "", displayName: "nwawaf", email: "")
+    @Published var user : User = userHolder.dummyUser
     @Published var authState:AuthenticationState = .null
-    
     static let shared = UserAuthenticationManager()
     private init () {}
     
-    /// start listing 
+    /// start listing for user
     func listen () {
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
                 // if we have a user, create a new user model
-                
-                self.session = User(uid: user.uid, displayName: user.displayName, email: user.email)
                 self.user = User(uid: user.uid, displayName: user.displayName, email: user.email)
                 DispatchQueue.main.async {
                     self.authState = .signIn
@@ -45,8 +43,7 @@ final class UserAuthenticationManager : ObservableObject{
                 
             } else {
                 // if we don't have a user, set our session to nil
-                
-                self.session = nil
+                self.user =  userHolder.dummyUser
                 DispatchQueue.main.async {
                     self.authState = .signOut
                 }
@@ -70,26 +67,28 @@ final class UserAuthenticationManager : ObservableObject{
             /// initing new user object from the authentication response if there is no error
             let user = User(uid: result.user.uid, displayName: result.user.displayName, email: result.user.email)
             DispatchQueue.main.async { self.user = user }
-            FireStoreService.shared.saveDocumentWithId(collection: FireStoreKeys.collections.users, docId: user.uid, model: user,completion: {$0})
+            FireStoreService.shared.saveDocumentWithId(collection: FireStoreKeys.collections.users, docId: user.uid, model: user){_ in }
             
             
         }
     }
     
+    /// login function
     func login(email:String , password:String , completion: @escaping AuthDataResultCallback){
         Auth.auth().signIn(withEmail: email, password: password,completion: completion)
     }
     
+    /// logout function
     func logout()->Bool{
         do {
             try Auth.auth().signOut()
-            self.session = nil
+            self.user =  userHolder.dummyUser
+            self.authState = .signOut
             return true
         } catch {
             return false
         }
     }
-    
     
     
     /// stop listing
@@ -111,8 +110,7 @@ final class UserAuthenticationManager : ObservableObject{
                             switch result {
                                 case .failure(let error):
                                     completion(.failure(error))
-                                case .success(let subscriptions):
-                                    print(subscriptions)
+                                case .success(_):
                                     completion(.success(()))
                             }
                         }

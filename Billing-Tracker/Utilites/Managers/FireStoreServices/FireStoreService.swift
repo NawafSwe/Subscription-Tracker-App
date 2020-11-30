@@ -8,14 +8,19 @@
 import Foundation
 import Firebase
 import CodableFirebase
-/// singleton class
+ //MARK:- FireStoreService singleton class pattern
 final class FireStoreService{
     static let shared = FireStoreService()
     let fireStore = Firestore.firestore()
     
     private init (){}
-    
-    
+
+    /// addDocument adding document to firebase
+    /// - Parameters:
+    ///   - collection: collection name
+    ///   - model: model data has the data
+    ///   - completion: completion to handle the function call
+    /// - Returns: @escaping Completion Function
     func addDocument<T:Codable>(collection : FireStoreKeys.collections, model:T , completion: @escaping (Result<Void , Error>)->() ){
         do{
             var doc : [String:Any] = try FirebaseEncoder().encode(model) as! [String:Any]
@@ -33,9 +38,8 @@ final class FireStoreService{
             completion(.failure(error))
             return
         }
-        
-        
     }
+    
     
     /// getDocumentOnce getting the document data once with no live update
     /// - Parameters:
@@ -211,6 +215,13 @@ final class FireStoreService{
         }
     }
     
+    
+    /// saveDocument saving document data of a document
+    /// - Parameters:
+    ///   - collection: name of the collection
+    ///   - model: model generic object holds the data
+    ///   - completion: completion handler
+    /// - Returns: @escaping Completion Function
     func saveDocument<T:Codable>(collection:FireStoreKeys.collections , model: T,  completion: @escaping (Result<Void , Error>)->() ){
         var doc : [String:Any]  = [:]
         do{
@@ -233,6 +244,14 @@ final class FireStoreService{
             
         }
     }
+    
+    
+    /// saveDocumentWithId saving document data of a document with id
+    /// - Parameters:
+    ///   - collection: name of the collection
+    ///   - model: model generic object holds the data
+    ///   - completion: completion handler
+    /// - Returns: @escaping Completion Function
     
     func saveDocumentWithId<T:Codable>(collection: FireStoreKeys.collections , docId:String , model : T  , completion: @escaping (Result<Void , Error> ) -> () ){
         let reference = fireStore.collection(collection.rawValue).document(docId)

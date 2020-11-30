@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SubscriptionListView: View {
-    let subscriptionsList = MockData.subscriptionSampleList
     @StateObject var viewModel = SubscriptionListViewModel()
     var body: some View {
         ZStack {
@@ -26,7 +25,7 @@ struct SubscriptionListView: View {
                             .shadow(radius: viewModel.showSubscriptionDetail ? 10 : 0)
                         
                     }
-                    .onAppear(perform: viewModel.getSubscriptions)
+                    
                     /// disabling the navigation if user shows sub details
                     .disabled(viewModel.showSubscriptionDetail)
                     .listStyle(PlainListStyle())
@@ -38,14 +37,11 @@ struct SubscriptionListView: View {
                     .sheet(isPresented: $viewModel.showSubscriptionForm){
                         SubscriptionFormView()
                     }
-                    
-                    
                 }
-                ExpenseView()
+                ExpenseView(price: viewModel.totalPrice)
                     .padding()
                 
             }
-            
             /// if the user tapped on the sub show its detail
             if(viewModel.showSubscriptionDetail){
                 SubscriptionDetailView(subscription: viewModel.selectedSubscription!)
@@ -78,6 +74,10 @@ struct SubscriptionListView: View {
                     .animation(nil)
             }
         }
+        /// getting sub every second
+        .onReceive(viewModel.timer){ _ in
+            viewModel.doStopCalling()
+        }
         .alert(item: $viewModel.alertItem){alert in
             Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
         }
@@ -88,13 +88,5 @@ struct SubscriptionListView: View {
         }
     }
     
-    struct AddSubscriptionButtonView:View{
-        var body: some View{
-            Image(systemName: Icons.SFbag)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 32, height: 32)
-                .accentColor(.green)
-        }
-    }
+    
 }

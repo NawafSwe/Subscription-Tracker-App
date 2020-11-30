@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct ExpenseView: View {
+    let price : Double
     var body: some View {
         HStack{
             Text("Total Expenses")
                 .font(.title2)
             Spacer()
-            Text("28SR")
+            Text(String(format: "%.2f", price) + "SR" )
                 .foregroundColor(.primary)
         }
         .padding()
@@ -27,6 +28,6 @@ struct ExpenseView: View {
 
 struct ExpenseView_Previews: PreviewProvider {
     static var previews: some View {
-        ExpenseView()
+        ExpenseView(price: 32)
     }
 }

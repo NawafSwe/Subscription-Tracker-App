@@ -8,12 +8,17 @@
 import Foundation
 import Firebase
 import CodableFirebase
+//MARK:- SubscriptionsService singleton class
 final class SubscriptionsService : ObservableObject{
     static let shared = SubscriptionsService()
     @Published var subscriptions:[Subscription] = []
     let fireStore = Firestore.firestore()
     private init(){}
     
+    
+    
+    /// getSubscriptionsFromDB get all subscriptions from db life data
+    /// - Parameter completion: completion handler
     func getSubscriptionsFromDB(completion: @escaping(Result<[Subscription],Error>) ->Void){
         print(UserAuthenticationManager.shared.user.uid)
         DispatchQueue.main.async {
@@ -33,6 +38,11 @@ final class SubscriptionsService : ObservableObject{
         
     }
     
+    /// addSubscription adding document to firebase
+    /// - Parameters:
+    ///   - subscription: subscription object has the data
+    ///   - completion: completion handler
+    /// - Returns: void
     func addSubscription(subscription:Subscription , completion:@escaping (Result<Void,Error>)->()){
         DispatchQueue.main.async {
             FireStoreService.shared.addDocument(collection: FireStoreKeys.collections.subscriptions, model: subscription) { result in
@@ -49,6 +59,11 @@ final class SubscriptionsService : ObservableObject{
     }
     
     
+    /// saveSubscriptionWithId save document data with id
+    /// - Parameters:
+    ///   - subscription: subscription data
+    ///   - completion:  completion handler
+    /// - Returns: Void
     func saveSubscriptionWithId(subscription:Subscription , completion:@escaping (Result<Void,Error>)->()){
         DispatchQueue.main.async {
             FireStoreService.shared.saveDocumentWithId(collection: FireStoreKeys.collections.subscriptions, docId: UserAuthenticationManager.shared.user.uid, model: subscription) { (result: Result<Void, Error>) in
@@ -65,6 +80,12 @@ final class SubscriptionsService : ObservableObject{
         
     }
     
+    
+    /// deleteSubscription
+    /// - Parameters:
+    ///   - docId: document id
+    ///   - completion: completion handler
+    /// - Returns: Void
     func deleteSubscription(docId:String , completion: @escaping (Result<Void,Error>) -> () ){
         DispatchQueue.main.async {
             FireStoreService.shared.deleteDocument(collection: FireStoreKeys.collections.subscriptions, docId: docId) { (result) in
@@ -79,4 +100,3 @@ final class SubscriptionsService : ObservableObject{
         }
     }
 }
-

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SubscriptionTimingsView: View {
     @StateObject var viewModel = SubscriptionTimingsViewModel()
+
     var body: some View {
         NavigationView {
             ScrollView {
@@ -25,7 +26,9 @@ struct SubscriptionTimingsView: View {
             }
             
         }
-        .onAppear(perform: viewModel.getSubscriptions)
+        .onReceive(viewModel.timer){ _ in
+            viewModel.doStopCalling()
+        }
         .alert(item: $viewModel.alertItem){alert in
             Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
         }
