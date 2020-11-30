@@ -8,10 +8,10 @@
 import Foundation
 import SwiftUI
 final class SubscriptionTimingsViewModel: ObservableObject {
-    @Published var subscriptions :[Subscription] = []
+    @Published var subscriptions : [Subscription] = SubscriptionsService.shared.subscriptions
     @Published var alertItem : AlertItem? = nil
     @Published var callingTimes = 0
-    let timer = Timer.publish(every: 0.4, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     //creating lazy grid , flexible telling him fill the size of the screen as much as you can
     //each gridItem inside the grid item array represents number of columns
     let columns : [GridItem] = [ GridItem(.flexible()) ,GridItem(.flexible())]
@@ -36,13 +36,16 @@ final class SubscriptionTimingsViewModel: ObservableObject {
         Calendar.current.dateComponents([.day], from: start, to: end).day!
     }
     
+    /// watch it carefully --- maybe retrieving all data of user on the tab bar view better
     func doStopCalling(){
-        if self.callingTimes > 3 {
+        if self.callingTimes > 1 || !subscriptions.isEmpty {
             self.timer.upstream.connect().cancel()
+          //  print("stoping at \(callingTimes)")
             
         }else{
             self.getSubscriptions()
             callingTimes += 1
+          //  print("counting now is \(callingTimes)")
         }
         
     }

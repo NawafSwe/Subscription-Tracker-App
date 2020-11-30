@@ -8,13 +8,13 @@
 import Foundation
 import Firebase
 import CodableFirebase
- //MARK:- FireStoreService singleton class pattern
+//MARK:- FireStoreService singleton class pattern
 final class FireStoreService{
     static let shared = FireStoreService()
     let fireStore = Firestore.firestore()
     
     private init (){}
-
+    
     /// addDocument adding document to firebase
     /// - Parameters:
     ///   - collection: collection name
@@ -211,7 +211,6 @@ final class FireStoreService{
                 completion(.success(model))
                 return
             }
-            
         }
     }
     

@@ -22,12 +22,12 @@ final class UserAuthenticationManager : ObservableObject{
     func listen () {
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+            
             if let user = user {
                 // if we have a user, create a new user model
-                self.user = User(uid: user.uid, displayName: user.displayName, email: user.email)
                 DispatchQueue.main.async {
+                    self.user = User(uid: user.uid, displayName: user.displayName, email: user.email)
                     self.authState = .signIn
-                    
                 }
                 /// start retrieving user data
                 DispatchQueue.main.async {
@@ -43,8 +43,8 @@ final class UserAuthenticationManager : ObservableObject{
                 
             } else {
                 // if we don't have a user, set our session to nil
-                self.user =  userHolder.dummyUser
                 DispatchQueue.main.async {
+                    self.user =  userHolder.dummyUser
                     self.authState = .signOut
                 }
             }

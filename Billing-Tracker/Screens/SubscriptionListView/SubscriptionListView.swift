@@ -26,6 +26,8 @@ struct SubscriptionListView: View {
                         
                     }
                     
+                    
+                    
                     /// disabling the navigation if user shows sub details
                     .disabled(viewModel.showSubscriptionDetail)
                     .listStyle(PlainListStyle())
@@ -74,6 +76,7 @@ struct SubscriptionListView: View {
                     .animation(nil)
             }
         }
+        //        .onAppear(perform: viewModel.getSubscriptions)
         /// getting sub every second
         .onReceive(viewModel.timer){ _ in
             viewModel.doStopCalling()
@@ -81,7 +84,11 @@ struct SubscriptionListView: View {
         .alert(item: $viewModel.alertItem){alert in
             Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
         }
+        
     }
+    
+    
+    
     struct SubscriptionListView_Previews: PreviewProvider {
         static var previews: some View {
             SubscriptionListView()

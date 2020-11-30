@@ -14,15 +14,12 @@ final class SubscriptionsService : ObservableObject{
     @Published var subscriptions:[Subscription] = []
     let fireStore = Firestore.firestore()
     private init(){}
-    
-    
-    
     /// getSubscriptionsFromDB get all subscriptions from db life data
     /// - Parameter completion: completion handler
     func getSubscriptionsFromDB(completion: @escaping(Result<[Subscription],Error>) ->Void){
-        print(UserAuthenticationManager.shared.user.uid)
-        DispatchQueue.main.async {
-            FireStoreService.shared.getDocuments(collection: FireStoreKeys.collections.subscriptions, docId: UserAuthenticationManager.shared.user.uid){(result: Result<[Subscription], Error>) in
+        
+        FireStoreService.shared.getDocuments(collection: FireStoreKeys.collections.subscriptions, docId: UserAuthenticationManager.shared.user.uid){(result: Result<[Subscription], Error>) in
+            DispatchQueue.main.async {
                 switch result{
                     case .success(let subscriptions ):
                         self.subscriptions = subscriptions
@@ -33,9 +30,7 @@ final class SubscriptionsService : ObservableObject{
                         
                 }
             }
-            
         }
-        
     }
     
     /// addSubscription adding document to firebase
@@ -44,8 +39,8 @@ final class SubscriptionsService : ObservableObject{
     ///   - completion: completion handler
     /// - Returns: void
     func addSubscription(subscription:Subscription , completion:@escaping (Result<Void,Error>)->()){
-        DispatchQueue.main.async {
-            FireStoreService.shared.addDocument(collection: FireStoreKeys.collections.subscriptions, model: subscription) { result in
+        FireStoreService.shared.addDocument(collection: FireStoreKeys.collections.subscriptions, model: subscription) { result in
+            DispatchQueue.main.async {
                 switch result{
                     case .failure(let err):
                         completion(.failure(err))
@@ -65,8 +60,10 @@ final class SubscriptionsService : ObservableObject{
     ///   - completion:  completion handler
     /// - Returns: Void
     func saveSubscriptionWithId(subscription:Subscription , completion:@escaping (Result<Void,Error>)->()){
-        DispatchQueue.main.async {
-            FireStoreService.shared.saveDocumentWithId(collection: FireStoreKeys.collections.subscriptions, docId: UserAuthenticationManager.shared.user.uid, model: subscription) { (result: Result<Void, Error>) in
+        FireStoreService.shared.saveDocumentWithId(collection: FireStoreKeys.collections.subscriptions, docId: UserAuthenticationManager.shared.user.uid, model: subscription) {
+            (result: Result<Void, Error>) in
+            DispatchQueue.main.async {
+
                 switch result{
                     case .success():
                         completion(.success(()))
@@ -79,16 +76,15 @@ final class SubscriptionsService : ObservableObject{
         }
         
     }
-    
-    
     /// deleteSubscription
     /// - Parameters:
     ///   - docId: document id
     ///   - completion: completion handler
     /// - Returns: Void
     func deleteSubscription(docId:String , completion: @escaping (Result<Void,Error>) -> () ){
-        DispatchQueue.main.async {
+       
             FireStoreService.shared.deleteDocument(collection: FireStoreKeys.collections.subscriptions, docId: docId) { (result) in
+                DispatchQueue.main.async {
                 switch result{
                     case .failure(let err):
                         completion(.failure(err))

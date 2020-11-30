@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeTabView: View {
     @ObservedObject var userService = UserAuthenticationManager.shared
     var body: some View {
-        
+
         TabView{
             SubscriptionListView().tabItem {
                 Image(systemName: Icons.SFCreditcard)
@@ -28,7 +28,7 @@ struct HomeTabView: View {
                     .scaledToFit()
                 Text("Subscription Timings")
             }
-            
+                      
             SettingView().tabItem {
                 Image(systemName: Icons.SFgearshape)
                     .resizable()
@@ -39,6 +39,7 @@ struct HomeTabView: View {
         }
         .tabViewStyle(DefaultTabViewStyle())
         .accentColor(.tabItem)
+      
     }
 }
 

@@ -26,9 +26,8 @@ struct SubscriptionTimingsView: View {
             }
             
         }
-        .onReceive(viewModel.timer){ _ in
-            viewModel.doStopCalling()
-        }
+        .onAppear(perform:viewModel.getSubscriptions)
+        
         .alert(item: $viewModel.alertItem){alert in
             Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
         }

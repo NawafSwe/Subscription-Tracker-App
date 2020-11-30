@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 final class SubscriptionListViewModel : ObservableObject{
-    @Published var subscriptions : [Subscription] = []
+    @Published var subscriptions : [Subscription] = SubscriptionsService.shared.subscriptions
     @Published var alertItem : AlertItem? = nil
     @Published var showSubscriptionDetail = false
     @Published var selectedSubscription:Subscription? {didSet {self.showSubscriptionDetail = true } }
@@ -21,7 +21,6 @@ final class SubscriptionListViewModel : ObservableObject{
     }
     
     func getSubscriptions(){
-        
         DispatchQueue.main.async {
             SubscriptionsService.shared.getSubscriptionsFromDB(){ result in
                 switch result {
@@ -37,7 +36,7 @@ final class SubscriptionListViewModel : ObservableObject{
     
     /// watch it carefully --- maybe retrieving all data of user on the tab bar view better 
     func doStopCalling(){
-        if self.callingTimes > 3 {
+        if self.callingTimes > 1 || !subscriptions.isEmpty {
             self.timer.upstream.connect().cancel()
             print("stoping at \(callingTimes)")
             
