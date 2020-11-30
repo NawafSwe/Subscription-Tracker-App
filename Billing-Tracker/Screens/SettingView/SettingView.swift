@@ -14,8 +14,22 @@ struct SettingView: View {
             Form{
                 
                 Section(header:Text("General")){
-                    Button(action:{}){
-                        Text("Manage subscriptions")
+                    Button(action:{viewModel.showManagedSubscriptions.toggle()}){
+                        HStack{
+                            Image(systemName:Icons.SFCreditcard)
+                                .resizable()
+                                .frame(width:20, height: 20)
+                                .scaledToFit()
+                                .foregroundColor(.white)
+                                
+                                
+                            Text("Manage subscriptions")
+                             .foregroundColor(.white)
+                        }
+                        
+                    }
+                    .sheet(isPresented: $viewModel.showManagedSubscriptions){
+                        ManageSubscriptionsView()
                     }
                     
                     Button(action:{}){

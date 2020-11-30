@@ -21,7 +21,7 @@ struct DaysRingView: View {
         //MARK:- global variables
         let multiplier = width / 44
         /// calculating progress
-        let progress  = 1 - (reminderDays / totalDays)
+        let progress  = 1 - (  (reminderDays / totalDays)  )
         
         //we have to use return the Zstack if we will declare a variables inside the body
         return ZStack {

@@ -137,7 +137,7 @@ final class FireStoreService{
     /// - Returns: @escaping Completion Function
     
     func getDocumentsOnce<T:Codable>(collection:FireStoreKeys.collections, docId:String, completion: @escaping (Result<[T],Error>) -> () ){
-        let reference = fireStore.collection(collection.rawValue).whereField("uid", isEqualTo: docId)
+        let reference = fireStore.collection(collection.rawValue).whereField("userId", isEqualTo: docId)
         reference.getDocuments { (querySnapshot, error) in
             DispatchQueue.main.async {
                 // checking if there is an error
@@ -179,7 +179,7 @@ final class FireStoreService{
     ///   - completion: completion to handle the function call
     /// - Returns: @escaping Completion Function
     func getDocuments<T:Codable>(collection:FireStoreKeys.collections , docId:String , completion: @escaping (Result<[T],Error>)->() ){
-        let reference = fireStore.collection(collection.rawValue).whereField("uid", isEqualTo: docId)
+        let reference = fireStore.collection(collection.rawValue).whereField("userId", isEqualTo: docId)
         reference.addSnapshotListener{ (querySnapshot, error) in
             DispatchQueue.main.async {
                 // checking if there is an error
@@ -331,5 +331,4 @@ final class FireStoreService{
             
         }
     }
-    
 }

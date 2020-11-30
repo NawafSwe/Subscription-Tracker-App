@@ -18,16 +18,26 @@ final class SubscriptionFormViewModel: ObservableObject {
     @Published var date = Date()
     @Published var selectedCycle = 0
     @Published var alertItem:AlertItem? = nil
-    @Published var cycleTypes = ["weekly","monthly","yearly"]
+    @Published var cycleTypes = ["weekly" , "monthly", "yearly"]
     var calculatePrice:Double {
         Double(subPrice) ?? 0.0
+    }
+    var calculatedCycle :Int {
+        switch self.cycleTypes[selectedCycle]{
+            case "weekly" : return 7
+            case "monthly" : return 30
+            case "yearly": return 366
+                
+            default : return  0
+        }
     }
     @Published var remindUser = false
     
     
     func addSubscription(){
-        let sub = Subscription(id: UUID(), userId: UserAuthenticationManager.shared.user.uid, name: providersList[selectedProvider].name, image: providersList[selectedProvider].image, description: subDescription,dueDateString: date.description(with: .current), price: calculatePrice, dueDateInDate: date)
-        SubscriptionsService.shared.addSubscription(subscription: sub) { (result) in
+        
+        let sub = Subscription(id: UUID(), userId: UserAuthenticationManager.shared.user.uid, name: providersList[selectedProvider].name, image: providersList[selectedProvider].image, description: subDescription,dueDateString: date.description(with: .current), price: calculatePrice, dueDateInDate: date , cycleDaysNumber: calculatedCycle , notifyMe: remindUser)
+        SubscriptionsService.shared.saveSubscriptionWithCustomId(subscription: sub) { (result) in
             switch result{
                 case .success(_):
                     self.alertItem = AlertItem(title: Text("Success"), message: Text("You have added your subscription successfully"), dismissButton: .default(Text("Cool")))
@@ -40,4 +50,3 @@ final class SubscriptionFormViewModel: ObservableObject {
     }
     
 }
-

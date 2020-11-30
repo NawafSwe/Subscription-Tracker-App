@@ -19,6 +19,9 @@ struct Subscription: Codable , Hashable , Identifiable {
     let dueDateString:String
     let price:Double
     let dueDateInDate : Date
+    let cycleDaysNumber:Int
+    let notifyMe:Bool
+    
 }
 
 
@@ -27,12 +30,12 @@ struct MockData {
 //    static let subscriptionSample = Subscription(userId: "2", name: "Spotify", image: Images.Spotify, description: "Music", dueDate: "1 month", price: 100)
 //
     static let subscriptionSampleList = [
-        Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date()),
-        Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date()),
-        Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date()),
-        Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date())
-
+        Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date(),cycleDaysNumber: 327, notifyMe :false ),
+        Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date() ,cycleDaysNumber: 327, notifyMe :false),
+        Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date() ,cycleDaysNumber: 327, notifyMe :false),
+        Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date() ,cycleDaysNumber: 327, notifyMe :false)
     ]
-    static let subscriptionSample = Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date())
+    static let subscriptionSample = Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date(),
+                                                 cycleDaysNumber: 327, notifyMe :false )
     
 }

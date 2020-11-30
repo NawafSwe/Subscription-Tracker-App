@@ -37,10 +37,6 @@ final class SubscriptionTimingsViewModel: ObservableObject {
         }
     }
     
-    func daysBetween(start: Date, end: Date) -> Int {
-        Calendar.current.dateComponents([.day], from: start, to: end).day!
-    }
-    
     /// watch it carefully --- maybe retrieving all data of user on the tab bar view better
     func doStopCalling(){
         if self.callingTimes > 1 || !subscriptions.isEmpty {

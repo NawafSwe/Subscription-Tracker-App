@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 final class SettingViewModel:ObservableObject{
-    
+    @Published var showManagedSubscriptions = false 
     @Published var alertItem : AlertItem? = nil
     @ObservedObject var session  = UserAuthenticationManager.shared
     func logout(){

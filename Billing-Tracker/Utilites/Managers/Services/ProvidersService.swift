@@ -78,7 +78,7 @@ final class ProvidersService : ObservableObject{
     /// - Returns: @escaping function
     func saveProviderWithId(provider:Provider , completion:@escaping (Result<Void,Error>)->()){
         DispatchQueue.main.async {
-            FireStoreService.shared.saveDocumentWithId(collection: FireStoreKeys.collections.providers, docId: UserAuthenticationManager.shared.user.uid, model: provider) { (result: Result<Void, Error>) in
+            FireStoreService.shared.saveDocumentWithId(collection: FireStoreKeys.collections.providers, docId: provider.id.uuidString, model: provider) { (result: Result<Void, Error>) in
                 switch result{
                     case .success():
                         completion(.success(()))
