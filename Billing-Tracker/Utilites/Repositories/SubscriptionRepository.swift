@@ -15,11 +15,10 @@ final class SubscriptionRepository :ObservableObject{
     @Published var subscriptions  = [Subscription]()
     let collectionName = FirestoreKeys.collections.subscriptions.rawValue
     
-    init(){
-        loadData()
-        
-    }
+    init(){ loadData() }
     
+    /// LoadData loading all subscriptions data once from firebase life  and setting the subscriptions
+    /// - Returns: Void
     func loadData(){
         if let userId = Auth.auth().currentUser?.uid{
             // loading subscriptions with user id
@@ -45,11 +44,32 @@ final class SubscriptionRepository :ObservableObject{
         }
     }
     
-    func getAllSubscriptions (completion: @escaping (Result<[Subscription] , Error>) -> () ){
-        
+    /// LoadDataOnce loading all subscriptions data once from firebase and setting the subscriptions
+    /// - Returns: Void
+    func LoadDataOnce(){
+        if let userId = Auth.auth().currentUser?.uid{
+            // loading subscriptions with user id
+            db.collection(collectionName)
+                .order(by: "createdTime")
+                .whereField("userId", isEqualTo: userId)
+                .getDocuments { (querySnapshot, error) in
+                    if let error = error {
+                        fatalError("Error in your network I will customize them for sure \(error.localizedDescription)" )
+                        
+                    }
+                    // if we have query
+                    if let querySnapshot = querySnapshot {
+                        // mapping query with its id and adding them into subscriptions list
+                        self.subscriptions = querySnapshot.documents
+                            .compactMap{ document in
+                                try? document.data(as: Subscription.self)
+                                
+                            }
+                        
+                    }
+                }
+        }
     }
-    
-    
     
     /// addSubscription adding subscription document to firebase
     /// - Parameters:
@@ -76,15 +96,39 @@ final class SubscriptionRepository :ObservableObject{
         }
     }
     
+    /// updateSubscription subscription document to firebase by id
+    /// - Parameters:
+    ///   - subscriptionId: id of the document
+    ///   - completion: completion to handle the function call
+    /// - Returns: @escaping Completion Function
     
-    func deleteSubscription(subscriptionId : String){
-        db.collection(FirestoreKeys.collections.subscriptions.rawValue).document(subscriptionId).delete{ error in
-            if let error  = error{
-                fatalError("cannot delete for some reason \(error.localizedDescription)")
-            }
-            
+    func updateSubscription(subscriptionId: String ,data:Subscription , completion: @escaping (Result<Void,Error>) -> Void ){
+        do{
+            try db.collection(collectionName).document(subscriptionId)
+                .setData(from: data, merge: true){error in
+                    if let error = error {
+                        completion(.failure(error))
+                        return
+                    }
+                }
+        }catch {
+            completion(.failure(error))
         }
     }
     
+    
+    /// deleteSubscription deleting subscription document to firebase
+    /// - Parameters:
+    ///   - subscriptionId: id of the document
+    ///   - completion: completion to handle the function call
+    /// - Returns: @escaping Completion Function
+    
+    func deleteSubscription(subscriptionId : String , completion: @escaping (Result<Void, Error>) -> Void ){
+        db.collection(FirestoreKeys.collections.subscriptions.rawValue).document(subscriptionId).delete{ error in
+            if let error  = error{
+                completion(.failure(error))
+                return
+            }
+        }
+    }
 }
-
