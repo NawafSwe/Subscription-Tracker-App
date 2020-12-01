@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestoreSwift
 enum AuthenticationState { case signIn , signOut , null }
 enum userHolder  { static let dummyUser = User(uid: "" , displayName: "test" , email : "") }
 
@@ -16,6 +17,7 @@ final class UserAuthenticationManager : ObservableObject{
     @Published var user : User = userHolder.dummyUser
     @Published var authState:AuthenticationState = .null
     static let shared = UserAuthenticationManager()
+    let db = Firestore.firestore()
     private init () {}
     
     /// start listing for user
@@ -31,7 +33,8 @@ final class UserAuthenticationManager : ObservableObject{
                 }
                 /// start retrieving user data
                 DispatchQueue.main.async {
-
+                    
+                    
                 }
                 
             } else {
@@ -60,7 +63,13 @@ final class UserAuthenticationManager : ObservableObject{
             /// initing new user object from the authentication response if there is no error
             let user = User(uid: result.user.uid, displayName: result.user.displayName, email: result.user.email)
             DispatchQueue.main.async { self.user = user }
-           // FirestoreService.shared.saveDocumentWithId(collection: FireStoreKeys.collections.users, docId: user.uid, model: user){_ in }
+            // FirestoreService.shared.saveDocumentWithId(collection: FireStoreKeys.collections.users, docId: user.uid, model: user){_ in }
+            do{
+                let _ = try self.db.collection(FirestoreKeys.collections.users.rawValue).document(user.uid).setData(from: user)
+            }catch {
+                print("error")
+                
+            }
             
             
         }
@@ -75,8 +84,13 @@ final class UserAuthenticationManager : ObservableObject{
     func logout()->Bool{
         do {
             try Auth.auth().signOut()
-            self.user =  userHolder.dummyUser
-            self.authState = .signOut
+            DispatchQueue.main.async {
+                self.user =  userHolder.dummyUser
+                self.authState = .signOut
+            }
+            //stop listing
+            self.unbind()
+            print("listing removed")
             return true
         } catch {
             return false
@@ -93,5 +107,5 @@ final class UserAuthenticationManager : ObservableObject{
     /// retrieving user info
     private func retrieveUser(uid: String, completion: @escaping (Result<Void, Error>) -> ()){ }
     
-    }
+}
 

@@ -35,6 +35,7 @@
 		396117422571110600919EF3 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396117412571110600919EF3 /* SettingView.swift */; };
 		3961174E2571165900919EF3 /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961174D2571165900919EF3 /* Subscription.swift */; };
 		39611754257116EA00919EF3 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39611753257116EA00919EF3 /* Images.swift */; };
+		396B0BB425768E1E000476DF /* ProviderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B0BB325768E1E000476DF /* ProviderRepository.swift */; };
 		397EAB0A2573E81C00E1F7C3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EAB092573E81C00E1F7C3 /* LoadingView.swift */; };
 		397EAB0E2573E84300E1F7C3 /* LottieFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EAB0D2573E84300E1F7C3 /* LottieFiles.swift */; };
 		397EAB122573E8C100E1F7C3 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 397EAB112573E8C100E1F7C3 /* loading.json */; };
@@ -94,6 +95,7 @@
 		396117412571110600919EF3 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		3961174D2571165900919EF3 /* Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		39611753257116EA00919EF3 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		396B0BB325768E1E000476DF /* ProviderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderRepository.swift; sourceTree = "<group>"; };
 		397EAB092573E81C00E1F7C3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		397EAB0D2573E84300E1F7C3 /* LottieFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieFiles.swift; sourceTree = "<group>"; };
 		397EAB112573E8C100E1F7C3 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 		3981A52525764B3B00F8B677 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				396B0BB325768E1E000476DF /* ProviderRepository.swift */,
 				3981A52625764B7D00F8B677 /* UserRepository.swift */,
 				39EF3A602576723E00777442 /* SubscriptionRepository.swift */,
 			);
@@ -619,6 +622,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				396B0BB425768E1E000476DF /* ProviderRepository.swift in Sources */,
 				3961173E25710A8900919EF3 /* SubscriptionListView.swift in Sources */,
 				3929C7CC2571D4240012DD51 /* Constants.swift in Sources */,
 				397EAB1D2573FF5C00E1F7C3 /* FirestoreService.swift in Sources */,

@@ -26,13 +26,14 @@ struct LandingView: View {
             }
             LoadingView(isLoading:$isLoading)
         }
-//        .onAppear{
-//            session.listen()
-//            self.isLoading = true
-//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
-//                self.isLoading = false
-//                }
-//        }
+        /// listing if there is user or not
+        .onAppear{
+            session.listen()
+            self.isLoading = true
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
+                self.isLoading = false
+            }
+        }
     }
 }
 struct LandingView_Previews: PreviewProvider {
