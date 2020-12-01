@@ -8,14 +8,11 @@
 import SwiftUI
 
 struct SubscriptionCellView: View {
-    let image:String
-    let name:String
-    let price:Double
-    let dueDate:String
+    let subscription: Subscription
     
     var body: some View {
         HStack(alignment: .center){
-            BrandView(image:image, name:name, price: price, dueDate: dueDate)
+            BrandView(subscription: subscription)
                 
         }
         .frame(width: 360, height: 60)
@@ -29,30 +26,27 @@ struct SubscriptionCellView: View {
 
 struct SubscriptionView_Previews: PreviewProvider {
     static var previews: some View {
-        SubscriptionCellView(image:"Netflix",name:"Netflix",price: 43, dueDate: "2 weeks")
+        SubscriptionCellView(subscription: MockData.subscriptionSample)
     }
 }
 
 struct BrandView:View{
-    let image:String
-    let name:String
-    let price:Double
-    let dueDate: String
+    let subscription: Subscription
     var body: some View{
         HStack{
-            Image(image)
+            Image(subscription.image)
                 .resizable()
                 .frame(width: 32 , height: 32)
                 .scaledToFit()
-            Text(name)
+            Text(subscription.name)
                 .font(.title)
             
             Spacer()
             
             VStack{
-                Text("SR \(String(format: "%.2f", price) )")
+                Text("SR \(String(format: "%.2f", subscription.price) )")
                     .font(.system(size: 16, weight: .medium))
-                Text(dueDate)
+                Text(subscription.dueDateString)
                     .font(.system(size: 16, weight: .thin, design: .default))
             }
         }

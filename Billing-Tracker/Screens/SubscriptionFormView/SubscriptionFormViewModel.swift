@@ -7,7 +7,8 @@
 
 import Foundation
 import SwiftUI
-import CoreData
+import Firebase
+import FirebaseFirestoreSwift
 
 final class SubscriptionFormViewModel: ObservableObject {
     @Environment (\.presentationMode) var presentationMode
@@ -18,26 +19,25 @@ final class SubscriptionFormViewModel: ObservableObject {
     @Published var date = Date()
     @Published var selectedCycle = 0
     @Published var alertItem:AlertItem? = nil
+    
+    // cycles when date due add based on it
     @Published var cycleTypes = ["weekly" , "monthly", "yearly"]
-    var calculatePrice:Double {
-        Double(subPrice) ?? 0.0
-    }
+    @Published var subscriptionRepository = SubscriptionRepository()
     @Published var remindUser = false
     
+    // calculating price
+    var calculatePrice:Double { Double(subPrice) ?? 0.0 }
     
+    /// adding new subscription function
     func addSubscription(){
-        
-        let sub = Subscription(id: UUID(), userId: UserAuthenticationManager.shared.user.uid, name: providersList[selectedProvider].name, image: providersList[selectedProvider].image, description: subDescription,dueDateString: date.description(with: .current), price: calculatePrice, dueDateInDate: date , cycleDays: cycleTypes[selectedCycle] , notifyMe: remindUser)
-        SubscriptionsService.shared.saveSubscriptionWithCustomId(subscription: sub) { (result) in
-            switch result{
+        let addedSubscription = Subscription(name: providersList[selectedProvider].name, image: providersList[selectedProvider].image, description: subDescription, dueDateString: date.description(with: .current), price: calculatePrice, dueDateInDate: date, cycleDays: cycleTypes[selectedCycle], notifyMe: remindUser)
+        self.subscriptionRepository.addSubscription(subscription: addedSubscription){ [self] result in
+            switch result {
                 case .success(_):
-                    self.alertItem = AlertItem(title: Text("Success"), message: Text("You have added your subscription successfully"), dismissButton: .default(Text("Cool")))
                     return
                 case .failure(let error):
-                    self.alertItem = AlertItem(title: Text("Error"), message: Text(error.localizedDescription), dismissButton: .default(Text("OK")))
-                    return
+                    alertItem = AlertItem(title: Text("Server Error"), message: Text(error.localizedDescription), dismissButton: .default(Text("OK")))
             }
         }
     }
-    
 }

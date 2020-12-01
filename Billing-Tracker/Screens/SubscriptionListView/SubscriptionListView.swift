@@ -14,11 +14,13 @@ struct SubscriptionListView: View {
             VStack{
                 NavigationView {
                     
-                    List(viewModel.subscriptions){ sub in
-                        SubscriptionCellView(image:sub.image, name:sub.name, price: sub.price, dueDate: sub.dueDateString)
+                    // lopping on the cells
+                    List(viewModel.subscriptionCellViewModels ){ sub in
+                        // passing subscription into cell view
+                        SubscriptionCellView(subscription: sub.subscription)
                             .padding(.vertical,4)
                             
-                            .onTapGesture { viewModel.selectedSubscription = sub
+                            .onTapGesture { viewModel.selectedSubscription = sub.subscription
                             }
                             
                             .blur(radius: viewModel.showSubscriptionDetail ? 10 :  0)
@@ -35,8 +37,8 @@ struct SubscriptionListView: View {
                 }
                 
                 
-                ExpenseView(price: viewModel.totalPrice)
-                    .padding()
+                //                ExpenseView(price: viewModel.totalPrice)
+                //                    .padding()
             }
             
             
@@ -80,11 +82,6 @@ struct SubscriptionListView: View {
         
         .alert(item: $viewModel.alertItem){alert in
             Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
-        }
-        //        .onAppear(perform: viewModel.getSubscriptions)
-        /// getting sub every second
-        .onReceive(viewModel.timer){ _ in
-            viewModel.doStopCalling()
         }
     }
 }

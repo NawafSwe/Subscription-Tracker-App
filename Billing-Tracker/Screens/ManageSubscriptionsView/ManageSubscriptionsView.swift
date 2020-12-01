@@ -13,19 +13,19 @@ struct ManageSubscriptionsView: View {
     var body: some View {
         ZStack{
             NavigationView{
-            List{
-                ForEach(self.viewModel.subscriptions){sub in
-                    SubscriptionCellView(image: sub.image, name: sub.name, price: sub.price, dueDate: sub.dueDateString)
-                        .padding(.vertical,4)
-                       
+                List{
+                    ForEach(self.viewModel.subscriptions){sub in
+                        SubscriptionCellView(subscription: sub.subscription)
+                            .padding(.vertical,4)
+                        
+                    }
+                    .onDelete(perform: self.viewModel.deleteSubscription)
                 }
-                .onDelete(perform: self.viewModel.deleteSubscription)
-            }
-            .listStyle(PlainListStyle())
-           
-            .navigationBarItems(leading: Button(action: {self.presentationMode.wrappedValue.dismiss()}){ DismissButtonView() } ,
-                trailing: EditButton() )
-            .navigationTitle("Subscriptions 💳")
+                .listStyle(PlainListStyle())
+                
+                .navigationBarItems(leading: Button(action: {self.presentationMode.wrappedValue.dismiss()}){ DismissButtonView() } ,
+                                    trailing: EditButton() )
+                .navigationTitle("Subscriptions 💳")
             }
         }
     }

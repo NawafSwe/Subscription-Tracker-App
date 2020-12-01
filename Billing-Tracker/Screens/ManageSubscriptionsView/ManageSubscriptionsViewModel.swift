@@ -7,34 +7,38 @@
 
 import Foundation
 import SwiftUI
+import Combine
 final class ManageSubscriptionsViewModel : ObservableObject{
-    @Published var subscriptions = SubscriptionsService.shared.subscriptions
+    @Published var subscriptions = [SubscriptionCellViewModel]()
     @Published var alertItem: AlertItem? = nil
     @Published var selectedSubIndex = 0
+    @Published var subscriptionsRepository = SubscriptionRepository()
+    private var cancellables = Set<AnyCancellable>()
     
-    
-    func deleteSubscription(indices: IndexSet){
-        var docId:UUID? = nil
-        for indice in indices {
-            // find this sub
-            let subscription = subscriptions[indice]
-            docId = subscription.id
-        }
-        subscriptions.remove(atOffsets: indices)
-        guard let foundDocId = docId else {return }
-        /// [self] closure syntax 
-        SubscriptionsService.shared.deleteSubscription(docId: foundDocId.uuidString) { [self] result in
-            switch result{
-                case .failure(let error):
-                    DispatchQueue.main.async {
-                        alertItem = AlertItem(title: Text("Error while deleting"), message:Text(error.localizedDescription) , dismissButton: .default(Text("OK")))
-                    }
-                    return
-                case .success(_):
-                    print("deleted")
-                    return
+    init(){
+        self.subscriptionsRepository.$subscriptions
+            .map{subscriptions in
+                subscriptions.map{ subscription in
+                    SubscriptionCellViewModel(subscription: subscription)
+                }
             }
-        }
+            //assign values and store it
+            .assign(to: \.subscriptions, on: self)
+            .store(in: &cancellables)
     }
-    
+    func deleteSubscription(offsets: IndexSet){
+        var captureId :String? =  nil
+        for offset in offsets {
+            // subscription
+            let foundSub = subscriptionsRepository.subscriptions[offset]
+            captureId = foundSub.id
+            
+        }
+        // making sure we have the id
+        guard let safeId = captureId else {return }
+        // deleting the subscription
+        subscriptionsRepository.deleteSubscription(subscriptionId: safeId)
+    }
 }
+
+

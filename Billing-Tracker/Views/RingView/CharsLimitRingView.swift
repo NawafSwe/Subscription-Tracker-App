@@ -20,10 +20,8 @@ struct CharsLimitRingView: View {
     var body: some View {
         //MARK:- global variables
         let multiplier = width / 44
-        
         /// calculating progress
-        let progress  =  (totalChars / remindChars) - 1
-        
+        let progress  = 1 - (remindChars / totalChars)
         //we have to use return the Zstack if we will declare a variables inside the body
         return ZStack {
             Circle()

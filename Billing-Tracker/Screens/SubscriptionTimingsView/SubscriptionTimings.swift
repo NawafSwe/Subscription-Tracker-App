@@ -9,18 +9,16 @@ import SwiftUI
 
 struct SubscriptionTimingsView: View {
     @StateObject var viewModel = SubscriptionTimingsViewModel()
-    
     var body: some View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: self.viewModel.columns){
                     ForEach(viewModel.subscriptions){sub in
-                        SubscriptionBoxView(subscription: sub , remindDays: Date.daysDiffrent(start: Date(), end: sub.dueDateInDate) )
+                        // injecting the subscription cell view model
+                        SubscriptionBoxView(subscription: sub.subscription , remindDays: Date.daysDiffrent(start: Date(), end: sub.subscription.dueDateInDate) )
                     }
                 }
-                
                 .padding(.top)
-                
                 .navigationTitle("Subscriptions Timings⌚️")
                 .navigationBarTitleDisplayMode(.inline)
             }
@@ -29,8 +27,6 @@ struct SubscriptionTimingsView: View {
         .alert(item: $viewModel.alertItem){alert in
             Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
         }
-        
-        .onAppear(perform:viewModel.getSubscriptions)
     }
 }
 

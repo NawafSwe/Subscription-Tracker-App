@@ -13,7 +13,7 @@ struct K {
 }
 
 /// firebase keys collections
-struct FireStoreKeys{
+struct FirestoreKeys{
     enum collections:String {
         case users = "users"
         case providers = "providers"
