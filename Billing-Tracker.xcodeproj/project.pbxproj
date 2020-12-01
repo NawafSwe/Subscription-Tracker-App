@@ -10,8 +10,6 @@
 		3909833B25756376001430C9 /* ManageSubscriptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909833A25756376001430C9 /* ManageSubscriptionsViewModel.swift */; };
 		3909833F25756391001430C9 /* ManageSubscriptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909833E25756391001430C9 /* ManageSubscriptionsView.swift */; };
 		3909834225758B9E001430C9 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909834125758B9E001430C9 /* Date+Ext.swift */; };
-		390E966F25742D65004B17DA /* SubscriptionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E966E25742D65004B17DA /* SubscriptionsService.swift */; };
-		390E967225742D8B004B17DA /* ProvidersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E967125742D8B004B17DA /* ProvidersService.swift */; };
 		390E9675257460A6004B17DA /* SubscriptionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E9674257460A6004B17DA /* SubscriptionListViewModel.swift */; };
 		390E967925747198004B17DA /* SubscriptionTimingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E967825747198004B17DA /* SubscriptionTimingsViewModel.swift */; };
 		390E967E257476F3004B17DA /* AddSubscriptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E967D257476F3004B17DA /* AddSubscriptionButton.swift */; };
@@ -71,8 +69,6 @@
 		3909833A25756376001430C9 /* ManageSubscriptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionsViewModel.swift; sourceTree = "<group>"; };
 		3909833E25756391001430C9 /* ManageSubscriptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionsView.swift; sourceTree = "<group>"; };
 		3909834125758B9E001430C9 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
-		390E966E25742D65004B17DA /* SubscriptionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsService.swift; sourceTree = "<group>"; };
-		390E967125742D8B004B17DA /* ProvidersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidersService.swift; sourceTree = "<group>"; };
 		390E9674257460A6004B17DA /* SubscriptionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionListViewModel.swift; sourceTree = "<group>"; };
 		390E967825747198004B17DA /* SubscriptionTimingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTimingsViewModel.swift; sourceTree = "<group>"; };
 		390E967D257476F3004B17DA /* AddSubscriptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSubscriptionButton.swift; sourceTree = "<group>"; };
@@ -164,15 +160,6 @@
 				3909833E25756391001430C9 /* ManageSubscriptionsView.swift */,
 			);
 			path = ManageSubscriptionsView;
-			sourceTree = "<group>";
-		};
-		390E966D25742D4D004B17DA /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				390E966E25742D65004B17DA /* SubscriptionsService.swift */,
-				390E967125742D8B004B17DA /* ProvidersService.swift */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		3929C7BC2571C3260012DD51 /* SubscriptionBoxView */ = {
@@ -434,7 +421,6 @@
 		39D3B7B325731F25005881A4 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				390E966D25742D4D004B17DA /* Services */,
 				397EAB192573F8C900E1F7C3 /* FireStoreServices */,
 				39BEE92E2573657400218130 /* UserAuth */,
 			);
@@ -638,12 +624,10 @@
 				398A474D257367D700C4212B /* RegisterViewModel.swift in Sources */,
 				399AD2F62570724B00AFA10A /* SubscriptionCellView.swift in Sources */,
 				39EF3A662576772300777442 /* SubscriptionCellViewModel.swift in Sources */,
-				390E966F25742D65004B17DA /* SubscriptionsService.swift in Sources */,
 				390E9675257460A6004B17DA /* SubscriptionListViewModel.swift in Sources */,
 				3909833F25756391001430C9 /* ManageSubscriptionsView.swift in Sources */,
 				3929C7DA2571D79D0012DD51 /* CoreDataModel.xcdatamodeld in Sources */,
 				396117422571110600919EF3 /* SettingView.swift in Sources */,
-				390E967225742D8B004B17DA /* ProvidersService.swift in Sources */,
 				397EAB20257404CB00E1F7C3 /* FireStoreErr.swift in Sources */,
 				3961174E2571165900919EF3 /* Subscription.swift in Sources */,
 				39D9134B257181AC00D9BDFE /* DaysRingView.swift in Sources */,

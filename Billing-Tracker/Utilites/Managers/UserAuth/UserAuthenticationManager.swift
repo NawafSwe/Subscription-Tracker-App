@@ -31,12 +31,6 @@ final class UserAuthenticationManager : ObservableObject{
                     self.user = User(uid: user.uid, displayName: user.displayName, email: user.email)
                     self.authState = .signIn
                 }
-                /// start retrieving user data
-                DispatchQueue.main.async {
-                    
-                    
-                }
-                
             } else {
                 // if we don't have a user, set our session to nil
                 DispatchQueue.main.async {
@@ -48,7 +42,6 @@ final class UserAuthenticationManager : ObservableObject{
     }
     
     // additional methods (sign up, sign in) will go here
-    
     func register(email:String , password:String , completion: @escaping (Result<Void,Error>)-> () ){
         
         Auth.auth().createUser(withEmail: email, password: password){  (authResult, error ) in
@@ -63,22 +56,33 @@ final class UserAuthenticationManager : ObservableObject{
             /// initing new user object from the authentication response if there is no error
             let user = User(uid: result.user.uid, displayName: result.user.displayName, email: result.user.email)
             DispatchQueue.main.async { self.user = user }
-            // FirestoreService.shared.saveDocumentWithId(collection: FireStoreKeys.collections.users, docId: user.uid, model: user){_ in }
             do{
                 let _ = try self.db.collection(FirestoreKeys.collections.users.rawValue).document(user.uid).setData(from: user)
             }catch {
-                print("error")
-                
+                completion(.failure(error))
+                return
             }
-            
-            
         }
     }
     
     /// login function
-    func login(email:String , password:String , completion: @escaping AuthDataResultCallback){
-        Auth.auth().signIn(withEmail: email, password: password,completion: completion)
+    func login(email:String , password:String , completion: @escaping (Result<Void,Error> ) -> Void ){
+        Auth.auth().signIn(withEmail: email, password: password) { (authResult , error) in
+            if let error = error{
+                completion(.failure(error))
+                return
+            }
+            if let user = authResult?.user {
+                let safeUser =  User(uid: user.uid, displayName: user.displayName, email: user.email)
+                DispatchQueue.main.async {
+                    self.user  = safeUser
+                    self.authState = .signIn
+                }
+            }
+        }
+        
     }
+    
     
     /// logout function
     func logout()->Bool{
@@ -108,4 +112,5 @@ final class UserAuthenticationManager : ObservableObject{
     private func retrieveUser(uid: String, completion: @escaping (Result<Void, Error>) -> ()){ }
     
 }
+
 

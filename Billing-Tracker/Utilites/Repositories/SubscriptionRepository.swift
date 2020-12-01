@@ -21,42 +21,61 @@ final class SubscriptionRepository :ObservableObject{
     }
     
     func loadData(){
-        let userId = Auth.auth().currentUser?.uid
-        // loading subscriptions with user id
-        db.collection(collectionName)
-            .order(by: "createdTime")
-            .whereField("userId", isEqualTo: userId)
-            .addSnapshotListener { (querySnapshot, error) in
-                if let error = error {
-                    fatalError("Error in your network I will customize them for sure \(error.localizedDescription)" )
-                    
+        if let userId = Auth.auth().currentUser?.uid{
+            // loading subscriptions with user id
+            db.collection(collectionName)
+                .order(by: "createdTime")
+                .whereField("userId", isEqualTo: userId)
+                .addSnapshotListener { (querySnapshot, error) in
+                    if let error = error {
+                        fatalError("Error in your network I will customize them for sure \(error.localizedDescription)" )
+                        
+                    }
+                    // if we have query
+                    if let querySnapshot = querySnapshot {
+                        // mapping query with its id and adding them into subscriptions list
+                        self.subscriptions = querySnapshot.documents
+                            .compactMap{ document in
+                                try? document.data(as: Subscription.self)
+                                
+                            }
+                        
+                    }
                 }
-                // if we have query
-                if let querySnapshot = querySnapshot {
-                    // mapping query with its id and adding them into subscriptions list
-                    self.subscriptions = querySnapshot.documents
-                        .compactMap{ document in
-                            try? document.data(as: Subscription.self)
-                            
-                        }
-                    
-                }
-                
-                
-            }
+        }
     }
     
-    func addSubscription(subscription: Subscription){
+    func getAllSubscriptions (completion: @escaping (Result<[Subscription] , Error>) -> () ){
+        
+    }
+    
+    
+    
+    /// addSubscription adding subscription document to firebase
+    /// - Parameters:
+    ///   - collection: collection name
+    ///   - model: model data has the data
+    ///   - completion: completion to handle the function call
+    /// - Returns: @escaping Completion Function
+    
+    func addSubscription(subscription: Subscription , completion: @escaping (Result<Void , Error> ) -> Void){
         if let userId = Auth.auth().currentUser?.uid{
-        var helperSubscription = Subscription(name: subscription.name, image: subscription.image, description: subscription.description, dueDateString: subscription.dueDateString, price: subscription.price, dueDateInDate: subscription.dueDateInDate, cycleDays: subscription.cycleDays, notifyMe: subscription.notifyMe)
+            var helperSubscription = Subscription(name: subscription.name, image: subscription.image, description: subscription.description, dueDateString: subscription.dueDateString, price: subscription.price, dueDateInDate: subscription.dueDateInDate, cycleDays: subscription.cycleDays, notifyMe: subscription.notifyMe)
             helperSubscription.userId = userId
             do{
-               let _ =  try db.collection(FirestoreKeys.collections.subscriptions.rawValue).addDocument(from: subscription)
+                let _ =  try db.collection(collectionName).addDocument(from: helperSubscription){ error in
+                    if let error = error{
+                        completion(.failure(error))
+                        return
+                    }
+                }
+                
             }catch {
-                fatalError("Cannot encode subscription \(error.localizedDescription)")
+                completion(.failure(error))
             }
         }
     }
+    
     
     func deleteSubscription(subscriptionId : String){
         db.collection(FirestoreKeys.collections.subscriptions.rawValue).document(subscriptionId).delete{ error in

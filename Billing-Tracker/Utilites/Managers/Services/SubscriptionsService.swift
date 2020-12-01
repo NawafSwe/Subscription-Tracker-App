@@ -7,13 +7,16 @@
 
 import Foundation
 import Firebase
+import Combine
 
 //MARK:- SubscriptionsService singleton class
 final class SubscriptionsService : ObservableObject{
     static let shared = SubscriptionsService()
-    @Published var subscriptions:[Subscription] = []
+    @Published var subscriptions:[Subscription] = [Subscription]()
+    @Published var subscriptionRepository = SubscriptionRepository()
     let fireStore = Firestore.firestore()
-    private init(){}
+    private var cancellables = Set<AnyCancellable>()
+    private init(){   }
     /// getSubscriptionsFromDB get all subscriptions from db life data
     /// - Parameter completion: completion handler
     func getSubscriptionsFromDB(completion: @escaping(Result<[Subscription],Error>) ->Void){
