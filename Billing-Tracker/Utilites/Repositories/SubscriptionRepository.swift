@@ -58,5 +58,14 @@ final class SubscriptionRepository :ObservableObject{
         }
     }
     
+    func deleteSubscription(subscriptionId : String){
+        db.collection(FirestoreKeys.collections.subscriptions.rawValue).document(subscriptionId).delete{ error in
+            if let error  = error{
+                fatalError("cannot delete for some reason \(error.localizedDescription)")
+            }
+            
+        }
+    }
+    
 }
 
