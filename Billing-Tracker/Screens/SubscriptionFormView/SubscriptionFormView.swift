@@ -82,7 +82,7 @@ struct SubscriptionFormView: View {
 struct SubscriptionFormView_Previews: PreviewProvider {
     static var previews: some View {
         SubscriptionFormView()
-            .colorScheme(.dark)
+            .colorScheme(.light)
     }
 }
 

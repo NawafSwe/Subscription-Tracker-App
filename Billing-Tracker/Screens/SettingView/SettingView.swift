@@ -16,28 +16,36 @@ struct SettingView: View {
                 Section(header:Text("General")){
                     Button(action:{viewModel.showManagedSubscriptions.toggle()}){
                         HStack{
-                            Image(systemName:Icons.SFCreditcard)
+                            Image(Images.creditIcon)
+                                .renderingMode(.original)
                                 .resizable()
-                                .frame(width:20, height: 20)
-                                .scaledToFit()
-                                .foregroundColor(.white)
-                                
-                                
+                                .frame(width:44, height: 44)
+                                .scaledToFill()
                             Text("Manage subscriptions")
-                             .foregroundColor(.white)
+                                .foregroundColor(.standardText)
+
                         }
                         
                     }
                     .sheet(isPresented: $viewModel.showManagedSubscriptions){
                         ManageSubscriptionsView()
+                          
                     }
                     
                     Button(action:{}){
-                        Text("Account")
+                        HStack {
+                            Image(systemName: Icons.SFPerson)
+                                .renderingMode(.original)
+                                .resizable()
+                                .frame(width:20, height: 20)
+                                .scaledToFill()
+                            Text("Account")
+                        }
+                       
                     }
                     
                     Button(action:{}){
-                        Text("Custom App Icon")
+                        Text("Add Custom Providers")
                     }
                     
                 }

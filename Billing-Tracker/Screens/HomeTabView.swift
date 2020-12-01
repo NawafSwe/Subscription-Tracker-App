@@ -38,7 +38,7 @@ struct HomeTabView: View {
             }
         }
         .tabViewStyle(DefaultTabViewStyle())
-        .accentColor(.tabItem)
+        .accentColor(.mainColor)
       
     }
 }

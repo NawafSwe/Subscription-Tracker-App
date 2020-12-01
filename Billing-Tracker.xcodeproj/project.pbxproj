@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		390761712576C7E200955366 /* SubscriptionAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390761702576C7E200955366 /* SubscriptionAlert.swift */; };
+		390761772576C90C00955366 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390761762576C90C00955366 /* String+Ext.swift */; };
 		3909833B25756376001430C9 /* ManageSubscriptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909833A25756376001430C9 /* ManageSubscriptionsViewModel.swift */; };
 		3909833F25756391001430C9 /* ManageSubscriptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909833E25756391001430C9 /* ManageSubscriptionsView.swift */; };
 		3909834225758B9E001430C9 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909834125758B9E001430C9 /* Date+Ext.swift */; };
@@ -66,6 +68,8 @@
 /* Begin PBXFileReference section */
 		0182523B208BB0C7B15E780C /* Pods_Billing_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Billing_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AA5059635B7D25102354860 /* Pods-Billing-Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Billing-Tracker.release.xcconfig"; path = "Target Support Files/Pods-Billing-Tracker/Pods-Billing-Tracker.release.xcconfig"; sourceTree = "<group>"; };
+		390761702576C7E200955366 /* SubscriptionAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionAlert.swift; sourceTree = "<group>"; };
+		390761762576C90C00955366 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		3909833A25756376001430C9 /* ManageSubscriptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionsViewModel.swift; sourceTree = "<group>"; };
 		3909833E25756391001430C9 /* ManageSubscriptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionsView.swift; sourceTree = "<group>"; };
 		3909834125758B9E001430C9 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
@@ -153,6 +157,21 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		3907616F2576C7B700955366 /* SubscriptionAlerts */ = {
+			isa = PBXGroup;
+			children = (
+				390761702576C7E200955366 /* SubscriptionAlert.swift */,
+			);
+			path = SubscriptionAlerts;
+			sourceTree = "<group>";
+		};
+		390761752576C8EB00955366 /* FormAlerts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FormAlerts;
+			sourceTree = "<group>";
+		};
 		3909833825756343001430C9 /* ManageSubscriptionsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +210,8 @@
 			isa = PBXGroup;
 			children = (
 				39BEE9272573646700218130 /* Alert.swift */,
+				390761752576C8EB00955366 /* FormAlerts */,
+				3907616F2576C7B700955366 /* SubscriptionAlerts */,
 				39BEE92A257364FA00218130 /* AuthAlerts */,
 			);
 			path = Alerts;
@@ -432,6 +453,7 @@
 			children = (
 				3909834125758B9E001430C9 /* Date+Ext.swift */,
 				39D9133125711C4300D9BDFE /* Color+Ext.swift */,
+				390761762576C90C00955366 /* String+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -626,8 +648,10 @@
 				39EF3A662576772300777442 /* SubscriptionCellViewModel.swift in Sources */,
 				390E9675257460A6004B17DA /* SubscriptionListViewModel.swift in Sources */,
 				3909833F25756391001430C9 /* ManageSubscriptionsView.swift in Sources */,
+				390761772576C90C00955366 /* String+Ext.swift in Sources */,
 				3929C7DA2571D79D0012DD51 /* CoreDataModel.xcdatamodeld in Sources */,
 				396117422571110600919EF3 /* SettingView.swift in Sources */,
+				390761712576C7E200955366 /* SubscriptionAlert.swift in Sources */,
 				397EAB20257404CB00E1F7C3 /* FireStoreErr.swift in Sources */,
 				3961174E2571165900919EF3 /* Subscription.swift in Sources */,
 				39D9134B257181AC00D9BDFE /* DaysRingView.swift in Sources */,
