@@ -38,8 +38,9 @@
 		397EAB0A2573E81C00E1F7C3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EAB092573E81C00E1F7C3 /* LoadingView.swift */; };
 		397EAB0E2573E84300E1F7C3 /* LottieFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EAB0D2573E84300E1F7C3 /* LottieFiles.swift */; };
 		397EAB122573E8C100E1F7C3 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 397EAB112573E8C100E1F7C3 /* loading.json */; };
-		397EAB1D2573FF5C00E1F7C3 /* FireStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EAB1C2573FF5B00E1F7C3 /* FireStoreService.swift */; };
+		397EAB1D2573FF5C00E1F7C3 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EAB1C2573FF5B00E1F7C3 /* FirestoreService.swift */; };
 		397EAB20257404CB00E1F7C3 /* FireStoreErr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EAB1F257404CB00E1F7C3 /* FireStoreErr.swift */; };
+		3981A52725764B7D00F8B677 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3981A52625764B7D00F8B677 /* UserRepository.swift */; };
 		398603A22572FD3800554B34 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 398603A12572FD3800554B34 /* GoogleService-Info.plist */; };
 		398A474D257367D700C4212B /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398A474C257367D700C4212B /* RegisterViewModel.swift */; };
 		398A475625736FDD00C4212B /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398A475525736FDD00C4212B /* SettingViewModel.swift */; };
@@ -58,6 +59,8 @@
 		39D913372571351100D9BDFE /* SubscriptionFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D913362571351100D9BDFE /* SubscriptionFormView.swift */; };
 		39D9134125716E5F00D9BDFE /* UpdateSubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D9134025716E5F00D9BDFE /* UpdateSubscriptionView.swift */; };
 		39D9134B257181AC00D9BDFE /* DaysRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D9134A257181AC00D9BDFE /* DaysRingView.swift */; };
+		39EF3A612576723E00777442 /* SubscriptionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EF3A602576723E00777442 /* SubscriptionRepository.swift */; };
+		39EF3A662576772300777442 /* SubscriptionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EF3A652576772300777442 /* SubscriptionCellViewModel.swift */; };
 		578104D2A7BA07861E627019 /* Pods_Billing_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0182523B208BB0C7B15E780C /* Pods_Billing_Tracker.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,8 +97,9 @@
 		397EAB092573E81C00E1F7C3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		397EAB0D2573E84300E1F7C3 /* LottieFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieFiles.swift; sourceTree = "<group>"; };
 		397EAB112573E8C100E1F7C3 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
-		397EAB1C2573FF5B00E1F7C3 /* FireStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreService.swift; sourceTree = "<group>"; };
+		397EAB1C2573FF5B00E1F7C3 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		397EAB1F257404CB00E1F7C3 /* FireStoreErr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreErr.swift; sourceTree = "<group>"; };
+		3981A52625764B7D00F8B677 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		398603A12572FD3800554B34 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		398A474C257367D700C4212B /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		398A475525736FDD00C4212B /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 		39D913362571351100D9BDFE /* SubscriptionFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionFormView.swift; sourceTree = "<group>"; };
 		39D9134025716E5F00D9BDFE /* UpdateSubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSubscriptionView.swift; sourceTree = "<group>"; };
 		39D9134A257181AC00D9BDFE /* DaysRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysRingView.swift; sourceTree = "<group>"; };
+		39EF3A602576723E00777442 /* SubscriptionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionRepository.swift; sourceTree = "<group>"; };
+		39EF3A652576772300777442 /* SubscriptionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionCellViewModel.swift; sourceTree = "<group>"; };
 		C61F344A6D63B2ECFF8F6779 /* Pods-Billing-Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Billing-Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Billing-Tracker/Pods-Billing-Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -288,7 +294,7 @@
 		3961174A2571158000919EF3 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				399AD2F52570724B00AFA10A /* SubscriptionCellView.swift */,
+				39EF3A642576771000777442 /* SubscriptionCellView */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -307,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				3929C7CB2571D4240012DD51 /* Constants.swift */,
+				3981A52525764B3B00F8B677 /* Repositories */,
 				397EAB102573E8B600E1F7C3 /* LottiesFiles */,
 				39D3B7B325731F25005881A4 /* Managers */,
 				39D91339257142E700D9BDFE /* Protocols */,
@@ -347,10 +354,19 @@
 		397EAB192573F8C900E1F7C3 /* FireStoreServices */ = {
 			isa = PBXGroup;
 			children = (
-				397EAB1C2573FF5B00E1F7C3 /* FireStoreService.swift */,
+				397EAB1C2573FF5B00E1F7C3 /* FirestoreService.swift */,
 				397EAB1F257404CB00E1F7C3 /* FireStoreErr.swift */,
 			);
 			path = FireStoreServices;
+			sourceTree = "<group>";
+		};
+		3981A52525764B3B00F8B677 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				3981A52625764B7D00F8B677 /* UserRepository.swift */,
+				39EF3A602576723E00777442 /* SubscriptionRepository.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 		399AD2D925706F9300AFA10A = {
@@ -471,6 +487,15 @@
 				3929C7C32571CDAA0012DD51 /* CharsLimitRingView.swift */,
 			);
 			path = RingView;
+			sourceTree = "<group>";
+		};
+		39EF3A642576771000777442 /* SubscriptionCellView */ = {
+			isa = PBXGroup;
+			children = (
+				399AD2F52570724B00AFA10A /* SubscriptionCellView.swift */,
+				39EF3A652576772300777442 /* SubscriptionCellViewModel.swift */,
+			);
+			path = SubscriptionCellView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -596,7 +621,7 @@
 			files = (
 				3961173E25710A8900919EF3 /* SubscriptionListView.swift in Sources */,
 				3929C7CC2571D4240012DD51 /* Constants.swift in Sources */,
-				397EAB1D2573FF5C00E1F7C3 /* FireStoreService.swift in Sources */,
+				397EAB1D2573FF5C00E1F7C3 /* FirestoreService.swift in Sources */,
 				3929C7F12571DCDF0012DD51 /* SafariView.swift in Sources */,
 				3929C7EA2571DC720012DD51 /* LottieView.swift in Sources */,
 				399AD2E825706F9300AFA10A /* HomeTabView.swift in Sources */,
@@ -608,6 +633,7 @@
 				390E967925747198004B17DA /* SubscriptionTimingsViewModel.swift in Sources */,
 				398A474D257367D700C4212B /* RegisterViewModel.swift in Sources */,
 				399AD2F62570724B00AFA10A /* SubscriptionCellView.swift in Sources */,
+				39EF3A662576772300777442 /* SubscriptionCellViewModel.swift in Sources */,
 				390E966F25742D65004B17DA /* SubscriptionsService.swift in Sources */,
 				390E9675257460A6004B17DA /* SubscriptionListViewModel.swift in Sources */,
 				3909833F25756391001430C9 /* ManageSubscriptionsView.swift in Sources */,
@@ -622,6 +648,7 @@
 				3929C7DD2571D8160012DD51 /* User.swift in Sources */,
 				39D9132E25711B9800D9BDFE /* Icons.swift in Sources */,
 				3909834225758B9E001430C9 /* Date+Ext.swift in Sources */,
+				39EF3A612576723E00777442 /* SubscriptionRepository.swift in Sources */,
 				3929C7E22571DBB10012DD51 /* DismissButtonView.swift in Sources */,
 				39611754257116EA00919EF3 /* Images.swift in Sources */,
 				3909833B25756376001430C9 /* ManageSubscriptionsViewModel.swift in Sources */,
@@ -639,6 +666,7 @@
 				3929C7BA2571BD0C0012DD51 /* Provider.swift in Sources */,
 				39BEE9282573646700218130 /* Alert.swift in Sources */,
 				390E967E257476F3004B17DA /* AddSubscriptionButton.swift in Sources */,
+				3981A52725764B7D00F8B677 /* UserRepository.swift in Sources */,
 				39D9133225711C4300D9BDFE /* Color+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

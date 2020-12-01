@@ -6,13 +6,18 @@
 //
 
 import Foundation
-import CoreData
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 //MARK:- struct Subscription
 /// `Subscription` struct holds all the needed data for a `Subscription`
-struct Subscription: Codable , Hashable , Identifiable {
-    var id = UUID()
-    var userId:String
+struct Subscription: Codable ,Identifiable {
+    // if document id exists
+    @DocumentID var id : String?
+    // timestamp from user side if not exit fill it with server timestamp
+    @ServerTimestamp var createdTime: Timestamp?
+    // user id 
+    var userId:String?
     let name:String
     let image:String
     let description:String
@@ -21,14 +26,14 @@ struct Subscription: Codable , Hashable , Identifiable {
     let dueDateInDate : Date
     let cycleDays:String
     let notifyMe:Bool
-    
-}
+    }
 
 
-//MARK:- MocData struct 
+//MARK:- MocData struct
+#if DEBUG
 struct MockData {
-//    static let subscriptionSample = Subscription(userId: "2", name: "Spotify", image: Images.Spotify, description: "Music", dueDate: "1 month", price: 100)
-//
+    //    static let subscriptionSample = Subscription(userId: "2", name: "Spotify", image: Images.Spotify, description: "Music", dueDate: "1 month", price: 100)
+    //
     static let subscriptionSampleList = [
         Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date(), cycleDays: "Weekly", notifyMe :false ),
         Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date() , cycleDays: "Weekly", notifyMe :false),
@@ -39,3 +44,4 @@ struct MockData {
                                                  cycleDays: "Weekly", notifyMe :false )
     
 }
+#endif

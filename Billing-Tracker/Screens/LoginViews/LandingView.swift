@@ -18,20 +18,21 @@ struct LandingView: View {
             Group{
                 if  session.authState == .signOut {
                     RegisterView()
-                }else{
+                }
+                else{
                     HomeTabView()
                 }
                 
             }
             LoadingView(isLoading:$isLoading)
         }
-        .onAppear{
-            session.listen()
-            self.isLoading = true
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
-                self.isLoading = false
-                }
-        }
+//        .onAppear{
+//            session.listen()
+//            self.isLoading = true
+//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
+//                self.isLoading = false
+//                }
+//        }
     }
 }
 struct LandingView_Previews: PreviewProvider {

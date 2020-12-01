@@ -15,7 +15,7 @@ struct ManageSubscriptionsView: View {
             NavigationView{
             List{
                 ForEach(self.viewModel.subscriptions){sub in
-                    SubscriptionCellView(image: sub.image, name: sub.name, price: sub.price, dueDate: sub.dueDateString)
+                    SubscriptionCellView(subscription: sub)
                         .padding(.vertical,4)
                        
                 }

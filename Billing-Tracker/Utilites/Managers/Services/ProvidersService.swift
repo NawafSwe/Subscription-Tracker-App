@@ -32,22 +32,7 @@ final class ProvidersService : ObservableObject{
     
     /// getProvidersFromDB get all providers from db life data
     /// - Parameter completion: completion handler
-    func getProvidersFromDB(completion: @escaping(Result<[Provider],Error>) ->Void){
-        DispatchQueue.main.async {
-            FireStoreService.shared.getDocuments(collection: FireStoreKeys.collections.providers, docId: UserAuthenticationManager.shared.user.uid){(result: Result<[Provider], Error>) in
-                switch result{
-                    case .success(let providers):
-                        self.providers = providers
-                    case .failure(let error):
-                        completion(.failure(error))
-                        return
-                        
-                }
-            }
-            
-        }
-        
-    }
+    func getProvidersFromDB(completion: @escaping(Result<[Provider],Error>) ->Void){ }
     
     
     /// addProvider adding provider to db
@@ -55,20 +40,7 @@ final class ProvidersService : ObservableObject{
     ///   - provider: provider data
     ///   - completion: completion handler
     /// - Returns: @escaping function
-    func addProvider(provider:Provider , completion:@escaping (Result<Void,Error>)->()){
-        DispatchQueue.main.async {
-            FireStoreService.shared.addDocument(collection: FireStoreKeys.collections.providers, model: provider) { result in
-                switch result{
-                    case .failure(let err):
-                        completion(.failure(err))
-                        return
-                    case .success(_):
-                        completion(.success(()))
-                        return
-                }
-            }
-        }
-    }
+    func addProvider(provider:Provider , completion:@escaping (Result<Void,Error>)->()){    }
     
     
     /// saveProviderWithId save provider with id
@@ -77,18 +49,7 @@ final class ProvidersService : ObservableObject{
     ///   - completion: completion handler
     /// - Returns: @escaping function
     func saveProviderWithId(provider:Provider , completion:@escaping (Result<Void,Error>)->()){
-        DispatchQueue.main.async {
-            FireStoreService.shared.saveDocumentWithId(collection: FireStoreKeys.collections.providers, docId: provider.id.uuidString, model: provider) { (result: Result<Void, Error>) in
-                switch result{
-                    case .success():
-                        completion(.success(()))
-                        
-                    case .failure(let error):
-                        completion(.failure(error))
-                        
-                }
-            }
-        }
+
         
     }
     

@@ -10,7 +10,9 @@ target 'Billing-Tracker' do
 # add pods for desired Firebase products
 pod 'Firebase/Auth'
 pod 'Firebase/Firestore'
+pod 'FirebaseFirestoreSwift'
 pod 'Firebase/Storage'
-pod 'CodableFirebase'
+
+
 
 end

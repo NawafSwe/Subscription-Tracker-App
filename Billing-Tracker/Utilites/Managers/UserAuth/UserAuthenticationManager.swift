@@ -31,14 +31,7 @@ final class UserAuthenticationManager : ObservableObject{
                 }
                 /// start retrieving user data
                 DispatchQueue.main.async {
-                    self.retrieveUser(uid: self.user.uid) { result in
-                        switch result{
-                            case .failure(_):
-                                return
-                            case .success(_):
-                                return
-                        }
-                    }
+
                 }
                 
             } else {
@@ -67,7 +60,7 @@ final class UserAuthenticationManager : ObservableObject{
             /// initing new user object from the authentication response if there is no error
             let user = User(uid: result.user.uid, displayName: result.user.displayName, email: result.user.email)
             DispatchQueue.main.async { self.user = user }
-            FireStoreService.shared.saveDocumentWithId(collection: FireStoreKeys.collections.users, docId: user.uid, model: user){_ in }
+           // FirestoreService.shared.saveDocumentWithId(collection: FireStoreKeys.collections.users, docId: user.uid, model: user){_ in }
             
             
         }
@@ -98,24 +91,7 @@ final class UserAuthenticationManager : ObservableObject{
         }
     }
     /// retrieving user info
-    private func retrieveUser(uid: String, completion: @escaping (Result<Void, Error>) -> ()){
-        FireStoreService.shared.getDocument(collection: FireStoreKeys.collections.users, docId: uid) { (result: Result<User, Error>) in
-            switch result {
-                case .failure(let error):
-                    completion(.failure(error))
-                case .success(let user):
-                    DispatchQueue.main.async {
-                        self.user = user
-                        SubscriptionsService.shared.getSubscriptionsFromDB{ (result) in
-                            switch result {
-                                case .failure(let error):
-                                    completion(.failure(error))
-                                case .success(_):
-                                    completion(.success(()))
-                            }
-                        }
-                    }
-            }
-        }
+    private func retrieveUser(uid: String, completion: @escaping (Result<Void, Error>) -> ()){ }
+    
     }
-}
+

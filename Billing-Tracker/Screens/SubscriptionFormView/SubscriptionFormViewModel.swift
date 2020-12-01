@@ -7,7 +7,8 @@
 
 import Foundation
 import SwiftUI
-import CoreData
+import Firebase
+import FirebaseFirestoreSwift
 
 final class SubscriptionFormViewModel: ObservableObject {
     @Environment (\.presentationMode) var presentationMode
@@ -19,25 +20,18 @@ final class SubscriptionFormViewModel: ObservableObject {
     @Published var selectedCycle = 0
     @Published var alertItem:AlertItem? = nil
     @Published var cycleTypes = ["weekly" , "monthly", "yearly"]
+    @Published var subscriptionRepository = SubscriptionRepository()
+    
     var calculatePrice:Double {
         Double(subPrice) ?? 0.0
     }
     @Published var remindUser = false
     
-    
+
     func addSubscription(){
-        
-        let sub = Subscription(id: UUID(), userId: UserAuthenticationManager.shared.user.uid, name: providersList[selectedProvider].name, image: providersList[selectedProvider].image, description: subDescription,dueDateString: date.description(with: .current), price: calculatePrice, dueDateInDate: date , cycleDays: cycleTypes[selectedCycle] , notifyMe: remindUser)
-        SubscriptionsService.shared.saveSubscriptionWithCustomId(subscription: sub) { (result) in
-            switch result{
-                case .success(_):
-                    self.alertItem = AlertItem(title: Text("Success"), message: Text("You have added your subscription successfully"), dismissButton: .default(Text("Cool")))
-                    return
-                case .failure(let error):
-                    self.alertItem = AlertItem(title: Text("Error"), message: Text(error.localizedDescription), dismissButton: .default(Text("OK")))
-                    return
-            }
-        }
+        var addedSubscription = Subscription(name: providersList[selectedProvider].name, image: providersList[selectedProvider].image, description: subDescription, dueDateString: date.description(with: .current), price: calculatePrice, dueDateInDate: date, cycleDays: cycleTypes[selectedCycle], notifyMe: remindUser)
+        addedSubscription.userId =  Auth.auth().currentUser?.uid
+        self.subscriptionRepository.addSubscription(subscription: addedSubscription)
     }
     
 }

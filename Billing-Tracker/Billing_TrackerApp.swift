@@ -12,6 +12,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         print("Billing-Tracker application is starting up. ApplicationDelegate didFinishLaunchingWithOptions.")
+        Auth.auth().signInAnonymously()
         return true
     }
 }
@@ -28,15 +29,16 @@ struct Billing_TrackerApp: App {
     init(){
         FirebaseApp.configure()
         /// making sure db is works fine
-        let db = Firestore.firestore()
-        print(db)
+       
+        
         
     }
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
       //  let session = UserAuthenticationManager()
         WindowGroup {
-            LandingView()
+           // LandingView()
+            HomeTabView()
         }
         
     }
