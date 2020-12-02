@@ -9,7 +9,6 @@ import SwiftUI
 
 struct RegisterView: View {
     @StateObject var viewModel = RegisterViewModel()
-    @State var isNewUser = false
     var body: some View {
         ZStack {
             VStack( alignment: .leading, spacing: 30){
@@ -20,23 +19,17 @@ struct RegisterView: View {
                 
                 VStack(spacing:10){
                     HStack{
-                        Image(systemName: "person.crop.circle.fill")
-                            .foregroundColor(.lunchViewIconsColor)
-                            .frame(width: 44 , height : 44)
-                            .background(Color.lunchViewIconsBackground)
-                            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                            .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.15), radius: 20, x: 0, y: 10)
+                        PersonIconView(width: 44 , height : 44)
                             .padding(.horizontal)
+                        TextField("Email", text: $viewModel.email)
+                            .modifier(TextFieldModifiers())
+                            .keyboardType(.emailAddress)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .font(.subheadline)
                         
-                    TextField("Email", text: $viewModel.email)
-                        .modifier(TextFieldModifiers())
-                        .keyboardType(.emailAddress)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .font(.subheadline)
-                    
                         
                     }
-                
+                    
                     HStack{
                         Image(systemName: "lock.fill")
                             .foregroundColor(.lunchViewIconsColor)
@@ -62,10 +55,10 @@ struct RegisterView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
                 .shadow(color: Color.backgroundCell.opacity(0.15) , radius: 20, x: 0, y: 20)
                 .padding()
-                Button(action: {self.isNewUser ? viewModel.login(email: viewModel.email, password: viewModel.password)
+                Button(action: {self.viewModel.isNewUser ? viewModel.login(email: viewModel.email, password: viewModel.password)
                     : viewModel.register(email: viewModel.email, password: viewModel.password)
                 }){
-                    MainButtonView(title: isNewUser ? "Login" : "Register")
+                    MainButtonView(title: viewModel.isNewUser ? "Login" : "Register")
                     
                 }
                 
@@ -74,8 +67,8 @@ struct RegisterView: View {
                 }
                 
                 
-                Button(action:{isNewUser.toggle()}){
-                    WelcomeMessage(title: isNewUser ? "CreateAccount?" : "Already has Account", underlinedText:  isNewUser ? "Sign Up" : "Login!")
+                Button(action:{viewModel.isNewUser.toggle()}){
+                    WelcomeMessage(title: viewModel.isNewUser ? "CreateAccount?" : "Already has Account", underlinedText:  viewModel.isNewUser ? "Sign Up" : "Login!")
                     
                 }
                 .padding(.leading)

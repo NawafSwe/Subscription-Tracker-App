@@ -10,8 +10,8 @@ extension Date{
  
     
     var notYesterday:Date {
-        /// getting date from now till 101
-        Calendar.current.date(byAdding: .year, value: -101, to: Date())!
+        /// getting date from now till 90
+        Calendar.current.date(byAdding: .year, value: 90, to: Date())!
     }
     
     /// calculating days different

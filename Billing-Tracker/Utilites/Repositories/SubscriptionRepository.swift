@@ -11,9 +11,9 @@ import FirebaseFirestoreSwift
 import FirebaseFirestore
 
 final class SubscriptionRepository :ObservableObject{
-    let db = Firestore.firestore()
+   private let db = Firestore.firestore()
     @Published var subscriptions  = [Subscription]()
-    let collectionName = FirestoreKeys.collections.subscriptions.rawValue
+    private let collectionName = FirestoreKeys.collections.subscriptions.rawValue
     
     init(){ loadData() }
     

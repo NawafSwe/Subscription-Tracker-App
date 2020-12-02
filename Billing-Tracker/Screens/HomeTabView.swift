@@ -10,14 +10,13 @@ import SwiftUI
 struct HomeTabView: View {
     @ObservedObject var userService = UserAuthenticationManager.shared
     var body: some View {
-
+        
         TabView{
             
             SubscriptionListView().tabItem {
                 Image(systemName: Icons.SFCreditcard)
                     .resizable()
-                    .frame(width:20, height: 20)
-                    .scaledToFit()
+                    .modifier(TabIconsModifiers())
                 Text("Subscriptions")
                 
             }
@@ -25,22 +24,20 @@ struct HomeTabView: View {
             SubscriptionTimingsView().tabItem {
                 Image(systemName: Icons.SFTimelapse)
                     .resizable()
-                    .frame(width:20, height: 20)
-                    .scaledToFit()
+                    .modifier(TabIconsModifiers())
                 Text("Subscription Timings")
             }
-                      
+            
             SettingView().tabItem {
                 Image(systemName: Icons.SFgearshape)
                     .resizable()
-                    .frame(width:20, height: 20)
-                    .scaledToFit()
+                    . modifier(TabIconsModifiers())
                 Text("Setting")
             }
         }
         .tabViewStyle(DefaultTabViewStyle())
         .accentColor(.mainColor)
-      
+        
     }
 }
 

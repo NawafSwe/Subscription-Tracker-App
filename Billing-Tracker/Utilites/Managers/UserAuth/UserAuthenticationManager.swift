@@ -16,6 +16,7 @@ final class UserAuthenticationManager : ObservableObject{
     var handle: AuthStateDidChangeListenerHandle?
     @Published var user : User = userHolder.dummyUser
     @Published var authState:AuthenticationState = .null
+    @Published var providersRepository = ProviderRepository()
     static let shared = UserAuthenticationManager()
     let db = Firestore.firestore()
     private init () {}
@@ -55,16 +56,26 @@ final class UserAuthenticationManager : ObservableObject{
             }
             /// initing new user object from the authentication response if there is no error
             let user = User(uid: result.user.uid, displayName: result.user.displayName, email: result.user.email)
+            
             DispatchQueue.main.async { self.user = user }
+            ///initing user with initial providers
+            let providers:[Provider] = [ .init(name: "Spotify", image: Images.Spotify), .init(name: "Netflix", image: Images.Netflix), .init(name: "Youtube", image: Images.Youtube),
+                                         .init(name: "iCloud", image: Images.iCloud ), .init(name: "Amazon", image: Images.amazon ), .init( name: "Apple Music", image: Images.appleMusic),
+                                         .init( name: "Apple TV", image: Images.appleTv),
+            ]
+            for provider in providers { self.providersRepository.addProvider(provider: provider) }
             do{
                 let _ = try self.db.collection(FirestoreKeys.collections.users.rawValue).document(user.uid).setData(from: user)
+                completion(.success( () ))
+                return
+                
+                
             }catch {
                 completion(.failure(error))
                 return
             }
         }
     }
-    
     /// login function
     func login(email:String , password:String , completion: @escaping (Result<Void,Error> ) -> Void ){
         Auth.auth().signIn(withEmail: email, password: password) { (authResult , error) in
@@ -78,6 +89,7 @@ final class UserAuthenticationManager : ObservableObject{
                     self.user  = safeUser
                     self.authState = .signIn
                 }
+                completion(.success(()))
             }
         }
         

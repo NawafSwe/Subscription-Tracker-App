@@ -19,12 +19,12 @@ final class SubscriptionFormViewModel: ObservableObject {
     @Published var date = Date()
     @Published var selectedCycle = 0
     @Published var alertItem:AlertItem? = nil
-    
     // cycles when date due add based on it
     @Published var cycleTypes = ["weekly" , "monthly", "yearly"]
     @Published var subscriptionRepository = SubscriptionRepository()
     @Published var remindUser = false
-    
+    //fetching providers from repo
+    @Published var providersRepository = ProviderRepository()
     
     // calculating price
     var calculatePrice:Double { Double(subPrice) ?? 0.0 }
@@ -50,15 +50,19 @@ final class SubscriptionFormViewModel: ObservableObject {
                                              expired: false )
         self.subscriptionRepository.addSubscription(subscription: addedSubscription){ [self] result in
             switch result {
-                case .success(_):
+                case .success( _ ):
+                    /// in case offline
                     DispatchQueue.main.async {
                         self.alertItem = SubscriptionFormAlerts.savedSuccessfully
                     }
+                    
                     return
-                case .failure(_):
+                case .failure( _ ):
                     DispatchQueue.main.async {
                         self.alertItem = SubscriptionFormAlerts.unableToProceed
+                        
                     }
+                    return
             }
         }
     }

@@ -20,7 +20,7 @@ struct SubscriptionFormView: View {
                     Section(header: Text("Subscription Details")){
                         
                         Picker(selection: $viewModel.selectedProvider, label: Text("Provider") , content:{
-                            List(0..<viewModel.providersList.count){index in
+                            List(0..<viewModel.providersRepository.providers.count){index in
                                 ProvidersSelectionView(image: viewModel.providersList[index].image, name: viewModel.providersList[index].name).tag(index)
                             }
                         })
@@ -47,8 +47,8 @@ struct SubscriptionFormView: View {
                             }
                         }
                         
-                        /// allowing user to select from now till 101 year only
-                        DatePicker("Due Date", selection: $viewModel.date, in: Date().notYesterday...Date(), displayedComponents: .date)
+                        /// allowing user to select from now till 90 year only
+                        DatePicker("Due Date", selection: $viewModel.date, in: Date()...Date().notYesterday, displayedComponents: .date)
                         
                         
                     }
@@ -65,10 +65,11 @@ struct SubscriptionFormView: View {
                 
             },trailing:
                 Button(action:{viewModel.addSubscription()}){ saveButtonView() }
+                .alert(item: $viewModel.alertItem){alert in
+                    Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
+                }
             )
             .navigationTitle("New Subscription 💳")
-        }.alert(item: $viewModel.alertItem){alert in
-            Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
         }
     }
     
