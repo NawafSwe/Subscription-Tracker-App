@@ -14,8 +14,9 @@ extension Color{
     static let daysRingColor2 = Color("daysRingColor2")
     static let charsLimitColor1 = Color("charsLimitColor1")
     static let charsLimitColor2 = Color("charsLimitColor2")
-    static let xmark = Color("xmark")
+    static let iconsBackgroundColor = Color("iconsBackgroundColor")
     static let lunchViewIconsBackground = Color("lunchViewIconsBackground")
     static let lunchViewIconsColor = Color("luchViewIconsColors")
     static let standardText = Color("standard_text")
+    static let iconsFontColor = Color("IconsFont")
 }

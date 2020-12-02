@@ -16,5 +16,6 @@ enum Images{
     static let appleTv = "apple-tv"
     static let appleMusic = "Apple-music"
     static let creditIcon = "creditIcon"
+    static let coloredCreditCard = "CreditIcon2"
 }
 

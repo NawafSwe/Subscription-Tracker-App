@@ -60,6 +60,8 @@
 		39D913372571351100D9BDFE /* SubscriptionFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D913362571351100D9BDFE /* SubscriptionFormView.swift */; };
 		39D9134125716E5F00D9BDFE /* UpdateSubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D9134025716E5F00D9BDFE /* UpdateSubscriptionView.swift */; };
 		39D9134B257181AC00D9BDFE /* DaysRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D9134A257181AC00D9BDFE /* DaysRingView.swift */; };
+		39E7754325770A9700BB3B31 /* TextFieldModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E7754225770A9700BB3B31 /* TextFieldModifiers.swift */; };
+		39E7754725770F5300BB3B31 /* saveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E7754625770F5300BB3B31 /* saveButtonView.swift */; };
 		39EF3A612576723E00777442 /* SubscriptionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EF3A602576723E00777442 /* SubscriptionRepository.swift */; };
 		39EF3A662576772300777442 /* SubscriptionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EF3A652576772300777442 /* SubscriptionCellViewModel.swift */; };
 		578104D2A7BA07861E627019 /* Pods_Billing_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0182523B208BB0C7B15E780C /* Pods_Billing_Tracker.framework */; };
@@ -122,6 +124,8 @@
 		39D913362571351100D9BDFE /* SubscriptionFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionFormView.swift; sourceTree = "<group>"; };
 		39D9134025716E5F00D9BDFE /* UpdateSubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSubscriptionView.swift; sourceTree = "<group>"; };
 		39D9134A257181AC00D9BDFE /* DaysRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysRingView.swift; sourceTree = "<group>"; };
+		39E7754225770A9700BB3B31 /* TextFieldModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifiers.swift; sourceTree = "<group>"; };
+		39E7754625770F5300BB3B31 /* saveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saveButtonView.swift; sourceTree = "<group>"; };
 		39EF3A602576723E00777442 /* SubscriptionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionRepository.swift; sourceTree = "<group>"; };
 		39EF3A652576772300777442 /* SubscriptionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionCellViewModel.swift; sourceTree = "<group>"; };
 		C61F344A6D63B2ECFF8F6779 /* Pods-Billing-Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Billing-Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Billing-Tracker/Pods-Billing-Tracker.debug.xcconfig"; sourceTree = "<group>"; };
@@ -323,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				3929C7CB2571D4240012DD51 /* Constants.swift */,
+				39E7754125770A7400BB3B31 /* Modifiers */,
 				3981A52525764B3B00F8B677 /* Repositories */,
 				397EAB102573E8B600E1F7C3 /* LottiesFiles */,
 				39D3B7B325731F25005881A4 /* Managers */,
@@ -487,6 +492,7 @@
 			children = (
 				3929C7E12571DBB10012DD51 /* DismissButtonView.swift */,
 				390E967D257476F3004B17DA /* AddSubscriptionButton.swift */,
+				39E7754625770F5300BB3B31 /* saveButtonView.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -498,6 +504,14 @@
 				3929C7C32571CDAA0012DD51 /* CharsLimitRingView.swift */,
 			);
 			path = RingView;
+			sourceTree = "<group>";
+		};
+		39E7754125770A7400BB3B31 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				39E7754225770A9700BB3B31 /* TextFieldModifiers.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 		39EF3A642576771000777442 /* SubscriptionCellView */ = {
@@ -643,6 +657,7 @@
 				39D913372571351100D9BDFE /* SubscriptionFormView.swift in Sources */,
 				3929C7F52571E2370012DD51 /* SubscriptionFormViewModel.swift in Sources */,
 				390E967925747198004B17DA /* SubscriptionTimingsViewModel.swift in Sources */,
+				39E7754725770F5300BB3B31 /* saveButtonView.swift in Sources */,
 				398A474D257367D700C4212B /* RegisterViewModel.swift in Sources */,
 				399AD2F62570724B00AFA10A /* SubscriptionCellView.swift in Sources */,
 				39EF3A662576772300777442 /* SubscriptionCellViewModel.swift in Sources */,
@@ -669,6 +684,7 @@
 				3929C7C82571D0E00012DD51 /* ExpenseView.swift in Sources */,
 				3929C7D52571D75B0012DD51 /* DataStore.swift in Sources */,
 				39D3B7B525731F40005881A4 /* UserAuthenticationManager.swift in Sources */,
+				39E7754325770A9700BB3B31 /* TextFieldModifiers.swift in Sources */,
 				39BEE92C2573651400218130 /* AuthAlert.swift in Sources */,
 				3929C7E62571DC4D0012DD51 /* BlurView.swift in Sources */,
 				394780C92571856A00C97EAA /* SubscriptionTimings.swift in Sources */,

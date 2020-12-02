@@ -23,8 +23,10 @@ final class  RegisterViewModel:ObservableObject{
             self.shared.register(email: email, password: password) { result in
                 switch result{
                     case .failure(let err):
+                        
                         self.alertItem = AlertItem(title: Text("Authentication Error"), message: Text(err.localizedDescription), dismissButton: .default(Text("OK")))
                     case .success(_):
+                        
                         self.shared.authState = .signIn
                         
                 }
@@ -38,7 +40,7 @@ final class  RegisterViewModel:ObservableObject{
         DispatchQueue.main.async {
             self.isLoading = true
         }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
             self.isLoading = false
             self.shared.login(email: email, password: password) { result in
                 switch result{

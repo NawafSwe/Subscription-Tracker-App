@@ -26,24 +26,18 @@ struct SubscriptionFormView: View {
                         })
                         
                         TextField("Description", text: $viewModel.subDescription)
-                            /// setting limit for user because we do not want him to miss with the UI
-                            .onChange(of: self.viewModel.subDescription, perform: { value in
-                                        if value.count > 26 {
-                                            self.viewModel.subDescription = String(value.prefix(26))
-                                            /// put alert to user about the reason.
-                                        }})
-                            .overlay(
-                                CharsLimitRingView(width: 33, height: 33, remindChars: .constant(CGFloat(viewModel.subDescription.count))), alignment: .trailing
-                                
-                            )
                             .keyboardType(.default)
-                            .autocapitalization(.none)
-                            .disableAutocorrection(true)
+                            .modifier(TextFieldModifiers())
+                            /// setting limit for user because we do not want him to miss with the UI
+                            .onChange(of: self.viewModel.subDescription, perform: viewModel.calculatingProgress)
+                            .overlay( CharsLimitRingView(width: 33, height: 33, remindChars: .constant(CGFloat(viewModel.subDescription.count))), alignment: .trailing)
+                        
+                        
                         
                         TextField("Price", text: $viewModel.subPrice)
                             .keyboardType(.decimalPad)
-                            .autocapitalization(.none)
-                            .disableAutocorrection(true)
+                            .modifier(TextFieldModifiers())
+                        
                     }
                     
                     Section(header:(Text("Timings"))){
@@ -67,7 +61,7 @@ struct SubscriptionFormView: View {
             }
             .navigationBarItems(leading: Button(action:{self.presentationMode.wrappedValue.dismiss()}){
                 DismissButtonView().padding()
-               
+                
             },trailing:
                 Button(action:{viewModel.addSubscription()}){ saveButtonView() }
             )
@@ -82,7 +76,7 @@ struct SubscriptionFormView: View {
 struct SubscriptionFormView_Previews: PreviewProvider {
     static var previews: some View {
         SubscriptionFormView()
-            .colorScheme(.light)
+            .colorScheme(.dark)
     }
 }
 
@@ -101,11 +95,4 @@ struct ProvidersSelectionView:View{
     }
 }
 
-struct saveButtonView:View{
-    var body: some View{
-        Text("Save")
-            .fontWeight(.semibold)
-            .padding(.horizontal)
-    }
-    
-}
+

@@ -10,14 +10,14 @@ import SwiftUI
 struct DismissButtonView: View {
     var body: some View{
         Image(systemName: Icons.SFXmark)
-            .foregroundColor(.standardText)
+            .foregroundColor(.iconsFontColor)
             .imageScale(.small)
             .scaledToFit()
             .frame(width: 20, height: 20)
             .background(
                 Circle()
                     .frame(width: 30, height: 30, alignment: .center)
-                    .accentColor(Color.xmark)
+                    .accentColor(Color.iconsBackgroundColor)
             )
             .background(BlurView(style: .systemMaterial))
     }

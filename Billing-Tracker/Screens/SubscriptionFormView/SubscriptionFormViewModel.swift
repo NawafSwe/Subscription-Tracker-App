@@ -40,4 +40,13 @@ final class SubscriptionFormViewModel: ObservableObject {
             }
         }
     }
+    
+    /// calculating progress
+    func calculatingProgress(value: String){
+        if value.count > 26 {
+            self.subDescription = String(value.prefix(26))
+            /// put alert to user about the reason.
+        }
+        
+    }
 }

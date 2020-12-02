@@ -13,5 +13,6 @@ enum Icons{
     static let SFXmark = "xmark"
     static let SFTimelapse = "timelapse"
     static let SFPerson = "person"
+    static let SFCloud = "icloud.and.arrow.down"
     
 }

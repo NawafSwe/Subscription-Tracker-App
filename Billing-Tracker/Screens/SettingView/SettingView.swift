@@ -16,10 +16,10 @@ struct SettingView: View {
                 Section(header:Text("General")){
                     Button(action:{viewModel.showManagedSubscriptions.toggle()}){
                         HStack{
-                            Image(Images.creditIcon)
+                            Image(Images.coloredCreditCard)
                                 .renderingMode(.original)
                                 .resizable()
-                                .frame(width:44, height: 44)
+                                .frame(width:40, height: 40)
                                 .scaledToFill()
                             Text("Manage subscriptions")
                                 .foregroundColor(.standardText)
@@ -79,5 +79,6 @@ struct SettingView: View {
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
         SettingView()
+            .colorScheme(.dark)
     }
 }
