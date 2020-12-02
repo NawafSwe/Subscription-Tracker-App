@@ -16,4 +16,6 @@ struct SubscriptionFormAlerts {
     
     static let unableToProceed = AlertItem(title: Text("Error"), message: Text("Cannot save your subscription please try again "), dismissButton: .default(Text("OK")))
     
+    static let didNotSelectedProvider = AlertItem(title: Text("Invalid form"), message: Text("Please You have to select a provider"), dismissButton: .default(Text("OK")))
+    
 }

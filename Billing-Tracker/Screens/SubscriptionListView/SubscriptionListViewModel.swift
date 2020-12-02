@@ -15,7 +15,7 @@ final class SubscriptionListViewModel : ObservableObject{
     @Published var showSubscriptionForm = false
     @Published var viewState : CGSize = .zero
     @Published var callingTimes = 0
-    @Published var subscriptionCellViewModels = [SubscriptionCellViewModel]()
+    @Published var subscriptionServices = [SubscriptionServices]()
     @Published var subscriptionRepository = SubscriptionRepository()
     private var cancellables = Set<AnyCancellable>()
     var totalPrice  = Double()
@@ -26,14 +26,12 @@ final class SubscriptionListViewModel : ObservableObject{
             .map{ subscriptions in
                 
                 subscriptions.map{ subscription in
-                    SubscriptionCellViewModel(subscription: subscription)
+                    SubscriptionServices(subscription: subscription)
                     
                 }
-                
-                
             }
             // assigns the subscriptions into our subscription cell view model
-            .assign(to: \.subscriptionCellViewModels, on: self)
+            .assign(to: \.subscriptionServices, on: self)
             // saving memory
             .store(in: &cancellables)
         

@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 final class SubscriptionTimingsViewModel: ObservableObject {
-    @Published var subscriptions = [SubscriptionCellViewModel] ()
+    @Published var subscriptions = [SubscriptionServices] ()
     @Published var alertItem : AlertItem? = nil
     @Published var subscriptionRepository = SubscriptionRepository()
     // for storage
@@ -18,7 +18,7 @@ final class SubscriptionTimingsViewModel: ObservableObject {
         self.subscriptionRepository.$subscriptions
             .map{ subscriptions in
                 subscriptions.map{subscription in
-                    SubscriptionCellViewModel(subscription: subscription)
+                    SubscriptionServices(subscription: subscription)
                 }
             }
             //assign and store received subscriptions

@@ -9,21 +9,37 @@ import SwiftUI
 /// we will calculate the next bill date based on the current date
 /// and recalculate the next bill date  + from the due date
 
+//MARK:- SubscriptionFormView
 struct SubscriptionFormView: View {
     @Environment (\.presentationMode) var presentationMode
     @StateObject var viewModel = SubscriptionFormViewModel()
-    @State var remindUser = false
+    
     var body: some View{
         NavigationView {
             ZStack {
                 Form{
                     Section(header: Text("Subscription Details")){
                         
-                        Picker(selection: $viewModel.selectedProvider, label: Text("Provider") , content:{
-                            List(0..<viewModel.providersRepository.providers.count){index in
-                                ProvidersSelectionView(image: viewModel.providersList[index].image, name: viewModel.providersList[index].name).tag(index)
+                        Button(action:{viewModel.showProvidersList.toggle() }){
+                            HStack{
+                                Text("Select Provider")
+                                
+                                Spacer()
+                                
+                                if viewModel.selectedProvider != nil  {
+                                    Text(viewModel.selectedProvider!.name)
+                                    
+                                    Image(viewModel.selectedProvider!.image)
+                                        .resizable()
+                                        .frame(width:22, height: 22)
+                                        .imageScale(.small)
+                                    
+                                }
                             }
-                        })
+                        }
+                        .foregroundColor(.standardText)
+                        .sheet(isPresented: $viewModel.showProvidersList){ ProvidersSelectionView(viewModel: viewModel
+                        ) }
                         
                         TextField("Description", text: $viewModel.subDescription)
                             .keyboardType(.default)
@@ -37,9 +53,7 @@ struct SubscriptionFormView: View {
                         TextField("Price", text: $viewModel.subPrice)
                             .keyboardType(.decimalPad)
                             .modifier(TextFieldModifiers())
-                        
                     }
-                    
                     Section(header:(Text("Timings"))){
                         Picker("Cycle", selection: $viewModel.selectedCycle){
                             List(0..<viewModel.cycleTypes.count){cycle in
@@ -59,22 +73,25 @@ struct SubscriptionFormView: View {
                     }
                     
                 }
-            }
-            .navigationBarItems(leading: Button(action:{self.presentationMode.wrappedValue.dismiss()}){
-                DismissButtonView().padding()
                 
-            },trailing:
-                Button(action:{viewModel.addSubscription()}){ saveButtonView() }
-                .alert(item: $viewModel.alertItem){alert in
-                    Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
-                }
-            )
+                .navigationBarItems(leading: Button(action:{self.presentationMode.wrappedValue.dismiss()}){
+                    DismissButtonView().padding()
+                    
+                },trailing:
+                    Button(action:{viewModel.addSubscription()}){ saveButtonView() }
+                    .alert(item: $viewModel.alertItem){alert in
+                        Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
+                    }
+                )
+                
+            }
             .navigationTitle("New Subscription 💳")
         }
+        
     }
-    
 }
 
+//MARK:- SubscriptionFormView_Previews
 struct SubscriptionFormView_Previews: PreviewProvider {
     static var previews: some View {
         SubscriptionFormView()
@@ -82,19 +99,40 @@ struct SubscriptionFormView_Previews: PreviewProvider {
     }
 }
 
+//MARK:- ProvidersSelectionView
 struct ProvidersSelectionView:View{
-    let image:String
-    let name:String
+    @ObservedObject var viewModel: SubscriptionFormViewModel
+    
     var body: some View{
-        HStack{
-            Image(image)
-                .resizable()
-                .scaledToFit()
-                .frame(width:26, height: 26)
-            Text(name)
-                .font(.subheadline)
+        NavigationView {
+            List(viewModel.providersList){ list in
+                Button(action:{
+                    self.viewModel.selectedProvider = list.provider
+                    self.viewModel.showProvidersList = false
+                }){
+                    HStack{
+                        Image(list.provider.image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width:26, height: 26)
+                        Text(list.provider.name)
+                            .font(.subheadline)
+                            .foregroundColor(.standardText)
+                        
+                        if viewModel.selectedProvider?.id == list.provider.id {
+                            Spacer()
+                            Image(systemName: Icons.SFSelected)
+                                .resizable()
+                                .frame(width:20 , height: 20)
+                                .imageScale(.medium)
+                            
+                        }
+                    }
+                }
+            }
+            .navigationBarItems(leading: Button(action:{ self.viewModel.showProvidersList = false }
+            ){ BackTrackButton() })
+            .navigationTitle("Providers 🧾")
         }
     }
 }
-
-
