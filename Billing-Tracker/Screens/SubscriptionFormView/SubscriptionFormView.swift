@@ -9,7 +9,7 @@ import SwiftUI
 /// we will calculate the next bill date based on the current date
 /// and recalculate the next bill date  + from the due date
 
- //MARK:- SubscriptionFormView
+//MARK:- SubscriptionFormView
 struct SubscriptionFormView: View {
     @Environment (\.presentationMode) var presentationMode
     @StateObject var viewModel = SubscriptionFormViewModel()
@@ -102,6 +102,7 @@ struct SubscriptionFormView_Previews: PreviewProvider {
 //MARK:- ProvidersSelectionView
 struct ProvidersSelectionView:View{
     @ObservedObject var viewModel: SubscriptionFormViewModel
+    
     var body: some View{
         NavigationView {
             List(viewModel.providersList){ list in
@@ -117,7 +118,7 @@ struct ProvidersSelectionView:View{
                         Text(list.provider.name)
                             .font(.subheadline)
                             .foregroundColor(.standardText)
-                      
+                        
                         if viewModel.selectedProvider?.id == list.provider.id {
                             Spacer()
                             Image(systemName: Icons.SFSelected)
@@ -129,6 +130,8 @@ struct ProvidersSelectionView:View{
                     }
                 }
             }
+            .navigationBarItems(leading: Button(action:{ self.viewModel.showProvidersList = false }
+            ){ BackTrackButton() })
             .navigationTitle("Providers 🧾")
         }
     }

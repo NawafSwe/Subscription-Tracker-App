@@ -34,6 +34,7 @@ final class SubscriptionFormViewModel: ObservableObject {
     // calculating price
     var calculatePrice:Double { Double(subPrice) ?? 0.0 }
     
+    /// initing the providers list
     init(){
         self.providersRepository.$providers
             .map{ providers in
@@ -56,8 +57,13 @@ final class SubscriptionFormViewModel: ObservableObject {
         }
         
         // the selectedProvider if no selected throw alert
-        guard let selectedProvider = self.selectedProvider else {return}
-        
+        guard let selectedProvider = self.selectedProvider else {
+            DispatchQueue.main.async {
+                self.alertItem = SubscriptionFormAlerts.didNotSelectedProvider
+            }
+            return
+            
+        }
         // added subscription
         let addedSubscription = Subscription(name: selectedProvider.name,
                                              image: selectedProvider.image,
@@ -105,7 +111,6 @@ final class SubscriptionFormViewModel: ObservableObject {
         }
         return true
     }
-    
     
 }
 

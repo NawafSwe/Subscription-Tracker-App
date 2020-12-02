@@ -34,11 +34,14 @@ struct SettingView: View {
                         
                         Button(action:{}){
                             HStack {
-                                PersonIconView(width: 35, height : 33)
+                                Image(systemName: "person.crop.circle.fill")
+                                    .resizable()
+                                    .foregroundColor(.lunchViewIconsColor)
+                                    .frame(width: 30 , height : 30)
+                                    .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.15), radius: 20, x: 0, y: 10)
                                 Text("Account")
                                     .foregroundColor(.standardText)
                             }
-                            
                         }
                         
                         Button(action:{}){

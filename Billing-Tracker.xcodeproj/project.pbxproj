@@ -12,6 +12,7 @@
 		3909833B25756376001430C9 /* ManageSubscriptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909833A25756376001430C9 /* ManageSubscriptionsViewModel.swift */; };
 		3909833F25756391001430C9 /* ManageSubscriptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909833E25756391001430C9 /* ManageSubscriptionsView.swift */; };
 		3909834225758B9E001430C9 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909834125758B9E001430C9 /* Date+Ext.swift */; };
+		390BF4FC2577E6B9007B4BC3 /* BackTrackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390BF4FB2577E6B9007B4BC3 /* BackTrackButton.swift */; };
 		390E9675257460A6004B17DA /* SubscriptionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E9674257460A6004B17DA /* SubscriptionListViewModel.swift */; };
 		390E967925747198004B17DA /* SubscriptionTimingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E967825747198004B17DA /* SubscriptionTimingsViewModel.swift */; };
 		390E967E257476F3004B17DA /* AddSubscriptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E967D257476F3004B17DA /* AddSubscriptionButton.swift */; };
@@ -79,6 +80,7 @@
 		3909833A25756376001430C9 /* ManageSubscriptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionsViewModel.swift; sourceTree = "<group>"; };
 		3909833E25756391001430C9 /* ManageSubscriptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionsView.swift; sourceTree = "<group>"; };
 		3909834125758B9E001430C9 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		390BF4FB2577E6B9007B4BC3 /* BackTrackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackTrackButton.swift; sourceTree = "<group>"; };
 		390E9674257460A6004B17DA /* SubscriptionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionListViewModel.swift; sourceTree = "<group>"; };
 		390E967825747198004B17DA /* SubscriptionTimingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTimingsViewModel.swift; sourceTree = "<group>"; };
 		390E967D257476F3004B17DA /* AddSubscriptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSubscriptionButton.swift; sourceTree = "<group>"; };
@@ -523,6 +525,7 @@
 				3929C7E12571DBB10012DD51 /* DismissButtonView.swift */,
 				390E967D257476F3004B17DA /* AddSubscriptionButton.swift */,
 				39E7754625770F5300BB3B31 /* saveButtonView.swift */,
+				390BF4FB2577E6B9007B4BC3 /* BackTrackButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -704,6 +707,7 @@
 				3929C7EA2571DC720012DD51 /* LottieView.swift in Sources */,
 				399AD2E825706F9300AFA10A /* HomeTabView.swift in Sources */,
 				39D3B7B125731EBD005881A4 /* LandingView.swift in Sources */,
+				390BF4FC2577E6B9007B4BC3 /* BackTrackButton.swift in Sources */,
 				397EAB0E2573E84300E1F7C3 /* LottieFiles.swift in Sources */,
 				398A475625736FDD00C4212B /* SettingViewModel.swift in Sources */,
 				39D913372571351100D9BDFE /* SubscriptionFormView.swift in Sources */,
