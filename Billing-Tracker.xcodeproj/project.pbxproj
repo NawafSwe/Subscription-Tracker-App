@@ -15,6 +15,8 @@
 		390E9675257460A6004B17DA /* SubscriptionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E9674257460A6004B17DA /* SubscriptionListViewModel.swift */; };
 		390E967925747198004B17DA /* SubscriptionTimingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E967825747198004B17DA /* SubscriptionTimingsViewModel.swift */; };
 		390E967E257476F3004B17DA /* AddSubscriptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E967D257476F3004B17DA /* AddSubscriptionButton.swift */; };
+		39290E2D2577C6F9004D9768 /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39290E2C2577C6F9004D9768 /* SubscriptionService.swift */; };
+		39290E332577CD64004D9768 /* ProviderServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39290E322577CD64004D9768 /* ProviderServices.swift */; };
 		3929C7BA2571BD0C0012DD51 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7B92571BD0C0012DD51 /* Provider.swift */; };
 		3929C7BE2571C3460012DD51 /* SubscriptionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7BD2571C3460012DD51 /* SubscriptionBoxView.swift */; };
 		3929C7C42571CDAA0012DD51 /* CharsLimitRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7C32571CDAA0012DD51 /* CharsLimitRingView.swift */; };
@@ -63,7 +65,6 @@
 		39E7754325770A9700BB3B31 /* TextFieldModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E7754225770A9700BB3B31 /* TextFieldModifiers.swift */; };
 		39E7754725770F5300BB3B31 /* saveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E7754625770F5300BB3B31 /* saveButtonView.swift */; };
 		39EF3A612576723E00777442 /* SubscriptionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EF3A602576723E00777442 /* SubscriptionRepository.swift */; };
-		39EF3A662576772300777442 /* SubscriptionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EF3A652576772300777442 /* SubscriptionCellViewModel.swift */; };
 		39F215A125771DA3009332E7 /* SubscriptionFormAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F215A025771DA3009332E7 /* SubscriptionFormAlerts.swift */; };
 		39F215A4257728F6009332E7 /* TabIconsModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F215A3257728F6009332E7 /* TabIconsModifiers.swift */; };
 		39F215A925772BB8009332E7 /* PersonIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F215A825772BB8009332E7 /* PersonIconView.swift */; };
@@ -81,6 +82,8 @@
 		390E9674257460A6004B17DA /* SubscriptionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionListViewModel.swift; sourceTree = "<group>"; };
 		390E967825747198004B17DA /* SubscriptionTimingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTimingsViewModel.swift; sourceTree = "<group>"; };
 		390E967D257476F3004B17DA /* AddSubscriptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSubscriptionButton.swift; sourceTree = "<group>"; };
+		39290E2C2577C6F9004D9768 /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
+		39290E322577CD64004D9768 /* ProviderServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderServices.swift; sourceTree = "<group>"; };
 		3929C7B92571BD0C0012DD51 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		3929C7BD2571C3460012DD51 /* SubscriptionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionBoxView.swift; sourceTree = "<group>"; };
 		3929C7C32571CDAA0012DD51 /* CharsLimitRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharsLimitRingView.swift; sourceTree = "<group>"; };
@@ -130,7 +133,6 @@
 		39E7754225770A9700BB3B31 /* TextFieldModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifiers.swift; sourceTree = "<group>"; };
 		39E7754625770F5300BB3B31 /* saveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saveButtonView.swift; sourceTree = "<group>"; };
 		39EF3A602576723E00777442 /* SubscriptionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionRepository.swift; sourceTree = "<group>"; };
-		39EF3A652576772300777442 /* SubscriptionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionCellViewModel.swift; sourceTree = "<group>"; };
 		39F215A025771DA3009332E7 /* SubscriptionFormAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionFormAlerts.swift; sourceTree = "<group>"; };
 		39F215A3257728F6009332E7 /* TabIconsModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabIconsModifiers.swift; sourceTree = "<group>"; };
 		39F215A825772BB8009332E7 /* PersonIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonIconView.swift; sourceTree = "<group>"; };
@@ -190,6 +192,22 @@
 				3909833E25756391001430C9 /* ManageSubscriptionsView.swift */,
 			);
 			path = ManageSubscriptionsView;
+			sourceTree = "<group>";
+		};
+		39290E2B2577C6C7004D9768 /* SubscriptionsServices */ = {
+			isa = PBXGroup;
+			children = (
+				39290E2C2577C6F9004D9768 /* SubscriptionService.swift */,
+			);
+			path = SubscriptionsServices;
+			sourceTree = "<group>";
+		};
+		39290E312577CB8C004D9768 /* ProvidersServices */ = {
+			isa = PBXGroup;
+			children = (
+				39290E322577CD64004D9768 /* ProviderServices.swift */,
+			);
+			path = ProvidersServices;
 			sourceTree = "<group>";
 		};
 		3929C7BC2571C3260012DD51 /* SubscriptionBoxView */ = {
@@ -457,6 +475,8 @@
 		39D3B7B325731F25005881A4 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				39290E312577CB8C004D9768 /* ProvidersServices */,
+				39290E2B2577C6C7004D9768 /* SubscriptionsServices */,
 				397EAB192573F8C900E1F7C3 /* FireStoreServices */,
 				39BEE92E2573657400218130 /* UserAuth */,
 			);
@@ -529,7 +549,6 @@
 			isa = PBXGroup;
 			children = (
 				399AD2F52570724B00AFA10A /* SubscriptionCellView.swift */,
-				39EF3A652576772300777442 /* SubscriptionCellViewModel.swift */,
 			);
 			path = SubscriptionCellView;
 			sourceTree = "<group>";
@@ -694,7 +713,6 @@
 				39E7754725770F5300BB3B31 /* saveButtonView.swift in Sources */,
 				398A474D257367D700C4212B /* RegisterViewModel.swift in Sources */,
 				399AD2F62570724B00AFA10A /* SubscriptionCellView.swift in Sources */,
-				39EF3A662576772300777442 /* SubscriptionCellViewModel.swift in Sources */,
 				390E9675257460A6004B17DA /* SubscriptionListViewModel.swift in Sources */,
 				3909833F25756391001430C9 /* ManageSubscriptionsView.swift in Sources */,
 				39F215A925772BB8009332E7 /* PersonIconView.swift in Sources */,
@@ -710,7 +728,9 @@
 				3929C7DD2571D8160012DD51 /* User.swift in Sources */,
 				39D9132E25711B9800D9BDFE /* Icons.swift in Sources */,
 				39F215A125771DA3009332E7 /* SubscriptionFormAlerts.swift in Sources */,
+				39290E332577CD64004D9768 /* ProviderServices.swift in Sources */,
 				3909834225758B9E001430C9 /* Date+Ext.swift in Sources */,
+				39290E2D2577C6F9004D9768 /* SubscriptionService.swift in Sources */,
 				39EF3A612576723E00777442 /* SubscriptionRepository.swift in Sources */,
 				3929C7E22571DBB10012DD51 /* DismissButtonView.swift in Sources */,
 				39611754257116EA00919EF3 /* Images.swift in Sources */,

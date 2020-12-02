@@ -15,5 +15,6 @@ enum Icons{
     static let SFPerson = "person"
     static let SFCloud = "icloud.and.arrow.down"
     static let SFLinkBadge = "link.badge.plus"
+    static let SFSelected = "checkmark"
     
 }

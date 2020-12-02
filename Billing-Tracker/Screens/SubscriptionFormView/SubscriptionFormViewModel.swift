@@ -9,11 +9,11 @@ import Foundation
 import SwiftUI
 import Firebase
 import FirebaseFirestoreSwift
+import Combine
 
 final class SubscriptionFormViewModel: ObservableObject {
     @Environment (\.presentationMode) var presentationMode
-    @Published var providersList = Providers.providersList
-    @Published var selectedProvider = 0
+    @Published var providersList = [ProviderServices]()
     @Published var subDescription = ""
     @Published var subPrice:String = ""
     @Published var date = Date()
@@ -25,9 +25,25 @@ final class SubscriptionFormViewModel: ObservableObject {
     @Published var remindUser = false
     //fetching providers from repo
     @Published var providersRepository = ProviderRepository()
+    private var cancellables = Set<AnyCancellable>()
+    @Published var selectedProvider:Provider?{ didSet{didSelectProvider = true} }
+    @Published var didSelectProvider = false
+    @Published var showProvidersList = false
+    
     
     // calculating price
     var calculatePrice:Double { Double(subPrice) ?? 0.0 }
+    
+    init(){
+        self.providersRepository.$providers
+            .map{ providers in
+                providers.map{provider in
+                    ProviderServices(provider: provider)
+                }
+            }
+            .assign(to: \.providersList, on: self)
+            .store(in: &cancellables)
+    }
     
     /// adding new subscription function
     func addSubscription(){
@@ -38,9 +54,13 @@ final class SubscriptionFormViewModel: ObservableObject {
             }
             return
         }
+        
+        // the selectedProvider if no selected throw alert
+        guard let selectedProvider = self.selectedProvider else {return}
+        
         // added subscription
-        let addedSubscription = Subscription(name: providersList[selectedProvider].name,
-                                             image: providersList[selectedProvider].image,
+        let addedSubscription = Subscription(name: selectedProvider.name,
+                                             image: selectedProvider.image,
                                              description: subDescription,
                                              dueDateString:Date.dateToString(date: date , option: "YY, MMM d" ) ,
                                              price: calculatePrice,
@@ -85,4 +105,7 @@ final class SubscriptionFormViewModel: ObservableObject {
         }
         return true
     }
+    
+    
 }
+

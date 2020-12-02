@@ -15,7 +15,7 @@ struct SubscriptionListView: View {
                 NavigationView {
                     
                     // lopping on the cells
-                    List(viewModel.subscriptionCellViewModels ){ sub in
+                    List(viewModel.subscriptionServices ){ sub in
                         // passing subscription into cell view
                         SubscriptionCellView(subscription: sub.subscription)
                             .padding(.vertical,4)

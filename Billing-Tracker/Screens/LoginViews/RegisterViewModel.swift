@@ -11,11 +11,9 @@ final class  RegisterViewModel:ObservableObject{
     @Published var email = ""
     @Published var password = ""
     @Published var alertItem:AlertItem? = nil
-    private var shared = UserAuthenticationManager.shared
     @Published var isLoading = false
     @Published var isNewUser = false
-    
-    
+    private var shared = UserAuthenticationManager.shared
     // registre func
     func register(email:String, password:String){
         DispatchQueue.main.async {
