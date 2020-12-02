@@ -13,6 +13,9 @@ final class  RegisterViewModel:ObservableObject{
     @Published var alertItem:AlertItem? = nil
     @ObservedObject var shared = UserAuthenticationManager.shared
     @Published var isLoading = false
+    @Published var isNewUser = false
+ 
+    
     // registre func
     func register(email:String, password:String){
         DispatchQueue.main.async {
@@ -23,8 +26,10 @@ final class  RegisterViewModel:ObservableObject{
             self.shared.register(email: email, password: password) { result in
                 switch result{
                     case .failure(let err):
+                        
                         self.alertItem = AlertItem(title: Text("Authentication Error"), message: Text(err.localizedDescription), dismissButton: .default(Text("OK")))
                     case .success(_):
+                        
                         self.shared.authState = .signIn
                         
                 }
@@ -38,7 +43,7 @@ final class  RegisterViewModel:ObservableObject{
         DispatchQueue.main.async {
             self.isLoading = true
         }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
             self.isLoading = false
             self.shared.login(email: email, password: password) { result in
                 switch result{

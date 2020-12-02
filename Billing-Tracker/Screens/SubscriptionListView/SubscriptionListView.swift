@@ -35,12 +35,9 @@ struct SubscriptionListView: View {
                     .navigationTitle("Subscriptions 💳")
                     
                 }
-                
-                
-                //                ExpenseView(price: viewModel.totalPrice)
-                //                    .padding()
+                ExpenseView(price: viewModel.totalPrice)
+                    .padding()
             }
-            
             
             /// sheet for displaying the form
             .sheet(isPresented: $viewModel.showSubscriptionForm){

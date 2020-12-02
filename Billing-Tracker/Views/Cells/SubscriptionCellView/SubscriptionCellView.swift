@@ -15,7 +15,7 @@ struct SubscriptionCellView: View {
             BrandView(subscription: subscription)
                 
         }
-        .frame(width: 360, height: 60)
+        .frame(width: 320, height: 60)
         .background(Color("sub_cell_background"))
         .cornerRadius(10)
         .shadow(radius: 3)
@@ -51,5 +51,6 @@ struct BrandView:View{
             }
         }
         .padding()
+       
     }
 }
