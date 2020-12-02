@@ -80,7 +80,7 @@ final class SubscriptionRepository :ObservableObject{
     
     func addSubscription(subscription: Subscription , completion: @escaping (Result<Void , Error> ) -> Void){
         if let userId = Auth.auth().currentUser?.uid{
-            var helperSubscription = Subscription(name: subscription.name, image: subscription.image, description: subscription.description, dueDateString: subscription.dueDateString, price: subscription.price, dueDateInDate: subscription.dueDateInDate, cycleDays: subscription.cycleDays, notifyMe: subscription.notifyMe)
+            var helperSubscription = Subscription(name: subscription.name, image: subscription.image, description: subscription.description, dueDateString: subscription.dueDateString, price: subscription.price, dueDateInDate: subscription.dueDateInDate, cycleDays: subscription.cycleDays, notifyMe: subscription.notifyMe, expired: subscription.expired)
             helperSubscription.userId = userId
             do{
                 let _ =  try db.collection(collectionName).addDocument(from: helperSubscription){ error in

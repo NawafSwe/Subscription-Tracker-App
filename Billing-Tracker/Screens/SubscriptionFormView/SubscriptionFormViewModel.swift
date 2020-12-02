@@ -25,18 +25,40 @@ final class SubscriptionFormViewModel: ObservableObject {
     @Published var subscriptionRepository = SubscriptionRepository()
     @Published var remindUser = false
     
+    
     // calculating price
     var calculatePrice:Double { Double(subPrice) ?? 0.0 }
     
     /// adding new subscription function
     func addSubscription(){
-        let addedSubscription = Subscription(name: providersList[selectedProvider].name, image: providersList[selectedProvider].image, description: subDescription, dueDateString: date.description(with: .current), price: calculatePrice, dueDateInDate: date, cycleDays: cycleTypes[selectedCycle], notifyMe: remindUser)
+        // check the form if its valid or not 
+        if !isValidForm(){
+            DispatchQueue.main.async {
+                self.alertItem = SubscriptionFormAlerts.invalidForm
+            }
+            return
+        }
+        // added subscription
+        let addedSubscription = Subscription(name: providersList[selectedProvider].name,
+                                             image: providersList[selectedProvider].image,
+                                             description: subDescription,
+                                             dueDateString:Date.dateToString(date: date , option: "YY, MMM d" ) ,
+                                             price: calculatePrice,
+                                             dueDateInDate: date,
+                                             cycleDays: cycleTypes[selectedCycle],
+                                             notifyMe: remindUser,
+                                             expired: false )
         self.subscriptionRepository.addSubscription(subscription: addedSubscription){ [self] result in
             switch result {
                 case .success(_):
+                    DispatchQueue.main.async {
+                        self.alertItem = SubscriptionFormAlerts.savedSuccessfully
+                    }
                     return
-                case .failure(let error):
-                    alertItem = AlertItem(title: Text("Server Error"), message: Text(error.localizedDescription), dismissButton: .default(Text("OK")))
+                case .failure(_):
+                    DispatchQueue.main.async {
+                        self.alertItem = SubscriptionFormAlerts.unableToProceed
+                    }
             }
         }
     }
@@ -46,7 +68,17 @@ final class SubscriptionFormViewModel: ObservableObject {
         if value.count > 26 {
             self.subDescription = String(value.prefix(26))
             /// put alert to user about the reason.
+            DispatchQueue.main.async {
+                self.alertItem = SubscriptionFormAlerts.descriptionCharsLimit
+            }
         }
-        
+    }
+    
+    // validation of form
+    func isValidForm() -> Bool {
+        if subDescription.isEmpty || subPrice.isEmpty {
+            return false
+        }
+        return true
     }
 }

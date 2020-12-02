@@ -64,6 +64,7 @@
 		39E7754725770F5300BB3B31 /* saveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E7754625770F5300BB3B31 /* saveButtonView.swift */; };
 		39EF3A612576723E00777442 /* SubscriptionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EF3A602576723E00777442 /* SubscriptionRepository.swift */; };
 		39EF3A662576772300777442 /* SubscriptionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EF3A652576772300777442 /* SubscriptionCellViewModel.swift */; };
+		39F215A125771DA3009332E7 /* SubscriptionFormAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F215A025771DA3009332E7 /* SubscriptionFormAlerts.swift */; };
 		578104D2A7BA07861E627019 /* Pods_Billing_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0182523B208BB0C7B15E780C /* Pods_Billing_Tracker.framework */; };
 /* End PBXBuildFile section */
 
@@ -128,6 +129,7 @@
 		39E7754625770F5300BB3B31 /* saveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saveButtonView.swift; sourceTree = "<group>"; };
 		39EF3A602576723E00777442 /* SubscriptionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionRepository.swift; sourceTree = "<group>"; };
 		39EF3A652576772300777442 /* SubscriptionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionCellViewModel.swift; sourceTree = "<group>"; };
+		39F215A025771DA3009332E7 /* SubscriptionFormAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionFormAlerts.swift; sourceTree = "<group>"; };
 		C61F344A6D63B2ECFF8F6779 /* Pods-Billing-Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Billing-Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Billing-Tracker/Pods-Billing-Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,6 +174,7 @@
 		390761752576C8EB00955366 /* FormAlerts */ = {
 			isa = PBXGroup;
 			children = (
+				39F215A025771DA3009332E7 /* SubscriptionFormAlerts.swift */,
 			);
 			path = FormAlerts;
 			sourceTree = "<group>";
@@ -674,6 +677,7 @@
 				39D9134125716E5F00D9BDFE /* UpdateSubscriptionView.swift in Sources */,
 				3929C7DD2571D8160012DD51 /* User.swift in Sources */,
 				39D9132E25711B9800D9BDFE /* Icons.swift in Sources */,
+				39F215A125771DA3009332E7 /* SubscriptionFormAlerts.swift in Sources */,
 				3909834225758B9E001430C9 /* Date+Ext.swift in Sources */,
 				39EF3A612576723E00777442 /* SubscriptionRepository.swift in Sources */,
 				3929C7E22571DBB10012DD51 /* DismissButtonView.swift in Sources */,

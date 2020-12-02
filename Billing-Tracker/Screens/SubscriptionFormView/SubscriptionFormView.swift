@@ -47,7 +47,8 @@ struct SubscriptionFormView: View {
                             }
                         }
                         
-                        DatePicker("Due Date", selection: $viewModel.date, displayedComponents: .date)
+                        /// allowing user to select from now till 101 year only
+                        DatePicker("Due Date", selection: $viewModel.date, in: Date().notYesterday...Date(), displayedComponents: .date)
                         
                         
                     }
