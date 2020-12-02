@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RegisterView: View {
-    @StateObject var viewModel = RegisterViewModel()
+    @ObservedObject var viewModel : RegisterViewModel
     var body: some View {
         ZStack {
             VStack( alignment: .leading, spacing: 30){
@@ -78,9 +78,7 @@ struct RegisterView: View {
             .padding()
             .shadow(radius: 3)
             
-            if viewModel.isLoading {
-                LoadingView(isLoading: $viewModel.isLoading)
-            }
+
             
         }
         
@@ -97,7 +95,7 @@ struct RegisterView: View {
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView()
+        RegisterView(viewModel: RegisterViewModel())
             .colorScheme(.dark)
     }
 }

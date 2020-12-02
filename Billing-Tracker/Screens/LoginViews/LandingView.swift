@@ -10,27 +10,28 @@ import Firebase
 
 
 struct LandingView: View {
-    @ObservedObject var session = UserAuthenticationManager.shared
-    @State var isLoading = false
+    @ObservedObject var shared = UserAuthenticationManager.shared
+    @StateObject var viewModel = RegisterViewModel()
     var body: some View {
         ZStack {
-            Group{
-                if  session.authState == .signOut {
-                    RegisterView()
-                }
-                else{
-                    HomeTabView()
-                }
-                
+            if shared.authState == .signOut {
+                RegisterView(viewModel: viewModel)
             }
-            LoadingView(isLoading:$isLoading)
+            else{
+                HomeTabView()
+                    //                    .transition(.move(edge: .leading))
+                    .animation(.easeIn, value: true)
+                    .animation(nil)
+            }
+            
+            LoadingView(isLoading:$viewModel.isLoading)
         }
         /// listing if there is user or not
         .onAppear{
-            session.listen()
-            self.isLoading = true
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2){
-                self.isLoading = false
+            shared.listen()
+            self.viewModel.isLoading = true
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
+                self.viewModel.isLoading = false
             }
         }
     }
