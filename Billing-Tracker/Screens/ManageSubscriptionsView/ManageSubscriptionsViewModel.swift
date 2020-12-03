@@ -13,7 +13,9 @@ final class ManageSubscriptionsViewModel : ObservableObject{
     @Published var alertItem: AlertItem? = nil
     @Published var selectedSubIndex = 0
     @Published var subscriptionsRepository = SubscriptionRepository()
+    @Published var isEditing = false 
     private var cancellables = Set<AnyCancellable>()
+    
     
     init(){
         self.subscriptionsRepository.$subscriptions

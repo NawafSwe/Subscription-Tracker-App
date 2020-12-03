@@ -8,18 +8,19 @@
 import SwiftUI
 
 struct AddProviderView: View {
-    @State var providerName = ""
-    @Binding var dismissView:Bool
+    @ObservedObject var viewModel : ManageProvidersViewModel
     var body: some View {
         ZStack {
             VStack{
                 HStack{
-                    Button(action:{self.dismissView.toggle()}){
+                    Button(action:{self.viewModel.showAddProvider.toggle()}){
                         DismissButtonView()
                         
                     }
                     Spacer()
-                    Button(action:{}){
+                    Button(action:{
+                        viewModel.addProvider()
+                    }){
                         saveButtonView()
                     }
                 }
@@ -33,7 +34,7 @@ struct AddProviderView: View {
                 HStack {
                     Text("Provider Name:")
                         .font(.body)
-                    TextField("Provider",text: $providerName)
+                    TextField("Provider",text: $viewModel.providerName)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .frame(width: 200)
                 }
@@ -56,7 +57,7 @@ struct AddProviderView: View {
 
 struct AddProviderView_Previews: PreviewProvider {
     static var previews: some View {
-        AddProviderView(dismissView: .constant(false))
+        AddProviderView(viewModel: ManageProvidersViewModel())
     }
 }
 
