@@ -84,8 +84,7 @@ struct RegisterView: View {
         
         .background(
             Color.backgroundCell
-                .edgesIgnoringSafeArea(.all)
-        )
+                .edgesIgnoringSafeArea(.all) )
         
         
     }
