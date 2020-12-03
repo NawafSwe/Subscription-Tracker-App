@@ -8,22 +8,25 @@
 import SwiftUI
 
 struct AddProviderView: View {
-    @State var providerName = ""
-    @Binding var dismissView:Bool
+    @ObservedObject var viewModel : ManageProvidersViewModel
+    var screen = UIScreen.main.bounds
     var body: some View {
-        ZStack {
+        GeometryReader { geometry in
+            
             VStack{
                 HStack{
-                    Button(action:{self.dismissView.toggle()}){
+                    Button(action:{self.viewModel.showAddProvider.toggle()}){
                         DismissButtonView()
                         
                     }
                     Spacer()
-                    Button(action:{}){
+                    Button(action:{
+                        viewModel.addProvider()
+                    }){
                         saveButtonView()
                     }
                 }
-                .padding()
+                
                 
                 Text("Add Provider ☕️")
                     .multilineTextAlignment(.center)
@@ -33,30 +36,26 @@ struct AddProviderView: View {
                 HStack {
                     Text("Provider Name:")
                         .font(.body)
-                    TextField("Provider",text: $providerName)
+                    TextField("Provider",text: $viewModel.providerName)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .frame(width: 200)
                 }
-                .padding()
-                
-                // custom spacer
-                Spacer().frame(height: 90)
-                
+                Spacer()
             }
             
             .padding()
             .frame(maxWidth:.infinity)
-            .frame(height: 300, alignment: .center)
+            .frame(height:  screen.height / 2 * 1.3, alignment: .center)
             .background(Color.backgroundCell)
             .clipShape(RoundedRectangle(cornerSize: CGSize(width: 30, height: 30), style: .continuous))
-            .shadow(radius: 3)            
+            .shadow(radius: 3)
         }
+        
     }
 }
 
 struct AddProviderView_Previews: PreviewProvider {
     static var previews: some View {
-        AddProviderView(dismissView: .constant(false))
+        AddProviderView(viewModel: ManageProvidersViewModel())
     }
 }
-

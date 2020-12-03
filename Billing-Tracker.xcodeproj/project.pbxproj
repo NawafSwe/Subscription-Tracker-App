@@ -32,6 +32,11 @@
 		3929C7EE2571DCCB0012DD51 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 3929C7ED2571DCCB0012DD51 /* Lottie */; };
 		3929C7F12571DCDF0012DD51 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7F02571DCDF0012DD51 /* SafariView.swift */; };
 		3929C7F52571E2370012DD51 /* SubscriptionFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C7F42571E2370012DD51 /* SubscriptionFormViewModel.swift */; };
+		392C38122579205500252032 /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392C38112579205500252032 /* EditButton.swift */; };
+		392C38162579281100252032 /* ProviderCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392C38152579281100252032 /* ProviderCellView.swift */; };
+		392C381925792B4400252032 /* ProviderFormAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392C381825792B4400252032 /* ProviderFormAlert.swift */; };
+		392C381D25796B2400252032 /* ProvidersSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392C381C25796B2400252032 /* ProvidersSelectionView.swift */; };
+		392C38202579714A00252032 /* Screen+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392C381F2579714A00252032 /* Screen+Ext.swift */; };
 		3935584D2570792800974ECD /* SubscriptionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3935584C2570792800974ECD /* SubscriptionDetailView.swift */; };
 		394780C92571856A00C97EAA /* SubscriptionTimings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394780C82571856A00C97EAA /* SubscriptionTimings.swift */; };
 		3961173E25710A8900919EF3 /* SubscriptionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961173D25710A8900919EF3 /* SubscriptionListView.swift */; };
@@ -105,6 +110,11 @@
 		3929C7E92571DC720012DD51 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		3929C7F02571DCDF0012DD51 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		3929C7F42571E2370012DD51 /* SubscriptionFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionFormViewModel.swift; sourceTree = "<group>"; };
+		392C38112579205500252032 /* EditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
+		392C38152579281100252032 /* ProviderCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderCellView.swift; sourceTree = "<group>"; };
+		392C381825792B4400252032 /* ProviderFormAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderFormAlert.swift; sourceTree = "<group>"; };
+		392C381C25796B2400252032 /* ProvidersSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidersSelectionView.swift; sourceTree = "<group>"; };
+		392C381F2579714A00252032 /* Screen+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Screen+Ext.swift"; sourceTree = "<group>"; };
 		3935584C2570792800974ECD /* SubscriptionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionDetailView.swift; sourceTree = "<group>"; };
 		394780C82571856A00C97EAA /* SubscriptionTimings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTimings.swift; sourceTree = "<group>"; };
 		3961173D25710A8900919EF3 /* SubscriptionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionListView.swift; sourceTree = "<group>"; };
@@ -195,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				39F215A025771DA3009332E7 /* SubscriptionFormAlerts.swift */,
+				392C381825792B4400252032 /* ProviderFormAlert.swift */,
 			);
 			path = FormAlerts;
 			sourceTree = "<group>";
@@ -270,6 +281,14 @@
 			path = UIkitViews;
 			sourceTree = "<group>";
 		};
+		392C3814257927FC00252032 /* ProviderCellView */ = {
+			isa = PBXGroup;
+			children = (
+				392C38152579281100252032 /* ProviderCellView.swift */,
+			);
+			path = ProviderCellView;
+			sourceTree = "<group>";
+		};
 		394780C72571854500C97EAA /* SubscriptionTimingsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,12 +312,11 @@
 			isa = PBXGroup;
 			children = (
 				399AD2E725706F9300AFA10A /* HomeTabView.swift */,
-				3999564F2578C09F000D907D /* AddProviderFormView */,
+				395C7CBF2573D2CE001CD96C /* LoginViews */,
 				399956482578BAD2000D907D /* ManageProvidersView */,
 				39F215AD25772F7F009332E7 /* ProvidersView */,
 				39F215AC25772F77009332E7 /* AccountView */,
 				3909833825756343001430C9 /* ManageSubscriptionsView */,
-				395C7CBF2573D2CE001CD96C /* LoginViews */,
 				3929C7C62571D0CE0012DD51 /* ExpenseView */,
 				394780C72571854500C97EAA /* SubscriptionTimingsView */,
 				39D9133F25716E4F00D9BDFE /* UpdateSubscriptionView */,
@@ -353,6 +371,7 @@
 		3961174A2571158000919EF3 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				392C3814257927FC00252032 /* ProviderCellView */,
 				39EF3A642576771000777442 /* SubscriptionCellView */,
 			);
 			path = Cells;
@@ -442,18 +461,11 @@
 		399956482578BAD2000D907D /* ManageProvidersView */ = {
 			isa = PBXGroup;
 			children = (
+				399956502578C0C1000D907D /* AddProviderView.swift */,
 				399956492578BAF4000D907D /* ManageProvidersView.swift */,
 				3999564C2578BC45000D907D /* ManageProvidersViewModel.swift */,
 			);
 			path = ManageProvidersView;
-			sourceTree = "<group>";
-		};
-		3999564F2578C09F000D907D /* AddProviderFormView */ = {
-			isa = PBXGroup;
-			children = (
-				399956502578C0C1000D907D /* AddProviderView.swift */,
-			);
-			path = AddProviderFormView;
 			sourceTree = "<group>";
 		};
 		399AD2D925706F9300AFA10A = {
@@ -532,6 +544,7 @@
 				3909834125758B9E001430C9 /* Date+Ext.swift */,
 				39D9133125711C4300D9BDFE /* Color+Ext.swift */,
 				390761762576C90C00955366 /* String+Ext.swift */,
+				392C381F2579714A00252032 /* Screen+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -568,6 +581,7 @@
 				39E7754625770F5300BB3B31 /* saveButtonView.swift */,
 				390BF4FB2577E6B9007B4BC3 /* BackTrackButton.swift */,
 				399956542578C1BD000D907D /* AddProviderButton.swift */,
+				392C38112579205500252032 /* EditButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -616,6 +630,7 @@
 		39F215AD25772F7F009332E7 /* ProvidersView */ = {
 			isa = PBXGroup;
 			children = (
+				392C381C25796B2400252032 /* ProvidersSelectionView.swift */,
 			);
 			path = ProvidersView;
 			sourceTree = "<group>";
@@ -755,6 +770,7 @@
 				398A475625736FDD00C4212B /* SettingViewModel.swift in Sources */,
 				39D913372571351100D9BDFE /* SubscriptionFormView.swift in Sources */,
 				3999564D2578BC45000D907D /* ManageProvidersViewModel.swift in Sources */,
+				392C38162579281100252032 /* ProviderCellView.swift in Sources */,
 				3929C7F52571E2370012DD51 /* SubscriptionFormViewModel.swift in Sources */,
 				390E967925747198004B17DA /* SubscriptionTimingsViewModel.swift in Sources */,
 				39F215A4257728F6009332E7 /* TabIconsModifiers.swift in Sources */,
@@ -765,6 +781,7 @@
 				3909833F25756391001430C9 /* ManageSubscriptionsView.swift in Sources */,
 				39F215A925772BB8009332E7 /* PersonIconView.swift in Sources */,
 				390761772576C90C00955366 /* String+Ext.swift in Sources */,
+				392C381925792B4400252032 /* ProviderFormAlert.swift in Sources */,
 				3929C7DA2571D79D0012DD51 /* CoreDataModel.xcdatamodeld in Sources */,
 				396117422571110600919EF3 /* SettingView.swift in Sources */,
 				390761712576C7E200955366 /* SubscriptionAlert.swift in Sources */,
@@ -785,7 +802,9 @@
 				39EF3A612576723E00777442 /* SubscriptionRepository.swift in Sources */,
 				3929C7E22571DBB10012DD51 /* DismissButtonView.swift in Sources */,
 				39611754257116EA00919EF3 /* Images.swift in Sources */,
+				392C381D25796B2400252032 /* ProvidersSelectionView.swift in Sources */,
 				3909833B25756376001430C9 /* ManageSubscriptionsViewModel.swift in Sources */,
+				392C38122579205500252032 /* EditButton.swift in Sources */,
 				39D3B7AB25731903005881A4 /* RegisterView.swift in Sources */,
 				3935584D2570792800974ECD /* SubscriptionDetailView.swift in Sources */,
 				3929C7C82571D0E00012DD51 /* ExpenseView.swift in Sources */,
@@ -800,6 +819,7 @@
 				3929C7BE2571C3460012DD51 /* SubscriptionBoxView.swift in Sources */,
 				3929C7C42571CDAA0012DD51 /* CharsLimitRingView.swift in Sources */,
 				3929C7BA2571BD0C0012DD51 /* Provider.swift in Sources */,
+				392C38202579714A00252032 /* Screen+Ext.swift in Sources */,
 				39BEE9282573646700218130 /* Alert.swift in Sources */,
 				390E967E257476F3004B17DA /* AddSubscriptionButton.swift in Sources */,
 				3981A52725764B7D00F8B677 /* UserRepository.swift in Sources */,

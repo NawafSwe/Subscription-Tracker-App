@@ -29,12 +29,15 @@ final class UserAuthenticationManager : ObservableObject{
             if let user = user {
                 // if we have a user, create a new user model
                 DispatchQueue.main.async {
+                    // check if I add some providers from the cloud
+                    
                     self.user = User(uid: user.uid, displayName: user.displayName, email: user.email)
                     self.authState = .signIn
                 }
             } else {
                 // if we don't have a user, set our session to nil
                 DispatchQueue.main.async {
+                   
                     self.user =  userHolder.dummyUser
                     self.authState = .signOut
                 }
@@ -62,8 +65,9 @@ final class UserAuthenticationManager : ObservableObject{
             let providers:[Provider] = [ .init(name: "Spotify", image: Images.Spotify), .init(name: "Netflix", image: Images.Netflix), .init(name: "Youtube", image: Images.Youtube),
                                          .init(name: "iCloud", image: Images.iCloud ), .init(name: "Amazon", image: Images.amazon ), .init( name: "Apple Music", image: Images.appleMusic),
                                          .init( name: "Apple TV", image: Images.appleTv),
+                                         .init(name: "Uber", image: Images.uber)
             ]
-            for provider in providers { self.providersRepository.addProvider(provider: provider) }
+            for provider in providers { self.providersRepository.addProvider(provider: provider){_ in } }
             do{
                 let _ = try self.db.collection(FirestoreKeys.collections.users.rawValue).document(user.uid).setData(from: user)
                 completion(.success( () ))

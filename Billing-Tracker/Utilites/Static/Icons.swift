@@ -19,5 +19,6 @@ enum Icons{
     static let SFChevron = "chevron.backward"
     static let  SFFolder  = "folder.fill.badge.plus"
     static let SFCustomProvider = "timer"
+    static let SFEdit = "slider.vertical.3"
     
 }
