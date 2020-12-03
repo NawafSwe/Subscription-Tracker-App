@@ -17,5 +17,7 @@ enum Icons{
     static let SFLinkBadge = "link.badge.plus"
     static let SFSelected = "checkmark"
     static let SFChevron = "chevron.backward"
+    static let  SFFolder  = "folder.fill.badge.plus"
+    static let SFCustomProvider = "timer"
     
 }

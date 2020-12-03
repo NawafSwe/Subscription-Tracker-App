@@ -7,7 +7,7 @@
 
 import Foundation
 extension Date{
- 
+    
     
     var notYesterday:Date {
         /// getting date from now till 90
@@ -16,20 +16,20 @@ extension Date{
     
     /// calculating days different
     static func daysDiffrent(start: Date, end: Date) -> Int {
-        Calendar.current.dateComponents([.day], from: start, to: end).day!
+        Calendar.current.dateComponents([.day], from: start, to: end).day! + 1
     }
     
     
-//    "y, M d"                // 2020, 10 29
-//    "YY, MMM d"             // 20, Oct 29
-//    "YY, MMM d, hh:mm"      // 20, Oct 29, 02:18
-//    "YY, MMM d, HH:mm:ss"   // 20, Oct 29, 14:18:31
+    //    "y, M d"                // 2020, 10 29
+    //    "YY, MMM d"             // 20, Oct 29
+    //    "YY, MMM d, hh:mm"      // 20, Oct 29, 02:18
+    //    "YY, MMM d, HH:mm:ss"   // 20, Oct 29, 14:18:31
     static func dateToString(date:Date , option:String)->String{
         // Create Date Formatter
         let dateFormatter = DateFormatter()
         // Set Date Format
         dateFormatter.dateFormat = option
-
+        
         // Convert Date to String
         return dateFormatter.string(from: date)
     }
