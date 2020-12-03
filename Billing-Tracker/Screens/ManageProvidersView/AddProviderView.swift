@@ -9,8 +9,10 @@ import SwiftUI
 
 struct AddProviderView: View {
     @ObservedObject var viewModel : ManageProvidersViewModel
+    var screen = UIScreen.main.bounds
     var body: some View {
-        ZStack {
+        GeometryReader { geometry in
+            
             VStack{
                 HStack{
                     Button(action:{self.viewModel.showAddProvider.toggle()}){
@@ -24,7 +26,7 @@ struct AddProviderView: View {
                         saveButtonView()
                     }
                 }
-                .padding()
+                
                 
                 Text("Add Provider ☕️")
                     .multilineTextAlignment(.center)
@@ -38,20 +40,17 @@ struct AddProviderView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .frame(width: 200)
                 }
-                .padding()
-                
-                // custom spacer
-                Spacer().frame(height: 90)
-                
+                Spacer()
             }
             
             .padding()
             .frame(maxWidth:.infinity)
-            .frame(height: 300, alignment: .center)
+            .frame(height:  screen.height / 2 * 1.3, alignment: .center)
             .background(Color.backgroundCell)
             .clipShape(RoundedRectangle(cornerSize: CGSize(width: 30, height: 30), style: .continuous))
-            .shadow(radius: 3)            
+            .shadow(radius: 3)
         }
+        
     }
 }
 
@@ -60,4 +59,3 @@ struct AddProviderView_Previews: PreviewProvider {
         AddProviderView(viewModel: ManageProvidersViewModel())
     }
 }
-

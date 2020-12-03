@@ -20,12 +20,13 @@ struct AddProviderButton: View {
                     .frame(width: 30, height: 30, alignment: .center)
                     .accentColor(Color.iconsBackgroundColor)
             )
-            .background(BlurView(style: .systemMaterial))
+           
     }
 }
 
 struct AddProviderButton_Previews: PreviewProvider {
     static var previews: some View {
         AddProviderButton()
+            .colorScheme(.dark)
     }
 }

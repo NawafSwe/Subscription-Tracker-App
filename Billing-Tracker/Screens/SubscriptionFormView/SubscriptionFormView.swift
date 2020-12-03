@@ -27,8 +27,8 @@ struct SubscriptionFormView: View {
                                 Spacer()
                                 
                                 if viewModel.selectedProvider != nil  {
+                                    /// subview slected provider sub view 
                                     Text(viewModel.selectedProvider!.name)
-                                    
                                     Image(viewModel.selectedProvider!.image)
                                         .resizable()
                                         .frame(width:22, height: 22)
@@ -96,43 +96,5 @@ struct SubscriptionFormView_Previews: PreviewProvider {
     static var previews: some View {
         SubscriptionFormView()
             .colorScheme(.dark)
-    }
-}
-
-//MARK:- ProvidersSelectionView
-struct ProvidersSelectionView:View{
-    @ObservedObject var viewModel: SubscriptionFormViewModel
-    
-    var body: some View{
-        NavigationView {
-            List(viewModel.providersList){ list in
-                Button(action:{
-                    self.viewModel.selectedProvider = list.provider
-                    self.viewModel.showProvidersList = false
-                }){
-                    HStack{
-                        Image(list.provider.image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width:26, height: 26)
-                        Text(list.provider.name)
-                            .font(.subheadline)
-                            .foregroundColor(.standardText)
-                        
-                        if viewModel.selectedProvider?.id == list.provider.id {
-                            Spacer()
-                            Image(systemName: Icons.SFSelected)
-                                .resizable()
-                                .frame(width:20 , height: 20)
-                                .imageScale(.medium)
-                            
-                        }
-                    }
-                }
-            }
-            .navigationBarItems(leading: Button(action:{ self.viewModel.showProvidersList = false }
-            ){ BackTrackButton() })
-            .navigationTitle("Providers 🧾")
-        }
     }
 }

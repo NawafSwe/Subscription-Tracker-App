@@ -9,12 +9,12 @@ import SwiftUI
 
 struct RegisterView: View {
     @ObservedObject var viewModel : RegisterViewModel
+    var screen = UIScreen.main.bounds
     var body: some View {
         ZStack {
             VStack( alignment: .leading, spacing: 30){
-                Text("Welcome ⌚️")
-                    .font(.largeTitle)
-                    .bold()
+                Text("Billing tracker ⌚️")
+                    .font(.title)
                     .padding()
                 
                 VStack(spacing:10){
@@ -48,8 +48,8 @@ struct RegisterView: View {
                     
                     
                 }
-                .padding(.horizontal,20)
-                .frame(height: 220)
+                .padding(.horizontal, screen.width * 0.1)
+                .frame(height: screen.height * 3 / 10)
                 .frame(maxWidth: .infinity)
                 .background(BlurView(style: .light))
                 .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
@@ -78,18 +78,10 @@ struct RegisterView: View {
             .padding()
             .shadow(radius: 3)
             
-
-            
         }
         
-        .background(
-            Color.backgroundCell
-                .edgesIgnoringSafeArea(.all) )
-        
-        
+        .background(Color.backgroundCell.edgesIgnoringSafeArea(.all) )
     }
-    
-    
 }
 
 struct RegisterView_Previews: PreviewProvider {
@@ -101,6 +93,7 @@ struct RegisterView_Previews: PreviewProvider {
 //MARK:- MainButtonView
 struct MainButtonView : View {
     let title:String
+    var screen = UIScreen.main.bounds
     var body : some View{
         VStack{
             Text(title)

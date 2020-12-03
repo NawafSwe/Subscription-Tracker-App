@@ -14,7 +14,6 @@ final class ProviderRepository:ObservableObject{
     private let db = Firestore.firestore()
     private let collectionName = FirestoreKeys.collections.providers.rawValue
     
-    
     init(){ self.loadData() }
     
     func loadData(){
@@ -36,32 +35,38 @@ final class ProviderRepository:ObservableObject{
                 }
         }
     }
-    func addProvider(provider:Provider){
+    func addProvider(provider:Provider , completion: @escaping (Result <Void, Error>) -> Void){
         if let userId = Auth.auth().currentUser?.uid{
             let providerHelper = Provider(id: provider.id, createdTime: provider.createdTime, userId: userId, name: provider.name, image: provider.image)
             do{
                 let _  =  try self.db.collection(collectionName).addDocument(from: providerHelper){error in
                     if let error = error {
-                        print(error)
+                        completion(.failure(error))
                         return
                     }
                 }
             }catch {
-                fatalError("cannot add provider \(error.localizedDescription)")
+                completion(.failure(error))
+                
             }
         }
     }
     
-    func deleteProvider(docId: String){
+    func deleteProvider(docId: String , completion: @escaping (Result <Void, Error> ) -> Void)  {
         if let _ = Auth.auth().currentUser?.uid{
             db.collection(collectionName)
                 .document(docId)
                 .delete() { error in
                     if let error = error {
-                        print(error)
+                        completion(.failure(error))
+                        return 
                     }
                 }
         }
+    }
+    
+    func updateProvider(){
+        
     }
 }
 

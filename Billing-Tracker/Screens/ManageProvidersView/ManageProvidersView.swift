@@ -12,43 +12,38 @@ struct ManageProvidersView: View {
     @Environment (\.presentationMode) var presentationMode
     
     var body: some View {
-        ZStack{
-            NavigationView {
-                List{
-                    ForEach(viewModel.providers){ list in
-                        HStack{
-                            Image(list.provider.image)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width:26, height: 26)
-                            Text(list.provider.name)
-                                .font(.subheadline)
-                                .foregroundColor(.standardText)
+        GeometryReader { geometry in
+            ZStack{
+                NavigationView {
+                    List{
+                        ForEach(viewModel.providers){ list in
+                            ProviderCellView(provider: list.provider)
+                            
                         }
                         
+                        .onDelete(perform: viewModel.deleteProvider )
                         
-                    }.onDelete(perform: viewModel.deleteProvider )
+                    }
+                    .environment(\.editMode, .constant(self.viewModel.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
+                    
+                    .listStyle(PlainListStyle())
+                    .navigationBarItems(leading: Button(action:{self.presentationMode.wrappedValue.dismiss() })
+                        { BackTrackButton() } ,
+                                        trailing: NavigationButtonsHolder(viewModel: viewModel) )
+                    .navigationTitle("Custom Providers🧾")
                     
                 }
-                .environment(\.editMode, .constant(self.viewModel.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
+                .disabled(viewModel.showAddProvider)
+                .shadow(radius: viewModel.showAddProvider ? 10 : 0)
+                .blur(radius: viewModel.showAddProvider ?  10 : 0)
                 
-                .listStyle(PlainListStyle())
-                .navigationBarItems(leading: Button(action:{self.presentationMode.wrappedValue.dismiss() })
-                    { BackTrackButton() } ,
-                                    trailing: NavigationButtonsHolder(viewModel: viewModel) )
-                .navigationTitle("Custom Providers🧾")
-                
-            }
-            .disabled(viewModel.showAddProvider)
-            .shadow(radius: viewModel.showAddProvider ? 10 : 0)
-            .blur(radius: viewModel.showAddProvider ?  10 : 0)
-            
-            if viewModel.showAddProvider{
-                AddProviderView(viewModel: viewModel )
-                    .transition(.move(edge: .bottom))
-                    .animation(.easeIn)
-                    .animation(nil)
-                    .offset(y: 300)
+                if viewModel.showAddProvider{
+                    AddProviderView(viewModel: viewModel )
+                        .transition(.move(edge: .bottom))
+                        .animation(.easeIn)
+                        .animation(nil)
+                        .offset(y: geometry.size.height / 3)
+                }
             }
         }
     }
@@ -68,7 +63,7 @@ struct NavigationButtonsHolder : View {
                 EditButton()
                 
             }
-        
+            
             Button(action:{
                 viewModel.showAddProvider.toggle()
             }){

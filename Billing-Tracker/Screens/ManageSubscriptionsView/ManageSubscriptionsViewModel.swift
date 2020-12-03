@@ -13,7 +13,7 @@ final class ManageSubscriptionsViewModel : ObservableObject{
     @Published var alertItem: AlertItem? = nil
     @Published var selectedSubIndex = 0
     @Published var subscriptionsRepository = SubscriptionRepository()
-    @Published var isEditing = false 
+    @Published var isEditing = false
     private var cancellables = Set<AnyCancellable>()
     
     
@@ -49,11 +49,8 @@ final class ManageSubscriptionsViewModel : ObservableObject{
                     DispatchQueue.main.async {
                         self.alertItem = AlertItem(title: Text("Server Error"), message: Text(error.localizedDescription), dismissButton: .default(Text("OK")))
                     }
-                    
-                    
             }
         }
     }
 }
-
 
