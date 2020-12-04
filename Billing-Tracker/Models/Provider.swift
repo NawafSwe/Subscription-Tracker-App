@@ -28,7 +28,7 @@ struct Providers{
         Provider(name: "Amazon", image: Images.amazon ),
         Provider( name: "Apple Music", image: Images.appleMusic),
         Provider( name: "Apple TV", image: Images.appleTv),
-        ]
-    }
+    ]
+}
 #endif
 

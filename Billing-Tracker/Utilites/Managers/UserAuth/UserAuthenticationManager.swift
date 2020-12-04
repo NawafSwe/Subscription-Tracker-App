@@ -8,6 +8,7 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
+import UIKit
 enum AuthenticationState { case signIn , signOut , null }
 enum userHolder  { static let dummyUser = User(uid: "" , displayName: "test" , email : "") }
 
@@ -37,7 +38,7 @@ final class UserAuthenticationManager : ObservableObject{
             } else {
                 // if we don't have a user, set our session to nil
                 DispatchQueue.main.async {
-                   
+                    
                     self.user =  userHolder.dummyUser
                     self.authState = .signOut
                 }
@@ -62,14 +63,20 @@ final class UserAuthenticationManager : ObservableObject{
             
             DispatchQueue.main.async { self.user = user }
             ///initing user with initial providers
-            let providers:[Provider] = [ .init(name: "Spotify", image: Images.Spotify), .init(name: "Netflix", image: Images.Netflix), .init(name: "Youtube", image: Images.Youtube),
-                                         .init(name: "iCloud", image: Images.iCloud ), .init(name: "Amazon", image: Images.amazon ), .init( name: "Apple Music", image: Images.appleMusic),
-                                         .init( name: "Apple TV", image: Images.appleTv),
-                                         .init(name: "Uber", image: Images.uber)
-            ]
-            for provider in providers { self.providersRepository.addProvider(provider: provider){_ in } }
+            let givenProviders:[Provider] = [ .init(name: "Spotify", image: Images.Spotify ),
+                                              .init(name: "Netflix", image: Images.Netflix ),
+                                              .init(name: "Youtube", image: Images.Youtube),
+                                              .init(name: "iCloud", image: Images.iCloud),
+                                              .init(name: "Amazon", image: Images.amazon ),
+                                              .init( name: "Apple Music", image: Images.appleMusic),
+                                              .init( name: "Apple TV", image: Images.appleTv) ,
+                                              .init(name: "Uber", image: Images.uber)  ]
+            
+            for givenProvider in givenProviders{ self.providersRepository.addProvider(provider: givenProvider){_  in} }
+            
+            
             do{
-                let _ = try self.db.collection(FirestoreKeys.collections.users.rawValue).document(user.uid).setData(from: user)
+                let _ = try self.db.collection(FirestoreKeys.Collections.users.rawValue).document(user.uid).setData(from: user)
                 completion(.success( () ))
                 return
                 

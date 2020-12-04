@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 //MARK:- FireStoreService singleton class pattern
 final class FirestoreService{
     static let shared = FirestoreService()
-    let firestore = Firestore.firestore()
+   private let db = Firestore.firestore()
     
     private init (){}
     
@@ -21,14 +21,14 @@ final class FirestoreService{
     ///   - docId: document id
     ///   - completion: completion to handle the function call
     /// - Returns: @escaping Completion Function
-    func getDocumentsOnce<T:Codable>(collection:FirestoreKeys.collections, docId:String, completion: @escaping (Result<[T],Error>) -> () ){ }
+    func getDocumentsOnce<T:Codable>(collection:FirestoreKeys.Collections, docId:String, completion: @escaping (Result<[T],Error>) -> () ){ }
     
     /// getDocuments getting documents life from database
     /// - Parameters:
     ///   - collection: collection name
     ///   - completion: completion to handle the function call
     /// - Returns: @escaping Completion Function
-    func getDocuments<T:Codable>(collection:FirestoreKeys.collections , completion: @escaping (Result<[T],Error>)->() ){ }
+    func getDocuments<T:Codable>(collection:FirestoreKeys.Collections , completion: @escaping (Result<[T],Error>)->() ){ }
     
     
     /// getDocumentOnce getting the document data once with no live update
@@ -37,7 +37,7 @@ final class FirestoreService{
     ///   - docId: document id
     ///   - completion: completion to handle the function call
     /// - Returns: @escaping Completion Function
-    func getDocumentOnce<T:Codable>(collection : FirestoreKeys.collections, docId:String , completion: @escaping (Result<T , Error>) -> () ){ }
+    func getDocumentOnce<T:Codable>(collection : FirestoreKeys.Collections, docId:String , completion: @escaping (Result<T , Error>) -> () ){ }
     
     
     /// getDocument getting life document data where listing to changes
@@ -46,7 +46,7 @@ final class FirestoreService{
     ///   - docId: document id
     ///   - completion: completion to handle the function call
     /// - Returns: @escaping Completion Function
-    func getDocument<T:Codable>(collection:FirestoreKeys.collections, docId:String , completion: @escaping (Result<T,Error>)->() ){ }
+    func getDocument<T:Codable>(collection:FirestoreKeys.Collections, docId:String , completion: @escaping (Result<T,Error>)->() ){ }
     
     
     /// addDocument adding document to firebase
@@ -55,7 +55,14 @@ final class FirestoreService{
     ///   - model: model data has the data
     ///   - completion: completion to handle the function call
     /// - Returns: @escaping Completion Function
-    func addDocument<T:Codable>(collection : FirestoreKeys.collections, model:T , completion: @escaping (Result<Void , Error>)->() ){ }
+    func addDocument<T:Codable>(collection : FirestoreKeys.Collections, model:T , completion: @escaping (Result<Void , Error>)->() ){
+        do{
+         let _ = try  db.collection(collection.rawValue).addDocument(from: model)
+            
+        }catch {
+            fatalError(error.localizedDescription)
+        }
+    }
     
     /// saveDocument saving document data of a document
     /// - Parameters:
@@ -63,7 +70,7 @@ final class FirestoreService{
     ///   - model: model generic object holds the data
     ///   - completion: completion handler
     /// - Returns: @escaping Completion Function
-    func saveDocument<T:Codable>(collection:FirestoreKeys.collections , model: T,  completion: @escaping (Result<Void , Error>)->() ){ }
+    func saveDocument<T:Codable>(collection:FirestoreKeys.Collections , model: T,  completion: @escaping (Result<Void , Error>)->() ){ }
     
     
     /// saveDocumentWithId saving document data of a document with id
@@ -73,7 +80,7 @@ final class FirestoreService{
     ///   - completion: completion handler
     /// - Returns: @escaping Completion Function
     
-    func saveDocumentWithId<T:Codable>(collection: FirestoreKeys.collections , docId:String , model : T  , completion: @escaping (Result<Void , Error> ) -> () ){ }
+    func saveDocumentWithId<T:Codable>(collection: FirestoreKeys.Collections , docId:String , model : T  , completion: @escaping (Result<Void , Error> ) -> () ){ }
     
     /// deleteDocument deleting document by id
     /// - Parameters:
@@ -81,7 +88,7 @@ final class FirestoreService{
     ///   - docId: document id
     ///   - completion: completion to handle the function call
     /// - Returns: @escaping Completion Function
-    func deleteDocument(collection:FirestoreKeys.collections , docId : String , completion: @escaping (Result<Void, Error>)-> ()){ }
+    func deleteDocument(collection:FirestoreKeys.Collections , docId : String , completion: @escaping (Result<Void, Error>)-> ()){ }
     
     /// updateData to update doc data  with filed
     /// - Parameters:
@@ -91,6 +98,6 @@ final class FirestoreService{
     ///   - newData: the new data
     ///   - completion: completion function
     /// - Returns: @escaping Completion Function
-    func updateData<T:Codable>(collection: FirestoreKeys.collections , docId: String, filed:String , newData: T , completion: @escaping(Result<Void , Error> )->() ) { }
+    func updateData<T:Codable>(collection: FirestoreKeys.Collections , docId: String, filed:String , newData: T , completion: @escaping(Result<Void , Error> )->() ) { }
     
 }
