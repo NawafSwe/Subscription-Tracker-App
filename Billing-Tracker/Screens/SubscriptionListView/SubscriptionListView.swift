@@ -45,7 +45,7 @@ struct SubscriptionListView: View {
             
             /// sheet for displaying the form
             .sheet(isPresented: $viewModel.showSubscriptionForm){
-                SubscriptionFormView()
+                NewSubscriptionFormView()
                     
             }
             

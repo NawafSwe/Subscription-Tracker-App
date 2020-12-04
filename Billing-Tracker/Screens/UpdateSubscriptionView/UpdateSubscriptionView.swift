@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct UpdateSubscriptionView:View{
+   
     var body: some View{
         NavigationView {
-          Text("Update")
-                .navigationTitle("Edit Subscription 💳")
+            Text("")
+                .navigationTitle("Update Subscription 💳")
         }
     }
 }

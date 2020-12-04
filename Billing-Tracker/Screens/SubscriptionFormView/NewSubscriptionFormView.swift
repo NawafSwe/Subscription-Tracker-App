@@ -10,10 +10,9 @@ import SwiftUI
 /// and recalculate the next bill date  + from the due date
 
 //MARK:- SubscriptionFormView
-struct SubscriptionFormView: View {
-    @Environment (\.presentationMode) var presentationMode
+struct NewSubscriptionFormView: View {
     @StateObject var viewModel = SubscriptionFormViewModel()
-    
+    @Environment (\.presentationMode) var presentationMode
     var body: some View{
         NavigationView {
             ZStack {
@@ -27,7 +26,7 @@ struct SubscriptionFormView: View {
                                 Spacer()
                                 
                                 if viewModel.selectedProvider != nil  {
-                                    /// subview slected provider sub view 
+                                    /// subview selected provider sub view
                                     Text(viewModel.selectedProvider!.name)
                                     Image(viewModel.selectedProvider!.image)
                                         .resizable()
@@ -45,7 +44,7 @@ struct SubscriptionFormView: View {
                             .keyboardType(.default)
                             .modifier(TextFieldModifiers())
                             /// setting limit for user because we do not want him to miss with the UI
-                            .onChange(of: self.viewModel.subDescription, perform: viewModel.calculatingProgress)
+                            .onChange(of: self.viewModel.subDescription, perform: viewModel.descriptionLimit)
                             .overlay( CharsLimitRingView(width: 33, height: 33, remindChars: .constant(CGFloat(viewModel.subDescription.count) ), totalChars: CGFloat(26) ), alignment: .trailing)
                         
                         
@@ -70,6 +69,13 @@ struct SubscriptionFormView: View {
                     
                     Section(header:Text("Reminder")){
                         Toggle("Notify Me One Day Before", isOn: $viewModel.remindUser)
+                        
+                        if viewModel.remindUser{
+                            TextField("Preferred Notification Message ", text: $viewModel.notificationMessage)
+                                .transition(.move(edge: .bottom))
+                                .onChange(of: viewModel.notificationMessage, perform: viewModel.notificationLimit)
+                                .overlay( CharsLimitRingView(width: 33, height: 33, remindChars: .constant(CGFloat(viewModel.notificationMessage.count) ), totalChars: CGFloat(27) ), alignment: .trailing)
+                        }
                     }
                     
                 }
@@ -84,17 +90,19 @@ struct SubscriptionFormView: View {
                     }
                 )
                 
+                .navigationTitle("New Subscription 💳")
+                
             }
-            .navigationTitle("New Subscription 💳")
+            
+            
         }
-        
     }
 }
 
 //MARK:- SubscriptionFormView_Previews
 struct SubscriptionFormView_Previews: PreviewProvider {
     static var previews: some View {
-        SubscriptionFormView()
+        NewSubscriptionFormView()
             .colorScheme(.dark)
     }
 }

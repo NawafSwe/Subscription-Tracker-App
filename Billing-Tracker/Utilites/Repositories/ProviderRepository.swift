@@ -47,6 +47,8 @@ final class ProviderRepository:ObservableObject{
                         completion(.failure(error))
                         return
                     }
+                    completion(.success( () ))
+                    return
                 }
             }catch {
                 completion(.failure(error))
@@ -65,6 +67,8 @@ final class ProviderRepository:ObservableObject{
                         completion(.failure(error))
                         return 
                     }
+                    completion(.success( () ))
+                    return
                 }
         }
     }
