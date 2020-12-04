@@ -46,12 +46,13 @@ struct SubscriptionListView: View {
             /// sheet for displaying the form
             .sheet(isPresented: $viewModel.showSubscriptionForm){
                 SubscriptionFormView()
+                    
             }
             
-            if viewModel.subscriptionRepository.subscriptions.isEmpty{
+            /// if subscription list  empty show empty state
+            if viewModel.subscriptionServices.isEmpty{
                 EmptySubscriptionsView()
-                    .padding(.top,-10)
-            }
+                   }
             
             /// if the user tapped on the sub show its detail
             if(viewModel.showSubscriptionDetail){

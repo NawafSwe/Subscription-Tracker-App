@@ -32,6 +32,11 @@ struct ManageSubscriptionsView: View {
                 )
                 .navigationTitle("Subscriptions 💳")
             }
+            
+            /// if subscriptions list  empty show empty state
+            if viewModel.subscriptions.isEmpty{
+                EmptySubscriptionsView()
+                   }
         }
     }
     

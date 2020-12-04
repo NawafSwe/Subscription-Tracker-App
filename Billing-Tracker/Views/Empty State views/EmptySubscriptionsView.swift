@@ -11,11 +11,9 @@ struct EmptySubscriptionsView: View {
     var body: some View {
         ZStack{
             VStack {
-                Image("blogging-site-concept")
+                Image("people-discussing-about-business-in-park")
                 .resizable()
-                .imageScale(.large)
-                .frame(width: 320, height: 400, alignment: .center)
-                .padding()
+                .frame(width: 380, height: 300, alignment: .center)
                     .offset(y: 10)
                 
                 Text("Your Subscription List Is Empty Please Add One to show your subscriptions ⌚️.")
@@ -23,7 +21,7 @@ struct EmptySubscriptionsView: View {
                     .foregroundColor(.standardText)
                     .font(.body)
                     .padding()
-                    .padding(.top,20)
+                    .padding(.top,10)
             }
         }
     }
