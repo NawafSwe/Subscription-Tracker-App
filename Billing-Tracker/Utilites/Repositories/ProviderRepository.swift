@@ -37,6 +37,7 @@ final class ProviderRepository:ObservableObject{
                 }
         }
     }
+    /// add provider
     func addProvider(provider:Provider , completion: @escaping (Result <Void, Error>) -> Void){
         if let userId = Auth.auth().currentUser?.uid{
             let providerHelper = Provider(id: provider.id, createdTime: provider.createdTime, userId: userId, name: provider.name, image: provider.image)
@@ -54,6 +55,7 @@ final class ProviderRepository:ObservableObject{
         }
     }
     
+    /// delete provider
     func deleteProvider(docId: String , completion: @escaping (Result <Void, Error> ) -> Void)  {
         if let _ = Auth.auth().currentUser?.uid{
             db.collection(collectionName)
@@ -67,11 +69,8 @@ final class ProviderRepository:ObservableObject{
         }
     }
     
-    func updateProvider(){
-        
-    }
-    
-    
+    /// update provider name
+    func updateProvider(){ }
     
     // upload images
     func uploadImage(image:UIImage, providerName: String , completion: @escaping (Result<URL?,Error>)->Void){
@@ -97,6 +96,5 @@ final class ProviderRepository:ObservableObject{
             }
             
         }
-        
     }
 }

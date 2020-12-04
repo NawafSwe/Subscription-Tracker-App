@@ -18,6 +18,6 @@ enum Images{
     static let creditIcon = "creditIcon"
     static let coloredCreditCard = "Creditcard"
     static let uber = "Uber"
-    static let SFCustomProvider = "timer"
+    static let CustomProvider = "CustomProvider"
     
 }

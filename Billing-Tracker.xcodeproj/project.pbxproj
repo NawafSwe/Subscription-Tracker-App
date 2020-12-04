@@ -552,8 +552,8 @@
 		39D91335257134F200D9BDFE /* SubscriptionFormView */ = {
 			isa = PBXGroup;
 			children = (
-				39D913362571351100D9BDFE /* SubscriptionFormView.swift */,
 				3929C7F42571E2370012DD51 /* SubscriptionFormViewModel.swift */,
+				39D913362571351100D9BDFE /* SubscriptionFormView.swift */,
 			);
 			path = SubscriptionFormView;
 			sourceTree = "<group>";
