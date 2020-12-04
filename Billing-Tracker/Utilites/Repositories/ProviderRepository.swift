@@ -12,7 +12,9 @@ import Combine
 final class ProviderRepository:ObservableObject{
     @Published var providers = [Provider]()
     private let db = Firestore.firestore()
-    private let collectionName = FirestoreKeys.collections.providers.rawValue
+    private let collectionName = FirestoreKeys.Collections.providers.rawValue
+    private let storage = Storage.storage()
+    
     
     init(){ self.loadData() }
     
@@ -68,5 +70,33 @@ final class ProviderRepository:ObservableObject{
     func updateProvider(){
         
     }
+    
+    
+    
+    // upload images
+    func uploadImage(image:UIImage, providerName: String , completion: @escaping (Result<URL?,Error>)->Void){
+        
+        guard let imageData = image.jpegData(compressionQuality: 0.5) else {
+            return
+        }
+        
+        let ref = self.storage.reference()
+        let child  = ref.child("/providers/\(providerName)")
+        child.putData(imageData, metadata: nil) { (meta, err) in
+            if let err = err {
+                completion(.failure(err))
+                return
+            }
+            ref.downloadURL { (url, err) in
+                if let err = err{
+                    completion(.failure(err))
+                    return
+                }
+                completion(.success(url))
+                
+            }
+            
+        }
+        
+    }
 }
-

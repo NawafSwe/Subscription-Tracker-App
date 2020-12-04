@@ -13,7 +13,7 @@ import FirebaseFirestore
 final class SubscriptionRepository :ObservableObject{
    private let db = Firestore.firestore()
     @Published var subscriptions  = [Subscription]()
-    private let collectionName = FirestoreKeys.collections.subscriptions.rawValue
+    private let collectionName = FirestoreKeys.Collections.subscriptions.rawValue
     
     init(){ loadData() }
     
@@ -124,7 +124,7 @@ final class SubscriptionRepository :ObservableObject{
     /// - Returns: @escaping Completion Function
     
     func deleteSubscription(subscriptionId : String , completion: @escaping (Result<Void, Error>) -> Void ){
-        db.collection(FirestoreKeys.collections.subscriptions.rawValue).document(subscriptionId).delete{ error in
+        db.collection(FirestoreKeys.Collections.subscriptions.rawValue).document(subscriptionId).delete{ error in
             if let error  = error{
                 completion(.failure(error))
                 return

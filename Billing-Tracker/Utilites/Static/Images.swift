@@ -10,14 +10,14 @@ enum Images{
     static let Netflix = "Netflix"
     static let Spotify = "Spotify"
     static let Youtube = "Youtube"
-    static let iCloud = "iCloud"
+    static let iCloud = "AppleIcloud"
     static let twitter = "twitter"
     static let amazon = "Amazon"
-    static let appleTv = "apple-tv"
-    static let appleMusic = "Apple-music"
+    static let appleTv = "AppleTv"
+    static let appleMusic = "AppleMusic"
     static let creditIcon = "creditIcon"
     static let coloredCreditCard = "Creditcard"
-    static let uber = "uber"
+    static let uber = "Uber"
     static let SFCustomProvider = "timer"
     
 }
