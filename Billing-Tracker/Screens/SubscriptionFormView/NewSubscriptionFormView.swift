@@ -26,16 +26,11 @@ struct NewSubscriptionFormView: View {
                                 Spacer()
                                 
                                 if viewModel.selectedProvider != nil  {
-                                    /// subview selected provider sub view
-                                    Text(viewModel.selectedProvider!.name)
-                                    Image(viewModel.selectedProvider!.image)
-                                        .resizable()
-                                        .frame(width:22, height: 22)
-                                        .imageScale(.small)
-                                    
-                                }
+                                  ProviderCellView(provider: viewModel.selectedProvider!)
+                                    }
                             }
                         }
+                        
                         .foregroundColor(.standardText)
                         .sheet(isPresented: $viewModel.showProvidersList){ ProvidersSelectionView(viewModel: viewModel
                         ) }
