@@ -14,26 +14,28 @@ import Combine
 final class SubscriptionFormViewModel: ObservableObject {
     @Environment (\.presentationMode) var presentationMode
     @Published var providersList = [ProviderServices]()
+    @Published var alertItem:AlertItem? = nil
+    @Published var subscriptionRepository = SubscriptionRepository()
+    //fetching providers from repo
+    @Published var providersRepository = ProviderRepository()
+    private var cancellables = Set<AnyCancellable>()
+    @Published var didSelectProvider = false
+    @Published var showProvidersList = false
+    
+    //MARK:- Shared
     @Published var subDescription = ""
     @Published var subPrice:String = ""
     @Published var date = Date()
     @Published var selectedCycle = 0
-    @Published var alertItem:AlertItem? = nil
-    // cycles when date due add based on it
     @Published var cycleTypes = ["weekly" , "monthly", "yearly"]
-    @Published var subscriptionRepository = SubscriptionRepository()
     @Published var remindUser = false
-    //fetching providers from repo
-    @Published var providersRepository = ProviderRepository()
-    private var cancellables = Set<AnyCancellable>()
     @Published var selectedProvider:Provider?{ didSet{didSelectProvider = true} }
-    @Published var didSelectProvider = false
-    @Published var showProvidersList = false
-    
-    
+    @Published var notificationMessage = ""
     // calculating price
     var calculatePrice:Double { Double(subPrice) ?? 0.0 }
     
+    
+    //MARK:-  init
     /// initing the providers list
     init(){
         self.providersRepository.$providers
@@ -46,6 +48,7 @@ final class SubscriptionFormViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
+    //MARK:- addSubscription
     /// adding new subscription function
     func addSubscription(){
         // check the form if its valid or not 
@@ -78,28 +81,79 @@ final class SubscriptionFormViewModel: ObservableObject {
             switch result {
                 case .success( _ ):
                     /// in case offline
-                    DispatchQueue.main.async {
-                        self.alertItem = SubscriptionFormAlerts.savedSuccessfully
-                    }
+                    DispatchQueue.main.async { self.alertItem = SubscriptionFormAlerts.savedSuccessfully }
                     
-                    return
                 case .failure( _ ):
-                    DispatchQueue.main.async {
-                        self.alertItem = SubscriptionFormAlerts.unableToProceed
-                        
-                    }
-                    return
+                    DispatchQueue.main.async { self.alertItem = SubscriptionFormAlerts.unableToProceed }
+                    
+                    
             }
         }
     }
     
+    //MARK:- updateSubscription
+    func updateSubscription(subscription:Subscription){
+        // check the form if its valid or not
+        if !isValidForm(){
+            DispatchQueue.main.async {
+                self.alertItem = SubscriptionFormAlerts.invalidForm
+            }
+            return
+        }
+        
+        // the selectedProvider if no selected throw alert
+        guard let selectedProvider = self.selectedProvider else {
+            DispatchQueue.main.async {
+                self.alertItem = SubscriptionFormAlerts.didNotSelectedProvider
+            }
+            return
+            
+        }
+        
+        let updatedSubscription = Subscription(name: selectedProvider.name,
+                                               image: selectedProvider.image,
+                                               description: subDescription,
+                                               dueDateString:Date.dateToString(date: date , option: "YY, MMM d" ) ,
+                                               price: calculatePrice,
+                                               dueDateInDate: date,
+                                               cycleDays: cycleTypes[selectedCycle],
+                                               notifyMe: remindUser,
+                                               expired: false )
+        
+        self.subscriptionRepository.updateSubscription(subscriptionId: "some"  ,subscription: updatedSubscription){ [self] result in
+            switch result {
+                case .success( _ ):
+                    /// in case offline
+                    DispatchQueue.main.async { self.alertItem = SubscriptionFormAlerts.savedSuccessfully }
+                    
+                    
+                case .failure( _ ):
+                    DispatchQueue.main.async { self.alertItem = SubscriptionFormAlerts.unableToProceed }
+                    
+                    
+            }
+        }
+    }
+    
+    
+    //MARK:- Chars limit functions and form validations
     /// calculating progress
-    func calculatingProgress(value: String){
+    func descriptionLimit(value: String){
         if value.count > 26 {
             self.subDescription = String(value.prefix(26))
             /// put alert to user about the reason.
             DispatchQueue.main.async {
                 self.alertItem = SubscriptionFormAlerts.descriptionCharsLimit
+            }
+        }
+    }
+    
+    func notificationLimit(value: String){
+        if value.count > 27 {
+            self.notificationMessage = String(value.prefix(27))
+            /// put alert to user about the reason.
+            DispatchQueue.main.async {
+                self.alertItem = SubscriptionFormAlerts.notificationMessageLimit
             }
         }
     }
@@ -113,4 +167,3 @@ final class SubscriptionFormViewModel: ObservableObject {
     }
     
 }
-

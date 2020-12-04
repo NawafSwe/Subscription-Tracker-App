@@ -27,6 +27,7 @@ struct Subscription: Codable ,Identifiable {
     let cycleDays:String
     let notifyMe:Bool
     let expired:Bool
+//    let notificationMessage:String?
     }
 
 

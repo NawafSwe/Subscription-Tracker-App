@@ -10,12 +10,13 @@ import SwiftUI
 struct ManageSubscriptionsView: View {
     @StateObject var viewModel = ManageSubscriptionsViewModel()
     @Environment (\.presentationMode) var presentationMode
+    @State var showUpdate = false
     var body: some View {
         ZStack{
             NavigationView{
                 List{
                     ForEach(self.viewModel.subscriptions){sub in
-                        SubscriptionCellView(subscription: sub.subscription)
+                        SubscriptionCellView(subscription: sub.subscription)                 
                             .padding(.vertical,4)
                         
                     }
@@ -36,7 +37,7 @@ struct ManageSubscriptionsView: View {
             /// if subscriptions list  empty show empty state
             if viewModel.subscriptions.isEmpty{
                 EmptySubscriptionsView()
-                   }
+            }
         }
     }
     

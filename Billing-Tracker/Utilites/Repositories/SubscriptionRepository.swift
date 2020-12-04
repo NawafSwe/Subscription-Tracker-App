@@ -88,6 +88,8 @@ final class SubscriptionRepository :ObservableObject{
                         completion(.failure(error))
                         return
                     }
+                    completion(.success( () ))
+                    return
                 }
                 
             }catch {
@@ -102,14 +104,16 @@ final class SubscriptionRepository :ObservableObject{
     ///   - completion: completion to handle the function call
     /// - Returns: @escaping Completion Function
     
-    func updateSubscription(subscriptionId: String ,data:Subscription , completion: @escaping (Result<Void,Error>) -> Void ){
+    func updateSubscription(subscriptionId: String ,subscription :Subscription , completion: @escaping (Result<Void,Error>) -> Void ){
         do{
             try db.collection(collectionName).document(subscriptionId)
-                .setData(from: data, merge: true){error in
+                .setData(from: subscriptions, merge: true){error in
                     if let error = error {
                         completion(.failure(error))
                         return
                     }
+                    completion(.success( () ))
+                    return
                 }
         }catch {
             completion(.failure(error))
@@ -129,6 +133,8 @@ final class SubscriptionRepository :ObservableObject{
                 completion(.failure(error))
                 return
             }
+            completion(.success( () ))
+            return 
         }
     }
 }
