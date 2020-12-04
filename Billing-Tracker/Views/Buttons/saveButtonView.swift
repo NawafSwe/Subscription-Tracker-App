@@ -8,22 +8,22 @@
 import SwiftUI
 struct saveButtonView:View{
     var body: some View{
-        Image(systemName: Icons.SFCloud )
-            .foregroundColor(.iconsFontColor)
-            .imageScale(.medium)
-            .scaledToFit()
-            .frame(width: 30, height: 30)
-            .background(
-                Circle()
-                    .frame(width: 30, height: 30, alignment: .center)
-                    .accentColor(Color.iconsBackgroundColor)
-            )
-            
+        Text("Add")
+            .foregroundColor(.buttonColor)
+            .frame(width: 50, height: 30)
+            .font(.subheadline)
+            .background(Color.buttonSnow)
+            .clipShape(RoundedRectangle(cornerSize: CGSize(width: 15, height: 15), style: .continuous))
+        
+        
+        
+        
     }
 }
 
 struct saveButtonView_Previews: PreviewProvider {
     static var previews: some View {
         saveButtonView()
+            .colorScheme(.dark)
     }
 }

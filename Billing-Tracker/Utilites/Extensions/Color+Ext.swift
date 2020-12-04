@@ -19,4 +19,8 @@ extension Color{
     static let lunchViewIconsColor = Color("luchViewIconsColors")
     static let standardText = Color("standard_text")
     static let iconsFontColor = Color("IconsFont")
+    
+    static let buttonSnow = Color("snowColor")
+    static let buttonColor = Color("ButtonText")
+    
 }

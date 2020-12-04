@@ -22,7 +22,7 @@ struct HomeTabView: View {
             }
             
             SubscriptionTimingsView().tabItem {
-                Image(systemName: Icons.SFTimelapse)
+                Image(systemName: Icons.SFClock)
                     .resizable()
                     .modifier(TabIconsModifiers())
                 Text("Subscription Timings")

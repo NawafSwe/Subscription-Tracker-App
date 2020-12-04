@@ -43,7 +43,7 @@ final class ManageProvidersViewModel : ObservableObject{
             }
             return 
         }
-        let helperProvider = Provider(name: self.providerName, image: Icons.SFCustomProvider)
+        let helperProvider = Provider(name: self.providerName, image: Images.CustomProvider)
         
         providersRepository.addProvider(provider: helperProvider){result in
             switch result {
@@ -75,4 +75,15 @@ final class ManageProvidersViewModel : ObservableObject{
             }
         }
     }
+    func calculateProgress(string:String){
+        if String.limitProgress(string: string, limit: 10){
+            self.providerName = String(providerName.prefix(10))
+            DispatchQueue.main.async {
+                self.alertItem  = ProviderFormAlert.exceedLimit
+            }
+        
+        }
+    }
+    
+    
 }
