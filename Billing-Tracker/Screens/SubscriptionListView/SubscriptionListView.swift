@@ -35,13 +35,22 @@ struct SubscriptionListView: View {
                     .navigationTitle("Subscriptions 💳")
                     
                 }
-                ExpenseView(price: viewModel.totalPrice)
-                    .padding()
+                
+                if !viewModel.subscriptionRepository.subscriptions.isEmpty{
+                    ExpenseView(price: viewModel.totalPrice)
+                        .padding()
+                }
+           
             }
             
             /// sheet for displaying the form
             .sheet(isPresented: $viewModel.showSubscriptionForm){
                 SubscriptionFormView()
+            }
+            
+            if viewModel.subscriptionRepository.subscriptions.isEmpty{
+                EmptySubscriptionsView()
+                    .padding(.top,-10)
             }
             
             /// if the user tapped on the sub show its detail

@@ -16,26 +16,30 @@ struct SubscriptionBoxView: View {
                 Image(subscription.image)
                     .resizable()
                     .scaledToFill()
-                    .frame(width: 40 , height: 40)
+                    .frame(width: 35 , height: 35)
+                    .clipShape(RoundedRectangle(cornerSize: CGSize(width: 8, height: 30), style: .continuous))
                 Text(subscription.name)
-                    .font(.title3)
+                    .font(.body)
                     .bold()
+                Spacer()
             }
+            
             HStack(spacing: 10 ){
                 DaysRingView(color1: #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1), color2: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), width: 33, height: 33, reminderDays: CGFloat(remindDays))
                 
                 Text("Days left")
                     .font(.headline)
+                Spacer()
                 
             }
             
         }
-        
+        .padding(.horizontal)
         .frame(width: 170, height: 120, alignment: .center)
         .background(Color.backgroundCell)
         .clipShape(RoundedRectangle(cornerSize: CGSize(width: 20, height: 10), style: .continuous))
         .shadow(radius: 2)
-        .padding()
+       
         
     }
 }
