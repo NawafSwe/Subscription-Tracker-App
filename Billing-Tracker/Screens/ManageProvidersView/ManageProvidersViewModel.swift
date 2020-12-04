@@ -75,4 +75,15 @@ final class ManageProvidersViewModel : ObservableObject{
             }
         }
     }
+    func calculateProgress(string:String){
+        if String.limitProgress(string: string, limit: 10){
+            self.providerName = String(providerName.prefix(10))
+            DispatchQueue.main.async {
+                self.alertItem  = ProviderFormAlert.exceedLimit
+            }
+        
+        }
+    }
+    
+    
 }

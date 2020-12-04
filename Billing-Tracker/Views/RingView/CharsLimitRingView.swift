@@ -14,7 +14,7 @@ struct CharsLimitRingView: View {
     var height : CGFloat
     /// for days calculation
     @Binding var remindChars : CGFloat
-    var totalChars:  CGFloat  = 26
+    var totalChars:CGFloat
     
     var body: some View {
         //MARK:- global variables
@@ -49,7 +49,7 @@ struct CharsLimitRingView: View {
     
     struct CharsLimitRingView_Previews: PreviewProvider {
         static var previews: some View {
-            CharsLimitRingView(width: 33, height: 33, remindChars: .constant(26))
+            CharsLimitRingView(width: 33, height: 33, remindChars: .constant(26), totalChars: 26)
         }
     }
     

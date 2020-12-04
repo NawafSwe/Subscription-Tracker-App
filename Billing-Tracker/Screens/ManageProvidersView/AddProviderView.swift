@@ -34,11 +34,14 @@ struct AddProviderView: View {
                     .padding()
                 
                 HStack {
-                    Text("Provider Name:")
+                    Text("Name:")
                         .font(.body)
-                    TextField("Provider",text: $viewModel.providerName)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    TextField("Provider Name",text: $viewModel.providerName)
+                        .onChange(of: viewModel.providerName , perform: viewModel.calculateProgress)
                         .frame(width: 200)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    CharsLimitRingView(width: 50, height: 50, remindChars: .constant(CGFloat(viewModel.providerName.count) ), totalChars: CGFloat(10))
+                    
                 }
                 Spacer()
             }
@@ -49,6 +52,9 @@ struct AddProviderView: View {
             .background(Color.backgroundCell)
             .clipShape(RoundedRectangle(cornerSize: CGSize(width: 30, height: 30), style: .continuous))
             .shadow(radius: 3)
+            .alert(item: $viewModel.alertItem) {alert in
+                Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
+            }
         }
         
     }

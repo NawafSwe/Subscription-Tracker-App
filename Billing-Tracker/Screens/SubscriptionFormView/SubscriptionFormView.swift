@@ -46,7 +46,7 @@ struct SubscriptionFormView: View {
                             .modifier(TextFieldModifiers())
                             /// setting limit for user because we do not want him to miss with the UI
                             .onChange(of: self.viewModel.subDescription, perform: viewModel.calculatingProgress)
-                            .overlay( CharsLimitRingView(width: 33, height: 33, remindChars: .constant(CGFloat(viewModel.subDescription.count))), alignment: .trailing)
+                            .overlay( CharsLimitRingView(width: 33, height: 33, remindChars: .constant(CGFloat(viewModel.subDescription.count) ), totalChars: CGFloat(26) ), alignment: .trailing)
                         
                         
                         
