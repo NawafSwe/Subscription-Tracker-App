@@ -27,9 +27,11 @@ struct ManageSubscriptionsView: View {
                 }
                 .listStyle(PlainListStyle())
                 // edit mode
-               // .environment(\.editMode, .constant(viewModel.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
+                .environment(\.editMode, .constant(viewModel.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
                 .navigationBarItems(leading: Button(action: {self.presentationMode.wrappedValue.dismiss()}){ DismissButtonView() } ,
-                                    trailing: EditButton()
+                                    trailing: Button(action:{viewModel.isEditing.toggle()}){
+                                        CustomEditButton()
+                                    }
                 )
                 .navigationTitle("Subscriptions 💳")
             }
