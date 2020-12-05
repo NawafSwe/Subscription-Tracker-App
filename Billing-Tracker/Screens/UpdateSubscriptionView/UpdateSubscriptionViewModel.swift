@@ -34,12 +34,7 @@ final class UpdateSubscriptionViewModel:ObservableObject{
     //MARK:- updateSubscription
     func updateSubscription(){
         // check the form if its valid or not
-        if !isValidForm(){
-            DispatchQueue.main.async {
-                self.alertItem = SubscriptionFormAlerts.invalidForm
-            }
-            return
-        }
+        if !isValidForm(){ return }
         //asking repo to update and sink it
         $subscription
             .sink{ sub in
@@ -48,7 +43,7 @@ final class UpdateSubscriptionViewModel:ObservableObject{
                         case .success(_):
                             self.alertItem = SubscriptionFormAlerts.savedSuccessfully
                             self.subscription.subscription = sub.subscription
-                        
+                            
                         case .failure( _ ):
                             self.alertItem = SubscriptionFormAlerts.unableToProceed
                             
@@ -82,11 +77,22 @@ final class UpdateSubscriptionViewModel:ObservableObject{
     }
     
     // validation of form
-    func isValidForm() -> Bool {
+    func isValidForm() ->Bool {
         if subscription.subscription.description.isEmpty{
+            DispatchQueue.main.async {
+                self.alertItem = SubscriptionFormAlerts.invalidForm
+            }
+            return false
+            
+        }
+        guard let _ = Double(subscription.subscription.priceString) else {
+            DispatchQueue.main.async {
+                self.alertItem = SubscriptionFormAlerts.priceError
+                
+            }
             return false
         }
-        guard let _ = Double(subscription.subscription.priceString) else {return false }
         return true
+        
     }
 }

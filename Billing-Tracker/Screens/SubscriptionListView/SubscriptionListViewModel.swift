@@ -11,7 +11,7 @@ import Combine
 final class SubscriptionListViewModel : ObservableObject{
     @Published var alertItem : AlertItem? = nil
     @Published var showSubscriptionDetail = false
-    @Published var selectedSubscription:Subscription? {didSet {self.showSubscriptionDetail = true } }
+    @Published var selectedSubscription:SubscriptionServices? {didSet {self.showSubscriptionDetail = true } }
     @Published var showSubscriptionForm = false
     @Published var viewState : CGSize = .zero
     @Published var callingTimes = 0

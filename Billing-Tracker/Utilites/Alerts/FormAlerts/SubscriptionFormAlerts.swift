@@ -20,5 +20,6 @@ struct SubscriptionFormAlerts {
     
     static let notificationMessageLimit = AlertItem(title: Text("Error"), message: Text("You have reached the maximum number of characters where it is 27"), dismissButton: .default(Text("Got it")))
     static let CannotUpdate = AlertItem(title: Text("Error"), message: Text("We Are Sorry We cannot update your subscription in this time try again later"), dismissButton: .default(Text("OK")))
+    static let priceError = AlertItem(title: Text("Error"), message: Text("Price must be valid numbers such 32.40"), dismissButton: .default(Text("Got it")))
     
 }

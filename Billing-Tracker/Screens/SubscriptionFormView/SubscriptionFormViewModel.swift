@@ -52,12 +52,7 @@ final class SubscriptionFormViewModel: ObservableObject {
     /// adding new subscription function
     func addSubscription(){
         // check the form if its valid or not 
-        if !isValidForm(){
-            DispatchQueue.main.async {
-                self.alertItem = SubscriptionFormAlerts.invalidForm
-            }
-            return
-        }
+        if !isValidForm(){ return }
         
         // the selectedProvider if no selected throw alert
         guard let selectedProvider = self.selectedProvider else {
@@ -119,16 +114,25 @@ final class SubscriptionFormViewModel: ObservableObject {
     }
     
     // validation of form
-    func isValidForm() -> Bool {
-        if subDescription.isEmpty || subPrice.isEmpty {
+    // validation of form
+    func isValidForm() ->Bool {
+        if self.subDescription.isEmpty{
+            DispatchQueue.main.async {
+                self.alertItem = SubscriptionFormAlerts.invalidForm
+            }
             return false
-        }
-        // checks if user put numbers or chars
-        guard let _ = Double(subPrice) else {return
-            false
             
         }
+        guard let _ = Double(subPrice) else {
+            DispatchQueue.main.async {
+                self.alertItem = SubscriptionFormAlerts.priceError
+                
+            }
+            return false
+        }
         return true
+        
     }
+
     
 }

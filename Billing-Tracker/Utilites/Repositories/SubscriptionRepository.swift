@@ -109,7 +109,7 @@ final class SubscriptionRepository :ObservableObject{
             // formating date nicely
             if let subscriptionId = subscription.id{
                 let dateInString = Date.dateToString(date: subscription.dueDateInDate, option: "YY, MMM d")
-                // I am sure user will not enter doubles because I have checked 
+                // I am sure user will not enter doubles because I have checked
                 let capturedPrice = Double(subscription.priceString)!
                 var capturedCycleDays = ""
                 
@@ -119,7 +119,7 @@ final class SubscriptionRepository :ObservableObject{
                     case 2: capturedCycleDays = "Yearly"
                     default: capturedCycleDays = "Weekly"
                 }
-                print("price is \(subscription.price)")
+    
                 // updating subscription data
                 let updatedSubscription = Subscription(userId:userid , name: subscription.name, image: subscription.image,
                                                        description: subscription.description, dueDateString: dateInString , price: capturedPrice,
@@ -133,7 +133,7 @@ final class SubscriptionRepository :ObservableObject{
                                 print(error)
                                 return
                             }
-                            print("updated")
+                            
                             completion(.success( () ))
                             return
                         }
