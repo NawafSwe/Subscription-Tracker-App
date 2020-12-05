@@ -16,7 +16,7 @@ final class ManageSubscriptionsViewModel : ObservableObject{
     @Published var isEditing = false
     private var cancellables = Set<AnyCancellable>()
     @Published var showUpdateForm = false
-    @Published var selectedSubscription:Subscription? { didSet{self.showUpdateForm = true } }
+    @Published var selectedSubscription:SubscriptionServices? { didSet{self.showUpdateForm = true } }
 
     init(){
         self.subscriptionsRepository.$subscriptions

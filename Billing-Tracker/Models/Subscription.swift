@@ -29,6 +29,7 @@ struct Subscription: Codable ,Identifiable {
     var expired:Bool
     var priceString:String
     var notificationMessage:String
+    var cycleIndex:Int
 }
 
 
@@ -38,9 +39,9 @@ struct MockData {
     //    static let subscriptionSample = Subscription(userId: "2", name: "Spotify", image: Images.Spotify, description: "Music", dueDate: "1 month", price: 100)
     //
     static let subscriptionSampleList = [
-        Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date(), cycleDays: "Weekly", notifyMe :false, expired: false, priceString: "34" , notificationMessage : "notificationMessage"  )]
+        Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date(), cycleDays: "Weekly", notifyMe :false, expired: false, priceString: "34" , notificationMessage : "notificationMessage", cycleIndex: 0  )]
     static let subscriptionSample =
-        Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date(), cycleDays: "Weekly", notifyMe :false, expired: false, priceString: "34" , notificationMessage : "notificationMessage"  )
+        Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date(), cycleDays: "Weekly", notifyMe :false, expired: false, priceString: "34" , notificationMessage : "notificationMessage", cycleIndex: 0  )
                
                }
 #endif

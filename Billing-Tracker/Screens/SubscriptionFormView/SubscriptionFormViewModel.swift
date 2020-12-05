@@ -79,7 +79,7 @@ final class SubscriptionFormViewModel: ObservableObject {
                                              notifyMe: remindUser,
                                              expired: false ,
                                              priceString:subPrice,
-                                             notificationMessage:notificationMessage
+                                             notificationMessage:notificationMessage, cycleIndex: self.selectedCycle
                                              
         )
         self.subscriptionRepository.addSubscription(subscription: addedSubscription){ [self] result in

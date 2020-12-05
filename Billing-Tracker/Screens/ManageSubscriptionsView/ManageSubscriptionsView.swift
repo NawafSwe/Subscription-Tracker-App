@@ -18,7 +18,7 @@ struct ManageSubscriptionsView: View {
                     ForEach(self.viewModel.subscriptions){sub in
                         SubscriptionCellView(subscription: sub.subscription)
                             .onTapGesture {
-                                DispatchQueue.main.async { self.viewModel.selectedSubscription = sub.subscription }
+                                DispatchQueue.main.async { self.viewModel.selectedSubscription = sub }
                             }
                             .padding(.vertical,4)
                         

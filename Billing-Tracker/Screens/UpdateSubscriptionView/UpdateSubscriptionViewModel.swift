@@ -16,20 +16,20 @@ final class UpdateSubscriptionViewModel:ObservableObject{
     //fetching providers from repo
     @Published var providersRepository = ProviderRepository()
     private var cancellables = Set<AnyCancellable>()
-    var selectedCycle = 0
-    var cycleTypes = ["weekly" , "monthly", "yearly"]
+    @Published var cycleTypes = ["weekly" , "monthly", "yearly"]
     
-    @Published var subscription:Subscription
+    @Published var subscription: SubscriptionServices
     
     // calculating price
     // var calculatePrice:Double { Double(subPrice.wrappedValue) ?? 0.0 }
     
-    init(subscription:Subscription){
+    init(subscription:SubscriptionServices){
         self.subscription = subscription
         
-            }
-            
         
+    }
+    
+    
     
     //MARK:- updateSubscription
     func updateSubscription(){
@@ -41,27 +41,29 @@ final class UpdateSubscriptionViewModel:ObservableObject{
             return
         }
         //asking repo to update and sink it
-        
-                self.subscriptionRepository.updateSubscription(subscription: subscription) { result in
+        $subscription
+            .sink{ sub in
+                self.subscriptionRepository.updateSubscription(subscription: sub.subscription) { result in
                     switch result {
-                        case .success( let subscription):
-                           
-                                self.subscription = subscription
-                                self.alertItem = SubscriptionFormAlerts.savedSuccessfully
-                            
+                        case .success(_):
+                            self.alertItem = SubscriptionFormAlerts.savedSuccessfully
+                            self.subscription.subscription = sub.subscription
+                        
                         case .failure( _ ):
-                            DispatchQueue.main.async { self.alertItem = SubscriptionFormAlerts.unableToProceed }
-
+                            self.alertItem = SubscriptionFormAlerts.unableToProceed
+                            
                     }
+                    
                 }
-            
-         
+                
+            }
+            .store(in: &cancellables)
     }
     //  MARK:- Chars limit functions and form validations
     //calculating progress
     func descriptionLimit(value: String){
         if value.count > 26 {
-            subscription.description = String(value.prefix(26))
+            subscription.subscription.description = String(value.prefix(26))
             /// put alert to user about the reason.
             DispatchQueue.main.async {
                 self.alertItem = SubscriptionFormAlerts.descriptionCharsLimit
@@ -71,7 +73,7 @@ final class UpdateSubscriptionViewModel:ObservableObject{
     
     func notificationLimit(value: String){
         if value.count > 27 {
-            subscription.notificationMessage = String(value.prefix(27))
+            subscription.subscription.notificationMessage = String(value.prefix(27))
             /// put alert to user about the reason.
             DispatchQueue.main.async {
                 self.alertItem = SubscriptionFormAlerts.notificationMessageLimit
@@ -81,10 +83,10 @@ final class UpdateSubscriptionViewModel:ObservableObject{
     
     // validation of form
     func isValidForm() -> Bool {
-        if subscription.description.isEmpty{
+        if subscription.subscription.description.isEmpty{
             return false
         }
-        guard let _ = Double(subscription.priceString) else {return false }
+        guard let _ = Double(subscription.subscription.priceString) else {return false }
         return true
     }
 }

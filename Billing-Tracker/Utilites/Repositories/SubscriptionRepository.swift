@@ -80,7 +80,7 @@ final class SubscriptionRepository :ObservableObject{
     
     func addSubscription(subscription: Subscription , completion: @escaping (Result<Void , Error> ) -> Void){
         if let userId = Auth.auth().currentUser?.uid{
-            var helperSubscription = Subscription(name: subscription.name, image: subscription.image, description: subscription.description, dueDateString: subscription.dueDateString, price: subscription.price, dueDateInDate: subscription.dueDateInDate, cycleDays: subscription.cycleDays, notifyMe: subscription.notifyMe, expired: subscription.expired , priceString: subscription.priceString , notificationMessage: subscription.notificationMessage)
+            var helperSubscription = Subscription(name: subscription.name, image: subscription.image, description: subscription.description, dueDateString: subscription.dueDateString, price: subscription.price, dueDateInDate: subscription.dueDateInDate, cycleDays: subscription.cycleDays, notifyMe: subscription.notifyMe, expired: subscription.expired , priceString: subscription.priceString , notificationMessage: subscription.notificationMessage, cycleIndex: subscription.cycleIndex)
             helperSubscription.userId = userId
             do{
                 let _ =  try db.collection(collectionName).addDocument(from: helperSubscription){ error in
@@ -104,25 +104,37 @@ final class SubscriptionRepository :ObservableObject{
     ///   - completion: completion to handle the function call
     /// - Returns: @escaping Completion Function
     
-    func updateSubscription(subscription :Subscription , completion: @escaping (Result<Subscription,Error>) -> () ){
+    func updateSubscription(subscription :Subscription , completion: @escaping (Result<Void,Error>) -> () ){
         if let userid = Auth.auth().currentUser?.uid{
             // formating date nicely
             if let subscriptionId = subscription.id{
                 let dateInString = Date.dateToString(date: subscription.dueDateInDate, option: "YY, MMM d")
-                let priceString = String(subscription.price)
+                // I am sure user will not enter doubles because I have checked 
+                let capturedPrice = Double(subscription.priceString)!
+                var capturedCycleDays = ""
+                
+                switch subscription.cycleIndex {
+                    case 0: capturedCycleDays = "Weekly"
+                    case 1: capturedCycleDays = "Monthly"
+                    case 2: capturedCycleDays = "Yearly"
+                    default: capturedCycleDays = "Weekly"
+                }
+                print("price is \(subscription.price)")
                 // updating subscription data
-                let updatedSubscription = Subscription(userId:userid , name: subscription.name, image: subscription.image, description: subscription.description, dueDateString: dateInString , price: subscription.price,
-                                                       dueDateInDate: subscription.dueDateInDate, cycleDays: subscription.cycleDays, notifyMe: subscription.notifyMe,
-                                                       expired: subscription.expired, priceString: priceString, notificationMessage: subscription.notificationMessage)
+                let updatedSubscription = Subscription(userId:userid , name: subscription.name, image: subscription.image,
+                                                       description: subscription.description, dueDateString: dateInString , price: capturedPrice,
+                                                       dueDateInDate: subscription.dueDateInDate, cycleDays: capturedCycleDays, notifyMe: subscription.notifyMe,
+                                                       expired: subscription.expired, priceString: subscription.priceString, notificationMessage: subscription.notificationMessage , cycleIndex: subscription.cycleIndex)
                 do{
                     try db.collection(collectionName).document(subscriptionId)
                         .setData(from: updatedSubscription){error in
                             if let error = error {
                                 completion(.failure(error))
+                                print(error)
                                 return
                             }
                             print("updated")
-                            completion(.success( (updatedSubscription) ))
+                            completion(.success( () ))
                             return
                         }
                 }catch {
