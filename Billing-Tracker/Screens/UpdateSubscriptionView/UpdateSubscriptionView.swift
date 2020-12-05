@@ -69,19 +69,20 @@ struct UpdateSubscriptionView:View{
                 }
                 
             }
-            .alert(item: $viewModel.alertItem){ alert in
-                Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
-                
-            }
+
             .navigationBarItems(leading: Button(action:{self.presentationMode.wrappedValue.dismiss()}){
                 DismissButtonView()
             } ,
             trailing: Button(action:{viewModel.updateSubscription()}){
-                saveButtonView()
+                saveButtonView(title:"Update")
             })
-            .navigationTitle("Update Subscription 💳")
+            .navigationTitle("Edit Subscription 💳")
         }
         //.onAppear(perform: viewModel.onAppearDetermineCycle)
+        .alert(item: $viewModel.alertItem){ alert in
+            Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
+            
+        }
    
         
     }

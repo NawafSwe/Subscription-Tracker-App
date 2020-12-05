@@ -380,6 +380,7 @@
 		396117492571157800919EF3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3929C7E42571DC350012DD51 /* UIkitViews */,
 				3932C83C257ACD3D0042DEF6 /* Forms */,
 				3998416E2578479800A3F15C /* Empty State views */,
 				39F215A725772B9F009332E7 /* PersonIconView */,
@@ -416,11 +417,8 @@
 			children = (
 				3929C7CB2571D4240012DD51 /* Constants.swift */,
 				39E7754125770A7400BB3B31 /* Modifiers */,
-				3981A52525764B3B00F8B677 /* Repositories */,
 				397EAB102573E8B600E1F7C3 /* LottiesFiles */,
-				39D3B7B325731F25005881A4 /* Managers */,
 				39D91339257142E700D9BDFE /* Protocols */,
-				3929C7E42571DC350012DD51 /* UIkitViews */,
 				3929C7DF2571DA5A0012DD51 /* Alerts */,
 				39D9133025711C2F00D9BDFE /* Extensions */,
 				39611752257116BD00919EF3 /* Static */,
@@ -514,6 +512,8 @@
 			isa = PBXGroup;
 			children = (
 				3929C7D32571D74D0012DD51 /* CoreData */,
+				3981A52525764B3B00F8B677 /* Repositories */,
+				39D3B7B325731F25005881A4 /* Managers */,
 				39611751257116A800919EF3 /* Utilites */,
 				3961174C2571164A00919EF3 /* Models */,
 				396117492571157800919EF3 /* Views */,
