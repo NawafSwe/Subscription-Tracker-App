@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SubscriptionMoreDetailView: View {
+    let subscription: Subscription
     var body: some View {
         
         VStack {
@@ -18,18 +19,20 @@ struct SubscriptionMoreDetailView: View {
                     
                     VStack(alignment:.leading) {
                         HStack (spacing:10){
-                            Text(Images.Netflix)
-                                .font(.title)
-                                .font(.body)
+                            Text(subscription.name)
+                                .font(.title3)
+                                
+                               
                             
-                            Image(Images.Netflix)
+                            Image(subscription.image)
                                 .resizable()
-                                .imageScale(.medium)
-                                .frame(width: 25 , height : 25)
-                            
+                                .scaledToFill()
+                                .frame(width: 35 , height: 35)
+                                .clipShape(RoundedRectangle(cornerSize: CGSize(width: 8, height: 30), style: .continuous))
+                               
                         }
                         .padding(.horizontal)
-                        Text("Price:39")
+                        Text(" \(  String(format: "%.2f", subscription.price)   )  SR")
                             .font(.body)
                             .bold()
                             .padding(.horizontal)
@@ -37,40 +40,45 @@ struct SubscriptionMoreDetailView: View {
                     
                     Spacer()
                     HStack {
-                        DaysRingView(width: 50, height: 50, reminderDays: CGFloat(44))
+                        DaysRingView(width: 50, height: 50, reminderDays: CGFloat(Date.daysDiffrent(start: Date(), end: subscription.dueDateInDate)))
                         Text("Days Left")
                             .bold()
                             .padding()
                         
                     }
-                    .padding()
-                    
                     
                 }
+                Divider()
                 HStack {
                     Text("Description:")
                     Spacer()
-                    Text("it is net flix services and so on")
+                    Text("\(subscription.description)")
+                        .font(.body)
+                        .multilineTextAlignment(.center)
                 }
                 .padding()
                 
                 HStack {
-                    Text("Description:")
+                    Text("Billing:")
                     Spacer()
-                    Text("it is net flix services and so on")
+                    Text("\(subscription.dueDateString)")
                 }
                 .padding()
                 
                 HStack {
-                    Text("Description:")
+                    Text("Billing cycle:")
                     Spacer()
-                    Text("it is net flix services and so on")
+                    Text("\(subscription.cycleDays)")
+                }
+                .padding()
+                
+                HStack {
+                    Text("Reminder:")
+                    Spacer()
+                    Text(subscription.notifyMe ? "Yes" : "No" )
                 }
                 .padding()
                
-     
-                
-                
                 Spacer()
             }
             .padding()
@@ -78,12 +86,13 @@ struct SubscriptionMoreDetailView: View {
             .background(Color.backgroundCell)
             .clipShape(RoundedRectangle(cornerRadius: 30))
             .shadow(radius: 4)
+           
         }
     }
 }
 
 struct SubscriptionMoreDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        SubscriptionMoreDetailView()
+        SubscriptionMoreDetailView(subscription: MockData.subscriptionSample)
     }
 }

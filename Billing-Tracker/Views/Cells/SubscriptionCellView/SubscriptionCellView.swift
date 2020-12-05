@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct SubscriptionCellView: View {
-    let subscription: Subscription
+    @ObservedObject var subscription: SubscriptionServices
     
     var body: some View {
         HStack(alignment: .center){
-            BrandView(subscription: subscription)
+            BrandView(subscription: subscription.subscription)
                 
         }
         .frame(width: 320, height: 60)
@@ -26,7 +26,7 @@ struct SubscriptionCellView: View {
 
 struct SubscriptionView_Previews: PreviewProvider {
     static var previews: some View {
-        SubscriptionCellView(subscription: MockData.subscriptionSample)
+        SubscriptionCellView(subscription: SubscriptionServices(subscription: MockData.subscriptionSample))
     }
 }
 

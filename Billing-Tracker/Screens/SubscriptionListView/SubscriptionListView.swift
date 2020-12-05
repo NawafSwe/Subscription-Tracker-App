@@ -15,12 +15,13 @@ struct SubscriptionListView: View {
                 NavigationView {
                     
                     // lopping on the cells
+                    
                     List(viewModel.subscriptionServices ){ sub in
                         // passing subscription into cell view
-                        SubscriptionCellView(subscription: sub.subscription)
+                        SubscriptionCellView(subscription: sub)
                             .padding(.vertical,4)
                             
-                            .onTapGesture { viewModel.selectedSubscription = sub.subscription
+                            .onTapGesture { viewModel.selectedSubscription = sub
                             }
                             
                             .blur(radius: viewModel.showSubscriptionDetail ? 10 :  0)
@@ -34,41 +35,43 @@ struct SubscriptionListView: View {
                                                             AddSubscriptionButtonView() } ))
                     .navigationTitle("Subscriptions 💳")
                     
+                    
                 }
                 
                 if !viewModel.subscriptionRepository.subscriptions.isEmpty{
                     ExpenseView(price: viewModel.totalPrice)
                         .padding()
                 }
-           
+                
             }
             
             /// sheet for displaying the form
             .sheet(isPresented: $viewModel.showSubscriptionForm){
                 NewSubscriptionFormView()
-                    
+                
             }
             
             /// if subscription list  empty show empty state
             if viewModel.subscriptionServices.isEmpty{
                 EmptySubscriptionsView()
-                   }
+            }
             
             /// if the user tapped on the sub show its detail
             if(viewModel.showSubscriptionDetail){
-                SubscriptionDetailView(subscription: viewModel.selectedSubscription!)
+                SubscriptionMoreDetailView(subscription: viewModel.selectedSubscription!.subscription)
                     /// to watch the view state
                     //.overlay(
                     //Text( "\(self.viewState.height)")
                     // , alignment: .top)
-                    .animation(.easeOut(duration: 0.5))
+                    .transition(.move(edge: .bottom))
+                    .animation(.easeIn(duration: 0.3))
                     .gesture(
                         DragGesture().onChanged{ value in
                             //saving the value of the drag
                             self.viewModel.viewState = value.translation
                             
                             /// if the user dragged it till 260 or more dismiss it
-                            if(self.viewModel.viewState.height >= 205){
+                            if(self.viewModel.viewState.height >= 150){
                                 self.viewModel.showSubscriptionDetail.toggle()
                                 self.viewModel.viewState = .zero
                             }
@@ -90,6 +93,7 @@ struct SubscriptionListView: View {
         .alert(item: $viewModel.alertItem){alert in
             Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
         }
+        
     }
 }
 

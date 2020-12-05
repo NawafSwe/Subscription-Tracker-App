@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct UpdateSubscriptionView:View{
+    @Environment (\.presentationMode) var presentationMode
     @ObservedObject var viewModel:UpdateSubscriptionViewModel
     var body: some View{
         NavigationView {
@@ -18,61 +19,75 @@ struct UpdateSubscriptionView:View{
                         HStack{
                             Text("Provider")
                             Spacer()
-                            ProviderCellView(provider: viewModel.selectedProvider.wrappedValue)
-                                
+                            ProviderCellView(provider: Provider(name: viewModel.subscription.subscription.name, image: viewModel.subscription.subscription.image))
+                            
                         }
                     }
                     .disabled(true)
                     .foregroundColor(.standardText)
-                     
                     
-                    TextField("Description", text: $viewModel.subDescription.wrappedValue)
+                    
+                    TextField("Description", text: $viewModel.subscription.subscription.description)
                         .keyboardType(.default)
                         .modifier(TextFieldModifiers())
                         /// setting limit for user because we do not want him to miss with the UI
-                        .onChange(of: self.viewModel.subDescription.wrappedValue, perform: viewModel.descriptionLimit)
-                        .overlay( CharsLimitRingView(width: 33, height: 33, remindChars: .constant(CGFloat(viewModel.subDescription.wrappedValue.count) ), totalChars: CGFloat(26) ), alignment: .trailing)
+                        //.onChange(of: $viewModel.subscription.description, perform: viewModel.descriptionLimit)
+                        .overlay( CharsLimitRingView(width: 33, height: 33, remindChars: .constant(CGFloat(viewModel.subscription.subscription.description.count) ), totalChars: CGFloat(26) ), alignment: .trailing)
                     
                     
                     
-                    TextField("Price", text: $viewModel.subPrice.wrappedValue)
+                    TextField("Price", text: $viewModel.subscription.subscription.priceString)
                         .keyboardType(.decimalPad)
                         .modifier(TextFieldModifiers())
                     
                 }
                 
                 Section(header:(Text("Timings"))){
-                    Picker("Cycle", selection: $viewModel.selectedCycle){
+                    Picker("Cycle", selection: $viewModel.subscription.subscription.cycleIndex){
                         List(0..<viewModel.cycleTypes.count){cycle in
-                            Text(viewModel.cycleTypes[cycle])
+                            Text(viewModel.cycleTypes[cycle]).tag(cycle)
                         }
                     }
+                    //.onChange(of: viewModel.selectedCycle, perform: viewModel.determineCycle)
                     
                     /// allowing user to select from now till 90 year only
-                    DatePicker("Due Date", selection: $viewModel.date.wrappedValue, in: Date()...Date().notYesterday, displayedComponents: .date)
+                    DatePicker("Due Date", selection: $viewModel.subscription.subscription.dueDateInDate, in: Date()...Date().notYesterday, displayedComponents: .date)
                     
                     
                 }
                 .accentColor(.primary)
                 
                 Section(header:Text("Reminder")){
-                    Toggle("Notify Me One Day Before", isOn: $viewModel.remindUser.wrappedValue)
+                    Toggle("Notify Me One Day Before", isOn: $viewModel.subscription.subscription.notifyMe)
                     
-                    if viewModel.remindUser.wrappedValue{
-                        TextField("Preferred Notification Message ", text: $viewModel.notificationMessage)
+                    if viewModel.subscription.subscription.notifyMe{
+                        TextField("Preferred Notification Message ", text: $viewModel.subscription.subscription.notificationMessage)
                             .transition(.move(edge: .bottom))
-                            .onChange(of: viewModel.notificationMessage, perform: viewModel.notificationLimit)
-                            .overlay( CharsLimitRingView(width: 33, height: 33, remindChars: .constant(CGFloat(viewModel.notificationMessage.count) ), totalChars: CGFloat(27) ), alignment: .trailing)
+                            .onChange(of: viewModel.subscription.subscription.notificationMessage, perform: viewModel.notificationLimit)
+                            .overlay( CharsLimitRingView(width: 33, height: 33, remindChars: .constant(CGFloat(viewModel.subscription.subscription.notificationMessage.count) ), totalChars: CGFloat(27) ), alignment: .trailing)
                     }
                 }
                 
             }
-                .navigationTitle("Update Subscription 💳")
+            .alert(item: $viewModel.alertItem){ alert in
+                Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
+                
+            }
+            .navigationBarItems(leading: Button(action:{self.presentationMode.wrappedValue.dismiss()}){
+                DismissButtonView()
+            } ,
+            trailing: Button(action:{viewModel.updateSubscription()}){
+                saveButtonView()
+            })
+            .navigationTitle("Update Subscription 💳")
         }
+        //.onAppear(perform: viewModel.onAppearDetermineCycle)
+   
+        
     }
 }
 struct UpdateSubscriptionView_Previews: PreviewProvider {
     static var previews: some View {
-        UpdateSubscriptionView(viewModel: UpdateSubscriptionViewModel(subDescription: .constant(""), subPrice: .constant(""), date: .constant(Date()), remindUser: .constant(false), selectedProvider: .constant(Providers.providersList[0])))
+        UpdateSubscriptionView(viewModel: UpdateSubscriptionViewModel(subscription: SubscriptionServices(subscription: MockData.subscriptionSample)))
     }
 }

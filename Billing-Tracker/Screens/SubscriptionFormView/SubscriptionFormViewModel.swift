@@ -52,12 +52,7 @@ final class SubscriptionFormViewModel: ObservableObject {
     /// adding new subscription function
     func addSubscription(){
         // check the form if its valid or not 
-        if !isValidForm(){
-            DispatchQueue.main.async {
-                self.alertItem = SubscriptionFormAlerts.invalidForm
-            }
-            return
-        }
+        if !isValidForm(){ return }
         
         // the selectedProvider if no selected throw alert
         guard let selectedProvider = self.selectedProvider else {
@@ -68,6 +63,7 @@ final class SubscriptionFormViewModel: ObservableObject {
             
         }
         // added subscription
+        
         let addedSubscription = Subscription(name: selectedProvider.name,
                                              image: selectedProvider.image,
                                              description: subDescription,
@@ -76,7 +72,11 @@ final class SubscriptionFormViewModel: ObservableObject {
                                              dueDateInDate: date,
                                              cycleDays: cycleTypes[selectedCycle],
                                              notifyMe: remindUser,
-                                             expired: false )
+                                             expired: false ,
+                                             priceString:subPrice,
+                                             notificationMessage:notificationMessage, cycleIndex: self.selectedCycle
+                                             
+        )
         self.subscriptionRepository.addSubscription(subscription: addedSubscription){ [self] result in
             switch result {
                 case .success( _ ):
@@ -90,51 +90,6 @@ final class SubscriptionFormViewModel: ObservableObject {
             }
         }
     }
-    
-    //MARK:- updateSubscription
-    func updateSubscription(subscription:Subscription){
-        // check the form if its valid or not
-        if !isValidForm(){
-            DispatchQueue.main.async {
-                self.alertItem = SubscriptionFormAlerts.invalidForm
-            }
-            return
-        }
-        
-        // the selectedProvider if no selected throw alert
-        guard let selectedProvider = self.selectedProvider else {
-            DispatchQueue.main.async {
-                self.alertItem = SubscriptionFormAlerts.didNotSelectedProvider
-            }
-            return
-            
-        }
-        
-        let updatedSubscription = Subscription(name: selectedProvider.name,
-                                               image: selectedProvider.image,
-                                               description: subDescription,
-                                               dueDateString:Date.dateToString(date: date , option: "YY, MMM d" ) ,
-                                               price: calculatePrice,
-                                               dueDateInDate: date,
-                                               cycleDays: cycleTypes[selectedCycle],
-                                               notifyMe: remindUser,
-                                               expired: false )
-        
-        self.subscriptionRepository.updateSubscription(subscriptionId: "some"  ,subscription: updatedSubscription){ [self] result in
-            switch result {
-                case .success( _ ):
-                    /// in case offline
-                    DispatchQueue.main.async { self.alertItem = SubscriptionFormAlerts.savedSuccessfully }
-                    
-                    
-                case .failure( _ ):
-                    DispatchQueue.main.async { self.alertItem = SubscriptionFormAlerts.unableToProceed }
-                    
-                    
-            }
-        }
-    }
-    
     
     //MARK:- Chars limit functions and form validations
     /// calculating progress
@@ -159,11 +114,25 @@ final class SubscriptionFormViewModel: ObservableObject {
     }
     
     // validation of form
-    func isValidForm() -> Bool {
-        if subDescription.isEmpty || subPrice.isEmpty {
+    // validation of form
+    func isValidForm() ->Bool {
+        if self.subDescription.isEmpty{
+            DispatchQueue.main.async {
+                self.alertItem = SubscriptionFormAlerts.invalidForm
+            }
+            return false
+            
+        }
+        guard let _ = Double(subPrice) else {
+            DispatchQueue.main.async {
+                self.alertItem = SubscriptionFormAlerts.priceError
+                
+            }
             return false
         }
         return true
+        
     }
+
     
 }

@@ -60,7 +60,7 @@ struct NavigationButtonsHolder : View {
     var body: some View{
         HStack{
             Button(action:{viewModel.isEditing.toggle()}){
-                EditButton()
+                CustomEditButton()
                 
             }
             

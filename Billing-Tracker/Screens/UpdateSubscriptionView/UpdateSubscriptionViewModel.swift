@@ -16,68 +16,49 @@ final class UpdateSubscriptionViewModel:ObservableObject{
     //fetching providers from repo
     @Published var providersRepository = ProviderRepository()
     private var cancellables = Set<AnyCancellable>()
-    var subDescription:Binding<String>
-    var subPrice:Binding<String>
-    var date: Binding<Date>
-    var selectedCycle = 0
-    var cycleTypes = ["weekly" , "monthly", "yearly"]
-    var remindUser: Binding<Bool>
-    var selectedProvider : Binding<Provider>
-    @Published var notificationMessage = ""
-   
-    // calculating price
-    var calculatePrice:Double { Double(subPrice.wrappedValue) ?? 0.0 }
+    @Published var cycleTypes = ["weekly" , "monthly", "yearly"]
     
-    init(subDescription:Binding<String> ,subPrice:Binding<String> , date: Binding<Date> , remindUser: Binding<Bool> , selectedProvider:Binding<Provider>){
-        self.subDescription = subDescription
-        self.subPrice = subPrice
-        self.date = date
-        self.remindUser = remindUser
-        self.selectedProvider = selectedProvider
+    @Published var subscription: SubscriptionServices
+    
+    // calculating price
+    // var calculatePrice:Double { Double(subPrice.wrappedValue) ?? 0.0 }
+    
+    init(subscription:SubscriptionServices){
+        self.subscription = subscription
+        
+        
     }
+    
     
     
     //MARK:- updateSubscription
-    func updateSubscription(subscription:Subscription){
+    func updateSubscription(){
         // check the form if its valid or not
-        if !isValidForm(){
-            DispatchQueue.main.async {
-                self.alertItem = SubscriptionFormAlerts.invalidForm
+        if !isValidForm(){ return }
+        //asking repo to update and sink it
+        $subscription
+            .sink{ sub in
+                self.subscriptionRepository.updateSubscription(subscription: sub.subscription) { result in
+                    switch result {
+                        case .success(_):
+                            self.alertItem = SubscriptionFormAlerts.savedSuccessfully
+                            self.subscription.subscription = sub.subscription
+                            
+                        case .failure( _ ):
+                            self.alertItem = SubscriptionFormAlerts.unableToProceed
+                            
+                    }
+                    
+                }
+                
             }
-            return
-        }
-        
-        let updatedSubscription = Subscription(name: selectedProvider.wrappedValue.name,
-                                               image: selectedProvider.wrappedValue.image,
-                                               description: subDescription.wrappedValue,
-                                               dueDateString:Date.dateToString(date: date.wrappedValue , option: "YY, MMM d" ) ,
-                                               price: calculatePrice,
-                                               dueDateInDate: date.wrappedValue,
-                                               cycleDays: cycleTypes[selectedCycle],
-                                               notifyMe: remindUser.wrappedValue,
-                                               expired: false )
-        
-        self.subscriptionRepository.updateSubscription(subscriptionId: "some"  ,subscription: updatedSubscription){ [self] result in
-            switch result {
-                case .success( _ ):
-                    /// in case offline
-                    DispatchQueue.main.async { self.alertItem = SubscriptionFormAlerts.savedSuccessfully }
-                    
-                    
-                case .failure( _ ):
-                    DispatchQueue.main.async { self.alertItem = SubscriptionFormAlerts.unableToProceed }
-                    
-                    
-            }
-        }
+            .store(in: &cancellables)
     }
-    
-    
-    //MARK:- Chars limit functions and form validations
-    /// calculating progress
+    //  MARK:- Chars limit functions and form validations
+    //calculating progress
     func descriptionLimit(value: String){
         if value.count > 26 {
-            self.subDescription.wrappedValue = String(value.prefix(26))
+            subscription.subscription.description = String(value.prefix(26))
             /// put alert to user about the reason.
             DispatchQueue.main.async {
                 self.alertItem = SubscriptionFormAlerts.descriptionCharsLimit
@@ -87,7 +68,7 @@ final class UpdateSubscriptionViewModel:ObservableObject{
     
     func notificationLimit(value: String){
         if value.count > 27 {
-            self.notificationMessage = String(value.prefix(27))
+            subscription.subscription.notificationMessage = String(value.prefix(27))
             /// put alert to user about the reason.
             DispatchQueue.main.async {
                 self.alertItem = SubscriptionFormAlerts.notificationMessageLimit
@@ -96,10 +77,22 @@ final class UpdateSubscriptionViewModel:ObservableObject{
     }
     
     // validation of form
-    func isValidForm() -> Bool {
-        if subDescription.wrappedValue.isEmpty || subPrice.wrappedValue.isEmpty {
+    func isValidForm() ->Bool {
+        if subscription.subscription.description.isEmpty{
+            DispatchQueue.main.async {
+                self.alertItem = SubscriptionFormAlerts.invalidForm
+            }
+            return false
+            
+        }
+        guard let _ = Double(subscription.subscription.priceString) else {
+            DispatchQueue.main.async {
+                self.alertItem = SubscriptionFormAlerts.priceError
+                
+            }
             return false
         }
         return true
+        
     }
 }

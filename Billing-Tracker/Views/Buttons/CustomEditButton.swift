@@ -1,5 +1,5 @@
 //
-//  EditButton.swift
+//  CustomEditButton.swift
 //  Billing-Tracker
 //
 //  Created by Nawaf B Al sharqi on 03/12/2020.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EditButton: View {
+struct CustomEditButton: View {
     var body: some View {
         Image(systemName: Icons.SFEdit)
             .imageScale(.medium)
@@ -25,6 +25,6 @@ struct EditButton: View {
 
 struct EditButton_Previews: PreviewProvider {
     static var previews: some View {
-        EditButton()
+        CustomEditButton()
     }
 }

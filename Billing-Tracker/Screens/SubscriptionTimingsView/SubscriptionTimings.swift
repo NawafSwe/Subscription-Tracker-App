@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SubscriptionTimingsView: View {
     @StateObject var viewModel = SubscriptionTimingsViewModel()
-    @State var show = false
+    
     var body: some View {
         ZStack {
             NavigationView {
@@ -18,9 +18,6 @@ struct SubscriptionTimingsView: View {
                         ForEach(viewModel.subscriptions){sub in
                             // injecting the subscription cell view model
                             SubscriptionBoxView(subscription: sub.subscription , remindDays: Date.daysDiffrent(start: Date(), end: sub.subscription.dueDateInDate) )
-                                .onTapGesture {
-                                    self.show = true
-                                }
                         }
                     }
                     .padding(.top)
@@ -31,15 +28,12 @@ struct SubscriptionTimingsView: View {
             }
             .alert(item: $viewModel.alertItem){alert in
                 Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
-        }
+            }
             
             /// if subscriptions list  empty show empty state
             if viewModel.subscriptions.isEmpty{
                 EmptySubscriptionsView()
-                   }
-            
-           if show{ SubscriptionMoreDetailView() }
-
+            }
         }
     }
 }

@@ -60,6 +60,23 @@ struct SettingView: View {
                         }.sheet(isPresented: $showCustomProvidersView){
                             ManageProvidersView()
                         }
+                        
+                        
+                        Button(action:{
+                            showCustomProvidersView.toggle()
+                        }){
+                            HStack{
+                                Image(systemName: Icons.SFbookmark )
+                                    .resizable()
+                                    .accentColor(.mainColor)
+                                    .imageScale(.small)
+                                    .frame(width: 20 , height : 30)
+                                Text("Ready Providers With Icons")
+                                    .foregroundColor(.standardText)
+                            }
+                        }.sheet(isPresented: $showCustomProvidersView){
+                            ManageProvidersView()
+                        }
                     }
                     Section(header:Text("Support")){
                         Link(destination:K.devAccount){
