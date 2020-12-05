@@ -56,7 +56,7 @@ struct SubscriptionListView: View {
             
             /// if the user tapped on the sub show its detail
             if(viewModel.showSubscriptionDetail){
-                SubscriptionDetailView(subscription: viewModel.selectedSubscription!)
+                SubscriptionMoreDetailView(subscription: viewModel.selectedSubscription!)
                     /// to watch the view state
                     //.overlay(
                     //Text( "\(self.viewState.height)")
@@ -68,7 +68,7 @@ struct SubscriptionListView: View {
                             self.viewModel.viewState = value.translation
                             
                             /// if the user dragged it till 260 or more dismiss it
-                            if(self.viewModel.viewState.height >= 205){
+                            if(self.viewModel.viewState.height >= 150){
                                 self.viewModel.showSubscriptionDetail.toggle()
                                 self.viewModel.viewState = .zero
                             }
@@ -90,6 +90,7 @@ struct SubscriptionListView: View {
         .alert(item: $viewModel.alertItem){alert in
             Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
         }
+        
     }
 }
 

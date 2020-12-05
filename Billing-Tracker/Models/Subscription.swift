@@ -18,17 +18,18 @@ struct Subscription: Codable ,Identifiable {
     @ServerTimestamp var createdTime: Timestamp?
     // user id 
     var userId:String?
-    let name:String
-    let image:String
-    let description:String
-    let dueDateString:String
-    let price:Double
-    let dueDateInDate : Date
-    let cycleDays:String
-    let notifyMe:Bool
-    let expired:Bool
-//    let notificationMessage:String?
-    }
+    var name:String
+    var image:String
+    var description:String
+    var dueDateString:String
+    var price:Double
+    var dueDateInDate : Date
+    var cycleDays:String
+    var notifyMe:Bool
+    var expired:Bool
+    var priceString:String
+    var notificationMessage:String
+}
 
 
 //MARK:- MocData struct
@@ -37,13 +38,9 @@ struct MockData {
     //    static let subscriptionSample = Subscription(userId: "2", name: "Spotify", image: Images.Spotify, description: "Music", dueDate: "1 month", price: 100)
     //
     static let subscriptionSampleList = [
-        Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date(), cycleDays: "Weekly", notifyMe :false, expired: false ),
-        Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date() , cycleDays: "Weekly", notifyMe :false, expired: false),
-        Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date() , cycleDays: "Weekly", notifyMe :false, expired: false),
-        Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date() , cycleDays: "Weekly", notifyMe :false, expired: false)
-    ]
-    static let subscriptionSample = Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date(),
-                                                 cycleDays: "Weekly", notifyMe :false, expired: false )
-    
-}
+        Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date(), cycleDays: "Weekly", notifyMe :false, expired: false, priceString: "34" , notificationMessage : "notificationMessage"  )]
+    static let subscriptionSample =
+        Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date(), cycleDays: "Weekly", notifyMe :false, expired: false, priceString: "34" , notificationMessage : "notificationMessage"  )
+               
+               }
 #endif

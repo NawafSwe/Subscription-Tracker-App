@@ -19,5 +19,6 @@ struct SubscriptionFormAlerts {
     static let didNotSelectedProvider = AlertItem(title: Text("Invalid form"), message: Text("Please You have to select a provider"), dismissButton: .default(Text("OK")))
     
     static let notificationMessageLimit = AlertItem(title: Text("Error"), message: Text("You have reached the maximum number of characters where it is 27"), dismissButton: .default(Text("Got it")))
+    static let CannotUpdate = AlertItem(title: Text("Error"), message: Text("We Are Sorry We cannot update your subscription in this time try again later"), dismissButton: .default(Text("OK")))
     
 }

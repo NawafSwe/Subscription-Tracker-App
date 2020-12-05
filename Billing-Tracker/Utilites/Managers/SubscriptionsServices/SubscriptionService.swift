@@ -32,17 +32,6 @@ final class SubscriptionServices : ObservableObject , Identifiable{
             .assign(to: \.id, on: self)
             .store(in: &cancellables)
         
-        //// anytime we update task
-        //$subscription
-        //    /// if we do the update , which means not the user then drop first change
-        //    .dropFirst()
-        //    /// using debounce to not make update every type change so will be to much on fire store so will updates when user stop typing
-        //    .debounce(for: 0.8, scheduler: RunLoop.main)
-        //    .sink{ task in
-        //        self.tasksRepository.updateTask(task)
-        //    }
-        //    // for storage
-        //    .store(in: &cancellables)
-        //}
+        
     }
 }

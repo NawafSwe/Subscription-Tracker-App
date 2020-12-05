@@ -10,17 +10,23 @@ import SwiftUI
 struct ManageSubscriptionsView: View {
     @StateObject var viewModel = ManageSubscriptionsViewModel()
     @Environment (\.presentationMode) var presentationMode
-    @State var showUpdate = false
+   
     var body: some View {
         ZStack{
             NavigationView{
                 List{
                     ForEach(self.viewModel.subscriptions){sub in
-                        SubscriptionCellView(subscription: sub.subscription)                 
+                        SubscriptionCellView(subscription: sub.subscription)
+                            .onTapGesture {
+                                DispatchQueue.main.async { self.viewModel.selectedSubscription = sub.subscription }
+                            }
                             .padding(.vertical,4)
                         
                     }
                     .onDelete(perform: self.viewModel.deleteSubscription)
+                    .sheet(isPresented: $viewModel.showUpdateForm){
+                        UpdateSubscriptionView(viewModel: UpdateSubscriptionViewModel(subscription: viewModel.selectedSubscription!))
+                    }
                 }
                 .listStyle(PlainListStyle())
                 // edit mode

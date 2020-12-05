@@ -82,6 +82,7 @@
 		39F215A125771DA3009332E7 /* SubscriptionFormAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F215A025771DA3009332E7 /* SubscriptionFormAlerts.swift */; };
 		39F215A4257728F6009332E7 /* TabIconsModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F215A3257728F6009332E7 /* TabIconsModifiers.swift */; };
 		39F215A925772BB8009332E7 /* PersonIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F215A825772BB8009332E7 /* PersonIconView.swift */; };
+		39F7DE50257B074000D2AB99 /* ProvidedProvidersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F7DE4F257B074000D2AB99 /* ProvidedProvidersView.swift */; };
 		578104D2A7BA07861E627019 /* Pods_Billing_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0182523B208BB0C7B15E780C /* Pods_Billing_Tracker.framework */; };
 /* End PBXBuildFile section */
 
@@ -164,6 +165,7 @@
 		39F215A025771DA3009332E7 /* SubscriptionFormAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionFormAlerts.swift; sourceTree = "<group>"; };
 		39F215A3257728F6009332E7 /* TabIconsModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabIconsModifiers.swift; sourceTree = "<group>"; };
 		39F215A825772BB8009332E7 /* PersonIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonIconView.swift; sourceTree = "<group>"; };
+		39F7DE4F257B074000D2AB99 /* ProvidedProvidersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidedProvidersView.swift; sourceTree = "<group>"; };
 		C61F344A6D63B2ECFF8F6779 /* Pods-Billing-Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Billing-Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Billing-Tracker/Pods-Billing-Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -330,8 +332,9 @@
 		39611745257114F700919EF3 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				39554E07257AE3F1004FF7BC /* SubscriptionMoreDetailView */,
 				399AD2E725706F9300AFA10A /* HomeTabView.swift */,
+				39F7DE4E257B072000D2AB99 /* ProvidedProvidersView */,
+				39554E07257AE3F1004FF7BC /* SubscriptionMoreDetailView */,
 				395C7CBF2573D2CE001CD96C /* LoginViews */,
 				399956482578BAD2000D907D /* ManageProvidersView */,
 				39F215AD25772F7F009332E7 /* ProvidersView */,
@@ -657,6 +660,14 @@
 			path = ProvidersView;
 			sourceTree = "<group>";
 		};
+		39F7DE4E257B072000D2AB99 /* ProvidedProvidersView */ = {
+			isa = PBXGroup;
+			children = (
+				39F7DE4F257B074000D2AB99 /* ProvidedProvidersView.swift */,
+			);
+			path = ProvidedProvidersView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -822,6 +833,7 @@
 				399956512578C0C1000D907D /* AddProviderView.swift in Sources */,
 				3909834225758B9E001430C9 /* Date+Ext.swift in Sources */,
 				39290E2D2577C6F9004D9768 /* SubscriptionService.swift in Sources */,
+				39F7DE50257B074000D2AB99 /* ProvidedProvidersView.swift in Sources */,
 				39EF3A612576723E00777442 /* SubscriptionRepository.swift in Sources */,
 				3929C7E22571DBB10012DD51 /* DismissButtonView.swift in Sources */,
 				3932C839257AC6BB0042DEF6 /* UpdateSubscriptionViewModel.swift in Sources */,

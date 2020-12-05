@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 import FirebaseFirestore
 
 final class SubscriptionRepository :ObservableObject{
-   private let db = Firestore.firestore()
+    private let db = Firestore.firestore()
     @Published var subscriptions  = [Subscription]()
     private let collectionName = FirestoreKeys.Collections.subscriptions.rawValue
     
@@ -80,7 +80,7 @@ final class SubscriptionRepository :ObservableObject{
     
     func addSubscription(subscription: Subscription , completion: @escaping (Result<Void , Error> ) -> Void){
         if let userId = Auth.auth().currentUser?.uid{
-            var helperSubscription = Subscription(name: subscription.name, image: subscription.image, description: subscription.description, dueDateString: subscription.dueDateString, price: subscription.price, dueDateInDate: subscription.dueDateInDate, cycleDays: subscription.cycleDays, notifyMe: subscription.notifyMe, expired: subscription.expired)
+            var helperSubscription = Subscription(name: subscription.name, image: subscription.image, description: subscription.description, dueDateString: subscription.dueDateString, price: subscription.price, dueDateInDate: subscription.dueDateInDate, cycleDays: subscription.cycleDays, notifyMe: subscription.notifyMe, expired: subscription.expired , priceString: subscription.priceString , notificationMessage: subscription.notificationMessage)
             helperSubscription.userId = userId
             do{
                 let _ =  try db.collection(collectionName).addDocument(from: helperSubscription){ error in
@@ -104,20 +104,35 @@ final class SubscriptionRepository :ObservableObject{
     ///   - completion: completion to handle the function call
     /// - Returns: @escaping Completion Function
     
-    func updateSubscription(subscriptionId: String ,subscription :Subscription , completion: @escaping (Result<Void,Error>) -> Void ){
-        do{
-            try db.collection(collectionName).document(subscriptionId)
-                .setData(from: subscriptions, merge: true){error in
-                    if let error = error {
-                        completion(.failure(error))
-                        return
-                    }
-                    completion(.success( () ))
+    func updateSubscription(subscription :Subscription , completion: @escaping (Result<Subscription,Error>) -> () ){
+        if let userid = Auth.auth().currentUser?.uid{
+            // formating date nicely
+            if let subscriptionId = subscription.id{
+                let dateInString = Date.dateToString(date: subscription.dueDateInDate, option: "YY, MMM d")
+                let priceString = String(subscription.price)
+                // updating subscription data
+                let updatedSubscription = Subscription(userId:userid , name: subscription.name, image: subscription.image, description: subscription.description, dueDateString: dateInString , price: subscription.price,
+                                                       dueDateInDate: subscription.dueDateInDate, cycleDays: subscription.cycleDays, notifyMe: subscription.notifyMe,
+                                                       expired: subscription.expired, priceString: priceString, notificationMessage: subscription.notificationMessage)
+                do{
+                    try db.collection(collectionName).document(subscriptionId)
+                        .setData(from: updatedSubscription){error in
+                            if let error = error {
+                                completion(.failure(error))
+                                return
+                            }
+                            print("updated")
+                            completion(.success( (updatedSubscription) ))
+                            return
+                        }
+                }catch {
+                    completion(.failure(error))
                     return
                 }
-        }catch {
-            completion(.failure(error))
+            }
+            
         }
+        
     }
     
     

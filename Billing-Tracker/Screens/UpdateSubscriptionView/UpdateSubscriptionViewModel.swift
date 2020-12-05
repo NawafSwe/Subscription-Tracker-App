@@ -16,29 +16,23 @@ final class UpdateSubscriptionViewModel:ObservableObject{
     //fetching providers from repo
     @Published var providersRepository = ProviderRepository()
     private var cancellables = Set<AnyCancellable>()
-    var subDescription:Binding<String>
-    var subPrice:Binding<String>
-    var date: Binding<Date>
     var selectedCycle = 0
     var cycleTypes = ["weekly" , "monthly", "yearly"]
-    var remindUser: Binding<Bool>
-    var selectedProvider : Binding<Provider>
-    @Published var notificationMessage = ""
-   
+    
+    @Published var subscription:Subscription
+    
     // calculating price
-    var calculatePrice:Double { Double(subPrice.wrappedValue) ?? 0.0 }
+    // var calculatePrice:Double { Double(subPrice.wrappedValue) ?? 0.0 }
     
-    init(subDescription:Binding<String> ,subPrice:Binding<String> , date: Binding<Date> , remindUser: Binding<Bool> , selectedProvider:Binding<Provider>){
-        self.subDescription = subDescription
-        self.subPrice = subPrice
-        self.date = date
-        self.remindUser = remindUser
-        self.selectedProvider = selectedProvider
-    }
-    
+    init(subscription:Subscription){
+        self.subscription = subscription
+        
+            }
+            
+        
     
     //MARK:- updateSubscription
-    func updateSubscription(subscription:Subscription){
+    func updateSubscription(){
         // check the form if its valid or not
         if !isValidForm(){
             DispatchQueue.main.async {
@@ -46,38 +40,28 @@ final class UpdateSubscriptionViewModel:ObservableObject{
             }
             return
         }
+        //asking repo to update and sink it
         
-        let updatedSubscription = Subscription(name: selectedProvider.wrappedValue.name,
-                                               image: selectedProvider.wrappedValue.image,
-                                               description: subDescription.wrappedValue,
-                                               dueDateString:Date.dateToString(date: date.wrappedValue , option: "YY, MMM d" ) ,
-                                               price: calculatePrice,
-                                               dueDateInDate: date.wrappedValue,
-                                               cycleDays: cycleTypes[selectedCycle],
-                                               notifyMe: remindUser.wrappedValue,
-                                               expired: false )
-        
-        self.subscriptionRepository.updateSubscription(subscriptionId: "some"  ,subscription: updatedSubscription){ [self] result in
-            switch result {
-                case .success( _ ):
-                    /// in case offline
-                    DispatchQueue.main.async { self.alertItem = SubscriptionFormAlerts.savedSuccessfully }
-                    
-                    
-                case .failure( _ ):
-                    DispatchQueue.main.async { self.alertItem = SubscriptionFormAlerts.unableToProceed }
-                    
-                    
-            }
-        }
+                self.subscriptionRepository.updateSubscription(subscription: subscription) { result in
+                    switch result {
+                        case .success( let subscription):
+                           
+                                self.subscription = subscription
+                                self.alertItem = SubscriptionFormAlerts.savedSuccessfully
+                            
+                        case .failure( _ ):
+                            DispatchQueue.main.async { self.alertItem = SubscriptionFormAlerts.unableToProceed }
+
+                    }
+                }
+            
+         
     }
-    
-    
-    //MARK:- Chars limit functions and form validations
-    /// calculating progress
+    //  MARK:- Chars limit functions and form validations
+    //calculating progress
     func descriptionLimit(value: String){
         if value.count > 26 {
-            self.subDescription.wrappedValue = String(value.prefix(26))
+            subscription.description = String(value.prefix(26))
             /// put alert to user about the reason.
             DispatchQueue.main.async {
                 self.alertItem = SubscriptionFormAlerts.descriptionCharsLimit
@@ -87,7 +71,7 @@ final class UpdateSubscriptionViewModel:ObservableObject{
     
     func notificationLimit(value: String){
         if value.count > 27 {
-            self.notificationMessage = String(value.prefix(27))
+            subscription.notificationMessage = String(value.prefix(27))
             /// put alert to user about the reason.
             DispatchQueue.main.async {
                 self.alertItem = SubscriptionFormAlerts.notificationMessageLimit
@@ -97,9 +81,10 @@ final class UpdateSubscriptionViewModel:ObservableObject{
     
     // validation of form
     func isValidForm() -> Bool {
-        if subDescription.wrappedValue.isEmpty || subPrice.wrappedValue.isEmpty {
+        if subscription.description.isEmpty{
             return false
         }
+        guard let _ = Double(subscription.priceString) else {return false }
         return true
     }
 }

@@ -15,8 +15,9 @@ final class ManageSubscriptionsViewModel : ObservableObject{
     @Published var subscriptionsRepository = SubscriptionRepository()
     @Published var isEditing = false
     private var cancellables = Set<AnyCancellable>()
-    
-    
+    @Published var showUpdateForm = false
+    @Published var selectedSubscription:Subscription? { didSet{self.showUpdateForm = true } }
+
     init(){
         self.subscriptionsRepository.$subscriptions
             .map{subscriptions in
@@ -27,6 +28,7 @@ final class ManageSubscriptionsViewModel : ObservableObject{
             //assign values and store it
             .assign(to: \.subscriptions, on: self)
             .store(in: &cancellables)
+        
     }
     func deleteSubscription(offsets: IndexSet){
         var captureId :String? =  nil

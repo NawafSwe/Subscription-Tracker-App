@@ -20,5 +20,6 @@ enum Icons{
     static let  SFFolder  = "folder.fill.badge.plus"
     static let SFCustomProvider = "timer"
     static let SFEdit = "slider.vertical.3"
+    static let SFbookmark = "bookmark.fill"
     
 }
