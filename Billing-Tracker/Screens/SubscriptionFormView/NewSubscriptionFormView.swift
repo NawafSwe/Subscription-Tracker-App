@@ -79,7 +79,7 @@ struct NewSubscriptionFormView: View {
                     DismissButtonView().padding()
                     
                 },trailing:
-                    Button(action:{viewModel.addSubscription()}){ saveButtonView() }
+                    Button(action:{viewModel.addSubscription()}){ saveButtonView(title: "Add") }
                     .alert(item: $viewModel.alertItem){alert in
                         Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
                     }

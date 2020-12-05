@@ -7,13 +7,14 @@
 
 import SwiftUI
 struct saveButtonView:View{
+    let title:String
     var body: some View{
-        Text("Add")
+        Text(title)
             .foregroundColor(.buttonColor)
-            .frame(width: 50, height: 30)
+            .frame(width: 80, height: 30)
             .font(.subheadline)
             .background(Color.buttonSnow)
-            .clipShape(RoundedRectangle(cornerSize: CGSize(width: 15, height: 15), style: .continuous))
+            .clipShape(RoundedRectangle(cornerSize: CGSize(width: 10, height: 15), style: .continuous))
         
         
         
@@ -23,7 +24,7 @@ struct saveButtonView:View{
 
 struct saveButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        saveButtonView()
+        saveButtonView(title:"Update")
             .colorScheme(.dark)
     }
 }

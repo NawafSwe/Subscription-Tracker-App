@@ -23,7 +23,7 @@ struct AddProviderView: View {
                     Button(action:{
                         viewModel.addProvider()
                     }){
-                        saveButtonView()
+                        saveButtonView(title:"Add")
                     }
                 }
                 
