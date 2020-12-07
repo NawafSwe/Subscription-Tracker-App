@@ -29,29 +29,18 @@ final class UpdateSubscriptionViewModel:ObservableObject{
         // check the form if its valid or not
         if !isValidForm(){ return }
         //asking repo to update and sink it
-        $subscription
-            .sink{ sub in
-                self.subscriptionRepository.updateSubscription(subscription: sub.subscription) { [self] result in
-                    switch result {
-                        case .success(_):
-                            DispatchQueue.main.async {
-                                self.alertItem = SubscriptionFormAlerts.savedSuccessfully
-                            }
-                            self.subscription.subscription = sub.subscription
-                            
-                        case .failure( _ ):
-                            DispatchQueue.main.async {
-                                self.alertItem = SubscriptionFormAlerts.unableToProceed
-                                
-                            }
-                    }
-                }
-                
+        self.subscriptionRepository.updateSubscription(subscription: subscription.subscription) { [self] result in
+            switch result {
+                case .success(_):
+                    DispatchQueue.main.async { self.alertItem = SubscriptionFormAlerts.savedSuccessfully }
+                    
+                case .failure( _ ):
+                    DispatchQueue.main.async { self.alertItem = SubscriptionFormAlerts.unableToProceed }
             }
-            .store(in: &cancellables)
+        }
     }
     //  MARK:- Chars limit functions and form validations
-    //calculating progress
+    // calculating progress
     func descriptionLimit(value: String){
         if value.count > 26 {
             subscription.subscription.description = String(value.prefix(26))
@@ -62,6 +51,7 @@ final class UpdateSubscriptionViewModel:ObservableObject{
         }
     }
     
+    //notification limit char
     func notificationLimit(value: String){
         if value.count > 27 {
             subscription.subscription.notificationMessage = String(value.prefix(27))

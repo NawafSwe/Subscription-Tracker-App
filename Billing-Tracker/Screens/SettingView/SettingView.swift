@@ -11,6 +11,7 @@ struct SettingView: View {
     @StateObject var viewModel = SettingViewModel()
     @State var showCustomProvidersView = false
     @State var showReadyProviders = false
+    @State var showAccountView = false
     var body: some View {
         ZStack{
             NavigationView {
@@ -34,7 +35,7 @@ struct SettingView: View {
                             
                         }
                         
-                        Button(action:{}){
+                        Button(action:{self.showAccountView.toggle()}){
                             HStack {
                                 Image(systemName: "person.crop.circle.fill")
                                     .resizable()
@@ -44,6 +45,8 @@ struct SettingView: View {
                                 Text("Account")
                                     .foregroundColor(.standardText)
                             }
+                        }.sheet(isPresented: $showAccountView) {
+                            AccountView()
                         }
                         
                         Button(action:{
@@ -113,7 +116,6 @@ struct SettingView: View {
                         }
                     }
                 }
-                
                 .navigationTitle("Setting")
             }
             
