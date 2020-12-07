@@ -17,11 +17,10 @@ final class UpdateSubscriptionViewModel:ObservableObject{
     @Published var providersRepository = ProviderRepository()
     private var cancellables = Set<AnyCancellable>()
     @Published var cycleTypes = ["weekly" , "monthly", "yearly"]
-    
     @Published var subscription: SubscriptionServices
+
     
-    // calculating price
-    // var calculatePrice:Double { Double(subPrice.wrappedValue) ?? 0.0 }
+    
     
     init(subscription:SubscriptionServices){
         self.subscription = subscription

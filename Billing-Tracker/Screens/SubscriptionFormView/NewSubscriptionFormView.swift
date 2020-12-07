@@ -26,7 +26,7 @@ struct NewSubscriptionFormView: View {
                                 Spacer()
                                 
                                 if viewModel.selectedProvider != nil  {
-                                  ProviderCellView(provider: viewModel.selectedProvider!)
+                                    ProviderCellView(name: viewModel.selectedProvider!.name, image: viewModel.selectedProvider!.image)
                                     }
                             }
                         }
@@ -79,7 +79,7 @@ struct NewSubscriptionFormView: View {
                     DismissButtonView().padding()
                     
                 },trailing:
-                    Button(action:{viewModel.addSubscription()}){ saveButtonView(title: "Add") }
+                    Button(action:{viewModel.addSubscription()}){ StandardButton(title: "Add") }
                     .alert(item: $viewModel.alertItem){alert in
                         Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
                     }

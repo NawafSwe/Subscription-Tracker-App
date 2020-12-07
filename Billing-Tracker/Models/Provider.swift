@@ -15,19 +15,21 @@ struct Provider : Codable , Identifiable{
     var userId : String?
     var name:String
     var image:String
+    var original:Bool
+    var deleted:Bool
 }
 
 
 #if DEBUG
 struct Providers{
     static let providersList = [
-        Provider(name: "Spotify", image: Images.Spotify),
-        Provider(name: "Netflix", image: Images.Netflix),
-        Provider(name: "Youtube", image: Images.Youtube),
-        Provider(name: "iCloud", image: Images.iCloud ),
-        Provider(name: "Amazon", image: Images.amazon ),
-        Provider( name: "Apple Music", image: Images.appleMusic),
-        Provider( name: "Apple TV", image: Images.appleTv),
+        Provider(name: "Spotify", image: Images.Spotify ,original:true , deleted:false),
+        Provider(name: "Netflix", image: Images.Netflix ,original:true , deleted:false),
+        Provider(name: "Youtube", image: Images.Youtube ,original:true , deleted:false),
+        Provider(name: "iCloud", image: Images.iCloud   ,original:true , deleted:false),
+        Provider(name: "Amazon", image: Images.amazon   ,original:true , deleted:false),
+        Provider( name: "Apple Music", image: Images.appleMusic ,original:true , deleted:false),
+        Provider( name: "Apple TV", image: Images.appleTv ,original:true , deleted:false),
     ]
 }
 #endif

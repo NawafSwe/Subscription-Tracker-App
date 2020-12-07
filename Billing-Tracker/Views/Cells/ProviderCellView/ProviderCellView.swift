@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct ProviderCellView: View {
-    let provider:Provider
+    let name:String
+    let image:String
     var body: some View {
         HStack{
-        Image(provider.image)
+        Image(image)
             .resizable()
             .scaledToFit()
             .frame(width:26, height: 26)
-        Text(provider.name)
+        Text(name)
             .font(.subheadline)
             .foregroundColor(.standardText)
             
@@ -25,6 +26,6 @@ struct ProviderCellView: View {
 
 struct ProviderCellView_Previews: PreviewProvider {
     static var previews: some View {
-        ProviderCellView(provider: Provider(name: Images.Netflix , image: Images.Netflix ))
+        ProviderCellView(name: Images.Netflix , image: Images.Netflix)
     }
 }

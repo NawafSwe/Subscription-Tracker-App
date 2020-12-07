@@ -10,6 +10,7 @@ import SwiftUI
 struct SettingView: View {
     @StateObject var viewModel = SettingViewModel()
     @State var showCustomProvidersView = false
+    @State var showReadyProviders = false
     var body: some View {
         ZStack{
             NavigationView {
@@ -63,7 +64,7 @@ struct SettingView: View {
                         
                         
                         Button(action:{
-                            showCustomProvidersView.toggle()
+                            showReadyProviders.toggle()
                         }){
                             HStack{
                                 Image(systemName: Icons.SFbookmark )
@@ -74,8 +75,8 @@ struct SettingView: View {
                                 Text("Ready Providers With Icons")
                                     .foregroundColor(.standardText)
                             }
-                        }.sheet(isPresented: $showCustomProvidersView){
-                            ManageProvidersView()
+                        }.sheet(isPresented: $showReadyProviders){
+                            ProvidedProvidersView()
                         }
                     }
                     Section(header:Text("Support")){

@@ -17,7 +17,7 @@ struct ManageProvidersView: View {
                 NavigationView {
                     List{
                         ForEach(viewModel.providers){ list in
-                            ProviderCellView(provider: list.provider)
+                            ProviderCellView(name: list.provider.name, image: list.provider.image)
                             
                         }
                         

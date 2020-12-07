@@ -19,7 +19,7 @@ struct ProvidersSelectionView:View{
                     self.viewModel.showProvidersList = false
                 }){
                     HStack{
-                        ProviderCellView(provider: list.provider)
+                        ProviderCellView(name: list.provider.name, image: list.provider.image)
                         
                         if viewModel.selectedProvider?.id == list.provider.id {
                             Spacer()

@@ -43,7 +43,8 @@ final class ManageProvidersViewModel : ObservableObject{
             }
             return 
         }
-        let helperProvider = Provider(name: self.providerName, image: Images.CustomProvider)
+        // provider by user
+        let helperProvider = Provider(name: self.providerName, image: Images.CustomProvider , original : false , deleted: false )
         
         providersRepository.addProvider(provider: helperProvider){result in
             switch result {

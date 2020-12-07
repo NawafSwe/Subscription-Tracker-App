@@ -19,7 +19,7 @@ struct UpdateSubscriptionView:View{
                         HStack{
                             Text("Provider")
                             Spacer()
-                            ProviderCellView(provider: Provider(name: viewModel.subscription.subscription.name, image: viewModel.subscription.subscription.image))
+                            ProviderCellView(name: viewModel.subscription.subscription.name, image: viewModel.subscription.subscription.image )
                             
                         }
                     }
@@ -74,7 +74,7 @@ struct UpdateSubscriptionView:View{
                 DismissButtonView()
             } ,
             trailing: Button(action:{viewModel.updateSubscription()}){
-                saveButtonView(title:"Update")
+                StandardButton(title:"Update")
             })
             .navigationTitle("Edit Subscription 💳")
         }
