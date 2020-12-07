@@ -17,7 +17,7 @@ final class ProviderServices : ObservableObject ,Identifiable    {
     private var cancellables  = Set<AnyCancellable>()
     init(provider:Provider){
         self.provider  = provider
-        
+        //getting all providers
         $provider
             .compactMap{provider in
                 provider.id

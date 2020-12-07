@@ -17,6 +17,7 @@ final class ProvidedProvidersViewModel : ObservableObject{
     @Published var didSelectProvider = false
     private var cancellables = Set<AnyCancellable>()
     
+    //init original providers
     init(){
         self.providersRepository
             .$originalProviders
