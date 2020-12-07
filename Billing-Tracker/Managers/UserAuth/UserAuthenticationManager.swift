@@ -63,14 +63,14 @@ final class UserAuthenticationManager : ObservableObject{
             
             DispatchQueue.main.async { self.user = user }
             ///initing user with initial providers
-            let givenProviders:[Provider] = [ .init(name: "Spotify", image: Images.Spotify ),
-                                              .init(name: "Netflix", image: Images.Netflix ),
-                                              .init(name: "Youtube", image: Images.Youtube),
-                                              .init(name: "iCloud", image: Images.iCloud),
-                                              .init(name: "Amazon", image: Images.amazon ),
-                                              .init( name: "Apple Music", image: Images.appleMusic),
-                                              .init( name: "Apple TV", image: Images.appleTv) ,
-                                              .init(name: "Uber", image: Images.uber)  ]
+            let givenProviders:[Provider] = [ .init(name: "Spotify", image: Images.Spotify ,original:true , deleted:false ),
+                                              .init(name: "Netflix", image: Images.Netflix ,original:true , deleted:false ),
+                                              .init(name: "Youtube", image: Images.Youtube ,original:true , deleted:false ),
+                                              .init(name: "iCloud", image: Images.iCloud ,original:true , deleted:false ),
+                                              .init(name: "Amazon", image: Images.amazon ,original:true , deleted:false ),
+                                              .init( name: "Apple Music", image: Images.appleMusic ,original:true , deleted:false),
+                                              .init( name: "Apple TV", image: Images.appleTv ,original:true , deleted:false) ,
+                                              .init(name: "Uber", image: Images.uber ,original:true , deleted:false)  ]
             
             for givenProvider in givenProviders{ self.providersRepository.addProvider(provider: givenProvider){_  in} }
             

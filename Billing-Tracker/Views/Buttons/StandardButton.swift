@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-struct saveButtonView:View{
+struct StandardButton:View{
     let title:String
     var body: some View{
         Text(title)
@@ -24,7 +24,7 @@ struct saveButtonView:View{
 
 struct saveButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        saveButtonView(title:"Update")
+        StandardButton(title:"Update")
             .colorScheme(.dark)
     }
 }
