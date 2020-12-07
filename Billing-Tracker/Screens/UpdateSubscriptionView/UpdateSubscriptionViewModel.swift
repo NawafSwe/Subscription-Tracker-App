@@ -18,17 +18,11 @@ final class UpdateSubscriptionViewModel:ObservableObject{
     private var cancellables = Set<AnyCancellable>()
     @Published var cycleTypes = ["weekly" , "monthly", "yearly"]
     @Published var subscription: SubscriptionServices
-
     
     
     
-    init(subscription:SubscriptionServices){
-        self.subscription = subscription
-        
-        
-    }
-    
-    
+    //MARK:- init
+    init(subscription:SubscriptionServices){ self.subscription = subscription }
     
     //MARK:- updateSubscription
     func updateSubscription(){
@@ -37,17 +31,20 @@ final class UpdateSubscriptionViewModel:ObservableObject{
         //asking repo to update and sink it
         $subscription
             .sink{ sub in
-                self.subscriptionRepository.updateSubscription(subscription: sub.subscription) { result in
+                self.subscriptionRepository.updateSubscription(subscription: sub.subscription) { [self] result in
                     switch result {
                         case .success(_):
-                            self.alertItem = SubscriptionFormAlerts.savedSuccessfully
+                            DispatchQueue.main.async {
+                                self.alertItem = SubscriptionFormAlerts.savedSuccessfully
+                            }
                             self.subscription.subscription = sub.subscription
                             
                         case .failure( _ ):
-                            self.alertItem = SubscriptionFormAlerts.unableToProceed
-                            
+                            DispatchQueue.main.async {
+                                self.alertItem = SubscriptionFormAlerts.unableToProceed
+                                
+                            }
                     }
-                    
                 }
                 
             }

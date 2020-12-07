@@ -41,9 +41,9 @@ final class ManageSubscriptionsViewModel : ObservableObject{
         // making sure we have the id
         guard let safeId = captureId else {return }
         // deleting the subscription
-        subscriptionsRepository.deleteSubscription(subscriptionId: safeId){result in
+        subscriptionsRepository.deleteSubscription(subscriptionId: safeId){ [self] result in
             switch result{
-                case .success(_):
+                case .success( _ ):
                     DispatchQueue.main.async {
                         self.alertItem = AlertItem(title: Text("Success"), message: Text("Subscription deleted successfully"), dismissButton: .default(Text("OK")))
                     }

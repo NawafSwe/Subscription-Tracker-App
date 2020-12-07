@@ -38,6 +38,7 @@ struct ManageSubscriptionsView: View {
             .sheet(isPresented: $viewModel.showUpdateForm){
                 UpdateSubscriptionView(viewModel: UpdateSubscriptionViewModel(subscription: viewModel.selectedSubscription!))
             }
+           
             
             /// if subscriptions list  empty show empty state
             if viewModel.subscriptions.isEmpty{

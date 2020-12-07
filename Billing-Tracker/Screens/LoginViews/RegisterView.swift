@@ -11,7 +11,6 @@ struct RegisterView: View {
     @ObservedObject var viewModel : RegisterViewModel
     var screen = UIScreen.main.bounds
     var body: some View {
-        ZStack {
             VStack( alignment: .leading, spacing: 30){
                 Text("Billing tracker ⌚️")
                     .font(.title)
@@ -77,11 +76,9 @@ struct RegisterView: View {
             }
             .padding()
             .shadow(radius: 3)
+            .background(Color.backgroundCell.edgesIgnoringSafeArea(.all) )
             
         }
-        
-        .background(Color.backgroundCell.edgesIgnoringSafeArea(.all) )
-    }
 }
 
 struct RegisterView_Previews: PreviewProvider {
