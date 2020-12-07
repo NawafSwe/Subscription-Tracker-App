@@ -56,7 +56,7 @@
 		398603A22572FD3800554B34 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 398603A12572FD3800554B34 /* GoogleService-Info.plist */; };
 		398A474D257367D700C4212B /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398A474C257367D700C4212B /* RegisterViewModel.swift */; };
 		398A475625736FDD00C4212B /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398A475525736FDD00C4212B /* SettingViewModel.swift */; };
-		39984170257847BA00A3F15C /* EmptySubscriptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3998416F257847BA00A3F15C /* EmptySubscriptionsView.swift */; };
+		39984170257847BA00A3F15C /* EmptySubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3998416F257847BA00A3F15C /* EmptySubscriptionView.swift */; };
 		39984173257847CC00A3F15C /* EmptyProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39984172257847CC00A3F15C /* EmptyProviders.swift */; };
 		3999564A2578BAF4000D907D /* ManageProvidersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399956492578BAF4000D907D /* ManageProvidersView.swift */; };
 		3999564D2578BC45000D907D /* ManageProvidersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999564C2578BC45000D907D /* ManageProvidersViewModel.swift */; };
@@ -138,7 +138,7 @@
 		398603A12572FD3800554B34 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		398A474C257367D700C4212B /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		398A475525736FDD00C4212B /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
-		3998416F257847BA00A3F15C /* EmptySubscriptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySubscriptionsView.swift; sourceTree = "<group>"; };
+		3998416F257847BA00A3F15C /* EmptySubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySubscriptionView.swift; sourceTree = "<group>"; };
 		39984172257847CC00A3F15C /* EmptyProviders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyProviders.swift; sourceTree = "<group>"; };
 		399956492578BAF4000D907D /* ManageProvidersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageProvidersView.swift; sourceTree = "<group>"; };
 		3999564C2578BC45000D907D /* ManageProvidersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageProvidersViewModel.swift; sourceTree = "<group>"; };
@@ -297,13 +297,6 @@
 			path = ProviderCellView;
 			sourceTree = "<group>";
 		};
-		3932C83C257ACD3D0042DEF6 /* Forms */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Forms;
-			sourceTree = "<group>";
-		};
 		394780C72571854500C97EAA /* SubscriptionTimingsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,7 +376,6 @@
 			isa = PBXGroup;
 			children = (
 				3929C7E42571DC350012DD51 /* UIkitViews */,
-				3932C83C257ACD3D0042DEF6 /* Forms */,
 				3998416E2578479800A3F15C /* Empty State views */,
 				39F215A725772B9F009332E7 /* PersonIconView */,
 				397EAB082573E68B00E1F7C3 /* LottiesViews */,
@@ -476,7 +468,7 @@
 		3998416E2578479800A3F15C /* Empty State views */ = {
 			isa = PBXGroup;
 			children = (
-				3998416F257847BA00A3F15C /* EmptySubscriptionsView.swift */,
+				3998416F257847BA00A3F15C /* EmptySubscriptionView.swift */,
 				39984172257847CC00A3F15C /* EmptyProviders.swift */,
 			);
 			path = "Empty State views";
@@ -798,7 +790,7 @@
 				397EAB1D2573FF5C00E1F7C3 /* FirestoreService.swift in Sources */,
 				3929C7F12571DCDF0012DD51 /* SafariView.swift in Sources */,
 				3929C7EA2571DC720012DD51 /* LottieView.swift in Sources */,
-				39984170257847BA00A3F15C /* EmptySubscriptionsView.swift in Sources */,
+				39984170257847BA00A3F15C /* EmptySubscriptionView.swift in Sources */,
 				399AD2E825706F9300AFA10A /* HomeTabView.swift in Sources */,
 				39D3B7B125731EBD005881A4 /* LandingView.swift in Sources */,
 				390BF4FC2577E6B9007B4BC3 /* BackTrackButton.swift in Sources */,

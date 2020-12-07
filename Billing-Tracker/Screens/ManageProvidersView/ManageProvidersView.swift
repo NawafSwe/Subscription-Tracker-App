@@ -37,6 +37,10 @@ struct ManageProvidersView: View {
                 .shadow(radius: viewModel.showAddProvider ? 10 : 0)
                 .blur(radius: viewModel.showAddProvider ?  10 : 0)
                 
+                if viewModel.providers.isEmpty{
+                    EmptyProviders()
+                    
+                }
                 if viewModel.showAddProvider{
                     AddProviderView(viewModel: viewModel )
                         .transition(.move(edge: .bottom))

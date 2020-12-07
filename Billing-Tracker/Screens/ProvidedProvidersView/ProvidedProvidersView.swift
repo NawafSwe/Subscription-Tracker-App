@@ -10,24 +10,30 @@ import SwiftUI
 struct ProvidedProvidersView: View {
     @StateObject var viewModel = ProvidedProvidersViewModel()
     var body: some View {
-        NavigationView {
-            List(viewModel.providerServices){provider in
-                HStack{
-                    ProviderCellView(name: provider.provider.name , image: provider.provider.image)
-                    Spacer()
-                    Button(action:{
-                        self.viewModel.addProvider(provider: provider)
-                    }){
-                        Image(systemName: Icons.SFAddProvider)
-                            .renderingMode(.original)
-                            .resizable()
-                            .frame(width:32 , height: 32)
-                        
+        ZStack {
+            NavigationView {
+                List(viewModel.providerServices){provider in
+                    HStack{
+                        ProviderCellView(name: provider.provider.name , image: provider.provider.image)
+                        Spacer()
+                        Button(action:{
+                            self.viewModel.addProvider(provider: provider)
+                        }){
+                            Image(systemName: Icons.SFAddProvider)
+                                .renderingMode(.original)
+                                .resizable()
+                                .frame(width:32 , height: 32)
+                            
+                        }
                     }
                 }
+                .navigationTitle("Providers With Icons 💳")
+                .navigationBarTitleDisplayMode(.inline)
             }
-            .navigationTitle("Providers With Icons 💳")
-            .navigationBarTitleDisplayMode(.inline)
+            
+            if viewModel.providerServices.isEmpty{
+                EmptyProviders()
+            }
         }
     }
 }
@@ -35,5 +41,6 @@ struct ProvidedProvidersView: View {
 struct ProvidedProvidersView_Previews: PreviewProvider {
     static var previews: some View {
         ProvidedProvidersView()
+            
     }
 }

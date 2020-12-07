@@ -19,5 +19,7 @@ enum Images{
     static let coloredCreditCard = "Creditcard"
     static let uber = "Uber"
     static let CustomProvider = "CustomProvider"
+    static let emptyProviders = "sales-team"
+    static let emptySubscription = "people-discussing-about-business-in-park"
     
 }

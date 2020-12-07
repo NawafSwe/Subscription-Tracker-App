@@ -53,7 +53,7 @@ struct SubscriptionListView: View {
             
             /// if subscription list  empty show empty state
             if viewModel.subscriptionServices.isEmpty{
-                EmptySubscriptionsView()
+                EmptySubscriptionView(imageName: Images.emptySubscription, text: "Your Subscription List Is Empty Please Add One to show your subscriptions ⌚️.")
             }
             
             /// if the user tapped on the sub show its detail
