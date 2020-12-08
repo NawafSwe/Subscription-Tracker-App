@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
-
+import Firebase
 struct SettingView: View {
     @StateObject var viewModel = SettingViewModel()
     @State var showCustomProvidersView = false
     @State var showReadyProviders = false
     @State var showAccountView = false
+    @ObservedObject var user = UserServices(user:UserAuthenticationManager.shared.user)
     var body: some View {
         ZStack{
             NavigationView {
@@ -46,7 +47,14 @@ struct SettingView: View {
                                     .foregroundColor(.standardText)
                             }
                         }.sheet(isPresented: $showAccountView) {
-                            AccountView()
+                            if let currentUser =  Auth.auth().currentUser{
+                                // get user data
+                               // inject them into account view
+                                 let userEmail = currentUser.email ?? ""
+                                 let displayName = currentUser.displayName ?? ""
+                                AccountView(viewModel: AccountViewModel(email: userEmail, preferredProviderName: self.user.user.preferredProviderName, preferredProviderImage: self.user.user.preferredProviderImage, age: self.user.user.age, gender: self.user.user.gender, displayName: displayName))
+                            }
+                           
                         }
                         
                         Button(action:{

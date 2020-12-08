@@ -9,24 +9,20 @@ import SwiftUI
 import Firebase
 struct AccountView: View {
     //view model will load all user data from user services
-    @State var email = Auth.auth().currentUser?.email ?? "nn123@gmail.com"
-    @State var displayName = Auth.auth().currentUser?.displayName ?? "Nawaf"
-    @State var age = ""
-    @State var gender = ""
-    @State var preferredProvider = ""
+    @ObservedObject var viewModel  : AccountViewModel
     @Environment (\.presentationMode) var presentationMode
     var body: some View {
         NavigationView {
             Form{
                 Section(header:Text("Account information")){
-                    TextField("Email", text: $email)
-                    TextField("Name" , text:$displayName)
+                    TextField("Email", text: $viewModel.email)
+                    TextField("Name" , text:$viewModel.displayName)
                     SecureField("Password" , text: .constant("**************************"))
                 }
                 Section(header:Text("Additional Information")){
-                    TextField("Age" , text:$age )
-                    TextField("gender",text:$gender)
-                    TextField("Preferred Provider" , text:$preferredProvider)
+                    TextField("Age" , text:$viewModel.age )
+                    TextField("gender",text:$viewModel.gender  )
+                    TextField("Preferred Provider" , text:$viewModel.preferredProviderName)
                 }
             }
             .navigationBarItems(leading: Button(action:{self.presentationMode.wrappedValue.dismiss()}){DismissButtonView()}
@@ -40,6 +36,6 @@ struct AccountView: View {
 
 struct AccountView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountView()
+        AccountView(viewModel: AccountViewModel(email: "", preferredProviderName: "", preferredProviderImage: "", age: "", gender: "", displayName: ""))
     }
 }

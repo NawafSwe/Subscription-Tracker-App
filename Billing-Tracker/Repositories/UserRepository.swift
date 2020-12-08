@@ -13,6 +13,7 @@ final class UserRepository : ObservableObject{
     @Published var user: User = userHolder.dummyUser
     private let db = Firestore.firestore()
     private let collectionName = FirestoreKeys.Collections.users.rawValue
+    static let shared = UserRepository()
     
     
     init(){ self.loadUserData(){ _  in } }
@@ -23,19 +24,50 @@ final class UserRepository : ObservableObject{
             db.collection(collectionName).document(userId)
                 .addSnapshotListener { (documentSnapshot, error) in
                     if let error = error{
-                        print(error)
+                        completion(.failure(error))
                         
                     }
                     if let safeDoc = documentSnapshot{
-                        guard let safeUser = try? safeDoc.data(as: User.self)else{
-                            completion(.failure(error!))
-                            return
-                            
-                        }
+                        guard let safeUser = try? safeDoc.data(as: User.self)else{ return }
+                        self.user = safeUser
                         completion(.success(safeUser))
                     }
                 }
         }
     }
+    
+    func addUser(docId:String , userData:User){
+        do{
+            try db.collection(collectionName).document(docId).setData(from: userData){ error in
+                if let error = error{
+                    fatalError(error.localizedDescription)
+                    
+                }
+                
+            }
+            
+        }catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    func updateUserData(userData:User){
+        if let userId = Auth.auth().currentUser?.uid{
+            do{
+                try db.collection(collectionName).document(userId).setData(from: userData){ error in
+                    if let error = error{
+                        fatalError(error.localizedDescription)
+                        
+                    }
+                    
+                }
+                
+            }catch{
+                fatalError(error.localizedDescription)
+            }
+        }
+    }
+    
+    func deleteUserData(){ }
 }
 
