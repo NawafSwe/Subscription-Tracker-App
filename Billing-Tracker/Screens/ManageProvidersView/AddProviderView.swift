@@ -54,6 +54,9 @@ struct AddProviderView: View {
             .background(Color.backgroundCell)
             .clipShape(RoundedRectangle(cornerSize: CGSize(width: 30, height: 30), style: .continuous))
             .shadow(radius: 3)
+            .overlay(
+                NotchBarView(width: 100, height: 10, cornerRadius: 3), alignment: .top
+            )
             .alert(item: $viewModel.alertItem) {alert in
                 Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
             }

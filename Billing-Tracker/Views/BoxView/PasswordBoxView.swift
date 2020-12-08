@@ -12,7 +12,7 @@ struct PasswordBoxView: View {
     var body: some View {
         
         ZStack {
-       
+            
             VStack(alignment: .leading , spacing :20){
                 Text("Current Password")
                     .bold()
@@ -21,16 +21,13 @@ struct PasswordBoxView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .disabled(true)
                 
-                Text("New Password")
-                    .bold()
+                
+                
                 SecureField("New Password", text: $viewModel.reEnteredPassword)
                     .frame(width:200, alignment: .leading)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
-                
-                Text("Re Enter New Password")
-                    .bold()
-                SecureField("New Password", text: $viewModel.reEnteredPassword)
+                SecureField("Re Enter New Password", text: $viewModel.verifyReEnteredPassword)
                     .frame(width:200, alignment: .leading)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
@@ -46,6 +43,9 @@ struct PasswordBoxView: View {
             .overlay(Button(action:{}){
                 DismissButtonView()
             }.padding() , alignment: .topLeading
+            )
+            .overlay(
+                NotchBarView(width: 100, height: 10, cornerRadius: 3).padding(.vertical,-0.5), alignment: .top
             )
             
             

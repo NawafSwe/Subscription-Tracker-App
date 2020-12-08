@@ -26,6 +26,7 @@ struct AccountView: View {
                                     .resizable()
                                     .renderingMode(.original)
                                     .frame(width:10 , height: 15)
+                                    .foregroundColor(.standardText)
                             }
                         }
                         .accentColor(.primary)

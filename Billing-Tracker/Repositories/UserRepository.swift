@@ -51,19 +51,21 @@ final class UserRepository : ObservableObject{
         }
     }
     
-    func updateUserData(userData:User){
+    func updateUserData(userData:User , completion: @escaping (Result<Void , Error>)-> Void){
         if let userId = Auth.auth().currentUser?.uid{
             do{
-                try db.collection(collectionName).document(userId).setData(from: userData){ error in
+                try db.collection(collectionName).document(userId).setData(from: userData , merge: true){ error in
                     if let error = error{
-                        fatalError(error.localizedDescription)
-                        
+                        completion(.failure(error))
+                        return
                     }
-                    
+                    completion(.success( () ))
+                    return
                 }
                 
             }catch{
-                fatalError(error.localizedDescription)
+                completion(.failure(error))
+                return
             }
         }
     }
