@@ -42,7 +42,7 @@ struct EmailBoxView: View {
                 Button(action:{}){
                     StandardButton(title: "Update")}.padding() , alignment: .topTrailing
             )
-            .overlay(Button(action:{}){
+            .overlay(Button(action:{self.viewModel.showEmailBox.toggle() }){
                 DismissButtonView()
             }.padding() , alignment: .topLeading
             )

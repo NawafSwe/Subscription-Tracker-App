@@ -11,14 +11,13 @@ struct AccountView: View {
     //view model will load all user data from user services
     @ObservedObject var viewModel  : AccountViewModel
     @Environment (\.presentationMode) var presentationMode
-    @State var showEmailBox = true
     @State var viewState: CGSize = .zero
     var body: some View {
         ZStack {
             NavigationView {
                 Form{
                     Section(header:Text("Account information")){
-                        Button(action:{self.showEmailBox.toggle()}){
+                        Button(action:{ self.viewModel.showEmailBox.toggle() }){
                             HStack {
                                 Text("Email :")
                                 Text("\(viewModel.email)")
@@ -45,20 +44,30 @@ struct AccountView: View {
                                     })
                 .navigationTitle("Profile")
             }
-            .blur(radius: showEmailBox ? 3 : 0)
+            .blur(radius: viewModel.showEmailBox ? 3 : 0)
             
-            if showEmailBox{
+            if viewModel.showEmailBox{
                 EmailBoxView(viewModel: viewModel)
+                    .transition(.move(edge: .bottom))
+                    .animation(.easeIn(duration: 0.3))
                     .overlay(Text("\(viewState.height)"),alignment: .top)
                     .gesture(
                         DragGesture().onChanged({value in
-                            
+                            //saving the value of the drag
+                            self.viewState = value.translation
+                            if self.viewState.height > 150{
+                                self.viewModel.showEmailBox = false
+                                self.viewState.height = .zero
+                            }
                         })
                         
                         .onEnded({value in
-                            
+                            self.viewState = .zero
                         })
                     )
+                    .offset(y: self.viewState.height > 0 ? self.viewState.height : 0)
+                    // prevent animation from propagation
+                    .animation(nil)
                 
                 
             }

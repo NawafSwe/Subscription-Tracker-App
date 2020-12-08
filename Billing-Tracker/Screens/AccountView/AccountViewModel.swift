@@ -23,6 +23,7 @@ final class AccountViewModel : ObservableObject{
     @Published var verifyReEnteredPassword = ""
     @Published var newEmail = ""
     @Published var password = ""
+    @Published var showEmailBox = false
     init(email:String, preferredProviderName:String , preferredProviderImage:String, age:String,
          gender:String, displayName:String
     ){
@@ -54,13 +55,13 @@ final class AccountViewModel : ObservableObject{
             
             let credential = EmailAuthProvider.credential(withEmail: email, password: "somePass")
             currentUser.reauthenticate(with: credential){
-                 user , error in
+                user , error in
                 if let error = error{
                     print(error.localizedDescription)
                 }
                 
-                   
-               }
+                
+            }
             
             if currentUser.email != self.email{
                 currentUser.updateEmail(to: self.email) { error in
