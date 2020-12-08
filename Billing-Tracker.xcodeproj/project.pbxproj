@@ -59,6 +59,9 @@
 		398A475625736FDD00C4212B /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398A475525736FDD00C4212B /* SettingViewModel.swift */; };
 		39921E91257F941C0081ED42 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39921E90257F941C0081ED42 /* AccountViewModel.swift */; };
 		39921E9A257FA0350081ED42 /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39921E99257FA0350081ED42 /* UserServices.swift */; };
+		39921E9E257FDA370081ED42 /* EmailBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39921E9D257FDA370081ED42 /* EmailBoxView.swift */; };
+		39921EA2257FDA450081ED42 /* PasswordBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39921EA1257FDA450081ED42 /* PasswordBoxView.swift */; };
+		39921EA5257FDAE20081ED42 /* LockIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39921EA4257FDAE20081ED42 /* LockIconView.swift */; };
 		39984170257847BA00A3F15C /* EmptySubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3998416F257847BA00A3F15C /* EmptySubscriptionView.swift */; };
 		39984173257847CC00A3F15C /* EmptyProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39984172257847CC00A3F15C /* EmptyProviders.swift */; };
 		3999564A2578BAF4000D907D /* ManageProvidersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399956492578BAF4000D907D /* ManageProvidersView.swift */; };
@@ -144,6 +147,9 @@
 		398A475525736FDD00C4212B /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		39921E90257F941C0081ED42 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		39921E99257FA0350081ED42 /* UserServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServices.swift; sourceTree = "<group>"; };
+		39921E9D257FDA370081ED42 /* EmailBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailBoxView.swift; sourceTree = "<group>"; };
+		39921EA1257FDA450081ED42 /* PasswordBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordBoxView.swift; sourceTree = "<group>"; };
+		39921EA4257FDAE20081ED42 /* LockIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockIconView.swift; sourceTree = "<group>"; };
 		3998416F257847BA00A3F15C /* EmptySubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySubscriptionView.swift; sourceTree = "<group>"; };
 		39984172257847CC00A3F15C /* EmptyProviders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyProviders.swift; sourceTree = "<group>"; };
 		399956492578BAF4000D907D /* ManageProvidersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageProvidersView.swift; sourceTree = "<group>"; };
@@ -381,9 +387,10 @@
 		396117492571157800919EF3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				39921E9C257FDA230081ED42 /* BoxFormView */,
 				3929C7E42571DC350012DD51 /* UIkitViews */,
 				3998416E2578479800A3F15C /* Empty State views */,
-				39F215A725772B9F009332E7 /* PersonIconView */,
+				39F215A725772B9F009332E7 /* iconsView */,
 				397EAB082573E68B00E1F7C3 /* LottiesViews */,
 				3929C7BC2571C3260012DD51 /* SubscriptionBoxView */,
 				39D913492571819F00D9BDFE /* RingView */,
@@ -469,6 +476,15 @@
 				39EF3A602576723E00777442 /* SubscriptionRepository.swift */,
 			);
 			path = Repositories;
+			sourceTree = "<group>";
+		};
+		39921E9C257FDA230081ED42 /* BoxFormView */ = {
+			isa = PBXGroup;
+			children = (
+				39921E9D257FDA370081ED42 /* EmailBoxView.swift */,
+				39921EA1257FDA450081ED42 /* PasswordBoxView.swift */,
+			);
+			path = BoxFormView;
 			sourceTree = "<group>";
 		};
 		3998416E2578479800A3F15C /* Empty State views */ = {
@@ -638,12 +654,13 @@
 			path = SubscriptionCellView;
 			sourceTree = "<group>";
 		};
-		39F215A725772B9F009332E7 /* PersonIconView */ = {
+		39F215A725772B9F009332E7 /* iconsView */ = {
 			isa = PBXGroup;
 			children = (
 				39F215A825772BB8009332E7 /* PersonIconView.swift */,
+				39921EA4257FDAE20081ED42 /* LockIconView.swift */,
 			);
-			path = PersonIconView;
+			path = iconsView;
 			sourceTree = "<group>";
 		};
 		39F215AC25772F77009332E7 /* AccountView */ = {
@@ -810,6 +827,7 @@
 				3999564D2578BC45000D907D /* ManageProvidersViewModel.swift in Sources */,
 				392C38162579281100252032 /* ProviderCellView.swift in Sources */,
 				3929C7F52571E2370012DD51 /* SubscriptionFormViewModel.swift in Sources */,
+				39921E9E257FDA370081ED42 /* EmailBoxView.swift in Sources */,
 				390E967925747198004B17DA /* SubscriptionTimingsViewModel.swift in Sources */,
 				39F215A4257728F6009332E7 /* TabIconsModifiers.swift in Sources */,
 				39E7754725770F5300BB3B31 /* StandardButton.swift in Sources */,
@@ -858,6 +876,7 @@
 				39E7754325770A9700BB3B31 /* TextFieldModifiers.swift in Sources */,
 				39BEE92C2573651400218130 /* AuthAlert.swift in Sources */,
 				3929C7E62571DC4D0012DD51 /* BlurView.swift in Sources */,
+				39921EA5257FDAE20081ED42 /* LockIconView.swift in Sources */,
 				394780C92571856A00C97EAA /* SubscriptionTimings.swift in Sources */,
 				399AD2E625706F9300AFA10A /* Billing_TrackerApp.swift in Sources */,
 				3929C7BE2571C3460012DD51 /* SubscriptionBoxView.swift in Sources */,
@@ -868,6 +887,7 @@
 				390E967E257476F3004B17DA /* AddSubscriptionButton.swift in Sources */,
 				3981A52725764B7D00F8B677 /* UserRepository.swift in Sources */,
 				39D9133225711C4300D9BDFE /* Color+Ext.swift in Sources */,
+				39921EA2257FDA450081ED42 /* PasswordBoxView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
