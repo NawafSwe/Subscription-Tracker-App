@@ -38,10 +38,11 @@ struct ManageSubscriptionsView: View {
             .sheet(isPresented: $viewModel.showUpdateForm){
                 UpdateSubscriptionView(viewModel: UpdateSubscriptionViewModel(subscription: viewModel.selectedSubscription!))
             }
+           
             
             /// if subscriptions list  empty show empty state
             if viewModel.subscriptions.isEmpty{
-                EmptySubscriptionsView()
+                EmptySubscriptionView(imageName: Images.emptySubscription, text: "Your Subscription List Is Empty Please Add One to show your subscriptions ⌚️.")
             }
         }
     }

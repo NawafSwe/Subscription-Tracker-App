@@ -16,13 +16,13 @@ final class ProviderRepository:ObservableObject{
     private let storage = Storage.storage()
     @Published var originalProviders = [Provider]()
     
-    
+    //loading all user provider and original providers
     init(){
         self.loadData()
         self.getOriginalProviders(){_ in}
-        
     }
     
+    /// load data : loading all user  providers documents from firebase
     func loadData(){
         if let userId = Auth.auth().currentUser?.uid{
             self.db.collection(collectionName)
@@ -43,7 +43,10 @@ final class ProviderRepository:ObservableObject{
                 }
         }
     }
-    /// add provider
+    /// addProvider: adding new provider for the user
+    /// - Parameters:
+    ///   - provider: provider struct has all info about particular provider
+    ///   - completion: function handler
     func addProvider(provider:Provider , completion: @escaping (Result <Void, Error>) -> Void){
         if let userId = Auth.auth().currentUser?.uid{
             let providerHelper = Provider(id: provider.id, createdTime: provider.createdTime, userId: userId, name: provider.name, image: provider.image , original:provider.original , deleted: provider.deleted)
@@ -57,14 +60,15 @@ final class ProviderRepository:ObservableObject{
                     return
                 }
             }catch {
-                
                 completion(.failure(error))
-                
             }
         }
     }
     
-    /// delete provider
+    /// delete provider deleting user provider
+    /// - Parameters:
+    ///   - docId: document id
+    ///   - completion: completion handler
     func deleteProvider(docId: String , completion: @escaping (Result <Void, Error> ) -> Void)  {
         if let _ = Auth.auth().currentUser?.uid{
             db.collection(collectionName)
@@ -81,7 +85,9 @@ final class ProviderRepository:ObservableObject{
         }
         
     }
-    // getting providers given by the developer
+    
+    /// getting providers given by the developer
+    /// - Parameter completion: function handler
     func getOriginalProviders(completion: @escaping(Result< [Provider] , Error >  ) -> Void ){
         if let userId  = Auth.auth().currentUser?.uid{
             db.collection(collectionName)
@@ -102,6 +108,10 @@ final class ProviderRepository:ObservableObject{
         }
     }
     
+    /// addOriginalProvider adding an original provider provided by the developer
+    /// - Parameters:
+    ///   - docId: document id
+    ///   - completion: function handler
     func addOriginalProvider(docId:String , completion: @escaping (Result <Void , Error> )-> Void){
         if let _ = Auth.auth().currentUser?.uid{
             db.collection(collectionName)
@@ -117,7 +127,11 @@ final class ProviderRepository:ObservableObject{
                 }
         }
     }
-    // upload images
+    /// uploading images to firebase
+    /// - Parameters:
+    ///   - image: UIimage to convert it into jpegData
+    ///   - providerName: provider name to save the image by the provider name
+    ///   - completion: function handler
     func uploadImage(image:UIImage, providerName: String , completion: @escaping (Result<URL?,Error>)->Void){
         
         guard let imageData = image.jpegData(compressionQuality: 0.5) else {
@@ -142,6 +156,4 @@ final class ProviderRepository:ObservableObject{
             
         }
     }
-    
-    
 }

@@ -53,7 +53,10 @@ final class ManageProvidersViewModel : ObservableObject{
                         self.alertItem = AlertItem(title: Text("Error"), message: Text(error.localizedDescription), dismissButton: .default(Text("OK")))
                     }
                 case .success(_):
-                    return
+                    DispatchQueue.main.async {
+                        self.alertItem = ProviderFormAlert.success
+                    }
+                  
                     
             }
         }

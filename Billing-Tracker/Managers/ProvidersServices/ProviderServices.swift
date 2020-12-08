@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 import Combine
 final class ProviderServices : ObservableObject ,Identifiable    {
-
+    
     @Published var provider : Provider
     @Published var providersRepository = ProviderRepository()
     var id = ""
@@ -17,7 +17,7 @@ final class ProviderServices : ObservableObject ,Identifiable    {
     private var cancellables  = Set<AnyCancellable>()
     init(provider:Provider){
         self.provider  = provider
-        
+        //getting all providers
         $provider
             .compactMap{provider in
                 provider.id

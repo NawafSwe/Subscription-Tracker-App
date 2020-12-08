@@ -22,6 +22,9 @@ struct ManageProvidersView: View {
                         }
                         
                         .onDelete(perform: viewModel.deleteProvider )
+                        .alert(item: $viewModel.alertItem){alert in
+                            Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
+                        }
                         
                     }
                     .environment(\.editMode, .constant(self.viewModel.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
@@ -33,9 +36,14 @@ struct ManageProvidersView: View {
                     .navigationTitle("Custom Providers🧾")
                     
                 }
+
                 .disabled(viewModel.showAddProvider)
                 .shadow(radius: viewModel.showAddProvider ? 10 : 0)
                 .blur(radius: viewModel.showAddProvider ?  10 : 0)
+                if viewModel.providers.isEmpty{
+                    EmptyProviders()
+                    
+                }
                 
                 if viewModel.showAddProvider{
                     AddProviderView(viewModel: viewModel )

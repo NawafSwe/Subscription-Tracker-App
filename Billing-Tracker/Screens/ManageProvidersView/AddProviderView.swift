@@ -25,8 +25,10 @@ struct AddProviderView: View {
                     }){
                         StandardButton(title:"Add")
                     }
+                    .alert(item: $viewModel.alertItem){alert in
+                        Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
+                    }
                 }
-                
                 
                 Text("Add Provider ☕️")
                     .multilineTextAlignment(.center)

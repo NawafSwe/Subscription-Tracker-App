@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
-
+import Firebase
 struct SettingView: View {
     @StateObject var viewModel = SettingViewModel()
     @State var showCustomProvidersView = false
     @State var showReadyProviders = false
+    @State var showAccountView = false
+    @ObservedObject var user = UserServices(user:UserAuthenticationManager.shared.user)
     var body: some View {
         ZStack{
             NavigationView {
@@ -34,7 +36,7 @@ struct SettingView: View {
                             
                         }
                         
-                        Button(action:{}){
+                        Button(action:{self.showAccountView.toggle()}){
                             HStack {
                                 Image(systemName: "person.crop.circle.fill")
                                     .resizable()
@@ -44,6 +46,15 @@ struct SettingView: View {
                                 Text("Account")
                                     .foregroundColor(.standardText)
                             }
+                        }.sheet(isPresented: $showAccountView) {
+                            if let currentUser =  Auth.auth().currentUser{
+                                // get user data
+                               // inject them into account view
+                                 let userEmail = currentUser.email ?? ""
+                                 let displayName = currentUser.displayName ?? ""
+                                AccountView(viewModel: AccountViewModel(email: userEmail, preferredProviderName: self.user.user.preferredProviderName, preferredProviderImage: self.user.user.preferredProviderImage, age: self.user.user.age, gender: self.user.user.gender, displayName: displayName))
+                            }
+                           
                         }
                         
                         Button(action:{
@@ -113,7 +124,6 @@ struct SettingView: View {
                         }
                     }
                 }
-                
                 .navigationTitle("Setting")
             }
             

@@ -135,7 +135,7 @@ final class SubscriptionRepository :ObservableObject{
                             }
                             
                             completion(.success( () ))
-                            return
+                        
                         }
                 }catch {
                     completion(.failure(error))

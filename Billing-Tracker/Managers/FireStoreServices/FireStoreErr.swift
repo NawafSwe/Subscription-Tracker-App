@@ -10,5 +10,4 @@ enum FireStoreErr :String, Error  {
     case noSnapShot = "No snap shot found"
     case noSnapShotData  = "There is not data"
     case cannotDecode = "Unable to decode data"
-    
-}
+    }

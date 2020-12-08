@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 //MARK:- K struct holds constants values used across the app
 struct K {
     /// developer account
@@ -36,4 +37,8 @@ struct FirestoreKeys{
         case Amazon = "https://firebasestorage.googleapis.com/v0/b/billing-tracker-bfee4.appspot.com/o/providers%2FProviders%2FProviders%2Famazon.svg?alt=media&token=52aa0e98-1ebd-4d07-bea1-0200ac549f77"
         case AppleTv = "https://firebasestorage.googleapis.com/v0/b/billing-tracker-bfee4.appspot.com/o/providers%2FProviders%2FProviders%2FAppleTv.svg?alt=media&token=1a43108e-0cba-42d6-b455-5ad796886d42"
     }
+    
+    func hideKeyBoard (){
+         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+     }
 }

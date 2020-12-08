@@ -10,7 +10,7 @@ import Firebase
 import FirebaseFirestoreSwift
 import UIKit
 enum AuthenticationState { case signIn , signOut , null }
-enum userHolder  { static let dummyUser = User(uid: "" , displayName: "test" , email : "") }
+enum userHolder  { static let dummyUser = User(uid: "" , displayName: "test" , email : "", age: "" , gender: "" , preferredProviderName: "" , preferredProviderImage: "" ) }
 
 //MARK:- UserAuthenticationManager class for using firebase authentication services
 final class UserAuthenticationManager : ObservableObject{
@@ -18,22 +18,30 @@ final class UserAuthenticationManager : ObservableObject{
     @Published var user : User = userHolder.dummyUser
     @Published var authState:AuthenticationState = .null
     @Published var providersRepository = ProviderRepository()
+    @Published var userRepository = UserRepository()
     static let shared = UserAuthenticationManager()
-    let db = Firestore.firestore()
-    private init () {}
-    
+    private let db = Firestore.firestore()
+    private init () { }
+
     /// start listing for user
     func listen () {
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             
-            if let user = user {
+            if let _ = user {
                 // if we have a user, create a new user model
-                DispatchQueue.main.async {
-                    // check if I add some providers from the cloud
-                    
-                    self.user = User(uid: user.uid, displayName: user.displayName, email: user.email)
-                    self.authState = .signIn
+                // check if I add some providers from the cloud
+                    self.userRepository.loadUserData(){result in
+                        switch result{
+                            case .success(let user):
+                                DispatchQueue.main.async {
+                                    self.user = user
+                                    self.authState = .signIn
+                                }
+                            case .failure(_):
+                                return
+                                
+                        }
                 }
             } else {
                 // if we don't have a user, set our session to nil
@@ -45,7 +53,6 @@ final class UserAuthenticationManager : ObservableObject{
             }
         }
     }
-    
     // additional methods (sign up, sign in) will go here
     func register(email:String , password:String , completion: @escaping (Result<Void,Error>)-> () ){
         
@@ -59,18 +66,20 @@ final class UserAuthenticationManager : ObservableObject{
                 return
             }
             /// initing new user object from the authentication response if there is no error
-            let user = User(uid: result.user.uid, displayName: result.user.displayName, email: result.user.email)
+            let user = User(uid: result.user.uid, displayName: result.user.displayName, email: result.user.email , age: "" , gender: "" , preferredProviderName: "" , preferredProviderImage: "")
+            
             
             DispatchQueue.main.async { self.user = user }
             ///initing user with initial providers
-            let givenProviders:[Provider] = [ .init(name: "Spotify", image: Images.Spotify ,original:true , deleted:false ),
-                                              .init(name: "Netflix", image: Images.Netflix ,original:true , deleted:false ),
-                                              .init(name: "Youtube", image: Images.Youtube ,original:true , deleted:false ),
-                                              .init(name: "iCloud", image: Images.iCloud ,original:true , deleted:false ),
-                                              .init(name: "Amazon", image: Images.amazon ,original:true , deleted:false ),
-                                              .init( name: "Apple Music", image: Images.appleMusic ,original:true , deleted:false),
-                                              .init( name: "Apple TV", image: Images.appleTv ,original:true , deleted:false) ,
-                                              .init(name: "Uber", image: Images.uber ,original:true , deleted:false)  ]
+            let givenProviders:[Provider] = [
+                .init(name: "Spotify", image: Images.Spotify ,original:true , deleted:false ),
+                .init(name: "Netflix", image: Images.Netflix ,original:true , deleted:false ),
+                .init(name: "Youtube", image: Images.Youtube ,original:true , deleted:false ),
+                .init(name: "iCloud", image: Images.iCloud ,original:true , deleted:false ),
+                .init(name: "Amazon", image: Images.amazon ,original:true , deleted:false ),
+                .init( name: "Apple Music", image: Images.appleMusic ,original:true , deleted:false),
+                .init( name: "Apple TV", image: Images.appleTv ,original:true , deleted:false) ,
+                .init(name: "Uber", image: Images.uber ,original:true , deleted:false) ]
             
             for givenProvider in givenProviders{ self.providersRepository.addProvider(provider: givenProvider){_  in} }
             
@@ -94,18 +103,26 @@ final class UserAuthenticationManager : ObservableObject{
                 completion(.failure(error))
                 return
             }
-            if let user = authResult?.user {
-                let safeUser =  User(uid: user.uid, displayName: user.displayName, email: user.email)
-                DispatchQueue.main.async {
-                    self.user  = safeUser
-                    self.authState = .signIn
+            if let _ = authResult?.user {
+                // getting user repo
+                // then set the info
+                self.userRepository.loadUserData(){result in
+                    switch result{
+                        case .success(let user):
+                            DispatchQueue.main.async {
+                                self.user = user
+                                self.authState = .signIn
+                            }
+                        case .failure(let error):
+                            completion(.failure(error))
+                            
+                    }
                 }
-                completion(.success(()))
+                completion(.success(( )))
             }
         }
         
     }
-    
     
     /// logout function
     func logout()->Bool{
@@ -135,5 +152,3 @@ final class UserAuthenticationManager : ObservableObject{
     private func retrieveUser(uid: String, completion: @escaping (Result<Void, Error>) -> ()){ }
     
 }
-
-

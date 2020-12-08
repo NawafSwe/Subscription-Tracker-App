@@ -14,25 +14,28 @@ struct LandingView: View {
     @StateObject var viewModel = RegisterViewModel()
     var body: some View {
         ZStack {
-            if shared.authState == .signOut {
-                RegisterView(viewModel: viewModel)
+            Group {
+                if shared.authState == .signOut {
+                    RegisterView(viewModel: viewModel)
+                }
+                else{
+                    HomeTabView()
+                        //                    .transition(.move(edge: .leading))
+                        .animation(.easeIn, value: true)
+                        .animation(nil)
+                }
+                
+               
             }
-            else{
-                HomeTabView()
-                    //                    .transition(.move(edge: .leading))
-                    .animation(.easeIn, value: true)
-                    .animation(nil)
-            }
-            
             LoadingView(isLoading:$viewModel.isLoading)
+            /// listing if there is user or not
+            .onAppear{
+                shared.listen()
+                self.viewModel.isLoading = true
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
+                    self.viewModel.isLoading = false
+                }
         }
-        /// listing if there is user or not
-        .onAppear{
-            shared.listen()
-            self.viewModel.isLoading = true
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
-                self.viewModel.isLoading = false
-            }
         }
     }
 }
