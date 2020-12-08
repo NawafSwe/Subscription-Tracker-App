@@ -62,6 +62,7 @@
 		39921E9E257FDA370081ED42 /* EmailBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39921E9D257FDA370081ED42 /* EmailBoxView.swift */; };
 		39921EA2257FDA450081ED42 /* PasswordBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39921EA1257FDA450081ED42 /* PasswordBoxView.swift */; };
 		39921EA5257FDAE20081ED42 /* LockIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39921EA4257FDAE20081ED42 /* LockIconView.swift */; };
+		39921EAD257FF2BC0081ED42 /* NotchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39921EAC257FF2BC0081ED42 /* NotchBarView.swift */; };
 		39984170257847BA00A3F15C /* EmptySubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3998416F257847BA00A3F15C /* EmptySubscriptionView.swift */; };
 		39984173257847CC00A3F15C /* EmptyProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39984172257847CC00A3F15C /* EmptyProviders.swift */; };
 		3999564A2578BAF4000D907D /* ManageProvidersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399956492578BAF4000D907D /* ManageProvidersView.swift */; };
@@ -150,6 +151,7 @@
 		39921E9D257FDA370081ED42 /* EmailBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailBoxView.swift; sourceTree = "<group>"; };
 		39921EA1257FDA450081ED42 /* PasswordBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordBoxView.swift; sourceTree = "<group>"; };
 		39921EA4257FDAE20081ED42 /* LockIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockIconView.swift; sourceTree = "<group>"; };
+		39921EAC257FF2BC0081ED42 /* NotchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchBarView.swift; sourceTree = "<group>"; };
 		3998416F257847BA00A3F15C /* EmptySubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySubscriptionView.swift; sourceTree = "<group>"; };
 		39984172257847CC00A3F15C /* EmptyProviders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyProviders.swift; sourceTree = "<group>"; };
 		399956492578BAF4000D907D /* ManageProvidersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageProvidersView.swift; sourceTree = "<group>"; };
@@ -255,12 +257,14 @@
 			path = ProvidersServices;
 			sourceTree = "<group>";
 		};
-		3929C7BC2571C3260012DD51 /* SubscriptionBoxView */ = {
+		3929C7BC2571C3260012DD51 /* BoxView */ = {
 			isa = PBXGroup;
 			children = (
+				39921EA1257FDA450081ED42 /* PasswordBoxView.swift */,
+				39921E9D257FDA370081ED42 /* EmailBoxView.swift */,
 				3929C7BD2571C3460012DD51 /* SubscriptionBoxView.swift */,
 			);
-			path = SubscriptionBoxView;
+			path = BoxView;
 			sourceTree = "<group>";
 		};
 		3929C7C62571D0CE0012DD51 /* ExpenseView */ = {
@@ -387,12 +391,12 @@
 		396117492571157800919EF3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				39921E9C257FDA230081ED42 /* BoxFormView */,
+				39921EAB257FF2A20081ED42 /* NotchViews */,
 				3929C7E42571DC350012DD51 /* UIkitViews */,
 				3998416E2578479800A3F15C /* Empty State views */,
 				39F215A725772B9F009332E7 /* iconsView */,
 				397EAB082573E68B00E1F7C3 /* LottiesViews */,
-				3929C7BC2571C3260012DD51 /* SubscriptionBoxView */,
+				3929C7BC2571C3260012DD51 /* BoxView */,
 				39D913492571819F00D9BDFE /* RingView */,
 				39D91344257176DF00D9BDFE /* Buttons */,
 				3961174A2571158000919EF3 /* Cells */,
@@ -478,13 +482,12 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
-		39921E9C257FDA230081ED42 /* BoxFormView */ = {
+		39921EAB257FF2A20081ED42 /* NotchViews */ = {
 			isa = PBXGroup;
 			children = (
-				39921E9D257FDA370081ED42 /* EmailBoxView.swift */,
-				39921EA1257FDA450081ED42 /* PasswordBoxView.swift */,
+				39921EAC257FF2BC0081ED42 /* NotchBarView.swift */,
 			);
-			path = BoxFormView;
+			path = NotchViews;
 			sourceTree = "<group>";
 		};
 		3998416E2578479800A3F15C /* Empty State views */ = {
@@ -830,6 +833,7 @@
 				39921E9E257FDA370081ED42 /* EmailBoxView.swift in Sources */,
 				390E967925747198004B17DA /* SubscriptionTimingsViewModel.swift in Sources */,
 				39F215A4257728F6009332E7 /* TabIconsModifiers.swift in Sources */,
+				39921EAD257FF2BC0081ED42 /* NotchBarView.swift in Sources */,
 				39E7754725770F5300BB3B31 /* StandardButton.swift in Sources */,
 				398A474D257367D700C4212B /* RegisterViewModel.swift in Sources */,
 				399AD2F62570724B00AFA10A /* SubscriptionCellView.swift in Sources */,

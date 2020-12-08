@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct SubscriptionListView: View {
     @StateObject var viewModel = SubscriptionListViewModel()
@@ -34,6 +35,7 @@ struct SubscriptionListView: View {
                     .navigationBarItems(leading: Button(action: {viewModel.showSubscriptionForm.toggle()}, label: {
                                                             AddSubscriptionButtonView() } ))
                     .navigationTitle("Subscriptions 💳")
+                    
                     
                     
                 }

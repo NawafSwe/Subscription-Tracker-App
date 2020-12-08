@@ -12,7 +12,9 @@ struct EmailBoxView: View {
     var body: some View {
         VStack {
             Spacer()
+            
             VStack(alignment: .leading , spacing :20){
+                
                 Text("Current Email")
                     .bold()
                 TextField("current Email", text: $viewModel.email)
@@ -20,39 +22,42 @@ struct EmailBoxView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .disabled(true)
                 
-                Text("New Email")
-                    .bold()
-                TextField("New Email", text: $viewModel.reEnteredPassword)
+                TextField("New Email", text: $viewModel.newEmail)
                     .frame(width :220, alignment: .leading)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
                 
-                Text("Your Password")
-                    .bold()
-                SecureField("Your Password", text: $viewModel.currentPassword)
+                
+                SecureField("Your Password", text: $viewModel.verifyReEnteredPassword)
                     .frame(width:220, alignment: .leading)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
             .padding()
-            .frame(width: UIScreen.screenWidth / 2 * 1.75 , height: UIScreen.screenHeight / 2 * 0.9 , alignment: .center)
+            .frame(maxWidth: .infinity)
+            .frame(height: UIScreen.screenHeight / 2 * 0.9 , alignment: .center)
             .background(Color.backgroundCell)
             .clipShape(RoundedRectangle(cornerSize: CGSize(width: 25, height: 10), style: .continuous))
             .shadow(radius: 2)
             .overlay(
-                Button(action:{}){
-                    StandardButton(title: "Update")}.padding() , alignment: .topTrailing
+                Button(action:viewModel.updateUserEmail ){
+                    StandardButton(title: "Update")}
+                    .padding()
+                    .alert(item: $viewModel.alertItem){alert in
+                        Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
+                    }
+                , alignment: .topTrailing
             )
-            .overlay(Button(action:{self.viewModel.showEmailBox.toggle() }){
-                DismissButtonView()
-            }.padding() , alignment: .topLeading
+            .overlay(
+                Button(action:{viewModel.showEmailBox.toggle()} ){
+                    DismissButtonView()}.padding() , alignment: .topLeading
+            )
+
+            .overlay(
+                NotchBarView(width: 100, height: 10, cornerRadius: 3).padding(.vertical,-0.5), alignment: .top
             )
         }
-        
-        
-        
+
     }
-    
-    
 }
 
 struct EmailBoxView_Previews: PreviewProvider {
@@ -60,3 +65,4 @@ struct EmailBoxView_Previews: PreviewProvider {
         EmailBoxView(viewModel: AccountViewModel(email: "", preferredProviderName: "", preferredProviderImage: "", age: "", gender: "", displayName: ""))
     }
 }
+

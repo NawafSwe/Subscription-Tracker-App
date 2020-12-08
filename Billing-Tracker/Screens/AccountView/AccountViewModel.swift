@@ -36,42 +36,7 @@ final class AccountViewModel : ObservableObject{
     }
     
     func updateUserInfo(){
-        
-        
-        // Prompt the user to re-provide their sign-in credentials
-        
-        
-        
         if let currentUser = Auth.auth().currentUser {
-            
-            // let creditnial = currentUser.refreshToken
-            //            currentUser.reauthenticate(with: creditnial) { user,error  in
-            //                              if let error = error {
-            //                                // An error happened.
-            //                              } else {
-            //                                // User re-authenticated.
-            //                              }
-            //                            }
-            
-            let credential = EmailAuthProvider.credential(withEmail: email, password: "somePass")
-            currentUser.reauthenticate(with: credential){
-                user , error in
-                if let error = error{
-                    print(error.localizedDescription)
-                }
-                
-                
-            }
-            
-            if currentUser.email != self.email{
-                currentUser.updateEmail(to: self.email) { error in
-                    if let error = error {
-                        // give alert
-                        print(error)
-                    }
-                }
-                
-            }
             if currentUser.displayName != displayName{
                 let changeRequest = currentUser.createProfileChangeRequest()
                 changeRequest.displayName = self.displayName
@@ -85,4 +50,58 @@ final class AccountViewModel : ObservableObject{
         }
     }
     
+    
+    func updateUserEmail(){
+        if let currentUser = Auth.auth().currentUser{
+            let credential = EmailAuthProvider.credential(withEmail: email, password: verifyReEnteredPassword)
+            currentUser.reauthenticate(with: credential){
+                user , error in
+                if let error = error{
+                    DispatchQueue.main.async {
+                        self.alertItem = AlertItem(title: Text("Re-Authentication Error"), message: Text(error.localizedDescription), dismissButton: .default(Text("OK")))
+                    }
+                    
+                    return
+                }
+                
+            }
+            currentUser.updateEmail(to: self.newEmail) { error in
+                if let error = error {
+                    // give alert
+                    DispatchQueue.main.async {
+                        self.alertItem = AlertItem(title: Text("Error"), message: Text(error.localizedDescription), dismissButton: .default(Text("OK")))
+                        
+                    }
+                    return
+                }
+                
+                self.email = self.newEmail
+                
+                //update user document
+                
+                let helperUser = User(uid: currentUser.uid, displayName: self.displayName, email: currentUser.email, age: self.age, gender: self.gender, preferredProviderName: self.preferredProviderName, preferredProviderImage: self.preferredProviderImage)
+                    
+                self.userRepository.updateUserData(userData: helperUser){result in
+                    switch result{
+                        case .success(_):
+                            DispatchQueue.main.async {
+                                self.alertItem = AlertItem(title: Text("Success"), message: Text("Successfully updated Your email"), dismissButton: .default(Text("OK")))
+                            }
+                            
+                        case .failure(let error):
+                            DispatchQueue.main.async {
+                                self.alertItem = AlertItem(title: Text("Error"), message: Text(error.localizedDescription), dismissButton: .default(Text("OK")))
+                            }
+                    }
+                }
+            }
+        }
+    }
+    func updateUserPassword(){}
 }
+
+
+
+
+
+
