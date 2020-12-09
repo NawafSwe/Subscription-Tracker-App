@@ -23,5 +23,6 @@ enum Icons{
     static let SFbookmark = "bookmark.fill"
     static let SFAddProvider = "rectangle.stack.badge.plus"
     static let SFChevronRight = "chevron.right"
+    static let SFChart = "chart.pie"
     
 }

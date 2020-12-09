@@ -10,8 +10,6 @@ import SwiftUI
 extension Color{
     static let backgroundCell = Color("sub_cell_background")
     static let mainColor = Color("main-color")
-    static let daysRingColor1 = Color("daysRingColor1")
-    static let daysRingColor2 = Color("daysRingColor2")
     static let charsLimitColor1 = Color("charsLimitColor1")
     static let charsLimitColor2 = Color("charsLimitColor2")
     static let iconsBackgroundColor = Color("iconsBackgroundColor")
@@ -19,8 +17,9 @@ extension Color{
     static let lunchViewIconsColor = Color("luchViewIconsColors")
     static let standardText = Color("standard_text")
     static let iconsFontColor = Color("IconsFont")
-    
     static let buttonSnow = Color("snowColor")
     static let buttonColor = Color("ButtonText")
+    static let chartBackground = Color("chartBackground")
+    static let ChartButtons = Color("ChartButtons")
     
 }
