@@ -1,13 +1,4 @@
-//
-//  Line.swift
-//  LineChart
-//
-//  Created by András Samu on 2019. 08. 30..
-//  Copyright © 2019. András Samu. All rights reserved.
-//
-
 import SwiftUI
-
 public struct Line: View {
     @ObservedObject var data: ChartData
     @Binding var frame: CGRect

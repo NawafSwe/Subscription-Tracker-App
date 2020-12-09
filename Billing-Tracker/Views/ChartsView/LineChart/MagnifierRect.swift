@@ -1,12 +1,5 @@
-//
-//  MagnifierRect.swift
-//  
-//
-//  Created by Samu András on 2020. 03. 04..
-//
 
 import SwiftUI
-
 public struct MagnifierRect: View {
     @Binding var currentNumber: Double
     var valueSpecifier:String

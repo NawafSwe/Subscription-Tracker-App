@@ -1,13 +1,5 @@
-//
-//  PieChartView.swift
-//  ChartView
-//
-//  Created by András Samu on 2019. 06. 12..
-//  Copyright © 2019. András Samu. All rights reserved.
-//
 
 import SwiftUI
-
 public struct PieChartView : View {
     public var data: [Double]
     public var title: String

@@ -10,7 +10,7 @@ import SwiftUI
 struct ChartView: View {
     @State var title:String = "Weekly"
     @State var data : [Double] = [8,23,54,32,12,37,7,23,43]
-    let myCustomStyle = ChartStyle(backgroundColor: .chartBackground , accentColor: .mainColor, secondGradientColor: .charsLimitColor1, textColor: .standardText, legendTextColor: .buttonSnow, dropShadowColor: .white)
+    let myCustomStyle = ChartStyle(backgroundColor: .chartBackground , accentColor: .mainColor, secondGradientColor: .charsLimitColor1, textColor: .standardText, legendTextColor: .buttonSnow, dropShadowColor: .black)
     var body: some View {
         ZStack {
             Color(.systemBackground)

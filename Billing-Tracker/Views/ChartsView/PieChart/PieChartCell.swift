@@ -1,13 +1,5 @@
-//
-//  PieChartCell.swift
-//  ChartView
-//
-//  Created by András Samu on 2019. 06. 12..
-//  Copyright © 2019. András Samu. All rights reserved.
-//
 
 import SwiftUI
-
 struct PieSlice: Identifiable {
     var id = UUID()
     var startDeg: Double

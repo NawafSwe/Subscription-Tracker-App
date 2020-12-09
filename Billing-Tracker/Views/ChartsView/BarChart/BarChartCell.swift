@@ -1,13 +1,5 @@
-//
-//  ChartCell.swift
-//  ChartView
-//
-//  Created by András Samu on 2019. 06. 12..
-//  Copyright © 2019. András Samu. All rights reserved.
-//
 
 import SwiftUI
-
 public struct BarChartCell : View {
     var value: Double
     var index: Int = 0

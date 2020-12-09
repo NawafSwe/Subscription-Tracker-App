@@ -1,13 +1,4 @@
-//
-//  Legend.swift
-//  LineChart
-//
-//  Created by András Samu on 2019. 09. 02..
-//  Copyright © 2019. András Samu. All rights reserved.
-//
-
 import SwiftUI
-
 struct Legend: View {
     @ObservedObject var data: ChartData
     @Binding var frame: CGRect

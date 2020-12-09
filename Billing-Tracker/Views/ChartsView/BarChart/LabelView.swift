@@ -1,13 +1,5 @@
-//
-//  LabelView.swift
-//  BarChart
-//
-//  Created by Samu András on 2020. 01. 08..
-//  Copyright © 2020. Samu András. All rights reserved.
-//
 
 import SwiftUI
-
 struct LabelView: View {
     @Binding var arrowOffset: CGFloat
     @Binding var title:String

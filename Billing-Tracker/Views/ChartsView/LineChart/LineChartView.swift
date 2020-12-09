@@ -1,13 +1,5 @@
-//
-//  LineCard.swift
-//  LineChart
-//
-//  Created by András Samu on 2019. 08. 31..
-//  Copyright © 2019. András Samu. All rights reserved.
-//
 
 import SwiftUI
-
 public struct LineChartView: View {
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     @ObservedObject var data:ChartData

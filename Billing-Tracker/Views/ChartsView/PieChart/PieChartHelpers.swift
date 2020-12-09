@@ -1,12 +1,5 @@
-//
-//  File.swift
-//  
-//
-//  Created by 曾文志 on 2020/7/30.
-//
 
 import SwiftUI
-
 func isPointInCircle(point: CGPoint, circleRect: CGRect) -> Bool {
     let r = min(circleRect.width, circleRect.height) / 2
     let center = CGPoint(x: circleRect.midX, y: circleRect.midY)

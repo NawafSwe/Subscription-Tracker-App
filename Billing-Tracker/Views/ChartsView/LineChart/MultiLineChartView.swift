@@ -1,12 +1,5 @@
-//
-//  File.swift
-//  
-//
-//  Created by Samu András on 2020. 02. 19..
-//
 
 import SwiftUI
-
 public struct MultiLineChartView: View {
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     var data:[MultiLineChartData]
