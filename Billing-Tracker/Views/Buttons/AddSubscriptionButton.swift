@@ -13,7 +13,7 @@ struct AddSubscriptionButtonView:View{
             .resizable()
             .scaledToFit()
             .frame(width: 32, height: 32)
-            .accentColor(.green)
+            .accentColor(.blue)
     }
 }
 
