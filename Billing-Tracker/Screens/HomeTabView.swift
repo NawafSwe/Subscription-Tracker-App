@@ -20,6 +20,13 @@ struct HomeTabView: View {
                 Text("Subscriptions")
                 
             }
+            ChartView().tabItem {
+                Image(systemName: Icons.SFChart)
+                    .resizable()
+                    .modifier(TabIconsModifiers())
+
+                Text("Statistics")
+            }
             
             SubscriptionTimingsView().tabItem {
                 Image(systemName: Icons.SFClock)
