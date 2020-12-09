@@ -164,4 +164,7 @@ final class SubscriptionRepository :ObservableObject{
             return 
         }
     }
+    
+    // for chart view to get prices for categorized subscriptions
+    func getCategorizedSubscriptions(){ }
 }
