@@ -26,9 +26,9 @@ final class ProviderRepository:ObservableObject{
     func loadData(){
         if let userId = Auth.auth().currentUser?.uid{
             self.db.collection(collectionName)
-                .order(by: "createdTime")
                 .whereField("userId", isEqualTo: userId)
                 .whereField("deleted", isEqualTo: false)
+                .order(by: "createdTime")
                 .addSnapshotListener { (querySnapshot, error) in
                     if let error = error {
                         fatalError("Error in your network I will customize them for sure \(error.localizedDescription)" )

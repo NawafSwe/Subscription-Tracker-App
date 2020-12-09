@@ -23,8 +23,8 @@ final class SubscriptionRepository :ObservableObject{
         if let userId = Auth.auth().currentUser?.uid{
             // loading subscriptions with user id
             db.collection(collectionName)
-                .order(by: "createdTime")
                 .whereField("userId", isEqualTo: userId)
+                .order(by: "createdTime")
                 .addSnapshotListener { (querySnapshot, error) in
                     if let error = error {
                         fatalError("Error in your network I will customize them for sure \(error.localizedDescription)" )
@@ -50,8 +50,8 @@ final class SubscriptionRepository :ObservableObject{
         if let userId = Auth.auth().currentUser?.uid{
             // loading subscriptions with user id
             db.collection(collectionName)
-                .order(by: "createdTime")
                 .whereField("userId", isEqualTo: userId)
+                .order(by: "createdTime")
                 .getDocuments { (querySnapshot, error) in
                     if let error = error {
                         fatalError("Error in your network I will customize them for sure \(error.localizedDescription)" )
