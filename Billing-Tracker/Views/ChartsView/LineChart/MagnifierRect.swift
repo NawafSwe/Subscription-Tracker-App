@@ -24,3 +24,9 @@ public struct MagnifierRect: View {
         }
     }
 }
+
+struct MagnifierRect_Previews : PreviewProvider{
+    static var previews :some View{
+        MagnifierRect(currentNumber: .constant(32), valueSpecifier: "32")
+    }
+}

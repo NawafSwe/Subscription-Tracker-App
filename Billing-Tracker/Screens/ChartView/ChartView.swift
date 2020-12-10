@@ -14,69 +14,92 @@ struct ChartView: View {
     @State var showMonthly = true
     @State var showWeekly = false
     @State var showYearly = false
+    @StateObject var viewModel = ChartViewModel()
     var body: some View {
         ZStack {
             Color(.systemBackground)
                 .edgesIgnoringSafeArea(.all)
-            VStack(alignment: .center, spacing: 10 ) {
-                HStack(spacing:20){
-                    Button(action:{
-                        self.title = "Weekly"
-                        self.data = [8,23,54,32,12,37,7,23,43]
-                        self.showWeekly = true
-                        self.showMonthly = false
-                        self.showYearly = false
-                    }){
-                        Text( "Weekly")
-                            .foregroundColor(.ChartButtons)
+            NavigationView {
+                VStack(alignment: .center, spacing: 10 ) {
+                    
+                    HStack(spacing:20){
+                        Button(action:{
+                            self.title = "Weekly"
+                            self.data = [8,23,54,32,12,37,7,23,43]
+                            self.showWeekly = true
+                            self.showMonthly = false
+                            self.showYearly = false
+                            
+                            viewModel.fetchData(period: self.title)
+                        }){
+                            Text( "Weekly")
+                                .foregroundColor(.ChartButtons)
+                        }
+                        Button(action:{
+                            self.data = [69,250,10,340,62,40,30,-40,20]
+                            self.title = "Monthly"
+                            self.showWeekly = false
+                            self.showMonthly = true
+                            self.showYearly = false
+                        }){
+                            Text("Monthly")
+                                .foregroundColor(.ChartButtons)
+                        }
+                        
+                        Button(action:{
+                            self.title = "Yearly"
+                            self.data = [100,20,120,40,12,50,7,-10,30]
+                            self.showWeekly = false
+                            self.showMonthly = false
+                            self.showYearly = true
+                        }){
+                            Text("Yearly")
+                                .foregroundColor(.ChartButtons)
+                        }
+                        
+                        
                     }
-                    Button(action:{
-                        self.data = [69,250,10,340,62,40,30,-40,20]
-                        self.title = "Monthly"
-                        self.showWeekly = false
-                        self.showMonthly = true
-                        self.showYearly = false
-                    }){
-                        Text("Monthly")
-                            .foregroundColor(.ChartButtons)
+                    .padding()
+                    .frame(width: 300,height: 35 ,alignment: .center)
+                    .background(Color.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 25.0, style: .continuous))
+                    .shadow(radius: 3)
+                    
+                    
+                    
+                    if self.showWeekly{
+                        LineView(data: viewModel.data, title: title ,style: myCustomStyle)
+                            .padding()
                     }
                     
-                    Button(action:{
-                        self.title = "Yearly"
-                        self.data = [100,20,120,40,12,50,7,-10,30]
-                        self.showWeekly = false
-                        self.showMonthly = false
-                        self.showYearly = true 
-                    }){
-                        Text("Yearly")
-                            .foregroundColor(.ChartButtons)
+                    if self.showMonthly{
+                        LineView(data: viewModel.data, title: title ,style: myCustomStyle)
+                            .padding()
                     }
                     
+                    if self.showYearly{
+                        LineView(data: viewModel.data, title: title ,style: myCustomStyle)
+                            .padding()
+                    }
                     
                 }
-                .frame(width: 300,height: 35 ,alignment: .center)
-                .background(Color.white)
-                .clipShape(RoundedRectangle(cornerRadius: 25.0, style: .continuous))
-                .shadow(radius: 3)
                 .padding()
                 
-                if self.showWeekly{
-                    LineView(data: data, title: title ,style: myCustomStyle)
-                        .padding()
-                }
                 
-                if self.showMonthly{
-                    LineView(data: data, title: title ,style: myCustomStyle)
-                        .padding()
-                }
-                
-                if self.showYearly{
-                    LineView(data: data, title: title ,style: myCustomStyle)
-                        .padding()
-                }
-                
+                .navigationTitle("Expenses Statistics")
             }
         }
+        .onAppear{  viewModel.fetchData(period: self.title)
+            
+        }
+        
+        
+    }
+}
+
+struct  ChartsView_Previews:PreviewProvider{
+    static var previews : some View{
+        ChartView()
     }
 }
 

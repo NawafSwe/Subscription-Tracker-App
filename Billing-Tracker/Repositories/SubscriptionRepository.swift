@@ -119,7 +119,7 @@ final class SubscriptionRepository :ObservableObject{
                     case 2: capturedCycleDays = "Yearly"
                     default: capturedCycleDays = "Weekly"
                 }
-    
+                
                 // updating subscription data
                 let updatedSubscription = Subscription(userId:userid , name: subscription.name, image: subscription.image,
                                                        description: subscription.description, dueDateString: dateInString , price: capturedPrice,
@@ -135,7 +135,7 @@ final class SubscriptionRepository :ObservableObject{
                             }
                             
                             completion(.success( () ))
-                        
+                            
                         }
                 }catch {
                     completion(.failure(error))
@@ -166,5 +166,23 @@ final class SubscriptionRepository :ObservableObject{
     }
     
     // for chart view to get prices for categorized subscriptions
-    func getCategorizedSubscriptions(){ }
+    func getCategorizedSubscriptions(period:String , completion: @escaping (Result< [Subscription] , Error>) -> () ){
+        if let userId = Auth.auth().currentUser?.uid{
+            db.collection(self.collectionName)
+                .whereField("userId", isEqualTo: userId)
+                .whereField("cycleDays", isEqualTo: period)
+                .order(by: "createdTime")
+                .addSnapshotListener { (querySnapshot, error) in
+                    if let error = error{
+                        completion(.failure(error))
+                        if let query = querySnapshot{
+                            self.subscriptions =  query.documents.compactMap{ document in
+                                try? document.data(as: Subscription.self)
+                            }
+                        }
+                        
+                    }
+                }
+        }
+    }
 }
