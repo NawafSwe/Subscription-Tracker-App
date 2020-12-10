@@ -21,5 +21,6 @@ extension Color{
     static let buttonColor = Color("ButtonText")
     static let chartBackground = Color("chartBackground")
     static let ChartButtons = Color("ChartButtons")
+    static let chevronColor = Color("chevronColor")
     
 }

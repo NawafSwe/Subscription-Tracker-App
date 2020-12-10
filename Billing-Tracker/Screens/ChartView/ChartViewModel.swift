@@ -11,7 +11,7 @@ import Combine
 final class ChartViewModel:ObservableObject{
     @Published var subscriptionsRepository = SubscriptionRepository()
     @Published var data : [Double] = [Double]()
-    @Published var title = "overall Expenses Statistics"
+    @Published var title = ""
     let myCustomStyle = ChartStyle(backgroundColor: .chartBackground , accentColor: .mainColor, secondGradientColor: .charsLimitColor1, textColor: .standardText, legendTextColor: .buttonSnow, dropShadowColor: .black)
     private var cancellables = Set<AnyCancellable>()
     

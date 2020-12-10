@@ -17,7 +17,8 @@ struct ExpenseView: View {
             Text(String(format: "%.2f", price) + "SR" )
                 .foregroundColor(.primary)
         }
-        .frame(width: 320, height: 60)
+        .padding()
+        .frame(width: 350, height: 60)
         .background(Color("sub_cell_background"))
         .cornerRadius(10)
         .shadow(radius: 3)

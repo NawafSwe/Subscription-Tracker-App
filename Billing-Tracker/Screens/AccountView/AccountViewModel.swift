@@ -24,6 +24,7 @@ final class AccountViewModel : ObservableObject{
     @Published var newEmail = ""
     @Published var password = ""
     @Published var showEmailBox = false
+    @Published var showPasswordBox = false 
     init(email:String, preferredProviderName:String , preferredProviderImage:String, age:String,
          gender:String, displayName:String
     ){

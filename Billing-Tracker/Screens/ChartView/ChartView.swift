@@ -18,7 +18,11 @@ struct ChartView: View {
                     LineView(data: viewModel.data, title: viewModel.title ,style: viewModel.myCustomStyle)
                         .padding()
                     
-                    Text("This chart shows the total expenses of all your yearly, monthly, weekly subscriptions")
+                    Text("This chart shows the total expenses of all your yearly, monthly, weekly subscriptions.")
+                        .font(.body)
+                        .bold()
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
                         .padding(30)
                     
                     Spacer()

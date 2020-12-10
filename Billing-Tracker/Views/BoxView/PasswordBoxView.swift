@@ -12,41 +12,47 @@ struct PasswordBoxView: View {
     var body: some View {
         
         ZStack {
-            
-            VStack(alignment: .leading , spacing :20){
-                Text("Current Password")
-                    .bold()
-                SecureField("", text: $viewModel.currentPassword)
-                    .frame(width:200, alignment: .leading)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .disabled(true)
+            VStack {
+                Spacer()
+                VStack(alignment: .leading , spacing :20){
+                  
+                    Text("Current Password")
+                        .bold()
+                    SecureField("", text: $viewModel.currentPassword)
+                        .frame(maxWidth:.infinity, alignment: .leading)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .disabled(true)
+                    
+                    
+                    
+                    SecureField("New Password", text: $viewModel.reEnteredPassword)
+                        .frame(maxWidth:.infinity, alignment: .leading)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    SecureField("Re Enter New Password", text: $viewModel.verifyReEnteredPassword)
+                        .frame(maxWidth:.infinity, alignment: .leading)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                }
                 
+                .padding()
+                .frame(maxWidth:.infinity , alignment: .center)
+                .frame(height: UIScreen.screenHeight / 2 * 0.9)
                 
-                
-                SecureField("New Password", text: $viewModel.reEnteredPassword)
-                    .frame(width:200, alignment: .leading)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                
-                SecureField("Re Enter New Password", text: $viewModel.verifyReEnteredPassword)
-                    .frame(width:200, alignment: .leading)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                .background(Color.backgroundCell)
+                .clipShape(RoundedRectangle(cornerSize: CGSize(width: 25, height: 10), style: .continuous))
+                .shadow(radius: 2)
+                .overlay(
+                    Button(action:{}){
+                        StandardButton(title: "Update")}.padding() , alignment: .topTrailing
+                )
+                .overlay(Button(action:{}){
+                    DismissButtonView()
+                }.padding() , alignment: .topLeading
+                )
+                .overlay(
+                    NotchBarView(width: 100, height: 10, cornerRadius: 3).padding(.vertical,-0.5), alignment: .top
+            )
             }
-            .padding()
-            .frame(width: UIScreen.screenWidth / 2 * 1.65 , height: UIScreen.screenHeight / 2 * 0.9 , alignment: .center)
-            .background(Color.backgroundCell)
-            .clipShape(RoundedRectangle(cornerSize: CGSize(width: 25, height: 10), style: .continuous))
-            .shadow(radius: 2)
-            .overlay(
-                Button(action:{}){
-                    StandardButton(title: "Update")}.padding() , alignment: .topTrailing
-            )
-            .overlay(Button(action:{}){
-                DismissButtonView()
-            }.padding() , alignment: .topLeading
-            )
-            .overlay(
-                NotchBarView(width: 100, height: 10, cornerRadius: 3).padding(.vertical,-0.5), alignment: .top
-            )
             
             
             

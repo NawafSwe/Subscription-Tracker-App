@@ -18,18 +18,18 @@ struct EmailBoxView: View {
                 Text("Current Email")
                     .bold()
                 TextField("current Email", text: $viewModel.email)
-                    .frame(width:220, alignment: .leading)
+                    .frame(maxWidth:.infinity, alignment: .leading)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .disabled(true)
                 
                 TextField("New Email", text: $viewModel.newEmail)
-                    .frame(width :220, alignment: .leading)
+                    .frame(maxWidth:.infinity, alignment: .leading)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
                 
                 
                 SecureField("Your Password", text: $viewModel.verifyReEnteredPassword)
-                    .frame(width:220, alignment: .leading)
+                    .frame(maxWidth:.infinity, alignment: .leading)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
             .padding()
