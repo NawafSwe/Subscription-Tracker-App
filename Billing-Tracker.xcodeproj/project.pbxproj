@@ -40,6 +40,7 @@
 		392C38202579714A00252032 /* Screen+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392C381F2579714A00252032 /* Screen+Ext.swift */; };
 		3932C839257AC6BB0042DEF6 /* UpdateSubscriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3932C838257AC6BB0042DEF6 /* UpdateSubscriptionViewModel.swift */; };
 		3935584D2570792800974ECD /* SubscriptionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3935584C2570792800974ECD /* SubscriptionDetailView.swift */; };
+		39441FB3258269CB00C6B2DA /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39441FB2258269CB00C6B2DA /* ChartViewModel.swift */; };
 		394780C92571856A00C97EAA /* SubscriptionTimings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394780C82571856A00C97EAA /* SubscriptionTimings.swift */; };
 		39554E09257AE407004FF7BC /* SubscriptionMoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39554E08257AE407004FF7BC /* SubscriptionMoreDetailView.swift */; };
 		3961173E25710A8900919EF3 /* SubscriptionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961173D25710A8900919EF3 /* SubscriptionListView.swift */; };
@@ -147,6 +148,7 @@
 		392C381F2579714A00252032 /* Screen+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Screen+Ext.swift"; sourceTree = "<group>"; };
 		3932C838257AC6BB0042DEF6 /* UpdateSubscriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSubscriptionViewModel.swift; sourceTree = "<group>"; };
 		3935584C2570792800974ECD /* SubscriptionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionDetailView.swift; sourceTree = "<group>"; };
+		39441FB2258269CB00C6B2DA /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
 		394780C82571856A00C97EAA /* SubscriptionTimings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTimings.swift; sourceTree = "<group>"; };
 		39554E08257AE407004FF7BC /* SubscriptionMoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionMoreDetailView.swift; sourceTree = "<group>"; };
 		3961173D25710A8900919EF3 /* SubscriptionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionListView.swift; sourceTree = "<group>"; };
@@ -388,7 +390,6 @@
 				39F215AD25772F7F009332E7 /* ProvidersView */,
 				39F215AC25772F77009332E7 /* AccountView */,
 				3909833825756343001430C9 /* ManageSubscriptionsView */,
-				3929C7C62571D0CE0012DD51 /* ExpenseView */,
 				394780C72571854500C97EAA /* SubscriptionTimingsView */,
 				39D9133F25716E4F00D9BDFE /* UpdateSubscriptionView */,
 				396117462571150100919EF3 /* SubscriptionListView */,
@@ -445,6 +446,7 @@
 		3961174A2571158000919EF3 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				3929C7C62571D0CE0012DD51 /* ExpenseView */,
 				392C3814257927FC00252032 /* ProviderCellView */,
 				39EF3A642576771000777442 /* SubscriptionCellView */,
 			);
@@ -644,6 +646,7 @@
 			isa = PBXGroup;
 			children = (
 				399E5ACB25817AC50095BCEF /* ChartView.swift */,
+				39441FB2258269CB00C6B2DA /* ChartViewModel.swift */,
 			);
 			path = ChartView;
 			sourceTree = "<group>";
@@ -962,6 +965,7 @@
 				399E5AC825817A6E0095BCEF /* BarChartCell.swift in Sources */,
 				399956552578C1BD000D907D /* AddProviderButton.swift in Sources */,
 				39D9132E25711B9800D9BDFE /* Icons.swift in Sources */,
+				39441FB3258269CB00C6B2DA /* ChartViewModel.swift in Sources */,
 				39F215A125771DA3009332E7 /* SubscriptionFormAlerts.swift in Sources */,
 				3999564A2578BAF4000D907D /* ManageProvidersView.swift in Sources */,
 				39290E332577CD64004D9768 /* ProviderServices.swift in Sources */,

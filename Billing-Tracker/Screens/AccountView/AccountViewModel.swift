@@ -18,12 +18,13 @@ final class AccountViewModel : ObservableObject{
     @Published var displayName:String
     @Published var userRepository = UserRepository()
     @Published var alertItem:AlertItem? = nil
-    @Published var currentPassword = "*********************************************************"
+    @Published var currentPassword = ""
     @Published var reEnteredPassword = ""
     @Published var verifyReEnteredPassword = ""
     @Published var newEmail = ""
     @Published var password = ""
     @Published var showEmailBox = false
+    @Published var showPasswordBox = false 
     init(email:String, preferredProviderName:String , preferredProviderImage:String, age:String,
          gender:String, displayName:String
     ){
@@ -44,6 +45,19 @@ final class AccountViewModel : ObservableObject{
                     if let error = error{
                         print("\(error)")
                     }
+                }
+            }
+            let userHelper = User(uid: currentUser.uid, displayName: self.displayName, email: self.email, age: self.age, gender: self.gender, preferredProviderName: self.preferredProviderName, preferredProviderImage: self.preferredProviderImage)
+            userRepository.updateUserData(userData: userHelper){result in
+                switch result{
+                    case .success():
+                        DispatchQueue.main.async {
+                            self.alertItem = AlertItem(title: Text("Success"), message: Text("Successfully updated your data"), dismissButton: .default(Text("Cool")))
+                        }
+                    case .failure(let error):
+                        DispatchQueue.main.async {
+                            self.alertItem = AlertItem(title: Text("Fail"), message: Text("\(error.localizedDescription)"), dismissButton: .default(Text("OK")))
+                        }
                 }
             }
             
@@ -80,7 +94,7 @@ final class AccountViewModel : ObservableObject{
                 //update user document
                 
                 let helperUser = User(uid: currentUser.uid, displayName: self.displayName, email: currentUser.email, age: self.age, gender: self.gender, preferredProviderName: self.preferredProviderName, preferredProviderImage: self.preferredProviderImage)
-                    
+                
                 self.userRepository.updateUserData(userData: helperUser){result in
                     switch result{
                         case .success(_):

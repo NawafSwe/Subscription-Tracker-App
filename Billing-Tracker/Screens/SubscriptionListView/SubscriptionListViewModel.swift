@@ -17,6 +17,7 @@ final class SubscriptionListViewModel : ObservableObject{
     @Published var callingTimes = 0
     @Published var subscriptionServices = [SubscriptionServices]()
     @Published var subscriptionRepository = SubscriptionRepository()
+    let columns : [GridItem] = [ GridItem(.flexible())]
     private var cancellables = Set<AnyCancellable>()
     var totalPrice  = Double()
     init(){

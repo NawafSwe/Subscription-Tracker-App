@@ -18,6 +18,7 @@ struct SubscriptionTimingsView: View {
                         ForEach(viewModel.subscriptions){sub in
                             // injecting the subscription cell view model
                             SubscriptionBoxView(subscription: sub.subscription , remindDays: Date.daysDiffrent(start: Date(), end: sub.subscription.dueDateInDate) )
+                                
                         }
                     }
                     .padding(.top)

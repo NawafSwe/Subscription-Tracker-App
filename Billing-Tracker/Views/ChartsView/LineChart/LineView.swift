@@ -41,11 +41,11 @@ public struct LineView: View {
         GeometryReader{ geometry in
             VStack(alignment: .leading, spacing: 8) {
                 Group{
-                    if (self.title != nil){
-                        Text(self.title!)
-                            .font(.title)
-                            .bold().foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.textColor : self.style.textColor)
-                    }
+//                    if (self.title != nil){
+//                        Text(self.title!)
+//                            .font(.title)
+//                            .bold().foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.textColor : self.style.textColor)
+//                    }
                     if (self.legend != nil){
                         Text(self.legend!)
                             .font(.callout)
@@ -106,7 +106,7 @@ public struct LineView: View {
     func getClosestDataPoint(toPoint: CGPoint, width:CGFloat, height: CGFloat) -> CGPoint {
         let points = self.data.onlyPoints()
         let stepWidth: CGFloat = width / CGFloat(points.count-1)
-        let stepHeight: CGFloat = height / CGFloat(points.max()! + points.min()!)
+        let stepHeight: CGFloat = height / CGFloat( ( points.max() ?? 0.0 ) + (points.min() ?? 0.0 ) )
         
         let index:Int = Int(floor((toPoint.x-15)/stepWidth))
         if (index >= 0 && index < points.count){

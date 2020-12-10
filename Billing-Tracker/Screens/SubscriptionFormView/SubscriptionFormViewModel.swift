@@ -27,7 +27,7 @@ final class SubscriptionFormViewModel: ObservableObject {
     @Published var subPrice:String = ""
     @Published var date = Date()
     @Published var selectedCycle = 0
-    @Published var cycleTypes = ["weekly" , "monthly", "yearly"]
+    @Published var cycleTypes = ["Weekly" , "Monthly", "Yearly"]
     @Published var remindUser = false
     @Published var selectedProvider:Provider?{ didSet{didSelectProvider = true} }
     @Published var notificationMessage = ""
