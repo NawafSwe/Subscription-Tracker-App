@@ -24,5 +24,6 @@ enum Icons{
     static let SFAddProvider = "rectangle.stack.badge.plus"
     static let SFChevronRight = "chevron.right"
     static let SFChart = "chart.pie"
+    static let SFMail = "envelope"
     
 }

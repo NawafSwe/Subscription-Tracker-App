@@ -18,7 +18,7 @@ final class AccountViewModel : ObservableObject{
     @Published var displayName:String
     @Published var userRepository = UserRepository()
     @Published var alertItem:AlertItem? = nil
-    @Published var currentPassword = "*********************************************************"
+    @Published var currentPassword = ""
     @Published var reEnteredPassword = ""
     @Published var verifyReEnteredPassword = ""
     @Published var newEmail = ""

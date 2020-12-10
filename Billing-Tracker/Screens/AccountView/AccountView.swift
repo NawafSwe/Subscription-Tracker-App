@@ -24,14 +24,21 @@ struct AccountView: View {
                                 Spacer()
                                 Image(systemName: Icons.SFChevronRight)
                                     .resizable()
-                                    //.renderingMode(.original)
                                     .frame(width:9 , height: 15)
                                     .accentColor(.chevronColor)
                             }
                         }
                         .accentColor(.primary)
                         Button(action:{viewModel.showPasswordBox.toggle() }){
-                            Text("Change Password")
+                            HStack {
+                                Text("Change Password")
+                                    .foregroundColor(.mainColor)
+                                Spacer()
+                                Image(systemName: Icons.SFChevronRight)
+                                    .resizable()
+                                    .frame(width:9 , height: 15)
+                                    .accentColor(.chevronColor)
+                            }
                         }
                         TextField("Name" , text:$viewModel.displayName)
                         
@@ -54,7 +61,6 @@ struct AccountView: View {
                 EmailBoxView(viewModel: viewModel)
                     .transition(.move(edge: .bottom))
                     .animation(.easeIn(duration: 0.3))
-                    .overlay(Text("\(viewState.height)"),alignment: .top)
                     .gesture(
                         DragGesture().onChanged({value in
                             //saving the value of the drag
@@ -80,7 +86,6 @@ struct AccountView: View {
                 PasswordBoxView(viewModel: viewModel)
                     .transition(.move(edge: .bottom))
                     .animation(.easeIn(duration: 0.3))
-                    .overlay(Text("\(viewState.height)"),alignment: .top)
                     .gesture(
                         DragGesture().onChanged({value in
                             //saving the value of the drag

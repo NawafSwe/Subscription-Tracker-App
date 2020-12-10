@@ -14,28 +14,29 @@ struct SubscriptionListView: View {
         ZStack {
             VStack{
                 NavigationView {
-                    
-                    // lopping on the cells
-                    
-                    List(viewModel.subscriptionServices ){ sub in
-                        // passing subscription into cell view
-                        SubscriptionCellView(subscription: sub)
-                            .padding(.vertical,4)
-                            
-                            .onTapGesture { viewModel.selectedSubscription = sub
+                    ScrollView{
+                        // lopping on the cells
+                        LazyVGrid(columns: self.viewModel.columns){
+                            ForEach(viewModel.subscriptionServices ){ sub in
+                                // passing subscription into cell view
+                                SubscriptionCellView(subscription: sub)
+                                    .padding(.vertical,4)
+                                    
+                                    .onTapGesture { viewModel.selectedSubscription = sub
+                                    }
+                                    
+                                    .blur(radius: viewModel.showSubscriptionDetail ? 10 :  0)
+                                    .shadow(radius: viewModel.showSubscriptionDetail ? 10 : 0)
+                                
                             }
                             
-                            .blur(radius: viewModel.showSubscriptionDetail ? 10 :  0)
-                            .shadow(radius: viewModel.showSubscriptionDetail ? 10 : 0)
-                        
+                        }
                     }
                     /// disabling the navigation if user shows sub details
                     .disabled(viewModel.showSubscriptionDetail)
-                    .listStyle(PlainListStyle())
                     .navigationBarItems(leading: Button(action: {viewModel.showSubscriptionForm.toggle()}, label: {
                                                             AddSubscriptionButtonView() } ))
                     .navigationTitle("Subscriptions 💳")
-                    
                     
                     
                 }
@@ -92,8 +93,10 @@ struct SubscriptionListView: View {
             }
         }
         
+        
         .alert(item: $viewModel.alertItem){alert in
             Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
+            
         }
         
     }

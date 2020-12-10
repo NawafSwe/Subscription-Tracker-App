@@ -93,12 +93,13 @@ struct SettingView: View {
                     Section(header:Text("Support")){
                         Link(destination:K.devAccount){
                             HStack{
-                                Image(Images.twitter)
+                                Image("message")
                                     .resizable()
-                                    .frame(width: 26 , height: 26)
-                                    .scaledToFit()
+                                     .foregroundColor(.iconsBackgroundColor)
+                                    .frame(width: 30 , height: 30)
                                     .scaledToFill()
-                                    .imageScale(.medium)
+                                    .imageScale(.small)
+                                   
                                 Text("Contact Developer")
                                     .foregroundColor(.standardText)
                             }

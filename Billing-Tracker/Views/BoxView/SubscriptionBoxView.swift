@@ -34,7 +34,7 @@ struct SubscriptionBoxView: View {
             
         }
         .padding(.horizontal)
-        .frame(width: 200, height: 120, alignment: .center)
+        .frame(width: 165, height: 120, alignment: .center)
         .background(Color.backgroundCell)
         .clipShape(RoundedRectangle(cornerSize: CGSize(width: 15, height: 20), style: .continuous))
         .shadow(radius: 2)

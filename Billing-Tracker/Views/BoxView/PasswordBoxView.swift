@@ -14,23 +14,23 @@ struct PasswordBoxView: View {
         ZStack {
             VStack {
                 Spacer()
-                VStack(alignment: .leading , spacing :20){
-                  
+                
+                VStack(alignment: .center , spacing :20){
                     Text("Current Password")
                         .bold()
-                    SecureField("", text: $viewModel.currentPassword)
-                        .frame(maxWidth:.infinity, alignment: .leading)
+                    SecureField("current Password", text: $viewModel.currentPassword)
+                        .frame(width: 320)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .disabled(true)
                     
                     
                     
                     SecureField("New Password", text: $viewModel.reEnteredPassword)
-                        .frame(maxWidth:.infinity, alignment: .leading)
+                        .frame(width: 320)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     SecureField("Re Enter New Password", text: $viewModel.verifyReEnteredPassword)
-                        .frame(maxWidth:.infinity, alignment: .leading)
+                        .frame(width: 320)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
                 
@@ -42,7 +42,7 @@ struct PasswordBoxView: View {
                 .clipShape(RoundedRectangle(cornerSize: CGSize(width: 25, height: 10), style: .continuous))
                 .shadow(radius: 2)
                 .overlay(
-                    Button(action:{}){
+                    Button(action:{viewModel.showPasswordBox.toggle()}){
                         StandardButton(title: "Update")}.padding() , alignment: .topTrailing
                 )
                 .overlay(Button(action:{}){

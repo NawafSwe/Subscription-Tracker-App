@@ -13,23 +13,23 @@ struct EmailBoxView: View {
         VStack {
             Spacer()
             
-            VStack(alignment: .leading , spacing :20){
+            VStack(alignment: .center , spacing :20){
                 
                 Text("Current Email")
                     .bold()
                 TextField("current Email", text: $viewModel.email)
-                    .frame(maxWidth:.infinity, alignment: .leading)
+                    .frame(width: 320)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .disabled(true)
                 
                 TextField("New Email", text: $viewModel.newEmail)
-                    .frame(maxWidth:.infinity, alignment: .leading)
+                    .frame(width: 320)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
                 
                 
                 SecureField("Your Password", text: $viewModel.verifyReEnteredPassword)
-                    .frame(maxWidth:.infinity, alignment: .leading)
+                    .frame(width: 320)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
             .padding()
@@ -51,12 +51,12 @@ struct EmailBoxView: View {
                 Button(action:{viewModel.showEmailBox.toggle()} ){
                     DismissButtonView()}.padding() , alignment: .topLeading
             )
-
+            
             .overlay(
                 NotchBarView(width: 100, height: 10, cornerRadius: 3).padding(.vertical,-0.5), alignment: .top
             )
         }
-
+        
     }
 }
 
