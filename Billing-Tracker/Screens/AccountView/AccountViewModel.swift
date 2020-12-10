@@ -47,6 +47,19 @@ final class AccountViewModel : ObservableObject{
                     }
                 }
             }
+            let userHelper = User(uid: currentUser.uid, displayName: self.displayName, email: self.email, age: self.age, gender: self.gender, preferredProviderName: self.preferredProviderName, preferredProviderImage: self.preferredProviderImage)
+            userRepository.updateUserData(userData: userHelper){result in
+                switch result{
+                    case .success():
+                        DispatchQueue.main.async {
+                            self.alertItem = AlertItem(title: Text("Success"), message: Text("Successfully updated your data"), dismissButton: .default(Text("Cool")))
+                        }
+                    case .failure(let error):
+                        DispatchQueue.main.async {
+                            self.alertItem = AlertItem(title: Text("Fail"), message: Text("\(error.localizedDescription)"), dismissButton: .default(Text("OK")))
+                        }
+                }
+            }
             
         }
     }
@@ -81,7 +94,7 @@ final class AccountViewModel : ObservableObject{
                 //update user document
                 
                 let helperUser = User(uid: currentUser.uid, displayName: self.displayName, email: currentUser.email, age: self.age, gender: self.gender, preferredProviderName: self.preferredProviderName, preferredProviderImage: self.preferredProviderImage)
-                    
+                
                 self.userRepository.updateUserData(userData: helperUser){result in
                     switch result{
                         case .success(_):
