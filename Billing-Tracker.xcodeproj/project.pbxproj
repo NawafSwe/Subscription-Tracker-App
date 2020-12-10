@@ -390,7 +390,6 @@
 				39F215AD25772F7F009332E7 /* ProvidersView */,
 				39F215AC25772F77009332E7 /* AccountView */,
 				3909833825756343001430C9 /* ManageSubscriptionsView */,
-				3929C7C62571D0CE0012DD51 /* ExpenseView */,
 				394780C72571854500C97EAA /* SubscriptionTimingsView */,
 				39D9133F25716E4F00D9BDFE /* UpdateSubscriptionView */,
 				396117462571150100919EF3 /* SubscriptionListView */,
@@ -447,6 +446,7 @@
 		3961174A2571158000919EF3 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				3929C7C62571D0CE0012DD51 /* ExpenseView */,
 				392C3814257927FC00252032 /* ProviderCellView */,
 				39EF3A642576771000777442 /* SubscriptionCellView */,
 			);

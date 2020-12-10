@@ -17,11 +17,10 @@ struct ExpenseView: View {
             Text(String(format: "%.2f", price) + "SR" )
                 .foregroundColor(.primary)
         }
-        .padding()
-        .frame(height: 40)
-        .background(Color.backgroundCell)
-        .clipShape(RoundedRectangle(cornerSize: CGSize(width: 30, height: 10), style: .continuous))
-        .shadow(radius: 2)
+        .frame(width: 320, height: 60)
+        .background(Color("sub_cell_background"))
+        .cornerRadius(10)
+        .shadow(radius: 3)
         
     }
 }
