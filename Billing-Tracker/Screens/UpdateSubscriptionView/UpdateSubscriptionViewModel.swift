@@ -16,7 +16,7 @@ final class UpdateSubscriptionViewModel:ObservableObject{
     //fetching providers from repo
     @Published var providersRepository = ProviderRepository()
     private var cancellables = Set<AnyCancellable>()
-    @Published var cycleTypes = ["weekly" , "monthly", "yearly"]
+    @Published var cycleTypes = ["Weekly" , "Monthly", "Yearly"]
     @Published var subscription: SubscriptionServices
     
     

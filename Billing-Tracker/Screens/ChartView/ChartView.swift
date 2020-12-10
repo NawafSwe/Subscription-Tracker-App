@@ -8,12 +8,6 @@
 import SwiftUI
 
 struct ChartView: View {
-    @State var title:String = "Weekly"
-    @State var data : [Double] = [8,23,54,32,12,37,7,23,43]
-    let myCustomStyle = ChartStyle(backgroundColor: .chartBackground , accentColor: .mainColor, secondGradientColor: .charsLimitColor1, textColor: .standardText, legendTextColor: .buttonSnow, dropShadowColor: .black)
-    @State var showMonthly = true
-    @State var showWeekly = false
-    @State var showYearly = false
     @StateObject var viewModel = ChartViewModel()
     var body: some View {
         ZStack {
@@ -24,34 +18,30 @@ struct ChartView: View {
                     
                     HStack(spacing:20){
                         Button(action:{
-                            self.title = "Weekly"
-                            self.data = [8,23,54,32,12,37,7,23,43]
-                            self.showWeekly = true
-                            self.showMonthly = false
-                            self.showYearly = false
-                            
-                            viewModel.fetchData(period: self.title)
+                            DispatchQueue.main.async {
+                                self.viewModel.title = "Weekly"
+                            }
+                            viewModel.fetchData(period: viewModel.title)
                         }){
                             Text( "Weekly")
                                 .foregroundColor(.ChartButtons)
                         }
                         Button(action:{
-                            self.data = [69,250,10,340,62,40,30,-40,20]
-                            self.title = "Monthly"
-                            self.showWeekly = false
-                            self.showMonthly = true
-                            self.showYearly = false
+                            DispatchQueue.main.async {
+                                self.viewModel.title = "Monthly"
+                            }
+                            
+                            viewModel.fetchData(period: viewModel.title)
                         }){
                             Text("Monthly")
                                 .foregroundColor(.ChartButtons)
                         }
                         
                         Button(action:{
-                            self.title = "Yearly"
-                            self.data = [100,20,120,40,12,50,7,-10,30]
-                            self.showWeekly = false
-                            self.showMonthly = false
-                            self.showYearly = true
+                            DispatchQueue.main.async {
+                                self.viewModel.title = "Yearly"
+                            }
+                            viewModel.fetchData(period: viewModel.title)
                         }){
                             Text("Yearly")
                                 .foregroundColor(.ChartButtons)
@@ -67,18 +57,18 @@ struct ChartView: View {
                     
                     
                     
-                    if self.showWeekly{
-                        LineView(data: viewModel.data, title: title ,style: myCustomStyle)
+                    if viewModel.showWeekly{
+                        LineView(data: viewModel.data, title: viewModel.title ,style: viewModel.myCustomStyle)
                             .padding()
                     }
                     
-                    if self.showMonthly{
-                        LineView(data: viewModel.data, title: title ,style: myCustomStyle)
+                    if viewModel.showMonthly{
+                        LineView(data: viewModel.data, title: viewModel.title ,style: viewModel.myCustomStyle)
                             .padding()
                     }
                     
-                    if self.showYearly{
-                        LineView(data: viewModel.data, title: title ,style: myCustomStyle)
+                    if viewModel.showYearly{
+                        LineView(data: viewModel.data, title: viewModel.title ,style: viewModel.myCustomStyle)
                             .padding()
                     }
                     
@@ -89,7 +79,7 @@ struct ChartView: View {
                 .navigationTitle("Expenses Statistics")
             }
         }
-        .onAppear{  viewModel.fetchData(period: self.title)
+        .onAppear{  viewModel.fetchData(period: viewModel.title)
             
         }
         
