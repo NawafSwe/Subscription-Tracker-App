@@ -11,68 +11,53 @@ struct RegisterView: View {
     @ObservedObject var viewModel : RegisterViewModel
     var screen = UIScreen.main.bounds
     var body: some View {
-            VStack( alignment: .leading, spacing: 30){
-                Text("Billing tracker ⌚️")
-                    .font(.title)
+        ZStack {
+            Color(.systemBackground)
+                .edgesIgnoringSafeArea(.all)
+            VStack(spacing: 5){
+                Text("Welcome To Billing Tracker 💳")
+                    .font(.largeTitle)
+                    .foregroundColor(.standardText)
                     .padding()
-                
-                VStack(spacing:10){
-                    HStack{
-                        PersonIconView(width: 44 , height : 44)
-                            .padding(.horizontal)
-                        TextField("Email", text: $viewModel.email)
-                            .modifier(TextFieldModifiers())
-                            .keyboardType(.emailAddress)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .font(.subheadline)
-                        
-                        
-                    }
-                    
-                    HStack{
-                        LockIconView()
-                        SecureField("Password",text: $viewModel.password)
-                            .modifier(TextFieldModifiers())
-                            .font(.subheadline)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                        
-                    }
-                    
-                    
-                }
-                .padding(.horizontal, screen.width * 0.1)
-                .frame(height: screen.height * 3 / 10)
-                .frame(maxWidth: .infinity)
-                .background(BlurView(style: .light))
-                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                .shadow(color: Color.backgroundCell.opacity(0.15) , radius: 20, x: 0, y: 20)
-                .padding()
-                Button(action: {self.viewModel.isNewUser ? viewModel.login(email: viewModel.email, password: viewModel.password)
-                    : viewModel.register(email: viewModel.email, password: viewModel.password)
+                    .multilineTextAlignment(.center)
+                Button(action:{
+                    viewModel.showRegister.toggle()
                 }){
-                    MainButtonView(title: viewModel.isNewUser ? "Login" : "Register")
+                    MainButtonView(title: "Register")
+                }
+                
+                Button(action:{
+                    viewModel.showLogin.toggle()
                     
+                }){
+                    MainButtonView(title: "Login")
                 }
                 
-                .alert(item: $viewModel.alertItem){ alert in
-                    Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
-                }
-                
-                
-                Button(action:{viewModel.isNewUser.toggle()}){
-                    WelcomeMessage(title: viewModel.isNewUser ? "CreateAccount?" : "Already has Account", underlinedText:  viewModel.isNewUser ? "Sign Up" : "Login!")
-                    
-                }
-                .padding(.leading)
-                
-                Spacer()
             }
             .padding()
-            .shadow(radius: 3)
-            .background(Color.backgroundCell.edgesIgnoringSafeArea(.all) )
+            
+            
+            if viewModel.showRegister{
+                SignUpView(viewModel: viewModel)
+                    .transition(.move(edge: .bottom))
+                    .animation(.easeIn)
+                    .animation(nil)
+            }
+            
+            if viewModel.showLogin{
+                LoginView(viewModel:viewModel)
+                    .transition(.move(edge: .bottom))
+                    .animation(.easeIn)
+                    .animation(nil)
+            }
             
         }
+        
+        
+    }
+    
 }
+
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
@@ -88,7 +73,7 @@ struct MainButtonView : View {
         VStack{
             Text(title)
                 .foregroundColor(.white)
-                .frame(width: 350 , height: 40)
+                .frame(width: 320 , height: 40)
                 .background(Color.mainColor.opacity(1))
                 .clipShape(RoundedRectangle(cornerSize: CGSize(width: 40, height: 30), style: .continuous))
                 .padding()
@@ -103,8 +88,10 @@ struct WelcomeMessage:View{
     var body: some View{
         HStack{
             Text(title)
+                .font(.title3)
             Text(underlinedText)
                 .underline()
+                .font(.title3)
                 .foregroundColor(.blue)
         }
         .font(.title2)
