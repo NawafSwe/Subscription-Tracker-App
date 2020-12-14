@@ -60,7 +60,7 @@ struct SignUpView: View {
                     
                 }
                 .padding()
-                .frame(width: 320, height: 360, alignment: .center)
+                .frame(width: 320, height: 370, alignment: .center)
                 .background(Color.backgroundCell)
                 .clipShape(RoundedRectangle(cornerRadius: 15.0, style: .continuous))
                 
