@@ -51,15 +51,36 @@ struct LoginView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 15.0, style: .continuous))
                 
                 
-                Button(action:{}){
+                Button(action:{
+                    self.viewModel.login(email: viewModel.email, password: viewModel.password)
+                }){
                     MainButtonView(title: "Login")
                 }
-                Button(action:{}){
+                .alert(item: $viewModel.alertItem){ alert in
+                    Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
+                    
+                }
+                Button(action:{
+                    self.viewModel.showRegister = true
+                    self.viewModel.showLogin = false 
+                }){
                     WelcomeMessage(title: "Do not you have an Account?", underlinedText: "Register")
                 }
                 .padding()
                 
             }
+            
+            if viewModel.isLoading{
+                LoadingView(isLoading: $viewModel.isLoading)
+            }
+            
+            Button(action:{
+                viewModel.showLogin = false
+            }){
+                BackTrackButton()
+            }
+            .padding(.horizontal)
+            .offset(x: -1 * UIScreen.screenWidth / 3 * 1.2 , y:  -1 * UIScreen.screenHeight / 3 * 1.3)
             
         }
     }

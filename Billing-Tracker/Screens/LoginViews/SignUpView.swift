@@ -65,18 +65,39 @@ struct SignUpView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 15.0, style: .continuous))
                 
                 
-                Button(action:{}){
+                Button(action:{
+                    self.viewModel.register(email: viewModel.email, password: viewModel.password, name: viewModel.name)
+                }){
                     MainButtonView(title: "Register")
                 }
-                Button(action:{}){
+                .alert(item: $viewModel.alertItem){ alert in
+                    Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
+                    
+                }
+                
+                Button(action:{
+                    self.viewModel.showRegister = false
+                    self.viewModel.showLogin = true
+                }){
                     WelcomeMessage(title: "Already have an account?", underlinedText: "Login")
                 }
                 .padding(.vertical)
                 
             }
             .padding()
-            .frame(height:500)
-          
+            .frame(height:600)
+    
+            
+            if viewModel.isLoading{
+                LoadingView(isLoading: $viewModel.isLoading)
+            }
+            Button(action:{
+                viewModel.showRegister = false
+            }){
+                BackTrackButton()
+            }
+            .padding(.horizontal)
+            .offset(x: -1 * UIScreen.screenWidth / 3 * 1.2 , y:  -1 * UIScreen.screenHeight / 3 * 1.3)
         }
         }
     }

@@ -21,13 +21,13 @@ struct RegisterView: View {
                     .padding()
                     .multilineTextAlignment(.center)
                 Button(action:{
-                    viewModel.isNewUser.toggle()
+                    viewModel.showRegister.toggle()
                 }){
                     MainButtonView(title: "Register")
                 }
                 
                 Button(action:{
-                    viewModel.isNewUser.toggle()
+                    viewModel.showLogin.toggle()
                     
                 }){
                     MainButtonView(title: "Login")
@@ -36,19 +36,21 @@ struct RegisterView: View {
             }
             .padding()
             
-            Group{
-                if viewModel.isNewUser{
-                    SignUpView(viewModel: viewModel)
-                        .transition(.move(edge: .bottom))
-                        .animation(.easeIn)
-                        .animation(nil)
-                }else{
-                    LoginView(viewModel:viewModel)
-                        .transition(.move(edge: .bottom))
-                        .animation(.easeIn)
-                        .animation(nil)
-                }
+            
+            if viewModel.showRegister{
+                SignUpView(viewModel: viewModel)
+                    .transition(.move(edge: .bottom))
+                    .animation(.easeIn)
+                    .animation(nil)
             }
+            
+            if viewModel.showLogin{
+                LoginView(viewModel:viewModel)
+                    .transition(.move(edge: .bottom))
+                    .animation(.easeIn)
+                    .animation(nil)
+            }
+            
         }
         
         
