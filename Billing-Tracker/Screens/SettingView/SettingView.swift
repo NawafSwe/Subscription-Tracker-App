@@ -51,8 +51,8 @@ struct SettingView: View {
                                 // get user data
                                // inject them into account view
                                  let userEmail = currentUser.email ?? ""
-                                 let displayName = currentUser.displayName ?? ""
-                                AccountView(viewModel: AccountViewModel(email: userEmail, preferredProviderName: self.user.user.preferredProviderName, preferredProviderImage: self.user.user.preferredProviderImage, age: self.user.user.age, gender: self.user.user.gender, displayName: displayName))
+                                
+                                AccountView(viewModel: AccountViewModel(email: userEmail, preferredProviderName: self.user.user.preferredProviderName, preferredProviderImage: self.user.user.preferredProviderImage, age: self.user.user.age, gender: self.user.user.gender , username: self.user.user.username))
                             }
                            
                         }

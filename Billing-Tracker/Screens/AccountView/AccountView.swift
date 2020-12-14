@@ -40,7 +40,7 @@ struct AccountView: View {
                                     .accentColor(.chevronColor)
                             }
                         }
-                        TextField("Name" , text:$viewModel.displayName)
+                        TextField("Name" , text:$viewModel.username)
                         
                     }
                     Section(header:Text("Additional Information")){
@@ -109,6 +109,6 @@ struct AccountView: View {
 }
 struct AccountView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountView(viewModel: AccountViewModel(email: "nn@1234gmail.com", preferredProviderName: "", preferredProviderImage: "", age: "", gender: "", displayName: ""))
+        AccountView(viewModel: AccountViewModel(email: "nn@1234gmail.com", preferredProviderName: "", preferredProviderImage: "", age: "", gender: "", username: ""))
     }
 }

@@ -63,7 +63,7 @@ struct PasswordBoxView: View {
 
 struct PasswordBoxView_Previews: PreviewProvider {
     static var previews: some View {
-        PasswordBoxView(viewModel: AccountViewModel(email: "", preferredProviderName: "", preferredProviderImage: "", age: "", gender: "", displayName: ""))
+        PasswordBoxView(viewModel: AccountViewModel(email: "", preferredProviderName: "", preferredProviderImage: "", age: "", gender: "", username: ""))
             .colorScheme(.light)
         
     }

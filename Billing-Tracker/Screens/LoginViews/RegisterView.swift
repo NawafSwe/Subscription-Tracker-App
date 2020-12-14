@@ -47,23 +47,23 @@ struct RegisterView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
                 .shadow(color: Color.backgroundCell.opacity(0.15) , radius: 20, x: 0, y: 20)
                 .padding()
-                Button(action: {self.viewModel.isNewUser ? viewModel.login(email: viewModel.email, password: viewModel.password)
-                    : viewModel.register(email: viewModel.email, password: viewModel.password)
-                }){
-                    MainButtonView(title: viewModel.isNewUser ? "Login" : "Register")
-                    
-                }
-                
-                .alert(item: $viewModel.alertItem){ alert in
-                    Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
-                }
-                
-                
-                Button(action:{viewModel.isNewUser.toggle()}){
-                    WelcomeMessage(title: viewModel.isNewUser ? "CreateAccount?" : "Already has Account", underlinedText:  viewModel.isNewUser ? "Sign Up" : "Login!")
-                    
-                }
-                .padding(.leading)
+//                Button(action: {self.viewModel.isNewUser ? viewModel.login(email: viewModel.email, password: viewModel.password)
+//                    : viewModel.register(email: viewModel.email, password: viewModel.password)
+//                }){
+//                    MainButtonView(title: viewModel.isNewUser ? "Login" : "Register")
+//                    
+//                }
+//                
+//                .alert(item: $viewModel.alertItem){ alert in
+//                    Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
+//                }
+//                
+//                
+//                Button(action:{viewModel.isNewUser.toggle()}){
+//                    WelcomeMessage(title: viewModel.isNewUser ? "CreateAccount?" : "Already has Account", underlinedText:  viewModel.isNewUser ? "Sign Up" : "Login!")
+//                    
+//                }
+//                .padding(.leading)
                 
                 Spacer()
             }

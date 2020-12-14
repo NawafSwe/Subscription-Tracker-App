@@ -10,7 +10,7 @@ import Firebase
 import FirebaseFirestoreSwift
 import UIKit
 enum AuthenticationState { case signIn , signOut , null }
-enum userHolder  { static let dummyUser = User(uid: "" , displayName: "test" , email : "", age: "" , gender: "" , preferredProviderName: "" , preferredProviderImage: "" ) }
+enum userHolder  { static let dummyUser = User(uid: "" , displayName: "test" , email : "", age: "" , gender: "" , preferredProviderName: "" , preferredProviderImage: "" , username: "" ) }
 
 //MARK:- UserAuthenticationManager class for using firebase authentication services
 final class UserAuthenticationManager : ObservableObject{
@@ -54,7 +54,7 @@ final class UserAuthenticationManager : ObservableObject{
         }
     }
     // additional methods (sign up, sign in) will go here
-    func register(email:String , password:String , completion: @escaping (Result<Void,Error>)-> () ){
+    func register(email:String , password:String , name:String , completion: @escaping (Result<Void,Error>)-> () ){
         
         Auth.auth().createUser(withEmail: email, password: password){  (authResult, error ) in
             if let err = error {
@@ -66,7 +66,7 @@ final class UserAuthenticationManager : ObservableObject{
                 return
             }
             /// initing new user object from the authentication response if there is no error
-            let user = User(uid: result.user.uid, displayName: result.user.displayName, email: result.user.email , age: "" , gender: "" , preferredProviderName: "" , preferredProviderImage: "")
+            let user = User(uid: result.user.uid, displayName: result.user.displayName, email: result.user.email , age: "" , gender: "" , preferredProviderName: "" , preferredProviderImage: "",username: name)
             
             
             DispatchQueue.main.async { self.user = user }

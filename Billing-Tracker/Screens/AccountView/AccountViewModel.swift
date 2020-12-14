@@ -15,7 +15,7 @@ final class AccountViewModel : ObservableObject{
     @Published var preferredProviderImage:String
     @Published var age:String
     @Published var gender:String
-    @Published var displayName:String
+    @Published var username:String
     @Published var userRepository = UserRepository()
     @Published var alertItem:AlertItem? = nil
     @Published var currentPassword = ""
@@ -26,28 +26,20 @@ final class AccountViewModel : ObservableObject{
     @Published var showEmailBox = false
     @Published var showPasswordBox = false 
     init(email:String, preferredProviderName:String , preferredProviderImage:String, age:String,
-         gender:String, displayName:String
+         gender:String, username:String
     ){
         self.email = email
         self.preferredProviderName = preferredProviderName
         self.preferredProviderImage = preferredProviderImage
         self.age  = age
         self.gender  = gender
-        self.displayName = displayName
+        self.username = username
     }
     
     func updateUserInfo(){
         if let currentUser = Auth.auth().currentUser {
-            if currentUser.displayName != displayName{
-                let changeRequest = currentUser.createProfileChangeRequest()
-                changeRequest.displayName = self.displayName
-                changeRequest.commitChanges { (error) in
-                    if let error = error{
-                        print("\(error)")
-                    }
-                }
-            }
-            let userHelper = User(uid: currentUser.uid, displayName: self.displayName, email: self.email, age: self.age, gender: self.gender, preferredProviderName: self.preferredProviderName, preferredProviderImage: self.preferredProviderImage)
+            
+            let userHelper = User(uid: currentUser.uid, displayName: "", email: self.email, age: self.age, gender: self.gender, preferredProviderName: self.preferredProviderName, preferredProviderImage: self.preferredProviderImage, username:self.username)
             userRepository.updateUserData(userData: userHelper){result in
                 switch result{
                     case .success():
@@ -93,7 +85,7 @@ final class AccountViewModel : ObservableObject{
                 
                 //update user document
                 
-                let helperUser = User(uid: currentUser.uid, displayName: self.displayName, email: currentUser.email, age: self.age, gender: self.gender, preferredProviderName: self.preferredProviderName, preferredProviderImage: self.preferredProviderImage)
+                let helperUser = User(uid: currentUser.uid, displayName: "" , email: currentUser.email, age: self.age, gender: self.gender, preferredProviderName: self.preferredProviderName, preferredProviderImage: self.preferredProviderImage, username: self.username)
                 
                 self.userRepository.updateUserData(userData: helperUser){result in
                     switch result{

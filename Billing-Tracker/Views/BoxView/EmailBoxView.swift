@@ -62,7 +62,7 @@ struct EmailBoxView: View {
 
 struct EmailBoxView_Previews: PreviewProvider {
     static var previews: some View {
-        EmailBoxView(viewModel: AccountViewModel(email: "", preferredProviderName: "", preferredProviderImage: "", age: "", gender: "", displayName: ""))
+        EmailBoxView(viewModel: AccountViewModel(email: "", preferredProviderName: "", preferredProviderImage: "", age: "", gender: "", username: ""))
     }
 }
 

@@ -16,7 +16,7 @@ struct LandingView: View {
         ZStack {
             Group {
                 if shared.authState == .signOut {
-                    RegisterView(viewModel: viewModel)
+                    SignUpView(viewModel: viewModel)
                 }
                 else{
                     HomeTabView()

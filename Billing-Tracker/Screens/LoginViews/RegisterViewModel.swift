@@ -13,15 +13,16 @@ final class  RegisterViewModel:ObservableObject{
     @Published var alertItem:AlertItem? = nil
     @Published var isLoading = false
     @Published var isNewUser = false
+    @Published var name = ""
     private var shared = UserAuthenticationManager.shared
     // registre func
-    func register(email:String, password:String){
+    func register(email:String, password:String, name:String){
         DispatchQueue.main.async {
             self.isLoading = true
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             
-            self.shared.register(email: email, password: password) { result in
+            self.shared.register(email: email, password: password, name: name) { result in
                 switch result{
                     case .failure(let err):
                         self.isLoading = false
@@ -55,4 +56,6 @@ final class  RegisterViewModel:ObservableObject{
             }
         }
     }
+    
+    
 }
