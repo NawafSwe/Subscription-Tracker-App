@@ -13,54 +13,74 @@ struct SignUpView: View {
         ZStack {
             Color(.systemBackground)
                 .edgesIgnoringSafeArea(.all)
-            VStack{
-                Text("Welcome to Billing Tracker ⌚️")
-                    .font(.largeTitle)
-                    .padding()
-                    .multilineTextAlignment(.center)
-                VStack(alignment: .leading ,spacing: 25){
+            VStack {
+                VStack(alignment: .leading,spacing:20){
+                    Text("Welcome 💳")
+                        .font(.title2)
+                    Text("Register")
+                        .font(.title)
                     
-                    VStack (alignment:.leading) {
-                        Text("Name:")
-                        TextField("Name", text:$viewModel.name)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(width: 200, alignment: .center)
-                    }
+                    Text("Name:")
+                        .font(.body)
+        
+                    TextField("Name", text: $viewModel.name)
+                        .padding(.horizontal)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .frame(width:290 ,height: 30)
+                                .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                        )
+                    
+                    Text("Your Email:")
+                        .font(.body)
+        
+                    TextField("Email", text: $viewModel.email)
+                        .padding(.horizontal)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .frame(width:290 ,height: 30)
+                                .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                        )
+                       
+                    
+                    Text("Password:")
+                        .font(.body)
+                    
                   
-                      
-                    VStack (alignment:.leading) {
-                        Text("Email:")
-                        TextField("email" , text: $viewModel.email)
-                            .frame(width: 200, alignment: .center)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                    }
-                
                         
-                    VStack (alignment:.leading){
-                        Text("Password:")
-                        SecureField("password", text: $viewModel.password)
-                            .frame(width: 200, alignment: .center)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                    }
-                  
-                      
+                        SecureField("Password",text:$viewModel.password)
+                            .padding(.horizontal)
+                            .background(
+                                RoundedRectangle(cornerRadius: 15)
+                                    .frame(width:290 ,height: 30)
+                                    .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                                    
+                        )
+                    
+                    
                 }
                 .padding()
-                .frame(width: 330 , height : 330)
+                .frame(width: 320, height: 360, alignment: .center)
                 .background(Color.backgroundCell)
-                .clipShape(RoundedRectangle(cornerSize: CGSize(width: 20, height: 10), style: .continuous))
+                .clipShape(RoundedRectangle(cornerRadius: 15.0, style: .continuous))
                 
-                Button(action:{
-                    viewModel.register(email: viewModel.email, password: viewModel.password , name: viewModel.name)
-                }){
-                    MainButtonView(title: "Signup")
-                        
+                
+                Button(action:{}){
+                    MainButtonView(title: "Register")
                 }
+                Button(action:{}){
+                    WelcomeMessage(title: "Already have an account?", underlinedText: "Login")
+                }
+                .padding(.vertical)
+                
             }
             .padding()
+            .frame(height:500)
+          
+        }
         }
     }
-}
+
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
