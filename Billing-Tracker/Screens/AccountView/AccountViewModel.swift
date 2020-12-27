@@ -103,7 +103,40 @@ final class AccountViewModel : ObservableObject{
             }
         }
     }
-    func updateUserPassword(){}
+    func updateUserPassword(){
+        if let currentUser = Auth.auth().currentUser{
+            let credential = EmailAuthProvider.credential(withEmail: email, password: currentPassword)
+            currentUser.reauthenticate(with: credential){user , error in
+                if let error = error {
+                    
+                    DispatchQueue.main.async {
+                        self.alertItem = AlertItem(title: Text("Re-Authentication Error"), message: Text(error.localizedDescription), dismissButton: .default(Text("OK")))
+                    }
+                    
+                    return
+                    
+                }
+                // validate re entered password before updating it
+                currentUser.updatePassword(to: self.reEnteredPassword){error in
+                    if let error = error {
+                        DispatchQueue.main.async {
+                            self.alertItem = AlertItem(title: Text("Change password Error"), message: Text(error.localizedDescription), dismissButton: .default(Text("OK")))
+                        }
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self.alertItem = AlertItem(title: Text("Change password"), message: Text("Successfully Updated Your password"), dismissButton: .default(Text("Ok")))
+                        // clear current password field and other fields
+                        self.currentPassword = ""
+                        self.reEnteredPassword = ""
+                        self.verifyReEnteredPassword = "" 
+                    }
+                }
+            }
+            
+            
+        }
+    }
 }
 
 

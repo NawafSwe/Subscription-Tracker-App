@@ -21,7 +21,7 @@ struct PasswordBoxView: View {
                     SecureField("current Password", text: $viewModel.currentPassword)
                         .frame(width: 320)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .disabled(true)
+                        
                     
                     
                     
@@ -42,10 +42,15 @@ struct PasswordBoxView: View {
                 .clipShape(RoundedRectangle(cornerSize: CGSize(width: 25, height: 10), style: .continuous))
                 .shadow(radius: 2)
                 .overlay(
-                    Button(action:{viewModel.showPasswordBox.toggle()}){
-                        StandardButton(title: "Update")}.padding() , alignment: .topTrailing
+                    Button(action: viewModel.updateUserPassword) {
+                        StandardButton(title: "Update")}
+                        .padding()
+                        .alert(item: $viewModel.alertItem){alert in
+                            Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
+                        }
+                    , alignment: .topTrailing
                 )
-                .overlay(Button(action:{}){
+                .overlay(Button(action:{viewModel.showPasswordBox.toggle()}){
                     DismissButtonView()
                 }.padding() , alignment: .topLeading
                 )
@@ -57,6 +62,7 @@ struct PasswordBoxView: View {
             
             
         }
+        .onTapGesture {K.hideKeyBoard()}
         
     }
 }

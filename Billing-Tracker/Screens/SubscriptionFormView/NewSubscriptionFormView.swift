@@ -88,6 +88,10 @@ struct NewSubscriptionFormView: View {
                 .navigationTitle("New Subscription 💳")
                 
             }
+            .onTapGesture {
+                // hiding keyboard whenever user tapped anywhere to dismiss keyboard 
+                K.hideKeyBoard()
+            }
             
             
         }

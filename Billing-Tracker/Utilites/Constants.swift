@@ -11,6 +11,10 @@ import UIKit
 struct K {
     /// developer account
     static let devAccount = URL(string:"https://twitter.com/Nawaf_B_910")!
+    
+    static func hideKeyBoard (){
+         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+     }
 }
 
 /// firebase keys collections
@@ -38,7 +42,5 @@ struct FirestoreKeys{
         case AppleTv = "https://firebasestorage.googleapis.com/v0/b/billing-tracker-bfee4.appspot.com/o/providers%2FProviders%2FProviders%2FAppleTv.svg?alt=media&token=1a43108e-0cba-42d6-b455-5ad796886d42"
     }
     
-    func hideKeyBoard (){
-         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-     }
+
 }
