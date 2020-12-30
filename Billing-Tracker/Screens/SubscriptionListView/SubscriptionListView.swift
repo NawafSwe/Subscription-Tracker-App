@@ -61,13 +61,13 @@ struct SubscriptionListView: View {
             
             /// if the user tapped on the sub show its detail
             if(viewModel.showSubscriptionDetail){
-                SubscriptionMoreDetailView(subscription: viewModel.selectedSubscription!.subscription)
+                SubscriptionMoreDetailView(subscription: viewModel.selectedSubscription!.subscription, dismissCard: $viewModel.showSubscriptionDetail)
                     /// to watch the view state
-                    //.overlay(
-                    //Text( "\(self.viewState.height)")
-                    // , alignment: .top)
+//                    .overlay(
+//                        Text( "\(self.viewModel.viewState.height)")
+//                     , alignment: .top)
                     .transition(.move(edge: .bottom))
-                    .animation(.easeIn(duration: 0.3))
+                    .animation(.easeIn(duration: 0.6))
                     .gesture(
                         DragGesture().onChanged{ value in
                             //saving the value of the drag
@@ -89,7 +89,7 @@ struct SubscriptionListView: View {
                     /// by dragging moving card
                     .offset(y: self.viewModel.viewState.height > 0 ? self.viewModel.viewState.height : 0)
                     // prevent animation from propagation
-                    .animation(nil)
+                  
             }
         }
         
