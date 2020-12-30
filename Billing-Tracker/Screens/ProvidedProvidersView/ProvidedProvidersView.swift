@@ -27,7 +27,7 @@ struct ProvidedProvidersView: View {
                         }
                     }
                 }
-                .navigationTitle("Providers With Icons 💳")
+                .navigationTitle("Providers 💳")
                 .navigationBarTitleDisplayMode(.inline)
             }
             

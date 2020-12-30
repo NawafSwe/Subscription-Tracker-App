@@ -49,13 +49,16 @@ struct AccountView: View {
                         TextField("Preferred Provider" , text:$viewModel.preferredProviderName)
                     }
                 }
-                .navigationBarItems(leading: Button(action:{self.presentationMode.wrappedValue.dismiss()}){DismissButtonView()}
+                .navigationBarItems(leading: Button(action:{self.presentationMode.wrappedValue.dismiss()}){
+                                        BackTrackButton()}
                                     , trailing: Button(action:{self.viewModel.updateUserInfo()}){
                                         StandardButton(title: "Save",width: 80 , height: 30)
                                     })
                 .navigationTitle("Profile")
             }
-            .blur(radius: viewModel.showEmailBox ? 3 : 0)
+            // disabling the navigation ui if user showing password box or email box for better ui experience.
+            .disabled(viewModel.showEmailBox || viewModel.showPasswordBox)
+            .blur(radius: (viewModel.showEmailBox || viewModel.showPasswordBox ) ? 3 : 0)
             
             if viewModel.showEmailBox{
                 EmailBoxView(viewModel: viewModel)

@@ -28,7 +28,7 @@ struct ManageSubscriptionsView: View {
                 .listStyle(PlainListStyle())
                 // edit mode
                 .environment(\.editMode, .constant(viewModel.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
-                .navigationBarItems(leading: Button(action: {self.presentationMode.wrappedValue.dismiss()}){ DismissButtonView() } ,
+                .navigationBarItems(leading: Button(action: {self.presentationMode.wrappedValue.dismiss()}){ BackTrackButton() } ,
                                     trailing: Button(action:{viewModel.isEditing.toggle()}){
                                         StandardButton(title: "Edit" ,width: 80 , height: 30)
                                     }
