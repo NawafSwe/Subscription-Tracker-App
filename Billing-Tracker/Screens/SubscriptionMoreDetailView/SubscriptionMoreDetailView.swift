@@ -9,10 +9,12 @@ import SwiftUI
 
 struct SubscriptionMoreDetailView: View {
     let subscription: Subscription
+    @Binding var dismissCard : Bool
     var body: some View {
         VStack {
             Spacer()
             VStack(alignment:.leading){
+                Spacer().frame(height:10)
                 HStack {
                     VStack(alignment:.leading) {
                         HStack (spacing:10){
@@ -46,6 +48,7 @@ struct SubscriptionMoreDetailView: View {
                     
                 }
                 Divider()
+               
                 HStack {
                     Text("Description:")
                     Spacer()
@@ -79,19 +82,33 @@ struct SubscriptionMoreDetailView: View {
                 Spacer()
             }
             .padding()
-            .frame(width: 400, height: 400, alignment: .center)
+            .frame(width: 370, height: 500, alignment: .center)
             .background(Color.backgroundCell)
             .clipShape(RoundedRectangle(cornerRadius: 30))
             .shadow(radius: 4)
             .overlay(
                 NotchBarView(width: 100, height: 10, cornerRadius: 3).padding(.vertical, -0.6), alignment: .top
             )
+            // button to dismiss view
+            .overlay(
+                Button(action:{self.dismissCard.toggle()}){
+                    HStack{
+                        Image(systemName: "chevron.down.circle.fill")
+                            .resizable()
+                            .foregroundColor(.iconsBackgroundColor)
+                            .frame(width:25, height: 25)
+                            .padding()
+                        
+                    }
+                }
+                     ,
+                     alignment: .topLeading)
             
         }
     }
 }
 struct SubscriptionMoreDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        SubscriptionMoreDetailView(subscription: MockData.subscriptionSample)
+        SubscriptionMoreDetailView(subscription: MockData.subscriptionSample, dismissCard: .constant(false))
     }
 }

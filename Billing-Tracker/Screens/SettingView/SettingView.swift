@@ -31,7 +31,7 @@ struct SettingView: View {
                             }
                             
                         }
-                        .sheet(isPresented: $viewModel.showManagedSubscriptions){
+                        .fullScreenCover(isPresented: $viewModel.showManagedSubscriptions){
                             ManageSubscriptionsView()
                             
                         }
@@ -46,7 +46,7 @@ struct SettingView: View {
                                 Text("Account")
                                     .foregroundColor(.standardText)
                             }
-                        }.sheet(isPresented: $showAccountView) {
+                        }.fullScreenCover(isPresented: $showAccountView) {
                             if let currentUser =  Auth.auth().currentUser{
                                 // get user data
                                // inject them into account view
@@ -83,7 +83,7 @@ struct SettingView: View {
                                     .accentColor(.mainColor)
                                     .imageScale(.small)
                                     .frame(width: 20 , height : 30)
-                                Text("Ready Providers With Icons")
+                                Text("Ready Providers")
                                     .foregroundColor(.standardText)
                             }
                         }.sheet(isPresented: $showReadyProviders){
