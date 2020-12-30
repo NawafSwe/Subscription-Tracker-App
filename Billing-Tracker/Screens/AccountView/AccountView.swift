@@ -51,7 +51,7 @@ struct AccountView: View {
                 }
                 .navigationBarItems(leading: Button(action:{self.presentationMode.wrappedValue.dismiss()}){DismissButtonView()}
                                     , trailing: Button(action:{self.viewModel.updateUserInfo()}){
-                                        StandardButton(title: "Save")
+                                        StandardButton(title: "Save",width: 80 , height: 30)
                                     })
                 .navigationTitle("Profile")
             }

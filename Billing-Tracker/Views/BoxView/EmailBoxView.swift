@@ -40,7 +40,7 @@ struct EmailBoxView: View {
             .shadow(radius: 2)
             .overlay(
                 Button(action:viewModel.updateUserEmail ){
-                    StandardButton(title: "Update")}
+                    StandardButton(title: "Update" ,width: 80 , height: 30 )}
                     .padding()
                     .alert(item: $viewModel.alertItem){alert in
                         Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
@@ -56,7 +56,7 @@ struct EmailBoxView: View {
                 NotchBarView(width: 100, height: 10, cornerRadius: 3).padding(.vertical,-0.5), alignment: .top
             )
         }
-        
+        .onTapGesture { K.hideKeyBoard() }
     }
 }
 
