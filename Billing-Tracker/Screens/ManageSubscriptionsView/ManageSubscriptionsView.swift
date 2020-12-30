@@ -30,7 +30,7 @@ struct ManageSubscriptionsView: View {
                 .environment(\.editMode, .constant(viewModel.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
                 .navigationBarItems(leading: Button(action: {self.presentationMode.wrappedValue.dismiss()}){ DismissButtonView() } ,
                                     trailing: Button(action:{viewModel.isEditing.toggle()}){
-                                        CustomEditButton()
+                                        StandardButton(title: "Edit" ,width: 80 , height: 30)
                                     }
                 )
                 .navigationTitle("Subscriptions 💳")

@@ -18,12 +18,11 @@ struct PasswordBoxView: View {
                 VStack(alignment: .center , spacing :20){
                     Text("Current Password")
                         .bold()
-                    SecureField("current Password", text: $viewModel.currentPassword)
+                    SecureField("your current Password", text: $viewModel.currentPassword)
                         .frame(width: 320)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         
-                    
-                    
+
                     
                     SecureField("New Password", text: $viewModel.reEnteredPassword)
                         .frame(width: 320)
@@ -43,7 +42,9 @@ struct PasswordBoxView: View {
                 .shadow(radius: 2)
                 .overlay(
                     Button(action: viewModel.updateUserPassword) {
-                        StandardButton(title: "Update")}
+                        StandardButton(title: "Update", width: 80 , height: 30)
+                        
+                    }
                         .padding()
                         .alert(item: $viewModel.alertItem){alert in
                             Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
@@ -62,7 +63,7 @@ struct PasswordBoxView: View {
             
             
         }
-        .onTapGesture {K.hideKeyBoard()}
+        .onTapGesture { K.hideKeyBoard() }
         
     }
 }

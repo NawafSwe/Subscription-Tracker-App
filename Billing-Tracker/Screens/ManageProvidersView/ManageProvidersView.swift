@@ -68,14 +68,14 @@ struct NavigationButtonsHolder : View {
     var body: some View{
         HStack{
             Button(action:{viewModel.isEditing.toggle()}){
-                CustomEditButton()
+                StandardButton(title: "Edit", width: 60 , height: 25)
                 
             }
             
             Button(action:{
                 viewModel.showAddProvider.toggle()
             }){
-                AddProviderButton()
+               StandardButton(title: "Add" , width: 60 , height: 25)
                 
             }
             

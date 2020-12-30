@@ -76,7 +76,7 @@ struct UpdateSubscriptionView:View{
                     DismissButtonView()
                 } ,
                 trailing: Button(action:{viewModel.updateSubscription()}){
-                    StandardButton(title:"Update")
+                    StandardButton(title:"Done" ,width: 80 , height: 30 )
                 }
                 .alert(item: $viewModel.alertItem){ alert in
                     Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)

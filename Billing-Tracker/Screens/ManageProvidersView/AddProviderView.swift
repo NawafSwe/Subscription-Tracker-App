@@ -23,7 +23,7 @@ struct AddProviderView: View {
                     Button(action:{
                         viewModel.addProvider()
                     }){
-                        StandardButton(title:"Add")
+                        StandardButton(title:"Add", width: 80 , height: 30)
                     }
                     .alert(item: $viewModel.alertItem){alert in
                         Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
