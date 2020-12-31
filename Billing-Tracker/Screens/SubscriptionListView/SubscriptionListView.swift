@@ -22,7 +22,10 @@ struct SubscriptionListView: View {
                                 SubscriptionCellView(subscription: sub)
                                     .padding(.vertical,4)
                                     
-                                    .onTapGesture { viewModel.selectedSubscription = sub
+                                    .onTapGesture {
+                                      let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                                          impactMed.impactOccurred()
+                                        viewModel.selectedSubscription = sub
                                     }
                                     
                                     .blur(radius: viewModel.showSubscriptionDetail ? 10 :  0)
@@ -73,14 +76,14 @@ struct SubscriptionListView: View {
                     //                        Text( "\(self.viewModel.viewState.height)")
                     //                     , alignment: .top)
                     .transition(.move(edge: .bottom))
-                    .animation(.easeIn(duration: 0.6))
+                    .animation(.easeIn(duration: 0.7))
                     .gesture(
                         DragGesture().onChanged{ value in
                             //saving the value of the drag
                             self.viewModel.viewState = value.translation
                             
                             /// if the user dragged it till 260 or more dismiss it
-                            if(self.viewModel.viewState.height >= 150){
+                            if(self.viewModel.viewState.height >= 160){
                                 self.viewModel.showSubscriptionDetail.toggle()
                                 self.viewModel.viewState = .zero
                             }
@@ -95,6 +98,7 @@ struct SubscriptionListView: View {
                     /// by dragging moving card
                     .offset(y: self.viewModel.viewState.height > 0 ? self.viewModel.viewState.height : 0)
                 // prevent animation from propagation
+                    .animation(nil)
                 
             }
         }

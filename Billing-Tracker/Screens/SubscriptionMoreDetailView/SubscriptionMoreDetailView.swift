@@ -91,7 +91,13 @@ struct SubscriptionMoreDetailView: View {
             )
             // button to dismiss view
             .overlay(
-                Button(action:{self.dismissCard.toggle()}){
+                Button(action:{
+                    // adding haptic feedback
+                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                        impactMed.impactOccurred()
+                        self.dismissCard.toggle()
+                    
+                }){
                     HStack{
                         Image(systemName: "chevron.down.circle.fill")
                             .resizable()
