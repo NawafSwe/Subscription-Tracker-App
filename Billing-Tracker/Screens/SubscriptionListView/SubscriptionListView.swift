@@ -41,18 +41,24 @@ struct SubscriptionListView: View {
                     
                 }
                 
-                if !viewModel.subscriptionRepository.subscriptions.isEmpty{
-                    ExpenseView(price: viewModel.totalPrice)
-                        .padding()
-                }
                 
             }
-            
             /// sheet for displaying the form
             .sheet(isPresented: $viewModel.showSubscriptionForm){
                 NewSubscriptionFormView()
                 
             }
+            if !viewModel.subscriptionRepository.subscriptions.isEmpty{
+                VStack{
+                    Spacer()
+                    ExpenseView(price: viewModel.totalPrice)
+                        .padding()
+                    
+                }
+            }
+            
+            
+            
             
             /// if subscription list  empty show empty state
             if viewModel.subscriptionServices.isEmpty{
@@ -63,9 +69,9 @@ struct SubscriptionListView: View {
             if(viewModel.showSubscriptionDetail){
                 SubscriptionMoreDetailView(subscription: viewModel.selectedSubscription!.subscription, dismissCard: $viewModel.showSubscriptionDetail)
                     /// to watch the view state
-//                    .overlay(
-//                        Text( "\(self.viewModel.viewState.height)")
-//                     , alignment: .top)
+                    //                    .overlay(
+                    //                        Text( "\(self.viewModel.viewState.height)")
+                    //                     , alignment: .top)
                     .transition(.move(edge: .bottom))
                     .animation(.easeIn(duration: 0.6))
                     .gesture(
@@ -88,8 +94,8 @@ struct SubscriptionListView: View {
                     )
                     /// by dragging moving card
                     .offset(y: self.viewModel.viewState.height > 0 ? self.viewModel.viewState.height : 0)
-                    // prevent animation from propagation
-                  
+                // prevent animation from propagation
+                
             }
         }
         
