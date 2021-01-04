@@ -7,7 +7,6 @@
 
 import SwiftUI
 import UIKit
-
 struct SubscriptionListView: View {
     @StateObject var viewModel = SubscriptionListViewModel()
     var body: some View {
@@ -41,10 +40,7 @@ struct SubscriptionListView: View {
                                                             AddSubscriptionButtonView() } ))
                     .navigationTitle("Subscriptions 💳")
                     
-                    
                 }
-                
-                
             }
             /// sheet for displaying the form
             .sheet(isPresented: $viewModel.showSubscriptionForm){
@@ -59,9 +55,6 @@ struct SubscriptionListView: View {
                     
                 }
             }
-            
-            
-            
             
             /// if subscription list  empty show empty state
             if viewModel.subscriptionServices.isEmpty{
@@ -103,7 +96,6 @@ struct SubscriptionListView: View {
             }
         }
         
-        
         .alert(item: $viewModel.alertItem){alert in
             Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
             
@@ -112,13 +104,8 @@ struct SubscriptionListView: View {
     }
 }
 
-
-
 struct SubscriptionListView_Previews: PreviewProvider {
     static var previews: some View {
         SubscriptionListView()
     }
 }
-
-
-

@@ -10,6 +10,7 @@ import SwiftUI
 import Firebase
 import FirebaseFirestoreSwift
 import Combine
+import UserNotifications
 
 final class SubscriptionFormViewModel: ObservableObject {
     @Environment (\.presentationMode) var presentationMode
@@ -133,36 +134,57 @@ final class SubscriptionFormViewModel: ObservableObject {
         return true
         
     }
-
-    func initNotification(date:Date){
-        let content = UNMutableNotificationContent()
-        content.title = "Subscription Expiring Data"
-        content.body = "\(self.notificationMessage)"
     
-        // Configure the recurring date.
-        var dateComponents = DateComponents()
-
-        dateComponents.weekday = 3  // Tuesday
-        dateComponents.hour = 14    // 14:00 hours
-           
-        // Create the trigger as a repeating event.
-        let trigger = UNCalendarNotificationTrigger(
-                 dateMatching: dateComponents, repeats: true)
-        
-        
-        // Create the request
-        let uuidString = UUID().uuidString
-        let request = UNNotificationRequest(identifier: uuidString,
-                    content: content, trigger: trigger)
-
-        // Schedule the request with the system.
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.add(request) { (error) in
-           if error != nil {
-              // Handle any errors.
-           }
+    //MARK:- creating notification
+    func initNotification(date:Date){
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+            if success{
+                let content = UNMutableNotificationContent()
+                content.title = "Subscription due date"
+                content.subtitle = "\(self.notificationMessage)"
+                content.sound = UNNotificationSound.default
+                
+                //                // show this notification five seconds from now
+                //                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                //
+                //                // choose a random identifier
+                //                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                //
+                //                // add our notification request
+                //                UNUserNotificationCenter.current().add(request)
+                
+            } else if let _ = error{
+                return
+            }
         }
-        
-        notificationCenter.removePendingNotificationRequests(withIdentifiers: [uuidString])
     }
 }
+
+//let content = UNMutableNotificationContent()
+//content.title = "Subscription Expiring Date"
+//content.body = "\(self.notificationMessage)"
+//
+//// Configure the recurring date.
+//var dateComponents = DateComponents()
+//
+//dateComponents.weekday = 3  // Tuesday
+//dateComponents.hour = 14    // 14:00 hours
+//
+//// Create the trigger as a repeating event.
+//let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+//
+//
+//// Create the request
+//let uuidString = UUID().uuidString
+//let request = UNNotificationRequest(identifier: uuidString,
+//                                    content: content, trigger: trigger)
+//
+//// Schedule the request with the system.
+//let notificationCenter = UNUserNotificationCenter.current()
+//notificationCenter.add(request) { (error) in
+//    if error != nil {
+//        // Handle any errors.
+//    }
+//}
+//
+//notificationCenter.removePendingNotificationRequests(withIdentifiers: [uuidString])
