@@ -10,7 +10,7 @@ struct User: Codable{
     var uid: String
     var email: String?
     var displayName: String?
-   
+    
     var age:String
     var gender:String
     var preferredProviderName:String

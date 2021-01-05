@@ -49,12 +49,12 @@ struct SettingView: View {
                         }.fullScreenCover(isPresented: $showAccountView) {
                             if let currentUser =  Auth.auth().currentUser{
                                 // get user data
-                               // inject them into account view
-                                 let userEmail = currentUser.email ?? ""
+                                // inject them into account view
+                                let userEmail = currentUser.email ?? ""
                                 
                                 AccountView(viewModel: AccountViewModel(email: userEmail, preferredProviderName: self.user.user.preferredProviderName, preferredProviderImage: self.user.user.preferredProviderImage, age: self.user.user.age, gender: self.user.user.gender , username: self.user.user.username))
                             }
-                           
+                            
                         }
                         
                         Button(action:{
@@ -95,11 +95,11 @@ struct SettingView: View {
                             HStack{
                                 Image("message")
                                     .resizable()
-                                     .foregroundColor(.iconsBackgroundColor)
+                                    .foregroundColor(.iconsBackgroundColor)
                                     .frame(width: 30 , height: 30)
                                     .scaledToFill()
                                     .imageScale(.small)
-                                   
+                                
                                 Text("Contact Developer")
                                     .foregroundColor(.standardText)
                             }

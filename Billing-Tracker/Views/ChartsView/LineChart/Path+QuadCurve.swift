@@ -32,26 +32,26 @@ extension Path {
         
         forEach { ele in
             switch ele {
-            case .move(let to):
-                if start == nil {
-                    start = to
-                }
-                point = to
-            case .line(let to):
-                ret += point.line(to: to)
-                point = to
-            case .quadCurve(let to, let control):
-                ret += point.quadCurve(to: to, control: control)
-                point = to
-            case .curve(let to, let control1, let control2):
-                ret += point.curve(to: to, control1: control1, control2: control2)
-                point = to
-            case .closeSubpath:
-                if let to = start {
+                case .move(let to):
+                    if start == nil {
+                        start = to
+                    }
+                    point = to
+                case .line(let to):
                     ret += point.line(to: to)
                     point = to
-                }
-                start = nil
+                case .quadCurve(let to, let control):
+                    ret += point.quadCurve(to: to, control: control)
+                    point = to
+                case .curve(let to, let control1, let control2):
+                    ret += point.curve(to: to, control1: control1, control2: control2)
+                    point = to
+                case .closeSubpath:
+                    if let to = start {
+                        ret += point.line(to: to)
+                        point = to
+                    }
+                    start = nil
             }
         }
         return ret
@@ -68,41 +68,41 @@ extension Path {
                 return
             }
             switch ele {
-            case .move(let to):
-                if to.x > maxX {
-                    finished = true
-                    return
-                }
-                if start == nil {
-                    start = to
-                }
-                point = to
-            case .line(let to):
-                if to.x > maxX {
-                    finished = true
-                    ret += point.line(to: to, x: maxX)
-                    return
-                }
-                ret += point.line(to: to)
-                point = to
-            case .quadCurve(let to, let control):
-                if to.x > maxX {
-                    finished = true
-                    ret += point.quadCurve(to: to, control: control, x: maxX)
-                    return
-                }
-                ret += point.quadCurve(to: to, control: control)
-                point = to
-            case .curve(let to, let control1, let control2):
-                if to.x > maxX {
-                    finished = true
-                    ret += point.curve(to: to, control1: control1, control2: control2, x: maxX)
-                    return
-                }
-                ret += point.curve(to: to, control1: control1, control2: control2)
-                point = to
-            case .closeSubpath:
-                fatalError("Can't include closeSubpath")
+                case .move(let to):
+                    if to.x > maxX {
+                        finished = true
+                        return
+                    }
+                    if start == nil {
+                        start = to
+                    }
+                    point = to
+                case .line(let to):
+                    if to.x > maxX {
+                        finished = true
+                        ret += point.line(to: to, x: maxX)
+                        return
+                    }
+                    ret += point.line(to: to)
+                    point = to
+                case .quadCurve(let to, let control):
+                    if to.x > maxX {
+                        finished = true
+                        ret += point.quadCurve(to: to, control: control, x: maxX)
+                        return
+                    }
+                    ret += point.quadCurve(to: to, control: control)
+                    point = to
+                case .curve(let to, let control1, let control2):
+                    if to.x > maxX {
+                        finished = true
+                        ret += point.curve(to: to, control1: control1, control2: control2, x: maxX)
+                        return
+                    }
+                    ret += point.curve(to: to, control1: control1, control2: control2)
+                    point = to
+                case .closeSubpath:
+                    fatalError("Can't include closeSubpath")
             }
         }
         return ret
@@ -114,7 +114,7 @@ extension Path {
             return path
         }
         let offset = globalOffset ?? points.min()!
-//        guard let offset = points.min() else { return path }
+        //        guard let offset = points.min() else { return path }
         var p1 = CGPoint(x: 0, y: CGFloat(points[0]-offset)*step.y)
         path.move(to: p1)
         for pointIndex in 1..<points.count {
@@ -133,8 +133,8 @@ extension Path {
             return path
         }
         let offset = globalOffset ?? points.min()!
-
-//        guard let offset = points.min() else { return path }
+        
+        //        guard let offset = points.min() else { return path }
         path.move(to: .zero)
         var p1 = CGPoint(x: 0, y: CGFloat(points[0]-offset)*step.y)
         path.addLine(to: p1)

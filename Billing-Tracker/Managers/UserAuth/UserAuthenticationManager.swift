@@ -22,7 +22,7 @@ final class UserAuthenticationManager : ObservableObject{
     static let shared = UserAuthenticationManager()
     private let db = Firestore.firestore()
     private init () { }
-
+    
     /// start listing for user
     func listen () {
         // monitor authentication changes using firebase
@@ -31,17 +31,17 @@ final class UserAuthenticationManager : ObservableObject{
             if let _ = user {
                 // if we have a user, create a new user model
                 // check if I add some providers from the cloud
-                    self.userRepository.loadUserData(){result in
-                        switch result{
-                            case .success(let user):
-                                DispatchQueue.main.async {
-                                    self.user = user
-                                    self.authState = .signIn
-                                }
-                            case .failure(_):
-                                return
-                                
-                        }
+                self.userRepository.loadUserData(){result in
+                    switch result{
+                        case .success(let user):
+                            DispatchQueue.main.async {
+                                self.user = user
+                                self.authState = .signIn
+                            }
+                        case .failure(_):
+                            return
+                            
+                    }
                 }
             } else {
                 // if we don't have a user, set our session to nil

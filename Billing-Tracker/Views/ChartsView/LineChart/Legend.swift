@@ -5,7 +5,7 @@ struct Legend: View {
     @Binding var hideHorizontalLines: Bool
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     let padding:CGFloat = 3
-
+    
     var stepWidth: CGFloat {
         if data.points.count < 2 {
             return 0
@@ -44,7 +44,7 @@ struct Legend: View {
                         .animation(.easeOut(duration: 0.2))
                         .clipped()
                 }
-               
+                
             }
             
         }
@@ -62,7 +62,7 @@ struct Legend: View {
             return (self.frame.height-((CGFloat(legend[height]) - min)*self.stepHeight))-(self.frame.height/2)
         }
         return 0
-       
+        
     }
     
     func line(atHeight: CGFloat, width: CGFloat) -> Path {

@@ -57,6 +57,6 @@ struct DaysRingView: View {
 struct DaysRingView_Previews: PreviewProvider {
     static var previews: some View {
         DaysRingView(width: 100, height: 100, reminderDays: 40)
-
+        
     }
 }

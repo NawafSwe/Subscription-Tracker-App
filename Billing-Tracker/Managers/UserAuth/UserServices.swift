@@ -15,12 +15,12 @@ final class UserServices:ObservableObject{
     @Published var cancallebles =  Set<AnyCancellable>()
     init(user:User){
         self.user = user
-//        self.userRepository
-//            .$user
-//            .sink{ user in
-//                self.user = user
-//            }
-//            .store(in: &cancallebles)
+        //        self.userRepository
+        //            .$user
+        //            .sink{ user in
+        //                self.user = user
+        //            }
+        //            .store(in: &cancallebles)
         
     }
 }

@@ -41,11 +41,11 @@ public struct LineView: View {
         GeometryReader{ geometry in
             VStack(alignment: .leading, spacing: 8) {
                 Group{
-//                    if (self.title != nil){
-//                        Text(self.title!)
-//                            .font(.title)
-//                            .bold().foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.textColor : self.style.textColor)
-//                    }
+                    //                    if (self.title != nil){
+                    //                        Text(self.title!)
+                    //                            .font(.title)
+                    //                            .bold().foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.textColor : self.style.textColor)
+                    //                    }
                     if (self.legend != nil){
                         Text(self.legend!)
                             .font(.callout)
@@ -87,17 +87,17 @@ public struct LineView: View {
                 }
                 .frame(width: geometry.frame(in: .local).size.width, height: 240)
                 .gesture(DragGesture()
-                .onChanged({ value in
-                    self.dragLocation = value.location
-                    self.indicatorLocation = CGPoint(x: max(value.location.x-30,0), y: 32)
-                    self.opacity = 1
-                    self.closestPoint = self.getClosestDataPoint(toPoint: value.location, width: geometry.frame(in: .local).size.width-30, height: 240)
-                    self.hideHorizontalLines = true
-                })
-                    .onEnded({ value in
-                        self.opacity = 0
-                        self.hideHorizontalLines = false
-                    })
+                            .onChanged({ value in
+                                self.dragLocation = value.location
+                                self.indicatorLocation = CGPoint(x: max(value.location.x-30,0), y: 32)
+                                self.opacity = 1
+                                self.closestPoint = self.getClosestDataPoint(toPoint: value.location, width: geometry.frame(in: .local).size.width-30, height: 240)
+                                self.hideHorizontalLines = true
+                            })
+                            .onEnded({ value in
+                                self.opacity = 0
+                                self.hideHorizontalLines = false
+                            })
                 )
             }
         }

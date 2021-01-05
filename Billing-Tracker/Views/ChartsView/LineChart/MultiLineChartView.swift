@@ -122,29 +122,29 @@ public struct MultiLineChartView: View {
             }.frame(width: self.formSize.width, height: self.formSize.height)
         }
         .gesture(DragGesture()
-        .onChanged({ value in
-//            self.touchLocation = value.location
-//            self.showIndicatorDot = true
-//            self.getClosestDataPoint(toPoint: value.location, width:self.frame.width, height: self.frame.height)
-        })
-            .onEnded({ value in
-                self.showIndicatorDot = false
-            })
+                    .onChanged({ value in
+                        //            self.touchLocation = value.location
+                        //            self.showIndicatorDot = true
+                        //            self.getClosestDataPoint(toPoint: value.location, width:self.frame.width, height: self.frame.height)
+                    })
+                    .onEnded({ value in
+                        self.showIndicatorDot = false
+                    })
         )
     }
     
-//    @discardableResult func getClosestDataPoint(toPoint: CGPoint, width:CGFloat, height: CGFloat) -> CGPoint {
-//        let points = self.data.onlyPoints()
-//        let stepWidth: CGFloat = width / CGFloat(points.count-1)
-//        let stepHeight: CGFloat = height / CGFloat(points.max()! + points.min()!)
-//
-//        let index:Int = Int(round((toPoint.x)/stepWidth))
-//        if (index >= 0 && index < points.count){
-//            self.currentValue = points[index]
-//            return CGPoint(x: CGFloat(index)*stepWidth, y: CGFloat(points[index])*stepHeight)
-//        }
-//        return .zero
-//    }
+    //    @discardableResult func getClosestDataPoint(toPoint: CGPoint, width:CGFloat, height: CGFloat) -> CGPoint {
+    //        let points = self.data.onlyPoints()
+    //        let stepWidth: CGFloat = width / CGFloat(points.count-1)
+    //        let stepHeight: CGFloat = height / CGFloat(points.max()! + points.min()!)
+    //
+    //        let index:Int = Int(round((toPoint.x)/stepWidth))
+    //        if (index >= 0 && index < points.count){
+    //            self.currentValue = points[index]
+    //            return CGPoint(x: CGFloat(index)*stepWidth, y: CGFloat(points[index])*stepHeight)
+    //        }
+    //        return .zero
+    //    }
 }
 
 struct MultiWidgetView_Previews: PreviewProvider {

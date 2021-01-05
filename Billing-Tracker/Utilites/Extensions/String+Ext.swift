@@ -15,7 +15,7 @@ extension String {
     
     static func limitProgress(string: String , limit: Int) -> Bool{
         if string.count > limit {
-           return true
+            return true
         }else{ return false  }
     }
 }

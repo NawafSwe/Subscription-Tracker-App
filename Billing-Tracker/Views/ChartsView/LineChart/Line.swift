@@ -67,11 +67,11 @@ public struct Line: View {
                 .animation(Animation.easeOut(duration: 1.2).delay(Double(self.index)*0.4))
                 .onAppear {
                     self.showFull = true
-            }
-            .onDisappear {
-                self.showFull = false
-            }
-            .drawingGroup()
+                }
+                .onDisappear {
+                    self.showFull = false
+                }
+                .drawingGroup()
             if(self.showIndicator) {
                 IndicatorPoint()
                     .position(self.getClosestPointOnPath(touchLocation: self.touchLocation))

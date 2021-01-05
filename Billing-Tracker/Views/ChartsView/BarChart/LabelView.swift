@@ -10,7 +10,7 @@ struct LabelView: View {
                 RoundedRectangle(cornerRadius: 8).frame(width: 100, height: 32, alignment: .center).foregroundColor(Color.white).shadow(radius: 8)
                 Text(self.title).font(.caption).bold()
                 ArrowUp().fill(Color.white).frame(width: 20, height: 12, alignment: .center).zIndex(999).offset(x: getArrowOffset(offset:self.arrowOffset), y: -20)
-
+                
             }
         }
     }

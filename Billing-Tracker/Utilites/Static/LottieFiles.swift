@@ -8,5 +8,5 @@
 import Foundation
 enum LottieFiles{
     static let loading = "loading"
-
+    
 }

@@ -14,7 +14,7 @@ final class SubscriptionRepository :ObservableObject{
     private let db = Firestore.firestore()
     @Published var subscriptions  = [Subscription]()
     private let collectionName = FirestoreKeys.Collections.subscriptions.rawValue
- 
+    
     init(){ loadData() }
     
     /// LoadData loading all subscriptions data once from firebase life  and setting the subscriptions
@@ -191,49 +191,49 @@ final class SubscriptionRepository :ObservableObject{
     }
     
     
-//    func getMonthlySubscriptions(completion: @escaping (Result< [Subscription] , Error>) -> () ){
-//        if let userId = Auth.auth().currentUser?.uid{
-//            db.collection(self.collectionName)
-//                .whereField("userId", isEqualTo: userId)
-//                .whereField("cycleDays", isEqualTo: "Monthly")
-//                .order(by: "createdTime")
-//                .addSnapshotListener { (querySnapshot, error) in
-//                    if let error = error{
-//                        completion(.failure(error))
-//                        if let query = querySnapshot{
-//
-//                            self.monthlySubscriptions =  query.documents.compactMap{ document in
-//                                try? document.data(as: Subscription.self)
-//
-//                            }
-//                        }
-//
-//
-//                    }
-//                }
-//        }
-//    }
-//
-//    func getYearlySubscriptions(completion: @escaping (Result< [Subscription] , Error>) -> () ){
-//        if let userId = Auth.auth().currentUser?.uid{
-//            db.collection(self.collectionName)
-//                .whereField("userId", isEqualTo: userId)
-//                .whereField("cycleDays", isEqualTo: "Yearly")
-//                .order(by: "createdTime")
-//                .addSnapshotListener { (querySnapshot, error) in
-//                    if let error = error{
-//                        completion(.failure(error))
-//                        if let query = querySnapshot{
-//
-//                            self.yearlySubscriptions =  query.documents.compactMap{ document in
-//                                try? document.data(as: Subscription.self)
-//
-//                            }
-//                        }
-//
-//
-//                    }
-//                }
-//        }
-//    }
+    //    func getMonthlySubscriptions(completion: @escaping (Result< [Subscription] , Error>) -> () ){
+    //        if let userId = Auth.auth().currentUser?.uid{
+    //            db.collection(self.collectionName)
+    //                .whereField("userId", isEqualTo: userId)
+    //                .whereField("cycleDays", isEqualTo: "Monthly")
+    //                .order(by: "createdTime")
+    //                .addSnapshotListener { (querySnapshot, error) in
+    //                    if let error = error{
+    //                        completion(.failure(error))
+    //                        if let query = querySnapshot{
+    //
+    //                            self.monthlySubscriptions =  query.documents.compactMap{ document in
+    //                                try? document.data(as: Subscription.self)
+    //
+    //                            }
+    //                        }
+    //
+    //
+    //                    }
+    //                }
+    //        }
+    //    }
+    //
+    //    func getYearlySubscriptions(completion: @escaping (Result< [Subscription] , Error>) -> () ){
+    //        if let userId = Auth.auth().currentUser?.uid{
+    //            db.collection(self.collectionName)
+    //                .whereField("userId", isEqualTo: userId)
+    //                .whereField("cycleDays", isEqualTo: "Yearly")
+    //                .order(by: "createdTime")
+    //                .addSnapshotListener { (querySnapshot, error) in
+    //                    if let error = error{
+    //                        completion(.failure(error))
+    //                        if let query = querySnapshot{
+    //
+    //                            self.yearlySubscriptions =  query.documents.compactMap{ document in
+    //                                try? document.data(as: Subscription.self)
+    //
+    //                            }
+    //                        }
+    //
+    //
+    //                    }
+    //                }
+    //        }
+    //    }
 }

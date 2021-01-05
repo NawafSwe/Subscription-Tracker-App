@@ -24,7 +24,7 @@ struct HomeTabView: View {
                 Image(systemName: Icons.SFChart)
                     .resizable()
                     .modifier(TabIconsModifiers())
-
+                
                 Text("Statistics")
             }
             

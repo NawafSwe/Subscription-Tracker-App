@@ -43,6 +43,6 @@ struct MockData {
         Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date(), cycleDays: "Weekly", notifyMe :false, expired: false, priceString: "34" , notificationMessage : "notificationMessage", cycleIndex: 0 , notificationId: ""  )]
     static let subscriptionSample =
         Subscription(userId: "32", name: "Spotify" , image: Images.Spotify, description: "Music", dueDateString: "1 month", price: 100, dueDateInDate: Date(), cycleDays: "Weekly", notifyMe :false, expired: false, priceString: "34" , notificationMessage : "notificationMessage", cycleIndex: 0 , notificationId: ""  )
-               
-               }
+    
+}
 #endif

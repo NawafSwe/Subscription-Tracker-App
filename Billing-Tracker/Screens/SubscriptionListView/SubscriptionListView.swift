@@ -22,8 +22,8 @@ struct SubscriptionListView: View {
                                     .padding(.vertical,4)
                                     
                                     .onTapGesture {
-                                      let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                                          impactMed.impactOccurred()
+                                        let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                                        impactMed.impactOccurred()
                                         viewModel.selectedSubscription = sub
                                     }
                                     
@@ -90,7 +90,7 @@ struct SubscriptionListView: View {
                     )
                     /// by dragging moving card
                     .offset(y: self.viewModel.viewState.height > 0 ? self.viewModel.viewState.height : 0)
-                // prevent animation from propagation
+                    // prevent animation from propagation
                     .animation(nil)
                 
             }

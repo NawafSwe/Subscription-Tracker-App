@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 //MARK:- FireStoreService singleton class pattern
 final class FirestoreService{
     static let shared = FirestoreService()
-   private let db = Firestore.firestore()
+    private let db = Firestore.firestore()
     
     private init (){}
     
@@ -57,7 +57,7 @@ final class FirestoreService{
     /// - Returns: @escaping Completion Function
     func addDocument<T:Codable>(collection : FirestoreKeys.Collections, model:T , completion: @escaping (Result<Void , Error>)->() ){
         do{
-         let _ = try  db.collection(collection.rawValue).addDocument(from: model)
+            let _ = try  db.collection(collection.rawValue).addDocument(from: model)
             
         }catch {
             fatalError(error.localizedDescription)
