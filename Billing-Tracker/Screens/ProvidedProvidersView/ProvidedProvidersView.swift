@@ -41,6 +41,6 @@ struct ProvidedProvidersView: View {
 struct ProvidedProvidersView_Previews: PreviewProvider {
     static var previews: some View {
         ProvidedProvidersView()
-            
+        
     }
 }

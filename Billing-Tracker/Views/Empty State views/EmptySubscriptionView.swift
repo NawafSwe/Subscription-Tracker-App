@@ -14,8 +14,8 @@ struct EmptySubscriptionView: View {
         ZStack{
             VStack {
                 Image(imageName)
-                .resizable()
-                .frame(width: 380, height: 300, alignment: .center)
+                    .resizable()
+                    .frame(width: 380, height: 300, alignment: .center)
                     .offset(y: 10)
                 
                 Text(text)

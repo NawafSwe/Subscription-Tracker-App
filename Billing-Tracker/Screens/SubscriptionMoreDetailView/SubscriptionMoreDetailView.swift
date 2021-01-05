@@ -48,7 +48,7 @@ struct SubscriptionMoreDetailView: View {
                     
                 }
                 Divider()
-               
+                
                 HStack {
                     Text("Description:")
                     Spacer()
@@ -94,8 +94,8 @@ struct SubscriptionMoreDetailView: View {
                 Button(action:{
                     // adding haptic feedback
                     let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                        impactMed.impactOccurred()
-                        self.dismissCard.toggle()
+                    impactMed.impactOccurred()
+                    self.dismissCard.toggle()
                     
                 }){
                     HStack{
@@ -107,8 +107,8 @@ struct SubscriptionMoreDetailView: View {
                         
                     }
                 }
-                     ,
-                     alignment: .topLeading)
+                ,
+                alignment: .topLeading)
             
         }
     }

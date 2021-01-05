@@ -20,7 +20,7 @@ struct AddProviderButton: View {
                     .frame(width: 30, height: 30, alignment: .center)
                     .accentColor(Color.iconsBackgroundColor)
             )
-           
+        
     }
 }
 

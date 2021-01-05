@@ -10,7 +10,7 @@ import SwiftUI
 struct ManageSubscriptionsView: View {
     @StateObject var viewModel = ManageSubscriptionsViewModel()
     @Environment (\.presentationMode) var presentationMode
-   
+    
     var body: some View {
         ZStack{
             NavigationView{
@@ -23,7 +23,7 @@ struct ManageSubscriptionsView: View {
                     }
                     .onDelete(perform: self.viewModel.deleteSubscription)
                     
-               
+                    
                 }
                 .listStyle(PlainListStyle())
                 // edit mode
@@ -38,7 +38,7 @@ struct ManageSubscriptionsView: View {
             .sheet(isPresented: $viewModel.showUpdateForm){
                 UpdateSubscriptionView(viewModel: UpdateSubscriptionViewModel(subscription: viewModel.selectedSubscription!))
             }
-           
+            
             
             /// if subscriptions list  empty show empty state
             if viewModel.subscriptions.isEmpty{

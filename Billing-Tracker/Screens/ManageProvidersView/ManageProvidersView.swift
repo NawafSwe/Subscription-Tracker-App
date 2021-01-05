@@ -36,7 +36,7 @@ struct ManageProvidersView: View {
                     .navigationTitle("Custom Providers🧾")
                     
                 }
-
+                
                 .disabled(viewModel.showAddProvider)
                 .shadow(radius: viewModel.showAddProvider ? 10 : 0)
                 .blur(radius: viewModel.showAddProvider ?  10 : 0)
@@ -75,7 +75,7 @@ struct NavigationButtonsHolder : View {
             Button(action:{
                 viewModel.showAddProvider.toggle()
             }){
-               StandardButton(title: "Add" , width: 60 , height: 25)
+                StandardButton(title: "Add" , width: 60 , height: 25)
                 
             }
             

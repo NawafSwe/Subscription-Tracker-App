@@ -22,7 +22,7 @@ struct SignUpView: View {
                     
                     Text("Name:")
                         .font(.body)
-        
+                    
                     TextField("Name", text: $viewModel.name)
                         .padding(.horizontal)
                         .background(
@@ -33,7 +33,7 @@ struct SignUpView: View {
                     
                     Text("Your Email:")
                         .font(.body)
-        
+                    
                     TextField("Email", text: $viewModel.email)
                         .padding(.horizontal)
                         .background(
@@ -41,20 +41,20 @@ struct SignUpView: View {
                                 .frame(width:290 ,height: 30)
                                 .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
                         )
-                       
+                    
                     
                     Text("Password:")
                         .font(.body)
                     
-                  
-                        
-                        SecureField("Password",text:$viewModel.password)
-                            .padding(.horizontal)
-                            .background(
-                                RoundedRectangle(cornerRadius: 15)
-                                    .frame(width:290 ,height: 30)
-                                    .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
-                                    
+                    
+                    
+                    SecureField("Password",text:$viewModel.password)
+                        .padding(.horizontal)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .frame(width:290 ,height: 30)
+                                .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                            
                         )
                     
                     
@@ -86,7 +86,7 @@ struct SignUpView: View {
             }
             .padding()
             .frame(height:600)
-    
+            
             
             if viewModel.isLoading{
                 LoadingView(isLoading: $viewModel.isLoading)
@@ -99,8 +99,8 @@ struct SignUpView: View {
             .padding(.horizontal)
             .offset(x: -1 * UIScreen.screenWidth / 3 * 1.2 , y:  -1 * UIScreen.screenHeight / 3 * 1.3)
         }
-        }
     }
+}
 
 
 struct SignUpView_Previews: PreviewProvider {

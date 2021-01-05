@@ -21,8 +21,8 @@ struct PasswordBoxView: View {
                     SecureField("your current Password", text: $viewModel.currentPassword)
                         .frame(width: 320)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                        
-
+                    
+                    
                     
                     SecureField("New Password", text: $viewModel.reEnteredPassword)
                         .frame(width: 320)
@@ -45,10 +45,10 @@ struct PasswordBoxView: View {
                         StandardButton(title: "Update", width: 80 , height: 30)
                         
                     }
-                        .padding()
-                        .alert(item: $viewModel.alertItem){alert in
-                            Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
-                        }
+                    .padding()
+                    .alert(item: $viewModel.alertItem){alert in
+                        Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
+                    }
                     , alignment: .topTrailing
                 )
                 .overlay(Button(action:{viewModel.showPasswordBox.toggle()}){
@@ -57,7 +57,7 @@ struct PasswordBoxView: View {
                 )
                 .overlay(
                     NotchBarView(width: 100, height: 10, cornerRadius: 3).padding(.vertical,-0.5), alignment: .top
-            )
+                )
             }
             
             

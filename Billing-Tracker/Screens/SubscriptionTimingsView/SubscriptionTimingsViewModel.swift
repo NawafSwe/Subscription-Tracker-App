@@ -13,11 +13,11 @@ final class SubscriptionTimingsViewModel: ObservableObject {
     @Published var subscriptions = [SubscriptionServices] ()
     @Published var alertItem : AlertItem? = nil
     @Published var subscriptionRepository = SubscriptionRepository()
-
+    
     // for storage
     private var cancellables  = Set<AnyCancellable>()
     init() {
-
+        
         self.subscriptionRepository.$subscriptions
             .map{ subscriptions in
                 subscriptions.map{subscription in
@@ -32,6 +32,6 @@ final class SubscriptionTimingsViewModel: ObservableObject {
     //each gridItem inside the grid item array represents number of columns
     let columns : [GridItem] = [ GridItem(.flexible()) ,GridItem(.flexible())]
     
-
+    
     
 }

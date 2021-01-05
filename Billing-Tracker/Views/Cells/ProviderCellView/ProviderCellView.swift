@@ -12,13 +12,13 @@ struct ProviderCellView: View {
     let image:String
     var body: some View {
         HStack{
-        Image(image)
-            .resizable()
-            .scaledToFit()
-            .frame(width:26, height: 26)
-        Text(name)
-            .font(.subheadline)
-            .foregroundColor(.standardText)
+            Image(image)
+                .resizable()
+                .scaledToFit()
+                .frame(width:26, height: 26)
+            Text(name)
+                .font(.subheadline)
+                .foregroundColor(.standardText)
             
         }
     }

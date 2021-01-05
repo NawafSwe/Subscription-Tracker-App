@@ -13,7 +13,7 @@ struct SubscriptionCellView: View {
     var body: some View {
         HStack(alignment: .center){
             BrandView(subscription: subscription.subscription)
-                
+            
         }
         .frame(width: 350, height: 60)
         .background(Color("sub_cell_background"))
@@ -51,6 +51,6 @@ struct BrandView:View{
             }
         }
         .padding()
-       
+        
     }
 }

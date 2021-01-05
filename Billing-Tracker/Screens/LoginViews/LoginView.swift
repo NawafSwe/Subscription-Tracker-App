@@ -22,7 +22,7 @@ struct LoginView: View {
                     
                     Text("Your Email:")
                         .font(.body)
-        
+                    
                     TextField("Email", text: $viewModel.email)
                         .padding(.horizontal)
                         .background(
@@ -30,7 +30,7 @@ struct LoginView: View {
                                 .frame(width:290 ,height: 30)
                                 .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
                         )
-                       
+                    
                     
                     Text("Password:")
                         .font(.body)
@@ -41,7 +41,7 @@ struct LoginView: View {
                             RoundedRectangle(cornerRadius: 15)
                                 .frame(width:290 ,height: 30)
                                 .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
-                                
+                            
                         )
                     
                 }

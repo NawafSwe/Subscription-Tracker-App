@@ -14,8 +14,8 @@ struct EmptyProviders: View {
         ZStack{
             VStack {
                 Image(imageName)
-                .resizable()
-                .frame(width: 350, height: 300, alignment: .center)
+                    .resizable()
+                    .frame(width: 350, height: 300, alignment: .center)
                     .offset(y: 10)
                 
                 Text(text)
@@ -33,6 +33,6 @@ struct EmptyProviders_Previews: PreviewProvider {
     static var previews: some View {
         EmptyProviders()
         
-            
+        
     }
 }
