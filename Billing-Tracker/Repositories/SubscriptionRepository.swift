@@ -80,7 +80,7 @@ final class SubscriptionRepository :ObservableObject{
     
     func addSubscription(subscription: Subscription , completion: @escaping (Result<Void , Error> ) -> Void){
         if let userId = Auth.auth().currentUser?.uid{
-            var helperSubscription = Subscription(name: subscription.name, image: subscription.image, description: subscription.description, dueDateString: subscription.dueDateString, price: subscription.price, dueDateInDate: subscription.dueDateInDate, cycleDays: subscription.cycleDays, notifyMe: subscription.notifyMe, expired: subscription.expired , priceString: subscription.priceString , notificationMessage: subscription.notificationMessage, cycleIndex: subscription.cycleIndex)
+            var helperSubscription = Subscription(name: subscription.name, image: subscription.image, description: subscription.description, dueDateString: subscription.dueDateString, price: subscription.price, dueDateInDate: subscription.dueDateInDate, cycleDays: subscription.cycleDays, notifyMe: subscription.notifyMe, expired: subscription.expired , priceString: subscription.priceString , notificationMessage: subscription.notificationMessage, cycleIndex: subscription.cycleIndex, notificationId: subscription.notificationId)
             helperSubscription.userId = userId
             do{
                 let _ =  try db.collection(collectionName).addDocument(from: helperSubscription){ error in
@@ -124,7 +124,7 @@ final class SubscriptionRepository :ObservableObject{
                 let updatedSubscription = Subscription(userId:userid , name: subscription.name, image: subscription.image,
                                                        description: subscription.description, dueDateString: dateInString , price: capturedPrice,
                                                        dueDateInDate: subscription.dueDateInDate, cycleDays: capturedCycleDays, notifyMe: subscription.notifyMe,
-                                                       expired: subscription.expired, priceString: subscription.priceString, notificationMessage: subscription.notificationMessage , cycleIndex: subscription.cycleIndex)
+                                                       expired: subscription.expired, priceString: subscription.priceString, notificationMessage: subscription.notificationMessage , cycleIndex: subscription.cycleIndex , notificationId: subscription.notificationId)
                 do{
                     try db.collection(collectionName).document(subscriptionId)
                         .setData(from: updatedSubscription){error in

@@ -59,7 +59,7 @@ struct NewSubscriptionFormView: View {
                             }
                             
                             /// allowing user to select from now till 90 year only
-                            DatePicker("Due Date", selection: $viewModel.date, in: Date()...Date().notYesterday, displayedComponents: .date)
+                            DatePicker("Due Date", selection: $viewModel.date, in: Date()...Date().notYesterday , displayedComponents: .date)
                             
                             
                         }
@@ -67,6 +67,10 @@ struct NewSubscriptionFormView: View {
                         
                         Section(header:Text("Reminder")){
                             Toggle("Notify Me One Day Before", isOn: $viewModel.remindUser)
+                                .onChange(of: viewModel.remindUser){ _ in
+                                    viewModel.requestNotificationAuthorization()
+                                    
+                                }
                             
                             if viewModel.remindUser{
                                 TextField("Preferred Notification Message ", text: $viewModel.notificationMessage)

@@ -32,8 +32,10 @@ final class SubscriptionFormViewModel: ObservableObject {
     @Published var remindUser = false
     @Published var selectedProvider:Provider?{ didSet{didSelectProvider = true} }
     @Published var notificationMessage = ""
+    private var notificationId = ""
     // calculating price
     var calculatePrice:Double { Double(subPrice) ?? 0.0 }
+    
     
     
     //MARK:-  init
@@ -54,7 +56,9 @@ final class SubscriptionFormViewModel: ObservableObject {
     func addSubscription(){
         // check the form if its valid or not 
         if !isValidForm(){ return }
-        
+        if remindUser{
+            initNotification(with: self.date)
+        }
         // the selectedProvider if no selected throw alert
         guard let selectedProvider = self.selectedProvider else {
             DispatchQueue.main.async {
@@ -75,7 +79,7 @@ final class SubscriptionFormViewModel: ObservableObject {
                                              notifyMe: remindUser,
                                              expired: false ,
                                              priceString:subPrice,
-                                             notificationMessage:notificationMessage, cycleIndex: self.selectedCycle
+                                             notificationMessage:notificationMessage, cycleIndex: self.selectedCycle  , notificationId: self.notificationId
                                              
         )
         self.subscriptionRepository.addSubscription(subscription: addedSubscription){ [self] result in
@@ -136,55 +140,60 @@ final class SubscriptionFormViewModel: ObservableObject {
     }
     
     //MARK:- creating notification
-    func initNotification(date:Date){
+    func requestNotificationAuthorization(){
+        
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
             if success{
-                let content = UNMutableNotificationContent()
-                content.title = "Subscription due date"
-                content.subtitle = "\(self.notificationMessage)"
-                content.sound = UNNotificationSound.default
-                
-                //                // show this notification five seconds from now
-                //                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-                //
-                //                // choose a random identifier
-                //                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-                //
-                //                // add our notification request
-                //                UNUserNotificationCenter.current().add(request)
-                
+                print("success")
+                return
             } else if let _ = error{
+                // tell user to turn on notification center
+                DispatchQueue.main.async {
+                    self.alertItem = AlertItem(title: Text("Notification Error"), message: Text("Please turn on your notification from the notification center"), dismissButton: .default(Text("Ok")))
+                }
                 return
             }
         }
     }
+    
+    func initNotification(with date:Date){
+        let content = UNMutableNotificationContent()
+        content.title = "Subscription due date Reminder"
+        content.subtitle = self.notificationMessage
+        content.body = "\(self.notificationMessage)"
+        content.sound = UNNotificationSound.default
+        
+        //// Configure the recurring date.
+        var dateComponents = DateComponents()
+        /// to extract date component
+        let calendar = Calendar.current
+        let day = calendar.component(.day, from: date)
+        let year = calendar.component(.year, from: date)
+        let month = calendar.component(.month, from: date)
+        dateComponents.day = day
+        dateComponents.month = month
+        dateComponents.year = year
+        dateComponents.calendar = calendar
+        // end of config date
+        ////  Create the trigger as a repeating event.
+        
+        // choosing the trigger if the day is equal to one we want to notify user after an hour
+        // choose a random identifier
+        self.notificationId =  UUID().uuidString
+        var request:UNNotificationRequest
+        
+        if Date.daysDiffrent(start: Date(), end: date) == 1{
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: true)
+            request = UNNotificationRequest(identifier: self.notificationId, content: content, trigger: trigger)
+            
+        }else{
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+            request = UNNotificationRequest(identifier: self.notificationId, content: content, trigger: trigger)
+            
+        }
+        // add our notification request
+        UNUserNotificationCenter.current().add(request)
+        
+    }
 }
 
-//let content = UNMutableNotificationContent()
-//content.title = "Subscription Expiring Date"
-//content.body = "\(self.notificationMessage)"
-//
-//// Configure the recurring date.
-//var dateComponents = DateComponents()
-//
-//dateComponents.weekday = 3  // Tuesday
-//dateComponents.hour = 14    // 14:00 hours
-//
-//// Create the trigger as a repeating event.
-//let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-//
-//
-//// Create the request
-//let uuidString = UUID().uuidString
-//let request = UNNotificationRequest(identifier: uuidString,
-//                                    content: content, trigger: trigger)
-//
-//// Schedule the request with the system.
-//let notificationCenter = UNUserNotificationCenter.current()
-//notificationCenter.add(request) { (error) in
-//    if error != nil {
-//        // Handle any errors.
-//    }
-//}
-//
-//notificationCenter.removePendingNotificationRequests(withIdentifiers: [uuidString])
