@@ -144,7 +144,6 @@ final class SubscriptionFormViewModel: ObservableObject {
         
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
             if success{
-                print("success")
                 return
             } else if let _ = error{
                 // tell user to turn on notification center
@@ -159,7 +158,10 @@ final class SubscriptionFormViewModel: ObservableObject {
     func initNotification(with date:Date){
         let content = UNMutableNotificationContent()
         content.title = "Subscription due date Reminder"
-        content.subtitle = self.notificationMessage
+        if let providerName = selectedProvider?.name{
+            content.subtitle = providerName
+            
+        }
         content.body = "\(self.notificationMessage)"
         content.sound = UNNotificationSound.default
         
@@ -183,11 +185,13 @@ final class SubscriptionFormViewModel: ObservableObject {
         var request:UNNotificationRequest
         
         if Date.daysDiffrent(start: Date(), end: date) == 1{
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: true)
+            // not repeated
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: false)
             request = UNNotificationRequest(identifier: self.notificationId, content: content, trigger: trigger)
             
         }else{
-            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+            // not repeated
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
             request = UNNotificationRequest(identifier: self.notificationId, content: content, trigger: trigger)
             
         }
@@ -195,5 +199,6 @@ final class SubscriptionFormViewModel: ObservableObject {
         UNUserNotificationCenter.current().add(request)
         
     }
+ 
 }
 
