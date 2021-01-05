@@ -83,18 +83,24 @@ final class UpdateSubscriptionViewModel:ObservableObject{
         
     }
     
-    func changeNotificationStatus(){
-        // if true init notification
-        // else delete notification from center
-        if self.subscription.subscription.notifyMe{
-            
-        }else {
-            
+    //MARK:- creating notification
+    func requestNotificationAuthorization(){
+        // removing notification with an id if the notification toggled to false
+        if !subscription.subscription.notifyMe{
+            removeNotification(with: subscription.subscription.notificationId)
+        }
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+            if success{
+                return
+            } else if let _ = error{
+                // tell user to turn on notification center
+                DispatchQueue.main.async {
+                    self.alertItem = AlertItem(title: Text("Notification Error"), message: Text("Please turn on your notification from the notification center"), dismissButton: .default(Text("Ok")))
+                }
+                return
+            }
         }
     }
-    
-    
-    
     
     func initNotification(with date:Date){
         let content = UNMutableNotificationContent()
@@ -137,5 +143,12 @@ final class UpdateSubscriptionViewModel:ObservableObject{
         // add our notification request
         UNUserNotificationCenter.current().add(request)
         
+    }
+    
+    func removeNotification(with identifier: String){
+        if !identifier.isEmpty{
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
+            
+        }
     }
 }

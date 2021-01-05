@@ -144,7 +144,6 @@ final class SubscriptionFormViewModel: ObservableObject {
         
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
             if success{
-                print("success")
                 return
             } else if let _ = error{
                 // tell user to turn on notification center

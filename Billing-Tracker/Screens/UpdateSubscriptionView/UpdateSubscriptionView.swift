@@ -60,6 +60,11 @@ struct UpdateSubscriptionView:View{
                     
                     Section(header:Text("Reminder")){
                         Toggle("Notify Me One Day Before", isOn: $viewModel.subscription.subscription.notifyMe)
+                            .onChange(of: viewModel.subscription.subscription.notifyMe){ _ in
+                                // if changed to false and there is notification id will be removed
+                                viewModel.requestNotificationAuthorization()
+                                
+                            }
                         
                         if viewModel.subscription.subscription.notifyMe{
                             TextField("Preferred Notification Message ", text: $viewModel.subscription.subscription.notificationMessage)
