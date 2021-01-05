@@ -19,6 +19,7 @@ final class UpdateSubscriptionViewModel:ObservableObject{
     private var cancellables = Set<AnyCancellable>()
     @Published var cycleTypes = ["Weekly" , "Monthly", "Yearly"]
     @Published var subscription: SubscriptionServices
+    private var isNotificationAllowed = false
     
     
     
@@ -29,6 +30,12 @@ final class UpdateSubscriptionViewModel:ObservableObject{
     func updateSubscription(){
         // check the form if its valid or not
         if !isValidForm(){ return }
+        
+        // if notification was allowed and user want to be notified
+        if isNotificationAllowed && subscription.subscription.notifyMe{
+            initNotification(with: subscription.subscription.dueDateInDate)
+        }
+        
         //asking repo to update and sink it
         self.subscriptionRepository.updateSubscription(subscription: subscription.subscription) { [self] result in
             switch result {
@@ -91,8 +98,10 @@ final class UpdateSubscriptionViewModel:ObservableObject{
         }
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
             if success{
+                self.isNotificationAllowed = true
                 return
             } else if let _ = error{
+                self.isNotificationAllowed = false
                 // tell user to turn on notification center
                 DispatchQueue.main.async {
                     self.alertItem = AlertItem(title: Text("Notification Error"), message: Text("Please turn on your notification from the notification center"), dismissButton: .default(Text("Ok")))
@@ -147,6 +156,7 @@ final class UpdateSubscriptionViewModel:ObservableObject{
     
     func removeNotification(with identifier: String){
         if !identifier.isEmpty{
+            self.subscription.subscription.notificationId = ""
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
             
         }
