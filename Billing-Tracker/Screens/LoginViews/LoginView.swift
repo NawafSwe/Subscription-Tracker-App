@@ -15,38 +15,47 @@ struct LoginView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 VStack(alignment: .leading,spacing:20){
-                    Text("Welcome 💳")
-                        .font(.title2)
+                    
                     Text("Login")
                         .font(.title)
                     
                     Text("Your Email:")
                         .font(.body)
                     
-                    TextField("Email", text: $viewModel.email)
-                        .padding(.horizontal)
-                        .background(
-                            RoundedRectangle(cornerRadius: 15)
-                                .frame(width:290 ,height: 30)
-                                .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
-                        )
+                    HStack {
+                        
+                        Spacer().frame(width: 10)
+                        
+                        TextField("Email", text: $viewModel.email)
+                            .padding(.horizontal,50)
+                            .background(
+                                RoundedRectangle(cornerRadius: 15)
+                                    .frame(width:270 ,height: 40)
+                                    .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                            )
+                            .overlay(   EmailIconView(width: 36, height: 36).padding(.horizontal,7) , alignment: .leading)
+                    }
                     
                     
                     Text("Password:")
                         .font(.body)
                     
-                    SecureField("Password",text:$viewModel.password)
-                        .padding(.horizontal)
-                        .background(
-                            RoundedRectangle(cornerRadius: 15)
-                                .frame(width:290 ,height: 30)
-                                .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
-                            
-                        )
+                    HStack {
+                        Spacer().frame(width: 10)
+                        SecureField("Password",text:$viewModel.password)
+                            .padding(.horizontal,50)
+                            .background(
+                                RoundedRectangle(cornerRadius: 15)
+                                    .frame(width:270 ,height: 40)
+                                    .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                                
+                            )
+                            .overlay(LockIconView(width: 36, height: 36).padding(.horizontal,7),alignment: .leading)
+                    }
                     
                 }
                 .padding()
-                .frame(width: 320, height: 320, alignment: .center)
+                .frame(width: 320, height: 300, alignment: .center)
                 .background(Color.backgroundCell)
                 .clipShape(RoundedRectangle(cornerRadius: 15.0, style: .continuous))
                 

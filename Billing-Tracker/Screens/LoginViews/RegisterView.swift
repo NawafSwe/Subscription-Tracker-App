@@ -16,9 +16,9 @@ struct RegisterView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack(spacing: 5){
                 Text("Welcome To Billing Tracker 💳")
-                    .font(.largeTitle)
-                    .foregroundColor(.standardText)
                     .padding()
+                    .font(.title2)
+                    .foregroundColor(.standardText)
                     .multilineTextAlignment(.center)
                 Button(action:{
                     viewModel.showRegister.toggle()
@@ -36,7 +36,6 @@ struct RegisterView: View {
             }
             .padding()
             
-            
             if viewModel.showRegister{
                 SignUpView(viewModel: viewModel)
                     .transition(.move(edge: .bottom))
@@ -52,12 +51,8 @@ struct RegisterView: View {
             }
             
         }
-        
-        
     }
-    
 }
-
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
