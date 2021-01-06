@@ -111,6 +111,7 @@
 		39F215A125771DA3009332E7 /* SubscriptionFormAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F215A025771DA3009332E7 /* SubscriptionFormAlerts.swift */; };
 		39F215A4257728F6009332E7 /* TabIconsModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F215A3257728F6009332E7 /* TabIconsModifiers.swift */; };
 		39F215A925772BB8009332E7 /* PersonIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F215A825772BB8009332E7 /* PersonIconView.swift */; };
+		39F2DAD025A551E300CEE41E /* EmailIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F2DACF25A551E300CEE41E /* EmailIconView.swift */; };
 		39F7DE50257B074000D2AB99 /* ProvidedProvidersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F7DE4F257B074000D2AB99 /* ProvidedProvidersView.swift */; };
 		578104D2A7BA07861E627019 /* Pods_Billing_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0182523B208BB0C7B15E780C /* Pods_Billing_Tracker.framework */; };
 /* End PBXBuildFile section */
@@ -223,6 +224,7 @@
 		39F215A025771DA3009332E7 /* SubscriptionFormAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionFormAlerts.swift; sourceTree = "<group>"; };
 		39F215A3257728F6009332E7 /* TabIconsModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabIconsModifiers.swift; sourceTree = "<group>"; };
 		39F215A825772BB8009332E7 /* PersonIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonIconView.swift; sourceTree = "<group>"; };
+		39F2DACF25A551E300CEE41E /* EmailIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailIconView.swift; sourceTree = "<group>"; };
 		39F7DE4F257B074000D2AB99 /* ProvidedProvidersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidedProvidersView.swift; sourceTree = "<group>"; };
 		C61F344A6D63B2ECFF8F6779 /* Pods-Billing-Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Billing-Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Billing-Tracker/Pods-Billing-Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -765,6 +767,7 @@
 			children = (
 				39F215A825772BB8009332E7 /* PersonIconView.swift */,
 				39921EA4257FDAE20081ED42 /* LockIconView.swift */,
+				39F2DACF25A551E300CEE41E /* EmailIconView.swift */,
 			);
 			path = iconsView;
 			sourceTree = "<group>";
@@ -949,6 +952,7 @@
 				390E9675257460A6004B17DA /* SubscriptionListViewModel.swift in Sources */,
 				396D3B0A2582B22900B7EA72 /* LoginView.swift in Sources */,
 				39554E09257AE407004FF7BC /* SubscriptionMoreDetailView.swift in Sources */,
+				39F2DAD025A551E300CEE41E /* EmailIconView.swift in Sources */,
 				3909833F25756391001430C9 /* ManageSubscriptionsView.swift in Sources */,
 				39F215A925772BB8009332E7 /* PersonIconView.swift in Sources */,
 				390761772576C90C00955366 /* String+Ext.swift in Sources */,

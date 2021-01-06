@@ -1,28 +1,27 @@
 //
-//  PersonIconView.swift
+//  EmailIconView.swift
 //  Billing-Tracker
 //
-//  Created by Nawaf B Al sharqi on 02/12/2020.
+//  Created by Nawaf B Al sharqi on 06/01/2021.
 //
 
 import SwiftUI
 
-struct PersonIconView: View {
-    let width : CGFloat
-    let height : CGFloat
+struct EmailIconView: View {
+    let width:CGFloat
+    let height:CGFloat
     var body: some View {
-        Image(systemName: "person.crop.circle.fill")
+        Image(systemName: "envelope.fill")
             .foregroundColor(.lunchViewIconsColor)
             .frame(width: width , height : height)
             .background(Color.gray)
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.15), radius: 20, x: 0, y: 10)
-        
     }
 }
 
-struct PersonIconView_Previews: PreviewProvider {
+struct EmailIconView_Previews: PreviewProvider {
     static var previews: some View {
-        PersonIconView(width: 44, height: 44)
+        EmailIconView(width: 44, height: 44)
     }
 }
