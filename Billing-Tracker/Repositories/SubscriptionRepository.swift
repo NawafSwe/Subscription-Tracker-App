@@ -165,7 +165,13 @@ final class SubscriptionRepository :ObservableObject{
         }
     }
     
-    // for chart view to get prices for categorized subscriptions
+    ///
+    
+    /// for chart view to get prices for categorized subscriptions
+    /// - Parameters:
+    ///   - period: period to get the proper date and subscription
+    ///   - completion: completion handler
+    /// - Returns: function to be handled
     func getCategorizedSubscriptions( _ period:String ,completion: @escaping (Result< [Subscription] , Error>) -> () ){
         if let userId = Auth.auth().currentUser?.uid{
             print("trying")

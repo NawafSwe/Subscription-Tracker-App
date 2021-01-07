@@ -14,63 +14,38 @@ struct SignUpView: View {
             Color(.systemBackground)
                 .edgesIgnoringSafeArea(.all)
             VStack {
-                VStack(alignment: .leading,spacing:20){
+                VStack(alignment: .leading,spacing:40){
                     Text("Register")
-                        .font(.title)
+                        .font(.system(size: 30, weight: .semibold, design: .rounded ))
                     
-                    Text("Name:")
-                        .font(.body)
-                    
-                    
-                    
-                    HStack {
-                        Spacer().frame(width: 10)
-                        TextField("Name", text: $viewModel.name)
-                            .padding(.horizontal,50)
-                            .background( RoundedRectangle(cornerRadius: 15).frame(width:270 ,height: 40)
-                            .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
-                                           
-                            )
-                            .overlay( PersonIconView(width: 36, height: 36).padding(.horizontal,7), alignment: .leading)
-                    }
-                    
-                    Text("Your Email:")
-                        .font(.body)
-                    
-                    HStack {
-                     
-                        Spacer().frame(width: 10)
-                            
-                        TextField("Email", text: $viewModel.email)
-                            .padding(.horizontal,50)
-                            .background(
-                                RoundedRectangle(cornerRadius: 15)
-                                    .frame(width:270 ,height: 40)
-                                    .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                    TextField("", text: $viewModel.name)
+                        .modifier(RegisterTextFieldsModifiers(showPlaceHolder: viewModel.name.isEmpty, placeHolder: "Name"))
+                        .modifier(TextFieldModifiers())
+                        .background( RoundedRectangle(cornerRadius: 15).frame(width:270 ,height: 40)
+                                        .foregroundColor(Color.textFieldsColor)
                         )
-                        .overlay(   EmailIconView(width: 36, height: 36).padding(.horizontal,7) , alignment: .leading)
-                    }
                     
+                    //.overlay( PersonIconView(width: 36, height: 36).padding(.horizontal,7), alignment: .leading)
                     
-                    Text("Password:")
-                        .font(.body)
-                    
-                    
-                    HStack {
-                        Spacer().frame(width: 10)
-                            
-                        SecureField("Password",text:$viewModel.password)
-                            .padding(.horizontal,50)
-                            .background(
-                                RoundedRectangle(cornerRadius: 15)
-                                    .frame(width:270 ,height: 40)
-                                    .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
-                                
+                    TextField("", text: $viewModel.email)
+                        .modifier(RegisterTextFieldsModifiers(showPlaceHolder: viewModel.email.isEmpty, placeHolder: "Email"))
+                        .modifier(TextFieldModifiers())
+                        .background(
+                            RoundedRectangle(cornerRadius: 15).frame(width:270 ,height: 40)
+                                .foregroundColor(Color.textFieldsColor)
                         )
-                            .overlay(LockIconView(width: 36, height: 36).padding(.horizontal,7),alignment: .leading)
-                    }
+                    
+                    //.overlay(   EmailIconView(width: 36, height: 36).padding(.horizontal,7) , alignment: .leading)
                     
                     
+                    SecureField("",text:$viewModel.password)
+                        .modifier(RegisterTextFieldsModifiers(showPlaceHolder: viewModel.password.isEmpty, placeHolder: "Password"))
+                        .modifier(TextFieldModifiers())
+                        .background(
+                            RoundedRectangle(cornerRadius: 15).frame(width:270 ,height: 40)
+                                .foregroundColor(Color.textFieldsColor)
+                        )
+                    //.overlay(LockIconView(width: 36, height: 36).padding(.horizontal,7),alignment: .leading)
                 }
                 .padding()
                 .frame(width: 320, height: 350, alignment: .center)
@@ -88,11 +63,14 @@ struct SignUpView: View {
                     
                 }
                 
-                Button(action:{
-                    self.viewModel.showRegister = false
-                    self.viewModel.showLogin = true
-                }){
-                    WelcomeMessage(title: "Already have an account?", underlinedText: "Login")
+                HStack {
+                    WelcomeMessage(title: "Already have an account?")
+                    Button(action:{
+                        self.viewModel.showRegister = false
+                        self.viewModel.showLogin = true
+                    }){
+                        StandardButton(title: "Login", width: 70, height: 30)
+                    }
                 }
                 .padding(.vertical)
                 

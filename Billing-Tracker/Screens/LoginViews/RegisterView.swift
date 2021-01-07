@@ -79,17 +79,11 @@ struct MainButtonView : View {
 //MARK:- WelcomeMessage
 struct WelcomeMessage:View{
     let title: String
-    let underlinedText:String
     var body: some View{
         HStack{
             Text(title)
                 .font(.title3)
-            Text(underlinedText)
-                .underline()
-                .font(.title3)
-                .foregroundColor(.blue)
         }
-        .font(.title2)
         .foregroundColor(.primary)
     }
 }

@@ -14,11 +14,11 @@ final class UserRepository : ObservableObject{
     private let db = Firestore.firestore()
     private let collectionName = FirestoreKeys.Collections.users.rawValue
     static let shared = UserRepository()
-    
-    
+
     init(){ self.loadUserData(){ _  in } }
     
-    // loading user data from firestore
+    /// loading user data from firestore
+    /// - Parameter completion: completion function to load user data
     func loadUserData(completion: @escaping (Result<User, Error>)-> Void ){
         if let userId = Auth.auth().currentUser?.uid{
             db.collection(collectionName).document(userId)
@@ -36,6 +36,12 @@ final class UserRepository : ObservableObject{
         }
     }
     
+    
+    /// adding new user to database
+    /// - Parameters:
+    ///   - docId: user id
+    ///   - userData: user data
+    ///   - returns: Void
     func addUser(docId:String , userData:User){
         do{
             try db.collection(collectionName).document(docId).setData(from: userData){ error in
@@ -47,10 +53,17 @@ final class UserRepository : ObservableObject{
             }
             
         }catch {
+            // display alert instead
             fatalError(error.localizedDescription)
         }
     }
     
+    
+    /// updating user information
+    /// - Parameters:
+    ///   - userData: all user data
+    ///   - completion: completion function
+    ///    - returns  Void
     func updateUserData(userData:User , completion: @escaping (Result<Void , Error>)-> Void){
         if let userId = Auth.auth().currentUser?.uid{
             do{
@@ -72,4 +85,3 @@ final class UserRepository : ObservableObject{
     
     func deleteUserData(){ }
 }
-
