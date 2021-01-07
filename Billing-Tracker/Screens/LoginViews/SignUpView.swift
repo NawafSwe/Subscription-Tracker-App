@@ -22,23 +22,19 @@ struct SignUpView: View {
                         .modifier(RegisterTextFieldsModifiers(showPlaceHolder: viewModel.name.isEmpty, placeHolder: "Name"))
                         .modifier(TextFieldModifiers())
                         .background( RoundedRectangle(cornerRadius: 15).frame(width:270 ,height: 40)
-                                        .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))) )
+                                        .foregroundColor(Color.textFieldsColor)
+                        )
                     
                     //.overlay( PersonIconView(width: 36, height: 36).padding(.horizontal,7), alignment: .leading)
-                    
-                    
-                    
-                    
-                    
                     
                     TextField("", text: $viewModel.email)
                         .modifier(RegisterTextFieldsModifiers(showPlaceHolder: viewModel.email.isEmpty, placeHolder: "Email"))
                         .modifier(TextFieldModifiers())
                         .background(
-                            RoundedRectangle(cornerRadius: 15)
-                                .frame(width:270 ,height: 40)
-                                .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                            RoundedRectangle(cornerRadius: 15).frame(width:270 ,height: 40)
+                                .foregroundColor(Color.textFieldsColor)
                         )
+                    
                     //.overlay(   EmailIconView(width: 36, height: 36).padding(.horizontal,7) , alignment: .leading)
                     
                     
@@ -46,9 +42,9 @@ struct SignUpView: View {
                         .modifier(RegisterTextFieldsModifiers(showPlaceHolder: viewModel.password.isEmpty, placeHolder: "Password"))
                         .modifier(TextFieldModifiers())
                         .background(
-                            RoundedRectangle(cornerRadius: 15)
-                                .frame(width:270 ,height: 40)
-                                .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))) )
+                            RoundedRectangle(cornerRadius: 15).frame(width:270 ,height: 40)
+                                .foregroundColor(Color.textFieldsColor)
+                        )
                     //.overlay(LockIconView(width: 36, height: 36).padding(.horizontal,7),alignment: .leading)
                 }
                 .padding()

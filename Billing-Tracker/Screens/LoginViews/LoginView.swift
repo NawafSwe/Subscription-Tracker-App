@@ -25,7 +25,7 @@ struct LoginView: View {
                         .background(
                             RoundedRectangle(cornerRadius: 15)
                                 .frame(width:270 ,height: 40)
-                                .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                                .foregroundColor(Color.textFieldsColor)
                         )
                     // .overlay(   EmailIconView(width: 36, height: 36).padding(.horizontal,7) , alignment: .leading)
                     
@@ -36,7 +36,7 @@ struct LoginView: View {
                         .background(
                             RoundedRectangle(cornerRadius: 15)
                                 .frame(width:270 ,height: 40)
-                                .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                                .foregroundColor(Color.textFieldsColor)
                             
                         )
                     //.overlay(LockIconView(width: 36, height: 36).padding(.horizontal,7),alignment: .leading)
