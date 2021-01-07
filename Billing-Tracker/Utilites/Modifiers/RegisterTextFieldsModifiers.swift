@@ -19,7 +19,7 @@ struct RegisterTextFieldsModifiers : ViewModifier {
                     .padding(.horizontal)
             }
             content
-                .foregroundColor(Color.white)
+                .foregroundColor(Color.standardText)
                 .padding(.horizontal)
         }
     }
