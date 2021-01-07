@@ -14,44 +14,33 @@ struct LoginView: View {
             Color(.systemBackground)
                 .edgesIgnoringSafeArea(.all)
             VStack {
-                VStack(alignment: .leading,spacing:20){
+                VStack(alignment: .leading, spacing:40){
                     
                     Text("Login")
                         .font(.title)
                     
-                    Text("Your Email:")
-                        .font(.body)
-                    
-                    HStack {
-                        
-                        Spacer().frame(width: 10)
-                        
-                        TextField("Email", text: $viewModel.email)
-                            .padding(.horizontal,50)
-                            .background(
-                                RoundedRectangle(cornerRadius: 15)
-                                    .frame(width:270 ,height: 40)
-                                    .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
-                            )
-                            .overlay(   EmailIconView(width: 36, height: 36).padding(.horizontal,7) , alignment: .leading)
-                    }
+                    TextField("Email", text: $viewModel.email)
+                        .modifier(RegisterTextFieldsModifiers(showPlaceHolder: viewModel.email.isEmpty, placeHolder: "Email"))
+                        .modifier(TextFieldModifiers())
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .frame(width:270 ,height: 40)
+                                .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                        )
+                    // .overlay(   EmailIconView(width: 36, height: 36).padding(.horizontal,7) , alignment: .leading)
                     
                     
-                    Text("Password:")
-                        .font(.body)
+                    SecureField("Password",text:$viewModel.password)
+                        .modifier(RegisterTextFieldsModifiers(showPlaceHolder: viewModel.password.isEmpty, placeHolder: "Password"))
+                        .modifier(TextFieldModifiers())
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .frame(width:270 ,height: 40)
+                                .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                            
+                        )
+                    //.overlay(LockIconView(width: 36, height: 36).padding(.horizontal,7),alignment: .leading)
                     
-                    HStack {
-                        Spacer().frame(width: 10)
-                        SecureField("Password",text:$viewModel.password)
-                            .padding(.horizontal,50)
-                            .background(
-                                RoundedRectangle(cornerRadius: 15)
-                                    .frame(width:270 ,height: 40)
-                                    .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
-                                
-                            )
-                            .overlay(LockIconView(width: 36, height: 36).padding(.horizontal,7),alignment: .leading)
-                    }
                     
                 }
                 .padding()
@@ -69,11 +58,17 @@ struct LoginView: View {
                     Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
                     
                 }
-                Button(action:{
-                    self.viewModel.showRegister = true
-                    self.viewModel.showLogin = false 
-                }){
-                    WelcomeMessage(title: "Do not you have an Account?", underlinedText: "Register")
+                HStack{
+                    
+                    WelcomeMessage(title: "Do not you have an Account?")
+                    
+                    Button(action:{
+                        self.viewModel.showRegister = true
+                        self.viewModel.showLogin = false
+                    }){
+                        StandardButton(title: "Register", width: 70, height: 30)
+                    }
+                    
                 }
                 .padding()
                 
