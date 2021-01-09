@@ -10,10 +10,12 @@ import SwiftUI
 struct ChartView: View {
     @StateObject var viewModel = ChartViewModel()
     var body: some View {
-        ZStack {
-            Color(.systemBackground)
-                .edgesIgnoringSafeArea(.all)
-            NavigationView {
+        NavigationView {
+            
+            ZStack {
+                Color(.systemBackground)
+                    .edgesIgnoringSafeArea(.all)
+                
                 VStack(alignment: .leading, spacing: 10 ) {
                     LineView(data: viewModel.data, title: viewModel.title ,style: viewModel.myCustomStyle)
                         .padding()
@@ -23,14 +25,15 @@ struct ChartView: View {
                         .bold()
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
-                        .padding(30)
+                        .padding(20)
                     
                     Spacer()
-                        
-                        .navigationTitle("Expenses Statistics 📈")
+                    
+                    
                 }
                 .padding()
             }
+            .navigationTitle("Statistics 📈")
         }
     }
     struct  ChartsView_Previews:PreviewProvider{
@@ -38,6 +41,4 @@ struct ChartView: View {
             ChartView()
         }
     }
-    
-    
 }

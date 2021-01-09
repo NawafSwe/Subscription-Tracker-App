@@ -394,7 +394,6 @@
 				399AD2E725706F9300AFA10A /* HomeTabView.swift */,
 				399E5ACA25817AAC0095BCEF /* ChartView */,
 				39F7DE4E257B072000D2AB99 /* ProvidedProvidersView */,
-				39554E07257AE3F1004FF7BC /* SubscriptionMoreDetailView */,
 				395C7CBF2573D2CE001CD96C /* LoginViews */,
 				399956482578BAD2000D907D /* ManageProvidersView */,
 				39F215AD25772F7F009332E7 /* ProvidersView */,
@@ -439,6 +438,7 @@
 		396117492571157800919EF3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				39554E07257AE3F1004FF7BC /* SubscriptionMoreDetailView */,
 				399E5AA225817A040095BCEF /* ChartsView */,
 				39921EAB257FF2A20081ED42 /* NotchViews */,
 				3929C7E42571DC350012DD51 /* UIkitViews */,

@@ -92,12 +92,7 @@ struct NewSubscriptionFormView: View {
                     Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
                 }
             )
-            
             .navigationTitle("New Subscription 💳")
-            
-            
-            
-            
         }
         
     }
