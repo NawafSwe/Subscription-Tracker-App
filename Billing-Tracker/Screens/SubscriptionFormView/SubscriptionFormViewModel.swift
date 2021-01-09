@@ -36,8 +36,6 @@ final class SubscriptionFormViewModel: ObservableObject {
     // calculating price
     var calculatePrice:Double { Double(subPrice) ?? 0.0 }
     
-    
-    
     //MARK:-  init
     /// initing the providers list
     init(){
@@ -199,6 +197,5 @@ final class SubscriptionFormViewModel: ObservableObject {
         UNUserNotificationCenter.current().add(request)
         
     }
-    
 }
 

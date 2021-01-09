@@ -13,51 +13,55 @@ struct SubscriptionDetailView: View {
     
     var body: some View {
         ZStack {
-            VStack{
+            VStack(alignment: .center){
                 BrandView(subscription: subscription)
                     .padding()
                 
                 Divider()
-                    .frame(height: 2)
+                    .frame(width: 320,height: 2)
                     .background(Color("DividerColor"))
                     .shadow(radius: 30)
                 
                 SubscriptionRowInfoView(name:"Name" , info: subscription.name)
+                    .padding()
                 SubscriptionRowInfoView(name:"Description" , info: subscription.description)
+                    .padding()
                 SubscriptionRowInfoView(name: "Bill Date", info: subscription.dueDateString)
+                    .padding()
                 SubscriptionRowInfoView(name: "Cycle", info: subscription.cycleDays)
+                    .padding()
                 SubscriptionRowInfoView(name: "Reminder", info: subscription.notifyMe ? "Yes" : "Never")
+                    .padding()
                 
             }
+            .padding()
             .frame(width: 340,height: 420)
             .background(Color.backgroundCell)
             .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
             .shadow(radius: 4)
-            .padding()
+            
         }
     }
 }
-
 struct SubscriptionDetailView_Previews: PreviewProvider {
     static var previews: some View {
         SubscriptionDetailView(subscription: MockData.subscriptionSample)
     }
 }
-
+// MARK:- SubscriptionRowInfoView
+/// SubscriptionRowInfoView shows the info about the subscription row
 struct SubscriptionRowInfoView:View{
     let name: String
     let info :String
     var body: some View{
-        VStack(alignment: .center){
-            HStack{
-                Text(name)
-                    .font(.body)
-                Spacer()
-                Text(info)
-                    .font(.body)
-                    .foregroundColor(.secondary)
-            }
-            .padding()
+        HStack{
+            Text(name)
+                .font(.body)
+            Spacer()
+            Text(info)
+                .font(.body)
+                .foregroundColor(.secondary)
+            
         }
     }
 }

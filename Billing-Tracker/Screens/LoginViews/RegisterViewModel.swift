@@ -21,7 +21,7 @@ final class  RegisterViewModel:ObservableObject{
         DispatchQueue.main.async {
             self.isLoading = true
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             
             self.shared.register(email: email, password: password, name: name) { result in
                 switch result{
@@ -48,7 +48,7 @@ final class  RegisterViewModel:ObservableObject{
         DispatchQueue.main.async {
             self.isLoading = true
         }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
             self.shared.login(email: email, password: password) { result in
                 switch result{
                     case .failure(let err):
