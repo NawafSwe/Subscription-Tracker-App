@@ -21,7 +21,6 @@ final class SubscriptionServices : ObservableObject , Identifiable{
     
     init (subscription: Subscription){
         self.subscription = subscription
-        
         // now let listen for the repo changes
         // when $ sign proceed a published var from else where means listen to any changes and keep me updated
         // saving the doc id into id field , using compact map because we have string of optional
@@ -32,4 +31,5 @@ final class SubscriptionServices : ObservableObject , Identifiable{
             .assign(to: \.id, on: self)
             .store(in: &cancellables)
     }
+    
 }
