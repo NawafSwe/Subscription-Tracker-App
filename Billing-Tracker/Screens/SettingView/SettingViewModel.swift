@@ -14,7 +14,7 @@ final class SettingViewModel:ObservableObject{
     @Published var isLoading = false
     func logout(){
         self.isLoading = true 
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3){
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1){
             if  !self.session.logout(){
                 self.alertItem = AlertItem(title: Text("Logout Error"), message: Text("Cannot logout at this time"), dismissButton: .default(Text("OK")))
                 self.isLoading = false
@@ -27,4 +27,3 @@ final class SettingViewModel:ObservableObject{
         
     }
 }
-
