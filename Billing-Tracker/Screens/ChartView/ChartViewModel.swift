@@ -19,16 +19,11 @@ final class ChartViewModel:ObservableObject{
         self.getAllStat()
     }
     
-    
-    
     func getAllStat(){
         self.subscriptionsRepository
             .$subscriptions.map{subscriptions in
                 subscriptions.map{subscription in
-                    
                     subscription.price
-                    
-                    
                 }
             }
             .assign(to: \.data, on: self)

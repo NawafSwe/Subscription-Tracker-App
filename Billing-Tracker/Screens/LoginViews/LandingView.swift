@@ -7,11 +7,11 @@
 
 import SwiftUI
 import Firebase
-
-
+ // MARK:- LandingView
 struct LandingView: View {
-    @ObservedObject var shared = UserAuthenticationManager.shared
-    @StateObject var viewModel = RegisterViewModel()
+    @ObservedObject private var shared = UserAuthenticationManager.shared
+    @StateObject private var viewModel = RegisterViewModel()
+    
     var body: some View {
         ZStack {
             Group {
@@ -20,21 +20,17 @@ struct LandingView: View {
                 }
                 else{
                     HomeTabView()
-                        //                    .transition(.move(edge: .leading))
+                        // .transition(.move(edge: .leading))
                         .animation(.easeIn, value: true)
                         .animation(nil)
                 }
-                
-                
             }
             LoadingView(isLoading:$viewModel.isLoading)
                 /// listing if there is user or not
                 .onAppear{
                     shared.listen()
                     self.viewModel.isLoading = true
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
-                        self.viewModel.isLoading = false
-                    }
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1){ self.viewModel.isLoading = false }
                 }
         }
     }
