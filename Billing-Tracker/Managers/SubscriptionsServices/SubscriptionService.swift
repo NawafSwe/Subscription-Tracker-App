@@ -31,7 +31,5 @@ final class SubscriptionServices : ObservableObject , Identifiable{
             }
             .assign(to: \.id, on: self)
             .store(in: &cancellables)
-        
-        
     }
 }
