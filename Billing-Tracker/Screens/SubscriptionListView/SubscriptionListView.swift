@@ -10,38 +10,39 @@ import UIKit
 struct SubscriptionListView: View {
     @StateObject var viewModel = SubscriptionListViewModel()
     var body: some View {
-        ZStack {
-            VStack{
-                NavigationView {
-                    ScrollView{
-                        // lopping on the cells
-                        LazyVGrid(columns: self.viewModel.columns){
-                            ForEach(viewModel.subscriptionServices ){ sub in
-                                // passing subscription into cell view
-                                SubscriptionCellView(subscription: sub)
-                                    .padding(.vertical,4)
-                                    
-                                    .onTapGesture {
-                                        let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                                        impactMed.impactOccurred()
-                                        viewModel.selectedSubscription = sub
-                                    }
-                                    
-                                    .blur(radius: viewModel.showSubscriptionDetail ? 10 :  0)
-                                    .shadow(radius: viewModel.showSubscriptionDetail ? 10 : 0)
+        ZStack{
+            NavigationView{
+                ScrollView{
+                    // lopping on the cells
+                    LazyVGrid(columns: self.viewModel.columns){
+                        ForEach(viewModel.subscriptionServices ){ sub in
+                            
+                            // passing subscription into cell view
+                            SubscriptionCellView(subscription: sub)
                                 
-                            }
+                                .padding(.vertical,4)
+                                
+                                .onTapGesture {
+                                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                                    impactMed.impactOccurred()
+                                    viewModel.selectedSubscription = sub
+                                    
+                                }
+                                
+                                .blur(radius: viewModel.showSubscriptionDetail ? 10 :  0)
+                                .shadow(radius: viewModel.showSubscriptionDetail ? 10 : 0)
                             
                         }
+                        
                     }
-                    /// disabling the navigation if user shows sub details
-                    .disabled(viewModel.showSubscriptionDetail)
-                    .navigationBarItems(leading: Button(action: {viewModel.showSubscriptionForm.toggle()}, label: {
-                                                            AddSubscriptionButtonView() } ))
-                    .navigationTitle("Subscriptions 💳")
-                    
                 }
+                /// disabling the navigation if user shows sub details
+                .disabled(viewModel.showSubscriptionDetail)
+                .navigationBarItems(leading: Button(action: {viewModel.showSubscriptionForm.toggle()}, label: {
+                                                        AddSubscriptionButtonView() } ))
+                .navigationTitle("Subscriptions 💳")
             }
+            
             /// sheet for displaying the form
             .sheet(isPresented: $viewModel.showSubscriptionForm){
                 NewSubscriptionFormView()
@@ -95,12 +96,10 @@ struct SubscriptionListView: View {
                 
             }
         }
-        
         .alert(item: $viewModel.alertItem){alert in
             Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
             
         }
-        
     }
 }
 

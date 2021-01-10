@@ -18,7 +18,9 @@ final class SubscriptionListViewModel : ObservableObject{
     @Published var subscriptionServices = [SubscriptionServices]()
     @Published var subscriptionRepository = SubscriptionRepository()
     let columns : [GridItem] = [ GridItem(.flexible())]
+    let rows : [GridItem] = [GridItem(.flexible() )]
     private var cancellables = Set<AnyCancellable>()
+    let listSample = MockData.subscriptionSampleList
     var totalPrice  = Double()
     init(){
         // getting all subscriptions and initing it into the subscription cell view model

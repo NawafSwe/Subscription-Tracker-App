@@ -39,7 +39,7 @@ struct LoginView: View {
                                 .foregroundColor(Color.textFieldsColor)
                             
                         )
-                    //.overlay(LockIconView(width: 36, height: 36).padding(.horizontal,7),alignment: .leading)
+                    // .overlay(LockIconView(width: 36, height: 36).padding(.horizontal,7),alignment: .leading)
                     
                     
                 }
