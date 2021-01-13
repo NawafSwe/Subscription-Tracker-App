@@ -25,6 +25,7 @@ final class UpdateSubscriptionViewModel:ObservableObject{
     init(subscription:SubscriptionServices){ self.subscription = subscription }
     
     //MARK:- updateSubscription
+    /// update current subscription data
     func updateSubscription(){
         // check the form if its valid or not
         if !isValidForm(){ return }
@@ -46,7 +47,7 @@ final class UpdateSubscriptionViewModel:ObservableObject{
         }
     }
     //  MARK:- Chars limit functions and form validations
-    // calculating progress
+    /// calculating progress
     func descriptionLimit(value: String){
         if value.count > 26 {
             subscription.subscription.description = String(value.prefix(26))
@@ -57,7 +58,8 @@ final class UpdateSubscriptionViewModel:ObservableObject{
         }
     }
     
-    //notification limit char
+    //MARK:- notificationLimit
+    /// notification limit char checker
     func notificationLimit(value: String){
         if value.count > 27 {
             subscription.subscription.notificationMessage = String(value.prefix(27))
@@ -69,6 +71,7 @@ final class UpdateSubscriptionViewModel:ObservableObject{
     }
     
     //MARK:- isValidForm
+    /// checking if the form valid or not before proceed
     func isValidForm() ->Bool {
         if subscription.subscription.description.isEmpty{
             DispatchQueue.main.async {
@@ -88,7 +91,8 @@ final class UpdateSubscriptionViewModel:ObservableObject{
         
     }
     
-    //MARK:- creating notification
+    //MARK:- requestNotificationAuthorization
+    /// request user authorization if not requested before
     func requestNotificationAuthorization(){
         // removing notification with an id if the notification toggled to false
         if !subscription.subscription.notifyMe{
@@ -109,6 +113,7 @@ final class UpdateSubscriptionViewModel:ObservableObject{
     }
     
     //MARK:- initNotification
+    /// creating notification
     func initNotification(with date:Date){
         let providerName = subscription.subscription.name
         // choose a random identifier

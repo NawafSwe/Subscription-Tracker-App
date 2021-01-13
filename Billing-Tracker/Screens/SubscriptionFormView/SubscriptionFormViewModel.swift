@@ -13,9 +13,15 @@ import Combine
 import UserNotifications
 
 final class SubscriptionFormViewModel: ObservableObject {
+     //MARK:- Attributes
+    /// presentationMode for dismiss views
     @Environment (\.presentationMode) var presentationMode
+    
+    /// providersList getting all user providersList
     @Published var providersList = [ProviderServices]()
+    /// alertItem to alert user on actions
     @Published var alertItem:AlertItem? = nil
+    
     @Published var subscriptionRepository = SubscriptionRepository()
     //fetching providers from repo
     @Published var providersRepository = ProviderRepository()
@@ -94,8 +100,8 @@ final class SubscriptionFormViewModel: ObservableObject {
         }
     }
     
-    //MARK:- Chars limit functions and form validations
-    /// calculating progress
+    //  MARK:- descriptionLimit
+    /// calculating  description progress
     func descriptionLimit(value: String){
         if value.count > 26 {
             self.subDescription = String(value.prefix(26))
@@ -105,7 +111,8 @@ final class SubscriptionFormViewModel: ObservableObject {
             }
         }
     }
-    
+    //MARK:- notificationLimit
+    /// notification limit char checker
     func notificationLimit(value: String){
         if value.count > 27 {
             self.notificationMessage = String(value.prefix(27))
@@ -116,8 +123,8 @@ final class SubscriptionFormViewModel: ObservableObject {
         }
     }
     
-    // validation of form
-    // validation of form
+    //MARK:- isValidForm
+    /// checking if the form valid or not before proceed
     func isValidForm() ->Bool {
         if self.subDescription.isEmpty{
             DispatchQueue.main.async {
@@ -137,7 +144,8 @@ final class SubscriptionFormViewModel: ObservableObject {
         
     }
     
-    //MARK:- creating notification
+    //MARK:- initNotification
+    /// creating notification
     func initNotification(with date:Date){
         let providerName = selectedProvider?.name
         // choose a random identifier
@@ -146,6 +154,7 @@ final class SubscriptionFormViewModel: ObservableObject {
         
     }
     //MARK:- requestNotificationAuthorization
+    /// request user authorization if not requested before
     func requestNotificationAuthorization(){
         K.requestNotificationAuthorization(){ [self] result in
             switch result{
