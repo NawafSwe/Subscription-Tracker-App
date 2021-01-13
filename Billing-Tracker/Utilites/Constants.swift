@@ -7,7 +7,9 @@
 
 import Foundation
 import UIKit
-//MARK:- K struct holds constants values used across the app
+import UserNotifications
+//MARK:- K
+/// struct holds constants values used across the app
 struct K {
     /// developer account
     static let devAccount = URL(string:"https://twitter.com/Nawaf_B_910")!
@@ -15,8 +17,70 @@ struct K {
     static func hideKeyBoard (){
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
+    
+    static func initNotification(date:Date, message:String , providerName:String? , notificationId:String){
+        
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Subscription due date Reminder"
+        if let providerName = providerName { content.subtitle = providerName }
+        
+        content.body = "\(message)"
+        content.sound = UNNotificationSound.default
+        
+        //// Configure the recurring date.
+        var dateComponents = DateComponents()
+        /// to extract date component
+        let calendar = Calendar.current
+        let day = calendar.component(.day, from: date)
+        let year = calendar.component(.year, from: date)
+        let month = calendar.component(.month, from: date)
+        dateComponents.day = day
+        dateComponents.month = month
+        dateComponents.year = year
+        dateComponents.calendar = calendar
+        // end of config date
+        ////  Create the trigger as a repeating event.
+        
+        // choosing the trigger if the day is equal to one we want to notify user after an hour
+        var request:UNNotificationRequest
+        
+        if Date.daysDiffrent(start: Date(), end: date) == 1{
+            // not repeated
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: false)
+            request = UNNotificationRequest(identifier: notificationId, content: content, trigger: trigger)
+            
+        }else{
+            // not repeated
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+            request = UNNotificationRequest(identifier: notificationId, content: content, trigger: trigger)
+            
+        }
+        // add our notification request
+        UNUserNotificationCenter.current().add(request)
+        
+    }
+    static func removeNotification(with identifier :String){
+        if !identifier.isEmpty{
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
+            
+        }
+    }
+    
+    static func requestNotificationAuthorization( completion: @escaping (Bool)-> Void ){
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+            if success{
+                completion(true)
+                return
+            } else if let _ = error{
+                completion(false)
+                return
+            }
+        }
+    }
+    
 }
-
+//MARK:- FirestoreKeys
 /// firebase keys collections
 struct FirestoreKeys{
     
@@ -44,3 +108,5 @@ struct FirestoreKeys{
     
     
 }
+
+

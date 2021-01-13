@@ -138,64 +138,26 @@ final class SubscriptionFormViewModel: ObservableObject {
     }
     
     //MARK:- creating notification
-    func requestNotificationAuthorization(){
+    func initNotification(with date:Date){
+        let providerName = selectedProvider?.name
+        // choose a random identifier
+        self.notificationId =  UUID().uuidString
+        K.initNotification(date: date, message: notificationMessage , providerName: providerName , notificationId: self.notificationId)
         
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-            if success{
-                return
-            } else if let _ = error{
-                // tell user to turn on notification center
-                DispatchQueue.main.async {
-                    self.alertItem = AlertItem(title: Text("Notification Error"), message: Text("Please turn on your notification from the notification center"), dismissButton: .default(Text("Ok")))
-                }
-                return
+    }
+    //MARK:- requestNotificationAuthorization
+    func requestNotificationAuthorization(){
+        K.requestNotificationAuthorization(){ [self] result in
+            switch result{
+                case true : return
+                case false :
+                    // tell user to turn on notification center
+                    DispatchQueue.main.async {
+                        alertItem = AlertItem(title: Text("Notification Error"), message: Text("Please turn on your notification from the notification center"), dismissButton: .default(Text("Ok")))
+                    }
+                    return
+                    
             }
         }
     }
-    
-    func initNotification(with date:Date){
-        let content = UNMutableNotificationContent()
-        content.title = "Subscription due date Reminder"
-        if let providerName = selectedProvider?.name{
-            content.subtitle = providerName
-            
-        }
-        content.body = "\(self.notificationMessage)"
-        content.sound = UNNotificationSound.default
-        
-        //// Configure the recurring date.
-        var dateComponents = DateComponents()
-        /// to extract date component
-        let calendar = Calendar.current
-        let day = calendar.component(.day, from: date)
-        let year = calendar.component(.year, from: date)
-        let month = calendar.component(.month, from: date)
-        dateComponents.day = day
-        dateComponents.month = month
-        dateComponents.year = year
-        dateComponents.calendar = calendar
-        // end of config date
-        ////  Create the trigger as a repeating event.
-        
-        // choosing the trigger if the day is equal to one we want to notify user after an hour
-        // choose a random identifier
-        self.notificationId =  UUID().uuidString
-        var request:UNNotificationRequest
-        
-        if Date.daysDiffrent(start: Date(), end: date) == 1{
-            // not repeated
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: false)
-            request = UNNotificationRequest(identifier: self.notificationId, content: content, trigger: trigger)
-            
-        }else{
-            // not repeated
-            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-            request = UNNotificationRequest(identifier: self.notificationId, content: content, trigger: trigger)
-            
-        }
-        // add our notification request
-        UNUserNotificationCenter.current().add(request)
-        
-    }
 }
-
