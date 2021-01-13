@@ -19,8 +19,6 @@ final class UpdateSubscriptionViewModel:ObservableObject{
     private var cancellables = Set<AnyCancellable>()
     @Published var cycleTypes = ["Weekly" , "Monthly", "Yearly"]
     @Published var subscription: SubscriptionServices
-    private var isNotificationAllowed = false
-    
     
     
     //MARK:- init
@@ -32,7 +30,7 @@ final class UpdateSubscriptionViewModel:ObservableObject{
         if !isValidForm(){ return }
         
         // if notification was allowed and user want to be notified
-        if isNotificationAllowed && subscription.subscription.notifyMe{
+        if subscription.subscription.notifyMe{
             initNotification(with: subscription.subscription.dueDateInDate)
         }
         
@@ -96,69 +94,30 @@ final class UpdateSubscriptionViewModel:ObservableObject{
         if !subscription.subscription.notifyMe{
             removeNotification(with: subscription.subscription.notificationId)
         }
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-            if success{
-                self.isNotificationAllowed = true
-                return
-            } else if let _ = error{
-                self.isNotificationAllowed = false
-                // tell user to turn on notification center
-                DispatchQueue.main.async {
-                    self.alertItem = AlertItem(title: Text("Notification Error"), message: Text("Please turn on your notification from the notification center"), dismissButton: .default(Text("Ok")))
-                }
-                return
+        K.requestNotificationAuthorization(){ [self] result in
+            switch result{
+                case true : return
+                case false :
+                    // tell user to turn on notification center
+                    DispatchQueue.main.async {
+                        alertItem = AlertItem(title: Text("Notification Error"), message: Text("Please turn on your notification from the notification center"), dismissButton: .default(Text("Ok")))
+                    }
+                    return
+                    
             }
         }
     }
     
+    //MARK:- initNotification
     func initNotification(with date:Date){
-        let content = UNMutableNotificationContent()
-        content.title = "Subscription due date Reminder"
-        content.subtitle = subscription.subscription.name
-        
-        content.body = "\(subscription.subscription.notificationMessage)"
-        content.sound = UNNotificationSound.default
-        
-        //// Configure the recurring date.
-        var dateComponents = DateComponents()
-        /// to extract date component
-        let calendar = Calendar.current
-        let day = calendar.component(.day, from: date)
-        let year = calendar.component(.year, from: date)
-        let month = calendar.component(.month, from: date)
-        dateComponents.day = day
-        dateComponents.month = month
-        dateComponents.year = year
-        dateComponents.calendar = calendar
-        // end of config date
-        ////  Create the trigger as a repeating event.
-        
-        // choosing the trigger if the day is equal to one we want to notify user after an hour
+        let providerName = subscription.subscription.name
         // choose a random identifier
-        subscription.subscription.notificationId =  UUID().uuidString
-        var request:UNNotificationRequest
+        self.subscription.subscription.notificationId =  UUID().uuidString
         
-        if Date.daysDiffrent(start: Date(), end: date) == 1{
-            // not repeated
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: false)
-            request = UNNotificationRequest(identifier:  subscription.subscription.notificationId , content: content, trigger: trigger)
-            
-        }else{
-            // not repeated
-            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-            request = UNNotificationRequest(identifier:  subscription.subscription.notificationId, content: content, trigger: trigger)
-            
-        }
-        // add our notification request
-        UNUserNotificationCenter.current().add(request)
-        
+        K.initNotification(date: date, message: subscription.subscription.notificationMessage, providerName: providerName, notificationId: self.subscription.subscription.notificationId)
     }
-    
     func removeNotification(with identifier: String){
-        if !identifier.isEmpty{
-            self.subscription.subscription.notificationId = ""
-            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
-            
-        }
+        self.subscription.subscription.notificationId = ""
+        K.removeNotification(with: identifier)
     }
 }
